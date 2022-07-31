@@ -1,0 +1,42 @@
+[
+    {
+        "caption": "Preferences",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "Sublime Plus",
+                        "id": "sublime_plus",
+                        "children":
+                        [
+                            {
+                                "caption": "Settings",
+                                "command": "edit_settings",
+                                "args":
+                                {
+                                    "base_file": "${packages}/SublimePlus/Sublime Plus.sublime-settings",
+                                    "user_file": "${packages}/User/Sublime Plus.sublime-settings"
+                                }
+                            },
+                            {
+                                "caption": "Key Bindings",
+                                "command": "edit_settings",
+                                "args":
+                                {
+                                    "base_file": "${packages}/SublimePlus/Default (Windows).sublime-keymap",
+                                    "user_file": "${packages}/User/Default (Windows).sublime-keymap",
+                                    "default": "[\n\t$0\n]\n"
+                                }
+                            },
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

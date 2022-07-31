@@ -1,0 +1,373 @@
+{
+    "name": "Rohingya - Theme",
+    "semantic_class": "rohingya.dark_dark",
+    "color_space_name": "sRGB",
+    "gutter_settings": "1ce0a702-ce74-4d37-91e2-f493dd533875",
+    "variables": {
+        "color00": "#15110f",
+        "color01": "#528BFF",
+        "color02": "#A6B2C0",
+        "color03": "#747369",
+        "color04": "#2B313A",
+        "color05": "#3D4350",
+        "color06": "#59626F",
+        "color07": "#C988DB",
+        "color08": "#B85E4C",
+        "color09": "#73A9D9",
+        "color10": "#E8D56A",
+        "color11": "#00B1CC",
+        "color12": "#5BA884",
+        "color13": "#A3A6FA",
+        "color14": "#515151",
+        "color15": "#BE4F44",
+        "color16": "#F3985E",
+        "color17": "#0D1B1E",
+        "color18": "#DEB09B",
+        "color19": "#2d2d2d",
+        "color20": "#d27b53",
+        "black": "hsl(0, 0%, 0%)",
+        "black2": "hsl(60, 17%, 11%)",
+        "black3": "hsl(70, 8%, 15%)",
+        "black4": "hsl(0, 0%, 10%)",
+        "blue": "hsl(190, 81%, 67%)",
+        "blue2": "hsl(210, 81%, 67%)",
+        "blue3": "hsl(190, 100%, 67%)",
+        "blue4": "hsl(170, 60%, 56%)",
+        "blue5": "rgb( 0, 150, 200)",
+        "grey": "hsla(55, 8%, 31%, 0.7)",
+        "grey2": "rgb(35, 35, 35)",
+        "orange": "hsl(32, 98%, 56%)",
+        "orange2": "hsl(30, 83%, 34%)",
+        "orange3": "hsl(47, 100%, 79%)",
+        "purple": "hsl(261, 100%, 75%)",
+        "red": "hsl(0, 93%, 59%)",
+        "red2": "hsl(338, 95%, 56%)",
+        "red3": "hsl(0, 93%, 40%)",
+        "red4": "rgb(135, 32, 32)",
+        "red5": "rgb(18, 5, 5)",
+        "red6": "rgb(43, 5, 5)",
+        "purple2": "rgb(45, 0, 45)",
+        "white": "hsl(0, 0%, 97%)",
+        "white2": "hsl(60, 36%, 96%)",
+        "white3": "hsl(60, 30%, 96%)",
+        "yellow": "hsl(54, 70%, 68%)",
+        "yellow2": "hsl(80, 76%, 53%)",
+        "yellow3": "hsl(60, 12%, 79%)",
+        "yellow4": "hsl(55, 11%, 22%)",
+        "yellow5": "hsl(50, 11%, 41%)",
+        "pink": "hsl(285, 100%, 65%)",
+        "green": "hsl(120, 100%, 25%)",
+        "green2": "hsl(120, 100%, 45%)",
+        "green3": "rgb(90,205,90)",
+        "tooltips": "rgb(25,195,255)",
+        "envy": "#7f9f7f",
+        "dark_goldenrod": "rgb(184, 134, 11)"
+    },
+    "globals": {
+        "background": "color(var(dark_goldenrod) l( 5%))",
+        "caret": "color(var(white) blend(#000 80%))",
+        "foreground": "var(color02)",
+        "invisibles": "var(color03)",
+        "line_highlight": "var(color04)",
+        "selection": "color(var(yellow) l( 5%))",
+        "selection_border": "color(var(yellow) blend(#000 70%))",
+        "brackets_options": "underline foreground",
+        "brackets_foreground": "color(var(yellow) l( 50%))",
+        "bracket_contents_options": "underline foreground",
+        "bracket_contents_foreground": "color(var(yellow) l( 40%))",
+        "line_diff_width": "4",
+        "line_diff_modified": "var(blue5)",
+        "line_diff_deleted": "var(red4)",
+        "shadow": "color(var(red5) blend(#000 95%))",
+        "shadow_width": "4",
+    },
+    "rules": [
+        {
+            "name": "AI",
+            "scope": "keyword.name",
+            "foreground": "color(var(pink) alpha(0.85))",
+            "font_style": "bold"
+        },
+
+        {
+            "name": "In Game Scripts",
+            "scope": "support.other.variable",
+            "foreground": "color(var(green3) alpha(0.9))",
+            "font_style": "foreground"
+        },
+
+        {
+            "name": "Storage type",
+            "scope": "storage.type",
+            "foreground": "var(blue4)",
+            "font_style": "italic"
+        },
+
+        {
+            "name": "Math",
+            "scope": "keyword.type",
+            "foreground": "var(orange)",
+        },
+
+        {
+            "name": "Tooltips",
+            "scope": "keyword.type.name",
+            "foreground": "var(tooltips)",
+        },
+        {
+            "name": "Entity Default Name",
+            "scope": "entity.name",
+            "foreground": "color(var(green3) l( 52%))",
+        },
+        {
+            "name": "Text",
+            "scope": "variable.parameter.function",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Comments",
+            "scope": "comment, punctuation.definition.comment",
+            "foreground": "var(color06)",
+        },
+        {
+            "name": "Delimiters",
+            "scope": "none",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Operators",
+            "scope": "keyword.operator",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Keywords",
+            "scope": "keyword",
+            "foreground": "color(var(red2) blend(#000 75%))"
+        },
+        {
+            "name": "Variables",
+            "scope": "variable",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Functions",
+            "scope": "entity.name.function, meta.require, support.function.any-method",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "Classes",
+            "scope": "support.class, entity.name.class, entity.name.type.class",
+            "foreground": "color(var(color10) blend(#000 90%))"
+        },
+        {
+            "name": "Classes",
+            "scope": "meta.class",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Methods",
+            "scope": "keyword.other.special-method",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "Storage",
+            "scope": "storage",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Support",
+            "scope": "support.function",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "Strings, Inherited Class",
+            "scope": "string, constant.other.symbol, entity.other.inherited-class",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "Integers",
+            "scope": "constant.numeric",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Floats",
+            "scope": "none",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Boolean",
+            "scope": "none",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Constants",
+            "scope": "constant",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Tags",
+            "scope": "entity.name.tag",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Attributes",
+            "scope": "entity.other.attribute-name",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Attribute IDs",
+            "scope": "entity.other.attribute-name.id, punctuation.definition.entity",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Selector",
+            "scope": "meta.selector",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Values",
+            "scope": "none",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Headings",
+            "scope": "markup.heading punctuation.definition.heading, entity.name.section",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "Units",
+            "scope": "keyword.other.unit",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Bold",
+            "scope": "markup.bold, punctuation.definition.bold",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Italic",
+            "scope": "markup.italic, punctuation.definition.italic",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Code",
+            "scope": "markup.raw.inline",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "Link Text",
+            "scope": "string.other.link, punctuation.definition.string.end.markdown",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Link Url",
+            "scope": "meta.link",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Lists",
+            "scope": "markup.list",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Quotes",
+            "scope": "markup.quote",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Separator",
+            "scope": "meta.separator",
+            "background": "var(color14)",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Inserted",
+            "scope": "markup.inserted",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "Deleted",
+            "scope": "markup.deleted",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Changed",
+            "scope": "markup.changed",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Colors",
+            "scope": "constant.other.color",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "Regular Expressions",
+            "scope": "string.regexp",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "Escape Characters",
+            "scope": "constant.character.escape",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "Embedded",
+            "scope": "punctuation.section.embedded, variable.interpolation",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "Illegal",
+            "scope": "invalid.illegal",
+            "background": "var(color16)",
+            "foreground": "var(color17)"
+        },
+        {
+            "name": "Broken",
+            "scope": "invalid.broken",
+            "background": "var(color18)",
+            "foreground": "var(color19)"
+        },
+        {
+            "name": "Deprecated",
+            "scope": "invalid.deprecated",
+            "background": "var(color20)",
+            "foreground": "var(color17)"
+        },
+        {
+            "name": "Unimplemented",
+            "scope": "invalid.unimplemented",
+            "background": "var(color03)",
+            "foreground": "var(color17)"
+        },
+        {
+            "name": "Json key",
+            "scope": "source.json                           meta.structure.dictionary.json                              string.quoted.double.json",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Json value",
+            "scope": "source.json                       meta.structure.dictionary.json                           meta.structure.dictionary.value.json                       string.quoted.double.json",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "json sub key",
+            "scope": "source.json                           meta.structure.dictionary.json                          meta.structure.dictionary.value.json                        meta.structure.dictionary.json                      string.quoted.double.json",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Json sub value",
+            "scope": "source.json                       meta.structure.dictionary.json                        meta.structure.dictionary.value.json                       meta.structure.dictionary.json                          meta.structure.dictionary.value.json                            string.quoted.double.json",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "laravel blade tag",
+            "scope": "text.html.laravel-blade                        source.php.embedded.line.html                     entity.name.tag.laravel-blade",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "laravel blade @",
+            "scope": "text.html.laravel-blade                         source.php.embedded.line.html                    support.constant.laravel-blade",
+            "foreground": "var(color07)"
+        }
+    ]
+}

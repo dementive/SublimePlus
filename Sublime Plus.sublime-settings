@@ -1,0 +1,258 @@
+{
+
+    //SIDEBAR SETTINGS
+    //I think these make the sidebar act more like it "should"
+
+    // This option changes the behavior only when the sidebar is opened with the focus_file_on_sidebar command
+    // If true it'll close sidebar and focus back on the current file (basically makes the command act as a sidebar toggle)
+    // If false it'll reveal and focus the current file on sidebar (basically makes the command only open the sidebar)
+    "close_sidebar_if_opened": true,
+
+    // This option will automatically hide the sidebar when the sidebar is no longer the main focus
+    // If true sidebar will auto hide when something else becomes the focus
+    // If false side bar will NOT auto hide when something else becomes the focus
+    "hide_side_bar_when_not_focused": true,
+
+
+    //Will the side bar automatically be shown when there are no open files(views)
+    // If true sidebar will auto open when there are no open files
+    // If false sidebar will auto open when there are no open files
+    "show_sidebar_when_no_open_views": true,
+
+
+    //Will the side bar be automatically closed after X changes have been made. Where X is change_count_sidebar_auto_close
+    // If true sidebar will close after X changes
+    // If false sidebar will not automatically close after changes
+    "close_sidebar_after_changes": true,
+
+
+    // How many changes have to be made before the sidebar is automatically closed if close_sidebar_after_changes is true
+    "change_count_sidebar_auto_close": 15,
+
+
+    // The amount of characters that will be moved when the fast move (alt+arrow keys) commands are used.
+    // Bigger number = faster movement
+
+    "fast_move_horizontal_character_amount": 10,
+
+    "fast_move_vertical_move_amount": 6,
+
+
+    // List of websites that will show up when the select_favorite_website command is used. Add as many websites as you want
+    "favorite_website_list": {
+        "Google" : "https://www.google.com/webhp?btnG=1",
+        "Wikipedia" : "https://www.wikipedia.org/",
+    },
+    // List of directories that contain sublime workspaces that will populate the open workspace command. Add as many directories as you want.
+    // Can be very useful for quickly switching between sets of files via the command palette
+    // Works in a similar way to the open_switch_project command but it is only filled with valid entries & is only workspaces.
+    // Paths must be entered using double backward slashes like this: "C:\\Users\\yourusername\\Desktop\\Projects"
+    // Also make sure that your default application to open .sublime-workspace files is set to sublime text.
+    // Keybinding to open list of workspaces in directories is alt+w
+    "sublime_workspace_directories_list": [
+        // "C:\\Users\\yourusername\\Desktop\\Projects",
+        // "C:\\Users\\yourusername\\Desktop\\test"
+    ],
+
+    // The character that is used for the comment formatting header box
+    // Default is "-" which looks like:
+    /*
+    ---------------
+    -   comment   -
+    ---------------
+    */
+    "comment_format": "-", //bigger
+    "comment_format_two": "-", //smaller
+
+    // Comment folding settings
+    // Adjacent single- and block comments
+    // get turned into a single fold
+    //
+    // Example:
+    //
+    // # Foo bar baz
+    // # baz bar foo
+    //
+    // Would get turned into:
+    // (..)
+    //
+    // Instead of:
+    // (..)
+    // (..)
+    "concatenate_adjacent_comments": true,
+
+    // Includes "inline" comments, like so:
+    //
+    // function foobar(baz) {
+    //  return baz * 2; // this is an inline comment <--
+    // }
+    "fold_single_line_comments": true,
+
+    // Includes "multiline" comments, like so:
+    /*
+    function foobar(baz) {
+    return baz * 2;
+    } */
+    "fold_multi_line_comments": true,
+
+    // Includes "docblock" comments, like so:
+    /**
+     * Foobar function
+     * @param {Number} baz
+     * @return {Number} Foobar number
+     */
+    "fold_doc_block_comments": true,
+
+
+    //Line split command setting
+    // Will the split selection be shown before or after it is done?
+    // Default, true, is before
+
+    "live_split_selection": true,
+
+    //NotePad Settings, default is to show nothing in the notepad for as few distractions as possible
+
+    "show_gutter_in_notepad": false,
+
+
+    "show_minimap_in_notepad": false,
+
+
+    "show_status_bar_in_notepad": false,
+
+
+    "show_tabs_in_notepad": false,
+
+    //What color scheme should the notepad use?
+    // Dark and Light are special schemes just for the notepad to make note taking as simple and as distraction free as possible.
+    // Dark = Use the dark notepad scheme
+    // Light = Use the light notepad scheme
+    // Default = Don't change the color scheme when making a new notepad, use the default one.
+
+    "notepad_color_scheme_mode": "Default",
+
+
+    //What color scheme should the temporary notepad use?
+    // Dark and Light are special schemes just for the notepad to make note taking as simple and as distraction free as possible.
+    // Dark = Use the dark notepad scheme
+    // Light = Use the light notepad scheme
+    // Default = Don't change the color scheme when making a new notepad, use the default one.
+
+    "temp_notepad_color_scheme_mode": "Dark",
+
+    // The font size of the temp notepad. This is a setting because the output panel font can't be changed.
+    "temp_notepad_font_size": 17,
+
+
+    //Sets the draw_centered setting to true/false for the normal notepad
+    "draw_centered_notepad": false,
+
+    //Sets the draw_centered setting to true/false for the temporary notepad
+    "draw_centered_temp_notepad": false,
+
+
+    // Autospell settings
+    "default_triggers": [
+      "-",
+      ":",
+      ";",
+      "_",
+      ",",
+      ".",
+      " ",
+      "enter"
+    ],
+    "default_replacements": {
+      "remvoe": "remove",
+      "karam": "karma",
+      "resovle": "resolve",
+      "adn": "and",
+      "agin": "again",
+      "alos": "also",
+      "amzaing": "amazing",
+      "anf": "and",
+      "anythign": "anything",
+      "aslo": "also",
+      "avalibale": "avaliable",
+      "becuase": "because",
+      "begining": "beginning",
+      "cahnged": "changed",
+      "charater": "character",
+      "charaters": "characters",
+      "charcter": "character",
+      "charcters": "characters",
+      "chari": "chair",
+      "charis": "chairs",
+      "defualt": "default",
+      "differnt": "different",
+      "dooing": "dooing",
+      "everthing": "everything",
+      "everythign": "everything",
+      "exmaple": "example",
+      "exmaples": "examples",
+      "gam": "game",
+      "goin": "going",
+      "haev": "have",
+      "htat": "that",
+      "hte": "the",
+      "lvo": "love",
+      "locatoin": "location",
+      "otehrwise": "otherwise",
+      "optoins": "options",
+      "otpions": "options",
+      "otpoins": "options",
+      "packge": "package",
+      "performa": "performs",
+      "proccessor": "processor",
+      "pubilc": "public",
+      "reccommend": "recommend",
+      "removs": "removes",
+      "reponse": "response",
+      "roels": "roles",
+      "roght": "right",
+      "searhc": "search",
+      "seperate": "separate",
+      "shoudl": "should",
+      "somethign": "something",
+      "startes": "starts",
+      "stroner": "stronger",
+      "surevy": "survey",
+      "taht": "that",
+      "teh": "the",
+      "tehere": "there",
+      "thay": "they",
+      "tpye": "type",
+      "trak": "track",
+      "udpate": "update",
+      "waht": "what",
+      "wahts": "whats",
+      "wansts": "wants",
+      "wnt": "want",
+    },
+
+
+
+    // AUTOFOLD -------------------------------------------------------------
+
+    // If the size of your view (number of characters in it) exceeds this number,
+    // then AutoFoldCode will not save code folds (otherwise it risks hanging and
+    // slowing down your editing).
+    "max_buffer_size": 1000000,
+
+    // Should AutoFoldCode save and restore your selections inside the editor?
+    "save_selections": true,
+
+    // ATTENTION: DO NOT EDIT THESE 3 VALUES
+    // INTERNAL STORAGE FOR AUTOFOLDCODE -----------------------------------------
+
+    // Your code folds are stored in this value.
+    "folds": {},
+
+    // Saved selections if enabled.
+    "selections": {},
+
+    // ATTENTION: DO NOT EDIT THIS VALUE
+    // This is used by AutoFoldCode to check the storage version format of your
+    // folded code regions. If you edit this then you may lose your folds.
+    "version": 1
+}

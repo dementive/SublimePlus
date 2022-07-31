@@ -1,0 +1,52 @@
+[
+    { "caption": "-" },
+    {
+        "caption": "General Use Commands",
+        "children":
+        [
+            {
+                "caption": "Folding",
+                "children":
+                [
+                    { "command": "toggle_code_fold", "caption": "Toggle Code Fold" },
+                    { "command": "toggle_fold_comments", "caption": "Toggle Comment Fold" },
+                    { "command": "gen_toggle_fold_selection", "caption": "Toggle Selection Fold" },
+                    { "command": "toggle_fold_everything", "caption": "Toggle Fold All" },
+                ]
+            },
+            {
+                "caption": "Selection",
+                "children":
+                [
+                    { "command": "split_selection", "caption": "Split Selection" },
+                    { "command": "cycle_through_regions", "caption": "Cycle Through Selections" },
+                ]
+            },
+            {
+                "caption": "Navigation",
+                "children":
+                [
+                    { "command": "move_to_top_of_file", "caption": "Move to Top of File" },
+                    { "command": "move_to_bottom_of_file", "caption": "Move to Bottom of File" },
+                ]
+            },
+            {
+                "caption": "NotePad",
+                "children":
+                [
+                    { "command": "toggle_note_pad", "caption": "Toggle Notepad" },
+                    { "command": "note_pad_new", "caption": "Create New Notepad" },
+                    { "command": "output_panel_note_pad", "caption": "Temporary Notepad" },
+                ]
+            },
+            {
+                "caption": "Comments",
+                "children":
+                [
+                    { "command": "comment_header", "caption": "Comment Header" },
+                    { "command": "comment_header_two", "caption": "Comment Subheader" },
+                ]
+            },
+        ]
+    },
+]

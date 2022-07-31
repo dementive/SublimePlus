@@ -1,0 +1,30 @@
+﻿{
+    "variables":
+    {
+        "black": "#000001",
+        "grey": "rgb(100, 100, 100)",
+        "grey2": "rgb(8, 8, 8)",
+        "white": "rgb(195, 195, 195"
+    },
+    "globals":
+    {
+        "foreground": "var(white)",
+        "background": "var(black)",
+        "caret": "var(white)",
+        "block_caret": "var(white)",
+        "block_caret_border": "var(white)",
+        "gutter": "var(grey2)",
+        "line_highlight": "var(black)",
+        "selection": "var(grey)",
+        "selection_border": "var(grey)",
+        "misspelling": "var(white)",
+        "active_guide": "var(black)",
+        "find_highlight_foreground": "var(black)",
+        "find_highlight": "var(white)",
+        "brackets_options": "underline foreground",
+        "brackets_foreground": "var(white)",
+        "bracket_contents_options": "underline",
+        "bracket_contents_foreground": "var(white)",
+        "tags_options": "stippled_underline",
+    },
+}

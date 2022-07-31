@@ -1,0 +1,103 @@
+[{
+  "caption": "-",
+  "id": "sidebar-menu-separator-2"
+},{
+  "caption": "Copy Name",
+  "id": "sidebar-menu-copyname",
+  "command": "side_bar_menu_copy_name",
+  "args": { "paths": [] }
+},{
+  "caption": "Copy Relative Path",
+  "id": "sidebar-menu-copyarelativepath",
+  "command": "side_bar_menu_copy_relative_path",
+  "args": { "paths": [] }
+},{
+  "caption": "Copy Absolute Path",
+  "id": "sidebar-menu-copyabsolutepath",
+  "command": "side_bar_menu_copy_absolute_path",
+  "args": { "paths": [] }
+},
+{
+  "caption": "-",
+  "id": "sidebar-menu-separator-z"
+},
+{
+  "caption": "Project",
+  "children": [
+        {
+          "caption": "Switch Project",
+          "command": "prompt_select_workspace",
+        },
+        {
+            "caption": "Open Recent",
+            "children":
+            [
+                { "command": "open_recent_project_or_workspace", "args": {"index": 0 } },
+                { "command": "open_recent_project_or_workspace", "args": {"index": 1 } },
+                { "command": "open_recent_project_or_workspace", "args": {"index": 2 } },
+                { "command": "open_recent_project_or_workspace", "args": {"index": 3 } },
+                { "command": "open_recent_project_or_workspace", "args": {"index": 4 } },
+                { "command": "open_recent_project_or_workspace", "args": {"index": 5 } },
+                { "command": "open_recent_project_or_workspace", "args": {"index": 6 } },
+                { "command": "open_recent_project_or_workspace", "args": {"index": 7 } },
+                { "caption": "-" },
+                { "command": "clear_recent_projects_and_workspaces", "caption": "Clear Items" },
+                { "command": "clear_missing_recent_projects_and_workspaces", "caption": "Remove Deleted" },
+            ]
+        },
+        {"caption":"-"},
+        {
+          "caption": "Save Project As",
+          "command": "save_project_and_workspace_as",
+        },
+        {
+          "caption": "Add Folder to Project",
+          "command": "prompt_add_folder",
+        },
+        {
+          "caption": "Edit Project",
+          "command": "open_file",
+          "args": { "file": "${project}"}
+        },
+        {"caption":"-"},
+        {
+          "caption": "Save Workspace As",
+          "command": "save_workspace_as",
+        },
+        {
+          "caption": "New Workspace for Project",
+          "command": "new_window_for_project",
+        },
+        {"caption":"-"},
+        {
+          "caption": "Close Project & Workspace",
+          "command": "close_workspace",
+        },
+    ]
+},
+{"caption":"-"},
+{
+  "caption": "Open Terminal",
+  "id": "sidebar-menu-terminal",
+  "command": "side_bar_terminal",
+  "args": { "paths": [] }
+},
+{"caption":"-"},
+{
+  "caption": "Duplicate…",
+  "id": "sidebar-menu-duplicate",
+  "command": "side_bar_menu_duplicate",
+  "args": { "paths": [] }
+},{
+  "caption": "Move…",
+  "id": "sidebar-menu-move",
+  "command": "side_bar_menu_move",
+  "args": { "paths": [] }
+},
+{
+  "caption": "Delete",
+  "id": "sidebar-menu-delete",
+  "command": "side_bar_menu_delete",
+  "args": { "paths": [] }
+},
+]
