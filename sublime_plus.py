@@ -871,7 +871,7 @@ class OpenWorkspaceFromListCommand(sublime_plugin.WindowCommand):
         if workspace != None:
             workspace = workspace + ".sublime-workspace"
             project_directories = settings.get('sublime_workspace_directories_list')
-            if len(project_directories > 0):
+            if len(project_directories) > 0:
                 space_path = os.path.abspath(workspace)
                 s_workspace_file = re.compile("^.*?\.sublime-workspace$")
                 results = []
