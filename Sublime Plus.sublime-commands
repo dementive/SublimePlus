@@ -16,7 +16,7 @@
 	{ "command": "move_to_bottom_of_file", "caption": "Sublime Plus: Move to Bottom of File" },
 	{ "command": "select_favorite_website", "caption": "Sublime Plus: Favorite Websites" },
 	{ "command": "clear_console", "caption": "Sublime Plus: Clear Console" },
-	{ "command": "open_workspace_from_list", "caption": "Sublime Plus: Workspace List" },
+	{ "command": "open_workspace_from_list", "caption": "Sublime Plus: Open Workspace" },
 
 	{ "caption": "Sublime Plus: Search Online", "command": "search_online", "args": {"stype": "search"} },
 	{ "caption": "Sublime Plus: Open Url", "command": "search_online", "args": {"stype": "url"} },

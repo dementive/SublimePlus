@@ -858,6 +858,17 @@ class WorkspaceListInputHandler(sublime_plugin.ListInputHandler):
             list_items.append(workspace)
         return list_items
 
+class CloseWindowListInputHandler(sublime_plugin.ListInputHandler):
+
+    def name(self):
+        return 'close'
+
+    def list_items(self):
+        return [
+            ('Close Current Workspace', True),
+            ('Keep Current Workspace', False)
+        ]
+
 class OpenWorkspaceFromListCommand(sublime_plugin.WindowCommand):
 
     def input_description(self):
@@ -866,8 +877,10 @@ class OpenWorkspaceFromListCommand(sublime_plugin.WindowCommand):
     def input(self, args):
         if 'workspace' not in args:
             return WorkspaceListInputHandler()
+        if 'close' not in args:
+            return CloseWindowListInputHandler()
 
-    def run(self, workspace):
+    def run(self, workspace, close):
         if workspace != None:
             workspace = workspace + ".sublime-workspace"
             project_directories = settings.get('sublime_workspace_directories_list')
@@ -881,9 +894,12 @@ class OpenWorkspaceFromListCommand(sublime_plugin.WindowCommand):
                             if name == workspace:
                                 workspace = directory + "\\" + name
                                 window = sublime.active_window()
-                                window.run_command("close_workspace")
-                                window.run_command("close_pane")
-                                os.startfile(workspace)
+                                if close:
+                                    window.run_command("close_workspace")
+                                    window.run_command("close_pane")
+                                    os.startfile(workspace)
+                                else:
+                                    os.startfile(workspace)
         else:
             sublime.set_timeout(lambda: sublime.status_message( 'No directories have been added to the workspace directories list. See Sublime Plus.sublime-setting for more info.'), 0)
 

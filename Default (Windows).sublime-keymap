@@ -1,5 +1,6 @@
 [
-	{ "keys": ["alt+w"], "command": "open_workspace_from_list" },
+	{ "keys": ["alt+w"], "command": "open_workspace_from_list", "args": {"close": true}},
+	{ "keys": ["alt+shift+w"], "command": "open_workspace_from_list" },
 	{ "keys": ["alt+s"], "command": "select_color_scheme" },
 	{ "keys": ["f10"], "command": "clear_console" },
 
