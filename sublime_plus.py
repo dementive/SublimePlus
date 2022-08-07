@@ -880,6 +880,9 @@ class OpenWorkspaceFromListCommand(sublime_plugin.WindowCommand):
                         if s_workspace_file.match(workspace):
                             if name == workspace:
                                 workspace = directory + "\\" + name
+                                window = sublime.active_window()
+                                window.run_command("close_workspace")
+                                window.run_command("close_pane")
                                 os.startfile(workspace)
         else:
             sublime.set_timeout(lambda: sublime.status_message( 'No directories have been added to the workspace directories list. See Sublime Plus.sublime-setting for more info.'), 0)
