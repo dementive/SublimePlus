@@ -4,6 +4,11 @@
 	{ "keys": ["alt+s"], "command": "select_color_scheme" },
 	{ "keys": ["f10"], "command": "clear_console" },
 
+	{ "keys": ["ctrl+;"], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/AppendSemiColon.sublime-macro"} },
+	{ "keys": ["ctrl+shift+d"], "command": "run_macro_file", "args": {"file": "Packages/Default/Delete Line.sublime-macro"} },
+	{ "keys": ["alt+["], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/AppendBrackets.sublime-macro"} },
+	{ "keys": ["ctrl+alt+["], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/AppendBracketsWithEquals.sublime-macro"} },
+
 	//Folding
 	{ "keys": ["ctrl+1"], "command": "toggle_code_fold" },
 	{ "keys": ["ctrl+2"], "command": "toggle_fold_comments" },
@@ -34,20 +39,20 @@
 
 	//Vim Navigation
 	// up down left right i j k l
-	{ "keys": ["alt+l"], "command": "move", "args": {"by": "characters", "forward": true}},
-	{ "keys": ["alt+j"], "command": "move", "args": {"by": "characters", "forward": false}},
-	{ "keys": ["alt+i"], "command": "move", "args": {"by": "lines", "forward": false}},
-	{ "keys": ["alt+k"], "command": "move", "args": {"by": "lines", "forward": true}},
+	{ "keys": ["ctrl+l"], "command": "move", "args": {"by": "characters", "forward": true}},
+	{ "keys": ["ctrl+j"], "command": "move", "args": {"by": "characters", "forward": false}},
+	{ "keys": ["ctrl+i"], "command": "move", "args": {"by": "lines", "forward": false}},
+	{ "keys": ["ctrl+k"], "command": "move", "args": {"by": "lines", "forward": true}},
 
 	// move front/end of line
 	{ "keys": ["alt+h"], "command": "move_to", "args": {"to": "bol", "forward": true}},
 	{ "keys": ["alt+;"], "command": "move_to", "args": {"to": "eol", "forward": false}},
 
 	// fast move for alt+ctrl
-	{ "keys": ["alt+ctrl+i"], "command": "fast_movement_up"},
-	{ "keys": ["alt+ctrl+k"], "command": "fast_movement_down"},
-	{ "keys": ["alt+ctrl+l"], "command": "fast_movement_right"},
-	{ "keys": ["alt+ctrl+j"], "command": "fast_movement_left"},
+	{ "keys": ["alt+i"], "command": "fast_movement_up"},
+	{ "keys": ["alt+k"], "command": "fast_movement_down"},
+	{ "keys": ["alt+l"], "command": "fast_movement_right"},
+	{ "keys": ["alt+j"], "command": "fast_movement_left"},
 
 	//top/bottom of file
 	{ "keys": ["alt+ctrl+9"], "command": "move_to_top_of_file" },
