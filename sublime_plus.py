@@ -1,5 +1,6 @@
 import sublime, sublime_plugin
 import webbrowser, re, functools, os, zlib, subprocess, json, inspect
+from threading import Timer
 from itertools import tee, chain
 
 # ------------------------------------------------------
@@ -1186,3 +1187,29 @@ def _compute_view_content_checksum(view):
   int_crc32 = zlib.crc32(view_content.encode('utf-8'))
   return hex(int_crc32 % (1<<32))
 
+
+
+# ----------------------------------
+# -            AutoSave            -
+# ----------------------------------
+
+class AutoSaveEventListener(sublime_plugin.EventListener):
+    def on_modified(self, view):
+        if settings.get("auto_save_on_modified"):
+            delay_field = settings.get("auto_save_delay_in_seconds")
+            filename = view.file_name()
+            if settings.get("auto_save_only_included"):
+                for path in settings.get("included_auto_save_files_field"):
+                    if filename.endswith(path):
+                        sublime.set_timeout(lambda: self.save_file(view), delay_field)
+            else:
+                for path in settings.get("ignore_auto_save_files_field"):
+                    if filename.endswith(path):
+                        return
+                sublime.set_timeout(lambda: self.save_file(view), delay_field)
+                self.save_file(view)
+
+    def save_file(self, view):
+        if view.is_dirty() and not view.is_loading() and not view.is_auto_complete_visible():
+            view.run_command("save")
+            sublime.status_message(' ') #don't clog up status bar

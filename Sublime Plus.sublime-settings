@@ -37,6 +37,32 @@
 
     "fast_move_vertical_move_amount": 6,
 
+    // Should files be autosaved when the buffer is modified?
+    "auto_save_on_modified": true,
+
+    // Should files with file extentions that are listed in included_auto_save_files_field be the only one's that use autosave?
+    "auto_save_only_included": true,
+
+    // How many ms after a modification has been made should autosave trigger?
+    "auto_save_delay_in_seconds": 1000,
+
+
+    // What file extentions should be ignored when auto saving? Only valid if auto_save_only_included is false
+    "ignore_auto_save_files_field": [
+        ".sublime-settings",
+        ".sublime-menu",
+        ".sublime-commands",
+        ".sublime-keymap"
+    ],
+
+    // What file extentions should auto save be on for? Only valid if auto_save_only_included is true
+    "included_auto_save_files_field": [
+        ".cpp",
+        ".c",
+        ".rs",
+        ".py",
+        ".txt"
+    ],
 
     // List of websites that will show up when the select_favorite_website command is used. Add as many websites as you want
     "favorite_website_list": {
