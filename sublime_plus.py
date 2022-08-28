@@ -393,9 +393,9 @@ class NotePadMakeCommand(sublime_plugin.ApplicationCommand):
         old_scheme = view.settings().get("color_scheme")
         original_centered_setting = view.settings().get("draw_centered")
         if settings.get("notepad_color_scheme_mode") == "Light":
-            view.settings().set("color_scheme", "NotepadLight.sublime-color-scheme")
+            view.settings().set("color_scheme", "NotepadLight.hidden-color-scheme")
         elif settings.get("notepad_color_scheme_mode") == "Dark":
-            view.settings().set("color_scheme", "Notepad.sublime-color-scheme")
+            view.settings().set("color_scheme", "Notepad.hidden-color-scheme")
         if settings.get("draw_centered_notepad"):
             view.settings().set("draw_centered",True)
 
@@ -436,9 +436,9 @@ class OutputPanelNotePadCommand(sublime_plugin.ApplicationCommand):
     def panel_creation(self, window, view):
         window.focus_view(view)
         if settings.get("temp_notepad_color_scheme_mode") == "Light":
-            view.settings().set("color_scheme", "NotepadLight.sublime-color-scheme")
+            view.settings().set("color_scheme", "NotepadLight.hidden-color-scheme")
         elif settings.get("temp_notepad_color_scheme_mode") == "Dark":
-            view.settings().set("color_scheme", "Notepad.sublime-color-scheme")
+            view.settings().set("color_scheme", "Notepad.hidden-color-scheme")
         view.settings().set("font_size", settings.get("temp_notepad_font_size"))
         if not settings.get("show_gutter_in_notepad"):
             view.settings().set('gutter',False)
@@ -1017,7 +1017,8 @@ class AutoFoldCodeListener(sublime_plugin.EventListener):
   def on_post_save_async(self, view):
     # Keep only the latest version, since it's guaranteed that on open, the
     # saved version of the file is opened.
-    _save_view_data(view, True)
+    if settings.get("save_folds_on_save"):
+        _save_view_data(view, True)
 
   # Listening on close events is required to handle hot exit, for whom there is
   # no available listener.
@@ -1030,6 +1031,9 @@ class AutoFoldCodeListener(sublime_plugin.EventListener):
     # each version is stored. This is acceptable, since the first user initiated
     # save will purge the versions and store only the latest.
     _save_view_data(view, False)
+    
+    if settings.get("auto_save_on_close") and view.file_name():
+        view.run_command("save")
 
   def on_text_command(self, view, command_name, args):
     if command_name == 'unfold_all' and view.file_name() != None:
@@ -1192,21 +1196,27 @@ def _compute_view_content_checksum(view):
 # -            AutoSave            -
 # ----------------------------------
 
+num_modifications = 0
+
 class AutoSaveEventListener(sublime_plugin.EventListener):
-    def on_modified(self, view):
-        if settings.get("auto_save_on_modified"):
+
+    def on_modified_async(self, view):
+        global num_modifications
+        num_modifications += 1
+        filename = view.file_name()
+        if settings.get("auto_save_on_modified") and filename and num_modifications >= settings.get("number_of_modifications_for_auto_save"):
             delay = settings.get("auto_save_delay_in_seconds")
-            filename = view.file_name()
             if settings.get("auto_save_only_included"):
                 for path in settings.get("included_auto_save_files_field"):
                     if filename.endswith(path):
+                        num_modifications = 0
                         sublime.set_timeout(lambda: self.save_file(view), delay)
             else:
                 for path in settings.get("ignore_auto_save_files_field"):
                     if filename.endswith(path):
                         return
+                num_modifications = 0
                 sublime.set_timeout(lambda: self.save_file(view), delay)
-                self.save_file(view)
 
     def save_file(self, view):
         if view.is_dirty() and not view.is_loading() and not view.is_auto_complete_visible():

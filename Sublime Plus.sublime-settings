@@ -40,6 +40,15 @@
     // Should files be autosaved when the buffer is modified?
     "auto_save_on_modified": true,
 
+    // Should the current view be auto saved on close?
+    "auto_save_on_close": true,
+
+    // The number of modifications that have to be made to trigger an auto save
+    "number_of_modifications_for_auto_save": 1,
+
+    // Should all folds in code be saved on save, if false folds only save on close.
+    "save_folds_on_save": false,
+    
     // Should files with file extentions that are listed in included_auto_save_files_field be the only one's that use autosave?
     "auto_save_only_included": true,
 
@@ -61,7 +70,8 @@
         ".c",
         ".rs",
         ".py",
-        ".txt"
+        ".rb",
+        ".yml"
     ],
 
     // List of websites that will show up when the select_favorite_website command is used. Add as many websites as you want
