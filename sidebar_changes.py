@@ -336,3 +336,8 @@ class SideBarMenuDeleteCommand(SideBarCommand):
 
   def description(self):
     return 'Delete'
+
+
+class SideBarMenuRunOrOpenCommand(SideBarCommand):
+  def run(self, paths):
+    os.startfile(self.get_path(paths))

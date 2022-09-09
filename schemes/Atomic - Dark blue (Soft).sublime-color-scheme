@@ -1,0 +1,1126 @@
+{
+    "variables": {
+        "color00": "#141A1F",
+        "color01": "#6ECFCF",
+        "color02": "#A6B5C5",
+        "color03": "#1A2128",
+        "color04": "#2A3540",
+        "color05": "#C97016",
+        "color06": "#6B859E",
+        "color07": "#CB96FF",
+        "color08": "#EC5252",
+        "color09": "#EDA55D",
+        "color10": "#FF9191",
+        "color11": "#9ACD68",
+        "color12": "#3890E9",
+        "color13": "#7DBEFF",
+        "color14": "#5DA713",
+        "color15": "#13AFAF",
+        "color16": "#A359ED"
+    },
+    "globals": {
+        "background": "var(color00)",
+        "caret": "var(color01)",
+        "foreground": "var(color02)",
+        "invisibles": "var(color00)",
+        "line_highlight": "var(color03)",
+        "selection": "var(color04)",
+        "selection_border": "var(color04)",
+        "find_highlight": "var(color05)",
+        "find_highlight_foreground": "var(color00)",
+        "brackets_foreground": "var(color01)"
+    },
+    "rules": [
+        {
+            "name": "All: Comment",
+            "scope": "comment",
+            "foreground": "var(color06)"
+        },
+        {
+            "name": "All: String",
+            "scope": "string",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "All: Regexp",
+            "scope": "string.regexp",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "All: Number",
+            "scope": "constant.numeric",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "All: Variable",
+            "scope": "variable.language, variable.other",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "All: Variable property",
+            "scope": "variable.language, variable.other.property",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "All: Function-call object",
+            "scope": "meta.function-call.object",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "All: Keyword",
+            "scope": "keyword",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "All: Keyword operator",
+            "scope": "keyword.operator",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "All: Storage",
+            "scope": "storage",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "All: Storage type",
+            "scope": "storage.type",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "All: Class name",
+            "scope": "entity.name.class, entity.name.type.class",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "All: Function name",
+            "scope": "entity.name.function",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "All: Built-in constant",
+            "scope": "constant.language",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "All: User-defined constant",
+            "scope": "constant.character, constant.other",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "All: Support construct",
+            "scope": "support.function.construct, keyword.other.new",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "All: Inherited class",
+            "scope": "entity.other.inherited-class",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "All: Function argument",
+            "scope": "variable.parameter",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "All: Tag name",
+            "scope": "entity.name.tag",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "All: Tag start/end",
+            "scope": "punctuation.definition.tag.html, punctuation.definition.tag.begin, punctuation.definition.tag.end",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "All: Tag attribute",
+            "scope": "entity.other.attribute-name",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "All: Library function",
+            "scope": "support.function",
+            "foreground": "var(color14)"
+        },
+        {
+            "name": "All: Library class/type",
+            "scope": "support.type, support.class",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "All: Documentation keyword",
+            "scope": "comment.block.documentation keyword",
+            "font_style": "bold",
+            "foreground": "var(color06)"
+        },
+        {
+            "name": "CSS: ID punctuation",
+            "scope": "source.css meta.selector.css entity.other.attribute-name.id.css punctuation.definition.entity.css",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "CSS: ID name",
+            "scope": "source.css meta.selector.css entity.other.attribute-name.id.css",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "CSS: Class punctuation",
+            "scope": "source.css meta.selector.css entity.other.attribute-name.class.css punctuation.definition.entity.css",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "CSS: Class name",
+            "scope": "source.css meta.selector.css entity.other.attribute-name.class.css",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "CSS: Tag name",
+            "scope": "source.css meta.selector.css entity.name.tag.css",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "CSS: Pseudo-class punctuation",
+            "scope": "source.css meta.selector.css entity.other.attribute-name.pseudo-element.css punctuation.definition.entity.css, source.css meta.selector.css entity.other.attribute-name.pseudo-class.css punctuation.definition.entity.css",
+            "font_style": "italic",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "CSS: Pseudo-class name",
+            "scope": "source.css meta.selector.css entity.other.attribute-name.pseudo-element.css, source.css meta.selector.css entity.other.attribute-name.pseudo-element.css support.type.vendor-prefix.css, source.css meta.selector.css entity.other.attribute-name.pseudo-class.css, source.css meta.selector.css entity.other.attribute-name.pseudo-class.css support.type.vendor-prefix.css",
+            "font_style": "italic",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "CSS: Attribute name",
+            "scope": "source.css meta.selector.css meta.attribute-selector.css entity.other.attribute-name.attribute.css",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "CSS: Property name",
+            "scope": "source.css support.type.property-name.css",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "CSS: Property name vendor",
+            "scope": "source.css support.type.vendor-prefix.css",
+            "font_style": "italic",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "CSS: Numbers",
+            "scope": "source.css meta.property-list.css meta.property-value.css constant.numeric.css, source.css meta.at-rule.media.css constant.numeric.css",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "CSS: Number units",
+            "scope": "source.css meta.property-list.css meta.property-value.css constant.numeric.css keyword.other.unit.css, source.css meta.at-rule.media.css constant.numeric.css keyword.other.unit.css",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "CSS: RGB colors",
+            "scope": "source.css meta.property-list.css meta.property-value.css constant.other.color.rgb-value.css",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "CSS: RGB punctuation",
+            "scope": "source.css meta.property-list.css meta.property-value.css constant.other.color.rgb-value.css punctuation.definition.constant.css",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "CSS: String",
+            "scope": "source.css meta.property-list.css meta.property-value.css string.quoted.double.css, source.css meta.property-list.css meta.property-value.css string.quoted.double.css constant.character.escape.css",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "CSS: String",
+            "scope": "source.css support.function",
+            "foreground": "var(color14)"
+        },
+        {
+            "name": "CSS: !important",
+            "scope": "source.css meta.property-list.css meta.property-value.css keyword.other.important.css",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "CSS: @",
+            "scope": "source.css meta.at-rule.charset.css keyword.control.at-rule.charset.css, source.css meta.at-rule.media.css keyword.control.at-rule.media.css, source.css meta.at-rule.font-face.css keyword.control.at-rule.font-face.css, source.css meta.at-rule.keyframe.css keyword.control.at-rule.keyframe.css",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "CSS: @media vendor",
+            "scope": "source.css meta.at-rule.keyframe.css keyword.control.at-rule.keyframe.css support.type.property-vendor.css",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "CSS: @media screen",
+            "scope": "source.css meta.at-rule.media.css support.constant.media.css",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "CSS: @media property",
+            "scope": "source.css meta.at-rule.media.css support.type.property-name.media.css",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "CSS: Easing punctuation",
+            "scope": "source.css meta.property-list.css meta.property-value.css support.type.function.easing.css punctuation.section.function.css",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "CSS: Animation",
+            "scope": "source.css meta.at-rule.keyframe.css entity.other.animation-name.css",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "HTML: Default",
+            "scope": "text.html.basic",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "HTML: Tag",
+            "scope": "text.html.basic meta.tag.inline.any.html entity.name.tag.inline.any.html, text.html.basic meta.tag.block.any.html entity.name.tag.block.any.html, text.html.basic meta.tag.structure.any.html entity.name.tag.structure.any.html, text.html.basic meta.tag.sgml.html meta.tag.sgml.doctype.html entity.name.tag.doctype.html",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "HTML: Tag start/end",
+            "scope": "text.html.basic punctuation.definition.tag.begin, text.html.basic punctuation.definition.tag.end, text.html.basic meta.tag.sgml.html punctuation.definition.tag.html",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "HTML: Doctype",
+            "scope": "text.html.basic meta.tag.sgml.html meta.tag.sgml.doctype.html",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "HTML: Operator",
+            "scope": "text.html.basic meta.tag.block.any.html punctuation.separator.key-value.html",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "HTML: ID atribute",
+            "scope": "text.html.basic meta.tag.block.any.html meta.attribute-with-value.id.html entity.other.attribute-name.id.html",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "HTML: ID value",
+            "scope": "text.html.basic meta.tag.any.html meta.attribute-with-value.id.html string.quoted.double.html meta.toc-list.id.html, text.html.basic meta.tag.block.any.html meta.attribute-with-value.id.html string.quoted.double.html meta.toc-list.id.html, text.html.basic meta.tag.any.html meta.attribute-with-value.id.html string.quoted.single.html meta.toc-list.id.html, text.html.basic meta.tag.block.any.html meta.attribute-with-value.id.html string.quoted.single.html meta.toc-list.id.html",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "HTML: ID value quotes",
+            "scope": "text.html.basic meta.tag.block.any.html meta.attribute-with-value.id.html string.quoted.double.html punctuation.definition.string.begin.html, text.html.basic meta.tag.block.any.html meta.attribute-with-value.id.html string.quoted.double.html punctuation.definition.string.end.html, text.html.basic meta.tag.any.html meta.attribute-with-value.id.html string.quoted.double.html punctuation.definition.string.begin.html, text.html.basic meta.tag.any.html meta.attribute-with-value.id.html string.quoted.double.html punctuation.definition.string.end.html, text.html.basic meta.tag.block.any.html meta.attribute-with-value.id.html string.quoted.single.html punctuation.definition.string.begin.html, text.html.basic meta.tag.block.any.html meta.attribute-with-value.id.html string.quoted.single.html punctuation.definition.string.end.html, text.html.basic meta.tag.any.html meta.attribute-with-value.id.html string.quoted.single.html punctuation.definition.string.begin.html, text.html.basic meta.tag.any.html meta.attribute-with-value.id.html string.quoted.single.html punctuation.definition.string.end.html",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "HTML: String",
+            "scope": "text.html.basic string.quoted.double.html, text.html.basic string.quoted.single.html",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "JS: Default",
+            "scope": "source.js",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "JS: String",
+            "scope": "source.js string.quoted.single.js, source.js string.quoted.double.js",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "JS: String object",
+            "scope": "source.js string.unquoted.label.js, source.js constant.other.object.key.js punctuation.separator.key-value.js",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "JS: String escape",
+            "scope": "source.js string.quoted.single.js constant.character.escape.js, source.js string.quoted.double.js constant.character.escape.js",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "JS: Regexp",
+            "scope": "source.js string.regexp.js",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "JS: Regexp start/end",
+            "scope": "source.js string.regexp.js punctuation.definition.string.begin.js, source.js string.regexp.js punctuation.definition.string.end.js",
+            "foreground": "var(color16)"
+        },
+        {
+            "name": "JS: Regexp quantifier",
+            "scope": "source.js string.regexp.js keyword.operator.quantifier.regexp",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "JS: Regexp control",
+            "scope": "source.js string.regexp.js keyword.control.anchor.regexp",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "JS: Regexp character class",
+            "scope": "source.js string.regexp.js meta.group.regexp constant.other.character-class.set.regexp",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "JS: Regexp character escape",
+            "scope": "source.js string.regexp.js constant.other.character-class.escape.backslash.regexp, source.js constant.character.escape.backslash.regexp",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "JS: Number",
+            "scope": "source.js constant.numeric.js",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "JS: Variable",
+            "scope": "source.js variable.language",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "JS: Variable punctuation",
+            "scope": "source.js variable.other.dollar.js punctuation.dollar.js",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "JS: Variable this",
+            "scope": "source.js variable.language.this.js",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "JS: Variable function",
+            "scope": "source.js variable.function.js",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "JS: Keyword",
+            "scope": "source.js keyword",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "JS: Keyword operator new",
+            "scope": "source.js keyword.operator.new.js",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "JS: Keyword operator module",
+            "scope": "source.js keyword.operator.module.js",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "JS: Storage function",
+            "scope": "source.js storage.type.function.js, source.js storage.type.class.js",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "JS: Storage type",
+            "scope": "source.js storage.type.js",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "JS: Class name",
+            "scope": "source.js entity.name.class.js",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "JS: Inherited class",
+            "scope": "source.js meta.class.js meta.class.extends.js variable.other.readwrite.js",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "JS: Function name",
+            "scope": "source.js entity.name.function.js, source.js meta.function.json.js string.quoted.single.js punctuation.definition.string.begin.js, source.js meta.function.json.js string.quoted.single.js punctuation.definition.string.end.js, source.js meta.function.json.js string.quoted.double.js punctuation.definition.string.begin.js, source.js meta.function.json.js string.quoted.double.js punctuation.definition.string.end.js",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "JS: Constant",
+            "scope": "source.js constant.language",
+            "foreground": "var(color16)"
+        },
+        {
+            "name": "PHP: Embedded",
+            "scope": "embedding.php text.html.basic meta.embedded.block.php punctuation.section.embedded.begin.php, embedding.php text.html.basic meta.embedded.line.php punctuation.section.embedded.begin.php, embedding.php text.html.basic meta.embedded.block.php punctuation.section.embedded.end.php, embedding.php text.html.basic meta.embedded.line.php punctuation.section.embedded.end.php",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "PHP: Default",
+            "scope": "source.php",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "PHP: String",
+            "scope": "source.php string.quoted.single.php meta.string-contents.quoted.single.php, source.php string.quoted.double.php meta.string-contents.quoted.double.php",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "PHP: String quotes",
+            "scope": "source.php string.quoted.single.php punctuation.definition.string.begin.php, source.php string.quoted.double.php punctuation.definition.string.begin.php, source.php string.quoted.single.php punctuation.definition.string.end.php, source.php string.quoted.double.php punctuation.definition.string.end.php",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "PHP: String escape",
+            "scope": "source.php string.quoted.double.php meta.string-contents.quoted.double.php constant.character.escape.php",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "PHP: Regexp",
+            "scope": "source.php string.regexp.single-quoted.php, source.php string.regexp.double-quoted.php",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "PHP: Regexp start/end",
+            "scope": "source.php string.regexp.single-quoted.php punctuation.definition.string.begin.php, source.php string.regexp.single-quoted.php punctuation.definition.string.end.php, source.php string.regexp.double-quoted.php punctuation.definition.string.begin.php, source.php string.regexp.double-quoted.php punctuation.definition.string.end.php",
+            "foreground": "var(color16)"
+        },
+        {
+            "name": "PHP: Regexp character class",
+            "scope": "source.php string.regexp.single-quoted.php string.regexp.character-class.php, source.php string.regexp.double-quoted.php string.regexp.character-class.php",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "PHP: Regexp arbitrary repetition",
+            "scope": "source.php string.regexp.single-quoted.php string.regexp.arbitrary-repitition.php, source.php string.regexp.double-quoted.php string.regexp.arbitrary-repitition.php",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "PHP: Number",
+            "scope": "source.php constant.numeric.php",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "PHP: Variable punctuation",
+            "scope": "source.php variable.other.php punctuation.definition.variable.php",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "PHP: Variable",
+            "scope": "source.php variable.other.php",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "PHP: Variable property",
+            "scope": "source.php variable.other.property.php, source.php meta.array.php variable.other.property.php",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "PHP: Keyword control",
+            "scope": "source.php keyword.control.php",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "PHP: Keyword operator",
+            "scope": "source.php keyword.operator.comparison.php, source.php keyword.operator.logical.php, source.php keyword.operator.class.php, source.php keyword.operator.assignment.php",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "PHP: Keyword operator new",
+            "scope": "source.php keyword.other.new.php",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "PHP: Storage",
+            "scope": "source.php storage.modifier.php, source.php meta.class.php storage.type.class.php, source.php meta.class.php storage.modifier.extends.php",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "PHP: Storage type",
+            "scope": "source.php meta.function.php storage.type.function.php",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "PHP: Storage type var",
+            "scope": "source.php storage.type.php",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "PHP: Class name",
+            "scope": "source.php meta.class.php entity.name.type.class.php",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "PHP: Inherited class",
+            "scope": "source.php meta.class.php meta.other.inherited-class.php entity.other.inherited-class.php",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "PHP: Function name",
+            "scope": "source.php meta.function.php entity.name.function.php",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "PHP: Function support",
+            "scope": "source.php support.function",
+            "foreground": "var(color14)"
+        },
+        {
+            "name": "PHP: Function call",
+            "scope": "source.php meta.function-call.php",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "PHP: Function-call object",
+            "scope": "source.php meta.function-call.object.php",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "PHP: Function construct",
+            "scope": "source.php support.function.construct.php",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "PHP: Built-in constant",
+            "scope": "source.php constant.language.php",
+            "foreground": "var(color16)"
+        },
+        {
+            "name": "PHP: User-defined constant",
+            "scope": "source.php constant.other.php",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "PHP: Documentation keyword",
+            "scope": "source.php comment.block.documentation.phpdoc.php keyword",
+            "font_style": "bold",
+            "foreground": "var(color06)"
+        },
+        {
+            "name": "PHP: Documentation storage",
+            "scope": "source.php comment.block.documentation.phpdoc.php storage.modifier.php",
+            "foreground": "var(color06)"
+        },
+        {
+            "name": "PHP: Include",
+            "scope": "source.php meta.include.php keyword.control.import.include.php",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "PHP: Include string",
+            "scope": "source.php meta.include.php string.quoted.single.php meta.string-contents.quoted.single.php, source.php meta.include.php string.quoted.double.php meta.string-contents.quoted.double.php, source.php meta.include.php string.quoted.single.php punctuation.definition.string.begin.php, source.php meta.include.php string.quoted.single.php punctuation.definition.string.end.php, source.php meta.include.php string.quoted.double.php punctuation.definition.string.begin.php, source.php meta.include.php string.quoted.double.php punctuation.definition.string.end.php",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "Ruby: Default",
+            "scope": "source.ruby",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "RoR: Embedded",
+            "scope": "text.html.ruby text.html.basic source.ruby.rails.embedded.html punctuation.section.embedded.ruby",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Ruby: String",
+            "scope": "source.ruby string.quoted.double.ruby, source.ruby string.quoted.single.ruby",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "Ruby: String escape",
+            "scope": "source.ruby string.quoted.double.ruby constant.character.escape.ruby, source.ruby string.quoted.single.ruby constant.character.escape.ruby",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Ruby: String embedded",
+            "scope": "source.ruby string.quoted.double.ruby source.ruby.embedded.source, source.ruby string.quoted.single.ruby source.ruby.embedded.source",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Ruby: Regexp",
+            "scope": "source.ruby string.regexp.classic.ruby",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Ruby: Regexp start/end",
+            "scope": "source.ruby string.regexp.classic.ruby punctuation.definition.string.ruby",
+            "foreground": "var(color16)"
+        },
+        {
+            "name": "Ruby: Regexp arbitrary repetition",
+            "scope": "source.ruby string.regexp.classic.ruby string.regexp.arbitrary-repitition.ruby",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Ruby: Regexp character class",
+            "scope": "source.ruby string.regexp.classic.ruby string.regexp.character-class.ruby",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Ruby: Regexp character escape",
+            "scope": "source.ruby string.regexp.classic.ruby constant.character.escape.ruby",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Ruby: Number",
+            "scope": "source.ruby constant.language.ruby",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Ruby: Variable punctuation",
+            "scope": "source.ruby variable.other.readwrite.instance.ruby punctuation.definition.variable.ruby, source.ruby variable.other.readwrite.global.ruby punctuation.definition.variable.ruby, source.ruby variable.other.readwrite.global.pre-defined.ruby punctuation.definition.variable.ruby, source.ruby variable.other.readwrite.class.ruby punctuation.definition.variable.ruby",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "Ruby: Variable",
+            "scope": "source.ruby variable.other.readwrite.instance.ruby,source.ruby variable.other.readwrite.global.ruby, source.ruby variable.other.readwrite.global.pre-defined.ruby, source.ruby variable.other.readwrite.class.ruby",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "Ruby: Function argument",
+            "scope": "source.ruby variable.parameter.function.ruby",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "Ruby: Variable language",
+            "scope": "source.ruby variable.language.ruby",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Ruby: Keyword",
+            "scope": "source.ruby keyword.control.ruby",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "Ruby: Keyword class",
+            "scope": "source.ruby keyword.control.class.ruby",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "Ruby: Keyword operator new",
+            "scope": "source.ruby keyword.other.special-method.ruby",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "Ruby: Separator",
+            "scope": "source.ruby punctuation.separator.object.ruby, source.ruby punctuation.separator.inheritance.ruby",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Ruby: Class name",
+            "scope": "source.ruby entity.name.type.class.ruby",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Ruby: Inherited class",
+            "scope": "source.ruby entity.other.inherited-class.ruby",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Ruby: Function name",
+            "scope": "source.ruby entity.name.function.ruby",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Ruby: Require",
+            "scope": "source.ruby meta.require.ruby keyword.other.special-method.ruby",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "Ruby: Require string",
+            "scope": "source.ruby meta.require.ruby string.quoted.single.ruby, source.ruby meta.require.ruby string.quoted.double.ruby",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "C: Default",
+            "scope": "source.c",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "C: Include punctuation",
+            "scope": "source.c meta.preprocessor.c.include, source.c meta.preprocessor.macro.c, source.c meta.preprocessor.c",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "C: Include name",
+            "scope": "source.c meta.preprocessor.c.include keyword.control.import.include.c, source.c meta.preprocessor.c keyword.control.import.c, source.c meta.preprocessor.macro.c keyword.control.import.define.c",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "C: Include keyword",
+            "scope": "source.c meta.preprocessor.c.include string.quoted.other.lt-gt.include.c, source.c meta.preprocessor.c.include string.quoted.single.include.c, source.c meta.preprocessor.c.include string.quoted.double.include.c",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "C: Storage",
+            "scope": "source.c storage.type.c",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "C: Number",
+            "scope": "source.c constant.numeric.c",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "C: Support function",
+            "scope": "source.c support.function.any-method.c",
+            "foreground": "var(color14)"
+        },
+        {
+            "name": "C: Function name",
+            "scope": "source.c meta.function.c entity.name.function.c",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "C: Keyword",
+            "scope": "source.c support.function.any-method.c",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "C: String",
+            "scope": "source.c string.quoted.single.c, source.c string.quoted.double.c",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "C: String character escape",
+            "scope": "source.c string.quoted.single.c constant.character.escape.c, source.c string.quoted.double.c constant.character.escape.c",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "C: Constant",
+            "scope": "source.c constant.language.c",
+            "foreground": "var(color16)"
+        },
+        {
+            "name": "C: Constant placeholder",
+            "scope": "source.c string.quoted.single.c constant.other.placeholder.c, source.c string.quoted.double.c constant.other.placeholder.c",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "C: Variable",
+            "scope": "source.c variable.other.c",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "C++: Default",
+            "scope": "source.c++",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "C++: String",
+            "scope": "source.c++ string.quoted.double.c, source.c++ string.quoted.single.c",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "C++: String escape",
+            "scope": "source.c++ constant.character.escape.c",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "C++: Number",
+            "scope": "source.c++ constant.numeric.c",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "C++: Constant",
+            "scope": "source.c++ constant.language.c",
+            "foreground": "var(color16)"
+        },
+        {
+            "name": "C++: Keyword",
+            "scope": "source.c++ keyword.control.c",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "C++: Support library",
+            "scope": "source.c++ support.function.any-method.c",
+            "foreground": "var(color14)"
+        },
+        {
+            "name": "C++: Storage",
+            "scope": "source.c++ storage.modifier.c",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "C++: Storage type",
+            "scope": "source.c++ storage.type.c",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "C++: Class name",
+            "scope": "source.c++ entity.name.type.c++",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "C++: Function name",
+            "scope": "source.c++ entity.name.function.c",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "C++: Include punctuation",
+            "scope": "source.c++ meta.preprocessor.c.include",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "C++: Include name",
+            "scope": "source.c++ meta.preprocessor.c.include keyword.control.import.include.c",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "C++: Include keyword",
+            "scope": "source.c++ meta.preprocessor.c.include string.quoted.other.lt-gt.include.c, source.c++ meta.preprocessor.c.include string.quoted.single.include.c, source.c++ meta.preprocessor.c.include string.quoted.double.include.c",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "Java: Default",
+            "scope": "source.java",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Java: Include name",
+            "scope": "source.java meta.import.java keyword.other.import.java, source.java meta.package.java keyword.other.package.java",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "Java: Include keyword",
+            "scope": "source.java meta.import.java storage.modifier.import.java, source.java meta.package.java storage.modifier.package.java",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "Java: Storage",
+            "scope": "source.java meta.class.java storage.modifier.java",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "Java: Function name",
+            "scope": "source.java entity.name.function.java",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Java: Class name",
+            "scope": "source.java meta.class.java meta.class.identifier.java entity.name.type.class.java",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Java: Inherited class",
+            "scope": "source.java meta.class.java meta.definition.class.implemented.interfaces.java entity.other.inherited-class.java",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Java: Keyword",
+            "scope": "source.java keyword.control.java",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "Java: Keyword new",
+            "scope": "source.java keyword.control.new.java",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "Java: Method",
+            "scope": "source.java meta.method.java variable.language.java",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Java: Function parameter",
+            "scope": "source.java variable.parameter.java",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "Java: Constant",
+            "scope": "source.java constant.language.java",
+            "foreground": "var(color16)"
+        },
+        {
+            "name": "Java: Constant user-defined",
+            "scope": "source.java constant.other.java",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "Java: Number",
+            "scope": "source.java constant.numeric.java",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Java: String",
+            "scope": "source.java string.quoted.double.java, source.java string.quoted.single.java",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "Java: String escape",
+            "scope": "source.java string.quoted.double.java constant.character.escape.java, source.java string.quoted.single.java constant.character.escape.java",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Java: Documentation",
+            "scope": "source.java comment.block.documentation.javadoc meta.documentation.comment.javadoc",
+            "foreground": "var(color06)"
+        },
+        {
+            "name": "Java: Documentation keyword",
+            "scope": "source.java comment.block.documentation.javadoc meta.documentation.comment.javadoc keyword",
+            "font_style": "bold",
+            "foreground": "var(color06)"
+        },
+        {
+            "name": "Python: Default",
+            "scope": "source.python",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Python: String",
+            "scope": "source.python string.quoted.double.single-line.python, source.python string.quoted.single.single-line.python",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "Python: String escape",
+            "scope": "source.python constant.character.escape.linefeed.python, source.python constant.character.escape.double-quote.python, source.python constant.character.escape.single-quote.python",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Python: String placeholder",
+            "scope": "source.python constant.other.placeholder.python",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Python: Regexp",
+            "scope": "source.python source.regexp.python, source.python source.regexp.python constant.character.escape.backslash.regexp",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Python: Regexp quotes",
+            "scope": "source.python string.quoted.single.single-line.raw-regex.python punctuation.definition.string.begin.python, source.python string.quoted.single.single-line.raw-regex.python punctuation.definition.string.end.python, source.python string.quoted.double.single-line.raw-regex.python punctuation.definition.string.begin.python, source.python string.quoted.double.single-line.raw-regex.python punctuation.definition.string.end.python",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Python: Regexp range",
+            "scope": "source.python source.regexp.python constant.other.character-class.range.regexp, source.python source.regexp.python punctuation.definition.character-class.regexp",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Python: Regexp character",
+            "scope": "source.python source.regexp.python constant.other.character-class.set.regexp",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Python: Regexp character escape",
+            "scope": "source.python source.regexp.python constant.character.character-class.regexp",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Python: Regexp constant",
+            "scope": "source.python source.regexp.python constant.other.placeholder.python",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Python: Number",
+            "scope": "source.python constant.numeric",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Python: Constant",
+            "scope": "source.python constant.language.python",
+            "foreground": "var(color16)"
+        },
+        {
+            "name": "Python: Support variable",
+            "scope": "source.python support.variable.magic.python",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Python: Variable language",
+            "scope": "source.python variable.language.python",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Python: Keyword",
+            "scope": "source.python keyword.control, source.python keyword.other.python",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "Python: Operator logical",
+            "scope": "source.python keyword.operator.logical.python",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "Python: Function support",
+            "scope": "source.python support.function.builtin.python, source.python support.function.magic.python",
+            "foreground": "var(color14)"
+        },
+        {
+            "name": "Python: Function",
+            "scope": "source.python storage.type.function.python",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "Python: Function name",
+            "scope": "source.python meta.function.python entity.name.function.python",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Python: Function parameter",
+            "scope": "source.python meta.function.python meta.function.parameters.python variable.parameter.function.python",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "Python: Storage",
+            "scope": "source.python storage.type.class.python",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "Python: Class name",
+            "scope": "source.python entity.name.type.class.python",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Python: Inherited class",
+            "scope": "source.python meta.class.inheritance.python entity.other.inherited-class.python",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Python: Include",
+            "scope": "source.python keyword.control.import.python",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "Shell: Default",
+            "scope": "source.shell",
+            "foreground": "var(color02)"
+        },
+        {
+            "name": "Shell: String escape",
+            "scope": "source.shell constant.character.escape.shell",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Shell: String escape ansi-c",
+            "scope": "source.shell constant.character.escape.ansi-c.shell",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Shell: String single dollar",
+            "scope": "source.shell string.quoted.single.dollar.shell",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Diff: Header",
+            "scope": "meta.diff, meta.diff.header",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "Diff: Deleted",
+            "scope": "markup.deleted.diff",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "Diff: Changed",
+            "scope": "markup.changed.diff",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "Diff: Inserted",
+            "scope": "markup.inserted.diff",
+            "foreground": "var(color14)"
+        },
+        {
+            "name": "GitGutter: Deleted",
+            "scope": "markup.deleted.git_gutter",
+            "foreground": "var(color08)"
+        },
+        {
+            "name": "GitGutter: Changed",
+            "scope": "markup.changed.git_gutter",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "GitGutter: Inserted",
+            "scope": "markup.inserted.git_gutter",
+            "foreground": "var(color14)"
+        }
+    ]
+}

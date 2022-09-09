@@ -82,6 +82,11 @@
   "command": "side_bar_terminal",
   "args": { "paths": [] }
 },
+{
+  "caption": "Open/Run",
+  "command": "side_bar_menu_run_or_open",
+  "args": { "paths": [] }
+},
 {"caption":"-"},
 {
   "caption": "Duplicate…",

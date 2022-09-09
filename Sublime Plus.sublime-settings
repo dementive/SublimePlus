@@ -68,7 +68,6 @@
     "included_auto_save_files_field": [
         ".cpp",
         ".c",
-        ".rs",
         ".py",
         ".rb",
         ".yml"

@@ -1,0 +1,142 @@
+{
+    "name": "Gotham",
+    "color_space_name": "sRGB",
+    "semantic_class": "theme.dark.gotham",
+    "variables": {
+        "color00": "#0A0F14",
+        "color01": "#98D1CE",
+        "color02": "#245361",
+        "color03": "#093748",
+        "color04": "#D26939",
+        "color05": "#888BA5",
+        "color06": "#D3EBE9",
+        "color07": "#C33027",
+        "color08": "#33859D",
+        "color09": "#EDB54B",
+        "color10": "#26A98B",
+        "color11": "#F92672",
+        "color12": "#F8F8F0",
+        "color13": "#AE81FF"
+    },
+    "globals": {
+        "background": "var(color00)",
+        "caret": "var(color01)",
+        "foreground": "var(color01)",
+        "invisibles": "var(color02)",
+        "line_highlight": "var(color02)",
+        "selection": "var(color02)"
+    },
+    "rules": [
+        {
+            "name": "Comment",
+            "scope": "comment",
+            "foreground": "var(color03)"
+        },
+        {
+            "name": "String",
+            "scope": "string",
+            "foreground": "var(color04)"
+        },
+        {
+            "name": "Number",
+            "scope": "constant.numeric",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "Built-in constant",
+            "scope": "constant.language",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "User-defined constant",
+            "scope": "constant.character, constant.other",
+            "foreground": "var(color05)"
+        },
+        {
+            "name": "Variable",
+            "scope": "variable",
+            "foreground": "var(color06)"
+        },
+        {
+            "name": "Keyword",
+            "scope": "keyword",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Storage",
+            "scope": "storage",
+            "foreground": "var(color07)"
+        },
+        {
+            "name": "Storage type",
+            "scope": "storage.type",
+            "foreground": "var(color07)",
+            "font_style": "italic"
+        },
+        {
+            "name": "Class name",
+            "scope": "entity.name.class",
+            "font_style": "underline",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "Inherited class",
+            "scope": "entity.other.inherited-class",
+            "font_style": "italic underline",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "Function name",
+            "scope": "entity.name.function",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "Function argument",
+            "scope": "variable.parameter",
+            "font_style": "italic",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "Tag name",
+            "scope": "entity.name.tag",
+            "foreground": "var(color09)"
+        },
+        {
+            "name": "Tag attribute",
+            "scope": "entity.other.attribute-name",
+            "foreground": "var(color01)"
+        },
+        {
+            "name": "Library function",
+            "scope": "support.function",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Library constant",
+            "scope": "support.constant",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Library class/type",
+            "scope": "support.type, support.class",
+            "font_style": "italic",
+            "foreground": "var(color10)"
+        },
+        {
+            "name": "Library variable",
+            "scope": "support.other.variable"
+        },
+        {
+            "name": "Invalid",
+            "scope": "invalid",
+            "background": "var(color11)",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "Invalid deprecated",
+            "scope": "invalid.deprecated",
+            "background": "var(color13)",
+            "foreground": "var(color12)"
+        }
+    ]
+}

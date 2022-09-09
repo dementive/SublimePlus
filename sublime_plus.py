@@ -885,7 +885,7 @@ class OpenWorkspaceFromListCommand(sublime_plugin.WindowCommand):
             workspace = workspace + ".sublime-workspace"
             project_directories = settings.get('sublime_workspace_directories_list')
             if len(project_directories) > 0:
-                space_path = os.path.abspath(workspace)
+                #space_path = os.path.abspath(workspace)
                 s_workspace_file = re.compile("^.*?\.sublime-workspace$")
                 results = []
                 for directory in project_directories:
@@ -913,15 +913,20 @@ class AutoCloseEmptyGroup(sublime_plugin.EventListener):
         if view not in window.views():
             view.settings().set("auto_close_empty_group_is_tabless_view", True)
 
+    def close_empty_group(self):
+       window = sublime.active_window()
+       for group in range(window.num_groups()):
+           if len(window.views_in_group(group)) == 0:
+               window.run_command("close_pane")
+               return
+
     def on_close(self, view):
         if view.settings().get("auto_close_empty_group_is_tabless_view") is True:
             return
+        self.close_empty_group()
 
-        window = sublime.active_window()
-        for group in range(window.num_groups()):
-            if len(window.views_in_group(group)) == 0:
-                window.run_command("close_pane")
-                return
+    def on_post_move(self, view):
+        self.close_empty_group()
 
 class TreeViewGoToParentNode(sublime_plugin.WindowCommand):
     def run(self):
