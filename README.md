@@ -17,7 +17,7 @@ C:\Users\YOURUSERNAME\AppData\Roaming\Sublime Text 3\Packages\SublimePlus
 
 # Features
 
-A ton of commands that make using sublime text overall a better experience. 247 color schemes and 3 themes.
+A ton of commands that make using sublime text overall a better experience. 20+ color schemes and 2 themes.
 
 There are a wide variety of customizable settings for many of the plugins features that can all be accessed from the main preferences menu.
 

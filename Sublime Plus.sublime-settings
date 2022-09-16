@@ -70,7 +70,8 @@
         ".c",
         ".py",
         ".rb",
-        ".yml"
+        ".yml",
+        ".php"
     ],
 
     // List of websites that will show up when the select_favorite_website command is used. Add as many websites as you want
