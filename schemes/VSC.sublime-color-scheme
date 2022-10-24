@@ -29,7 +29,12 @@
         "background": "var(black)",
         "caret": "var(grey3)",
         "line_highlight": "var(grey2)",
-        "selection": "var(grey2)"
+        "selection": "color(var(black) alpha(0.3))",
+        "selection_border": "var(grey3)",
+        "brackets_options": "glow",
+        "brackets_foreground": "color(var(green) alpha(0.9))",
+        "bracket_contents_options": "underline foreground",
+        "bracket_contents_foreground": "color(var(green) alpha(0.75))",
     },
     "rules":
     [

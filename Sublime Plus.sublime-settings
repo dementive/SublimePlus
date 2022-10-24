@@ -40,21 +40,18 @@
     // Should files be autosaved when the buffer is modified?
     "auto_save_on_modified": true,
 
-    // Should the current view be auto saved on close?
-    "auto_save_on_close": true,
-
     // The number of modifications that have to be made to trigger an auto save
     "number_of_modifications_for_auto_save": 1,
 
     // Should all folds in code be saved on save, if false folds only save on close.
     "save_folds_on_save": false,
-    
-    // Should files with file extentions that are listed in included_auto_save_files_field be the only one's that use autosave?
-    "auto_save_only_included": true,
 
     // How many ms after a modification has been made should autosave trigger?
     "auto_save_delay_in_seconds": 1000,
 
+    // Should files with file extentions that are listed in included_auto_save_files_field be the only one's that use autosave?
+    // Useful because hot reload and auto saves can cause problems for some projects but not others.
+    "auto_save_only_included": true,
 
     // What file extentions should be ignored when auto saving? Only valid if auto_save_only_included is false
     "ignore_auto_save_files_field": [
@@ -68,10 +65,12 @@
     "included_auto_save_files_field": [
         ".cpp",
         ".c",
-        ".py",
         ".rb",
         ".yml",
-        ".php"
+        ".php",
+        ".js",
+        ".scala",
+        ".py"
     ],
 
     // List of websites that will show up when the select_favorite_website command is used. Add as many websites as you want
@@ -165,7 +164,7 @@
     // Light = Use the light notepad scheme
     // Default = Don't change the color scheme when making a new notepad, use the default one.
 
-    "notepad_color_scheme_mode": "Default",
+    "notepad_color_scheme_mode": "Dark",
 
 
     //What color scheme should the temporary notepad use?
@@ -266,6 +265,13 @@
       "wnt": "want",
     },
 
+
+    // An array of syntax names to exclude from being autocompleted.
+    // Can be a partial string, for instance, "css" would match scss code.
+    // "exclude_from_completion": [
+    //      "css",
+    //      "scss"
+    // ]
 
 
     // AUTOFOLD -------------------------------------------------------------

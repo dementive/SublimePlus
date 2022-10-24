@@ -29,7 +29,7 @@ to see all the commands added by the plugin look through the .sublime-menu, .sub
 
 # File Icons
 
-All 3 of the themes in this plugin support file icon customization via the ```A File Icon``` package found here:
+The 2 themes in this plugin support file icon customization via the ```A File Icon``` package found here:
 
 https://packagecontrol.io/packages/A%20File%20Icon
 

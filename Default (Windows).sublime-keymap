@@ -31,13 +31,13 @@
 	{ "keys": ["ctrl+up"], "command": "move_to_top_of_file" },
 	{ "keys": ["ctrl+down"], "command": "move_to_bottom_of_file" },
 
-	{ "keys": ["alt+right"], "command": "fast_movement_right" },
-	{ "keys": ["alt+left"], "command": "fast_movement_left" },
-	{ "keys": ["alt+up"], "command": "fast_movement_up" },
-	{ "keys": ["alt+down"], "command": "fast_movement_down" },
+	{ "keys": ["alt+up"], "command": "fast_move", "args": {"direction": "up"}},
+	{ "keys": ["alt+down"], "command": "fast_move", "args": {"direction": "down"}},
+	{ "keys": ["alt+right"], "command": "fast_move", "args": {"direction": "right"}},
+	{ "keys": ["alt+left"], "command": "fast_move", "args": {"direction": "left"}},
 
 
-	//Vim Navigation
+	// Better keyboard navigation and selection without mouse
 	// up down left right i j k l
 	{ "keys": ["ctrl+l"], "command": "move", "args": {"by": "characters", "forward": true}},
 	{ "keys": ["ctrl+j"], "command": "move", "args": {"by": "characters", "forward": false}},
@@ -49,24 +49,30 @@
 	{ "keys": ["alt+;"], "command": "move_to", "args": {"to": "eol", "forward": false}},
 
 	// fast move for alt+ctrl
-	{ "keys": ["alt+i"], "command": "fast_movement_up"},
-	{ "keys": ["alt+k"], "command": "fast_movement_down"},
-	{ "keys": ["alt+l"], "command": "fast_movement_right"},
-	{ "keys": ["alt+j"], "command": "fast_movement_left"},
+	{ "keys": ["alt+i"], "command": "fast_move", "args": {"direction": "up"}},
+	{ "keys": ["alt+k"], "command": "fast_move", "args": {"direction": "down"}},
+	{ "keys": ["alt+l"], "command": "fast_move", "args": {"direction": "right"}},
+	{ "keys": ["alt+j"], "command": "fast_move", "args": {"direction": "left"}},
+
+	// fast move with selection for alt+ctrl+shift
+	{ "keys": ["alt+shift+i"], "command": "fast_move", "args": {"direction": "up", "extend": true}},
+	{ "keys": ["alt+shift+k"], "command": "fast_move", "args": {"direction": "down", "extend": true}},
+	{ "keys": ["alt+shift+l"], "command": "fast_move", "args": {"direction": "right", "extend": true}},
+	{ "keys": ["alt+shift+j"], "command": "fast_move", "args": {"direction": "left", "extend": true}},
 
 	//top/bottom of file
 	{ "keys": ["alt+ctrl+9"], "command": "move_to_top_of_file" },
 	{ "keys": ["alt+ctrl+,"], "command": "move_to_bottom_of_file" },
 
 	// move and select
-	{ "keys": ["alt+shift+l"], "command": "move", "args": {"by": "characters", "forward": true, "extend": true}},
-	{ "keys": ["alt+shift+j"], "command": "move", "args": {"by": "characters", "forward": false, "extend": true}},
-	{ "keys": ["alt+shift+i"], "command": "move", "args": {"by": "lines", "forward": false, "extend": true}},
-	{ "keys": ["alt+shift+k"], "command": "move", "args": {"by": "lines", "forward": true, "extend": true}},
+	{ "keys": ["ctrl+shift+l"], "command": "move", "args": {"by": "characters", "forward": true, "extend": true}},
+	{ "keys": ["ctrl+shift+j"], "command": "move", "args": {"by": "characters", "forward": false, "extend": true}},
+	{ "keys": ["ctrl+shift+i"], "command": "move", "args": {"by": "lines", "forward": false, "extend": true}},
+	{ "keys": ["ctrl+shift+k"], "command": "move", "args": {"by": "lines", "forward": true, "extend": true}},
 
 	// move beginning/end of line and select
-	{ "keys": ["alt+shift+h"], "command": "move_to", "args": {"to": "bol", "forward": true, "extend": true}},
-	{ "keys": ["alt+shift+;"], "command": "move_to", "args": {"to": "eol", "forward": false, "extend": true}},
+	{ "keys": ["ctrl+shift+h"], "command": "move_to", "args": {"to": "bol", "forward": true, "extend": true}},
+	{ "keys": ["ctrl+shift+;"], "command": "move_to", "args": {"to": "eol", "forward": false, "extend": true}},
 
 
 	// Sidebar opening and navigation

@@ -20,6 +20,7 @@
                 [
                     { "command": "split_selection", "caption": "Split Selection" },
                     { "command": "cycle_through_regions", "caption": "Cycle Through Selections" },
+                    { "command": "selection_to_snippet", "caption": "Make Snippet From Selection" },
                 ]
             },
             {

@@ -1,6 +1,7 @@
 import sublime, sublime_plugin
-import webbrowser, re, functools, os, zlib, subprocess, json, inspect
+import webbrowser, re, functools, os, zlib, subprocess, json, inspect, time
 from itertools import tee, chain
+from os.path import basename
 
 # ------------------------------------------------------
 # -                    Plugin Setup                    -
@@ -15,6 +16,9 @@ __storage_file__ = 'AutoFoldCode.sublime-settings'
 __storage_path__ = os.path.join('Packages', 'User', __storage_file__)
 CURRENT_STORAGE_VERSION = 1
 MAX_BUFFER_SIZE_DEFAULT = 1000000
+MAX_VIEWS = 20
+MAX_WORDS_PER_VIEW = 150
+MAX_FIX_TIME_SECS_PER_VIEW = 0.02
 
 def plugin_loaded():
     global settings
@@ -566,8 +570,6 @@ class SplitSelectionCommand(sublime_plugin.TextCommand):
     for region in self.savedSelection:
       selection.add(region)
 
-    self.workaroundForRefreshBug(self.view, selection)
-
   def splitSelection(self, separator):
 
     view = self.view
@@ -646,54 +648,21 @@ class MoveToBottomOfFileCommand(sublime_plugin.TextCommand):
 # *          Fast Movement         *
 # **********************************
 
-
-class FastMovementLeftCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
-        regions = [region for region in self.view.sel()]
-        for region in regions:
-            self.run_each(edit, region)
-
-    def run_each(self, edit, region):
-        new_point = region.a - settings.get("fast_move_horizontal_character_amount")
-        self.view.sel().subtract(region)
-        self.view.sel().add(new_point)
-        self.view.show(new_point)
-
-class FastMovementRightCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
-        regions = [region for region in self.view.sel()]
-        for region in regions:
-            self.run_each(edit, region)
-
-    def run_each(self, edit, region):
-        new_point = region.a + settings.get("fast_move_horizontal_character_amount")
-        self.view.sel().subtract(region)
-        self.view.sel().add(new_point)
-        self.view.show(new_point)
-
-class FastMovementUpCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
-        regions = [region for region in self.view.sel()]
-        for region in regions:
-            prev_line = region
-            for x in range(settings.get("fast_move_vertical_move_amount")):
-                prev_line = self.view.line(prev_line).a - 1
-            new_line = self.view.line(prev_line).a
-            self.view.sel().subtract(region)
-            self.view.sel().add(new_line)
-            self.view.show(new_line)
-
-class FastMovementDownCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
-        regions = [region for region in self.view.sel()]
-        for region in regions:
-            next_line = region
-            for x in range(settings.get("fast_move_vertical_move_amount")):
-                next_line = self.view.line(next_line).b + 1
-            new_line = self.view.line(next_line).a
-            self.view.sel().subtract(region)
-            self.view.sel().add(new_line)
-            self.view.show(new_line)
+class FastMoveCommand(sublime_plugin.TextCommand):
+    def run(self, edit, direction, extend=False):
+        window = sublime.active_window()
+        if (direction == "up"):
+            for i in range(settings.get("fast_move_horizontal_character_amount")):
+                window.run_command("move", {"by": "lines", "forward": False, "extend": extend})
+        if (direction == "down"):
+            for i in range(settings.get("fast_move_horizontal_character_amount")):
+                window.run_command("move", {"by": "lines", "forward": True, "extend": extend})
+        if (direction == "left"):
+            for i in range(settings.get("fast_move_horizontal_character_amount")):
+                window.run_command("move", {"by": "characters", "forward": False, "extend": extend})
+        if (direction == "right"):
+            for i in range(settings.get("fast_move_horizontal_character_amount")):
+                window.run_command("move", {"by": "characters", "forward": True, "extend": extend})
 
 class RenameFileInTabCommand(sublime_plugin.TextCommand):
     def run (self, edit, args=None, index=-1, group=-1, **kwargs):
@@ -1036,9 +1005,6 @@ class AutoFoldCodeListener(sublime_plugin.EventListener):
     # each version is stored. This is acceptable, since the first user initiated
     # save will purge the versions and store only the latest.
     _save_view_data(view, False)
-    
-    if settings.get("auto_save_on_close") and view.file_name():
-        view.run_command("save")
 
   def on_text_command(self, view, command_name, args):
     if command_name == 'unfold_all' and view.file_name() != None:
@@ -1202,28 +1168,181 @@ def _compute_view_content_checksum(view):
 # ----------------------------------
 
 num_modifications = 0
+recently_saved = False
 
 class AutoSaveEventListener(sublime_plugin.EventListener):
 
     def on_modified_async(self, view):
         global num_modifications
+        global recently_saved
         num_modifications += 1
         filename = view.file_name()
-        if settings.get("auto_save_on_modified") and filename and num_modifications >= settings.get("number_of_modifications_for_auto_save"):
+        if recently_saved:
+            pass
+        elif settings.get("auto_save_on_modified") and filename and num_modifications >= settings.get("number_of_modifications_for_auto_save"):
             delay = settings.get("auto_save_delay_in_seconds")
             if settings.get("auto_save_only_included"):
                 for path in settings.get("included_auto_save_files_field"):
                     if filename.endswith(path):
                         num_modifications = 0
                         sublime.set_timeout(lambda: self.save_file(view), delay)
+                        recently_saved = True
+                        sublime.set_timeout(lambda: self.set_recent(), delay)
             else:
                 for path in settings.get("ignore_auto_save_files_field"):
                     if filename.endswith(path):
                         return
                 num_modifications = 0
                 sublime.set_timeout(lambda: self.save_file(view), delay)
+                recently_saved = True
+                sublime.set_timeout(lambda: self.set_recent(), delay)
 
     def save_file(self, view):
         if view.is_dirty() and not view.is_loading() and not view.is_auto_complete_visible():
             view.run_command("save")
             sublime.status_message(' ') #don't clog up status
+
+    def set_recent(self):
+        global recently_saved
+        recently_saved = False
+
+class SelectionToSnippetCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        view = self.view
+        selection = view.sel()
+        str_out = ""
+
+        for region in selection:
+            str_buffer = view.substr(region)
+            if len(str_buffer) == 0:
+                sublime.set_timeout(lambda: sublime.status_message( 'There is no text selected!'), 0)
+            else:
+                str_out = str_out + "\n" + str_buffer
+
+        window = sublime.active_window()
+        window.run_command('new_file')
+        snippet_view = window.active_view()
+        snippet_view.set_name("snippet.sublime-snippet")
+        snippet_view.run_command("insert_snippet_contents", {'string': str_out})
+
+
+class InsertSnippetContentsCommand(sublime_plugin.TextCommand):
+    def run(self, edit, string):
+        snippet_head = "<snippet>\n\t<content><![CDATA["
+        snippet_foot = "\n\t]]></content>\n\t<!-- ${1:Selection Field 1}.${2:Selection Field 2} -->\n\t<tabTrigger>add_centralization</tabTrigger>\n\t<scope>source.python</scope>\n\t<description>Description</description>\n</snippet>"                       
+        string = snippet_head + string + snippet_foot
+        self.view.insert(edit, len(self.view), string)
+
+
+
+# ----------------------------------
+# -          Autocomplete          -
+# ----------------------------------
+
+class AllAutocomplete(sublime_plugin.EventListener):
+
+    def on_query_completions(self, view, prefix, locations):
+        if is_excluded(view.scope_name(locations[0]), settings.get("exclude_from_completion", [])):
+            return []
+
+        words = []
+
+        # Limit number of views but always include the active view. This
+        # view goes first to prioritize matches close to cursor position.
+        other_views = [
+            v
+            for v in sublime.active_window().views()
+            if v.id != view.id and not is_excluded(v.scope_name(0), settings.get("exclude_sources", []))
+        ]
+        views = [view] + other_views
+        views = views[0:MAX_VIEWS]
+
+        for v in views:
+            if len(locations) > 0 and v.id == view.id:
+                view_words = v.extract_completions(prefix, locations[0])
+            else:
+                view_words = v.extract_completions(prefix)
+            view_words = filter_words(view_words)
+            view_words = fix_truncation(v, view_words)
+            words += [(w, v) for w in view_words]
+
+        words = without_duplicates(words)
+
+        matches = []
+        for w, v in words:
+            trigger = w
+            contents = w.replace('$', '\\$')
+            if v.id != view.id and v.file_name():
+                trigger += '\t(%s)' % basename(v.file_name())
+            if v.id == view.id:
+                trigger += '\tabc'
+            matches.append((trigger, contents))
+        return matches
+
+
+def is_excluded(scope, excluded_scopes):
+    for excluded_scope in excluded_scopes:
+        if excluded_scope in scope:
+            return True
+    return False
+
+
+def filter_words(words):
+    MIN_WORD_SIZE = settings.get("min_word_size", 3)
+    MAX_WORD_SIZE = settings.get("max_word_size", 50)
+    return [w for w in words if MIN_WORD_SIZE <= len(w) <= MAX_WORD_SIZE][0:MAX_WORDS_PER_VIEW]
+
+
+# keeps first instance of every word and retains the original order, O(n)
+def without_duplicates(words):
+    result = []
+    used_words = set()
+    for w, v in words:
+        if w not in used_words:
+            used_words.add(w)
+            result.append((w, v))
+    return result
+
+
+# Ugly workaround for truncation bug in Sublime when using view.extract_completions()
+# in some types of files.
+def fix_truncation(view, words):
+    fixed_words = []
+    start_time = time.time()
+
+    for i, w in enumerate(words):
+        #The word is truncated if and only if it cannot be found with a word boundary before and after
+
+        # this fails to match strings with trailing non-alpha chars, like
+        # 'foo?' or 'bar!', which are common for instance in Ruby.
+        match = view.find(r'\b' + re.escape(w) + r'\b', 0)
+        truncated = is_empty_match(match)
+        if truncated:
+            #Truncation is always by a single character, so we extend the word by one word character before a word boundary
+            extended_words = []
+            view.find_all(r'\b' + re.escape(w) + r'\w\b', 0, "$0", extended_words)
+            if len(extended_words) > 0:
+                fixed_words += extended_words
+            else:
+                # to compensate for the missing match problem mentioned above, just
+                # use the old word if we didn't find any extended matches
+                fixed_words.append(w)
+        else:
+            #Pass through non-truncated words
+            fixed_words.append(w)
+
+        # if too much time is spent in here, bail out,
+        # and don't bother fixing the remaining words
+        if time.time() - start_time > MAX_FIX_TIME_SECS_PER_VIEW:
+            return fixed_words + words[i+1:]
+
+    return fixed_words
+
+
+if sublime.version() >= '3000':
+    def is_empty_match(match):
+        return match.empty()
+else:
+    plugin_loaded()
+    def is_empty_match(match):
+        return match is None
