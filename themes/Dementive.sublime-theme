@@ -1,1223 +1,1255 @@
-[
+{
 
-	{
-		"class": "title_bar",
-		"bg": "color(var(--background) l( 0%))",
-		"fg": [170, 170, 170]
+	"variables": {
+        "overlayBorder": "#161b22",
+        "panelControlBackground": "#010409",
+        "panelControlForeground": "#c9d1d9",
+        "panelControlBorder": "#30363d",
+        "panelRowBackground": "#010409",
+        "panelRowForeground": "#c9d1d9",
+        "panelRowLabelForeground": "#c9d1d9",
+        "panelRowSelectedBackground": "rgba(110,118,129,0.4)",
+        "panelRowSelectedForeground": "#c9d1d9",
+        "panelRowMatchForeground": "#388bfd",
+        "panelRowSelectedMatchForeground": "#388bfd",
+        "panelRowLinkForeground": "#58a6ff",
 	},
+	"rules": [
 
-	{
-		"class" : "sheet_container_control",
-		"layer0.tint" : "var(--background)",
-		"layer0.opacity" : 1
-	},
-
-	{
-		"class": "grid_layout_control",
-		"border_size": 1,
-		"border_color": "color(var(--background) l(+ 8%))"
-	},
-
-	{
-		"class": "label_control",
-		"color": [170, 170, 170],
-
-		"font.bold": false,
-		"font.face": "Consolas",
-		"font.size": 12
-	},
-	{
-		"class": "button_control",
-		"content_margin": [15, 10, 15, 10],
-		"min_size": [70, 0],
-		"layer0.texture": "SublimePlus/assets/simple/widget/btn-border.png",
-		"layer0.inner_margin": [10, 8],
-		"layer0.tint": "color(var(--background) l(+ 12%))",
-		"layer0.opacity": 1
-	},
-	{
-		"class": "button_control",
-		"attributes": ["hover"],
-		"layer0.opacity": 1,
-		"layer0.tint": "color(var(--background) l(+ 18%))"
-	},
-	{
-		"class": "button_control",
-		"attributes": ["pressed"],
-		"layer0.opacity": 1,
-		"layer0.tint": "color(var(--background) l(+ 22%))"
-	},
-	{
-		"class": "label_control",
-		"parents": [{"class": "button_control"}],
-		"color": [170, 170, 170]
-	},
-	{
-		"class": "label_control",
-		"parents": [{"class": "button_control", "attributes": ["hover"]}],
-		"color": [180, 180, 180]
-	},
-	{
-		"class": "label_control",
-		"parents": [{"class": "button_control", "attributes": ["pressed"]}],
-		"color": [199, 199, 199]
-	},
-
-	{
-		"class": "text_line_control",
-		"layer0.texture": "SublimePlus/assets/simple/widget/input-bg.png",
-		"layer0.opacity": 1,
-		"layer0.inner_margin": [10, 8],
-		"layer0.tint": "color(var(--background) l(+ 4%))",
-		"content_margin": [10, 6, 10, 6]
-	},
-	{
-		"class": "text_line_control",
-		"parents": [{"class": "overlay_control"}],
-		"layer0.texture": "SublimePlus/assets/simple/widget/input-bg.png",
-		"layer0.tint": "color(var(--background) l(+ 4%))",
-		"layer0.opacity": 1,
-		"layer1.texture": {
-			"keyframes": [
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-1.png",
-				"SublimePlus/assets/simple/overlay/input-search-2.png",
-				"SublimePlus/assets/simple/overlay/input-search-3.png",
-				"SublimePlus/assets/simple/overlay/input-search-4.png",
-				"SublimePlus/assets/simple/overlay/input-search-4.png",
-				"SublimePlus/assets/simple/overlay/input-search-4.png",
-				"SublimePlus/assets/simple/overlay/input-search-4.png",
-				"SublimePlus/assets/simple/overlay/input-search-4.png",
-				"SublimePlus/assets/simple/overlay/input-search-4.png",
-				"SublimePlus/assets/simple/overlay/input-search-4.png",
-				"SublimePlus/assets/simple/overlay/input-search-4.png",
-				"SublimePlus/assets/simple/overlay/input-search-3.png",
-				"SublimePlus/assets/simple/overlay/input-search-2.png"
-			],
-			"loop": true,
-			"frame_time": 0.05
+		{
+			"class": "title_bar",
+			"settings": ["themed_title_bar"],
+			"bg": "color(var(--background) l( 0%))",
+			"fg": [170, 170, 170]
 		},
-		"layer1.opacity": 1,
-		"layer1.tint": "color(var(--background) l(+ 25%))",
-		"layer1.inner_margin": [32, 32, 0, 0],
-		//"layer1.inner_margin": [48, 48, 0, 0],
-		//"layer1.inner_margin": [64, 64, 0, 0],
-		"content_margin": [40, 6, 10, 6],
-		//"content_margin": [60, 14, 10, 14],
-		//"content_margin": [80, 24, 10, 24],
-	},
-	{
-		"class": "dropdown_button_control",
-		"content_margin": [8, 8],
-		"layer0.texture": "SublimePlus/assets/simple/widget/button/dropdown.png",
-		"layer0.tint": "color(var(--background) l(+ 25%))",
-		"layer0.opacity": 1
-	},
-	{
-		"class": "dropdown_button_control",
-		"attributes": ["hover"],
-		"layer0.tint": "color(var(--background) l(+ 30%))"
-	},
-	{
-		"class": "dropdown_button_control",
-		"attributes": ["pressed"],
-		"layer0.tint": "color(var(--background) l(+ 35%))"
-	},
 
-	{
-		"class": "sidebar_container",
-		"layer0.texture": "SublimePlus/assets/simple/sidebar/sidebar-bg-clock-nb.png",
-		"layer0.inner_margin": [15, 55, 15, 0],
-		//"layer0.inner_margin": [15, 70, 15, 0],
-		//"layer0.inner_margin": [15, 92, 15, 0],
-		"layer0.tint": "color(var(--background)",
-		"layer0.opacity": 1,
-		"content_margin": [-5, 7, 0, 0],
-		//"content_margin": [0, 60, 0, 0],
-		//"content_margin": [0, 82, 0, 0],
-	},
-	{
-		"class": "sidebar_container",
-		"layer0.texture": "SublimePlus/assets/simple/sidebar/sidebar-bg-nb.png",
-		"layer0.inner_margin": [15, 55, 15, 0],
-		"layer0.tint": "color(var(--background))",
-		"layer0.opacity": 1,
-		"content_margin": [0, 0, 0, 0]
-	},
-
-	{
-		"class": "sidebar_tree",
-		"row_padding": [15, 4],
-		"indent": 12,
-		"indent_offset": -5,
-		"indent_top_level": false,
-		"dark_content": false,
-	},
-
-	{
-		"class": "sidebar_heading",
-		"color": [155, 155, 155],
-		"font.bold": false,
-		"font.size": 14
-	},
-	{
-		"class": "tree_row",
-		"layer1.texture": "SublimePlus/assets/simple/sidebar/tree-highlight-1p.png",
-		"layer1.tint": "color(var(--background) l(+ 25%))",
-		"layer1.inner_margin": [15, 0, 12, 0],
-		"layer1.opacity": { "target": 0.0, "speed": 10.0, "interpolation": "smoothstep" }
-	},
-	{
-		"class": "tree_row",
-		"attributes": ["hover"],
-		"layer1.texture": "SublimePlus/assets/simple/sidebar/tree-highlight-2p.png"
-	},
-	{
-		"class": "sidebar_label",
-		"color": [180, 180, 180],
-		"font.size": 14
-	},
-	{
-		"class": "sidebar_label",
-		"parents": [{"class": "tree_row","attributes": ["hover"]}],
-		"color": "color(var(--background) l(+ 35%))",
-	},
-	{
-		"class": "sidebar_label",
-		"parents": [{"class": "tree_row","attributes": ["selected"]}],
-		"color": "color(var(--background) l(+ 35%))",
-	},
-	{
-	    "class": "sidebar_label",
-	    "parents": [
-	        {
-	            "class": "tree_row",
-	            "attributes": [
-	                "highlighted"
-	            ]
-	        }
-	    ],
-	    "fg": "color(var(--background) l(+ 45%))"
-	},
-	{
-		"class": "sidebar_label",
-		"parents": [{"class": "tree_row","attributes": ["expandable"]}],
-		"color": "color(var(--background) l(+ 30%))",
-		"font.bold": false
-	},
-	{
-		"class": "sidebar_label",
-		"parents": [{"class": "tree_row", "attributes": ["expandable", "hover"]}],
-		"color": "color(var(--background) l(+ 35%))",
-	},
-	{
-		"class": "sidebar_label",
-		"parents": [{"class": "tree_row", "attributes": ["expanded"]}],
-		"color": "color(var(--background) l(+ 35%))",
-	},
-	{
-		"class": "sidebar_label",
-		"attributes": ["transient"],
-		"font.italic": false
-	},
-	{
-		"class": "icon_file_type",
-		"layer0.opacity": 0.75,
-		"layer0.inner_margin": [0, 2, 0, -2],
-		"content_margin": [8, 8]
-	},
-	{
-		"class": "icon_file_type",
-		"parents": [{"class": "tree_row", "attributes": ["selected"]}],
-		"layer0.opacity": 1
-	},
-	{
-		"class": "icon_file_type",
-		"parents": [{"class": "tree_row", "attributes": ["hover"]}],
-		"layer0.opacity": 0.5
-	},
-	{
-		"class": "icon_folder",
-		"content_margin": [8, 8],
-		"layer0.tint": "color(var(--background))",
-		"layer0.opacity": 0,
-		"layer1.texture": "SublimePlus/assets/simple/sidebar/folder/folder-close.png",
-		"layer1.tint": "color(var(--background) l(+ 50%))",
-		"layer1.opacity": 0.7,
-		"layer2.texture": "SublimePlus/assets/simple/sidebar/folder/folder-open.png",
-		"layer2.tint": "color(var(--background) l(+ 40%))",
-		"layer2.opacity": 0
-	},
-	{
-		"class": "icon_folder",
-		"parents": [{ "class": "tree_row", "attributes": ["expanded"] }],
-		"layer1.opacity": 0,
-		"layer2.opacity": 1
-	},
-	{
-		"class": "icon_folder",
-		"parents": [{ "class": "tree_row", "attributes": ["hover"] }],
-		"layer1.opacity": 1,
-	},
-	{
-		"class": "icon_folder",
-		"parents": [{ "class": "tree_row", "attributes": ["expanded", "hover"] }],
-		"layer2.texture": {
-			"keyframes": [
-				"SublimePlus/assets/simple/sidebar/folder/folder-open-1.png",
-				"SublimePlus/assets/simple/sidebar/folder/folder-open-1.png",
-				"SublimePlus/assets/simple/sidebar/folder/folder-open-2.png",
-				"SublimePlus/assets/simple/sidebar/folder/folder-open-3.png",
-				"SublimePlus/assets/simple/sidebar/folder/folder-open-4.png",
-				"SublimePlus/assets/simple/sidebar/folder/folder-open-5.png",
-				"SublimePlus/assets/simple/sidebar/folder/folder-open-5.png",
-				"SublimePlus/assets/simple/sidebar/folder/folder-open-5.png",
-				"SublimePlus/assets/simple/sidebar/folder/folder-open-6.png",
-				"SublimePlus/assets/simple/sidebar/folder/folder-open-6.png",
-				"SublimePlus/assets/simple/sidebar/folder/folder-open-6.png",
-				"SublimePlus/assets/simple/sidebar/folder/folder-open-6.png",
-				"SublimePlus/assets/simple/sidebar/folder/folder-open.png"
-			],
-			"loop": false,
-			"frame_time": 0.01
+		{
+			"class" : "sheet_container_control",
+			"layer0.tint" : "var(--background)",
+			"layer0.opacity" : 1
 		},
-		"layer1.opacity": 0,
-		"layer2.opacity": 1
-	},
-	{
-		"class": "icon_folder",
-		"parents": [{ "class": "tree_row", "attributes": ["selected"] }],
-		"layer1.tint": "color(var(--background) l(+ 60%))",
-	},
-	{
-	    "class": "icon_folder",
-	    "parents": [
-	        {
-	            "class": "tree_row",
-	            "attributes": [
-	                "highlighted"
-	            ]
-	        }
-	    ],
-	    "layer1.tint": "color(var(--background) l(+ 55%))",
-	    "layer1.opacity": 1,
-	    "layer2.opacity": 0
 
-	},
-	{
-	    "class": "icon_folder",
-	    "parents": [
-	        {
-	            "class": "tree_row",
-	            "attributes": [
-	                "highlighted",
-	                "expanded"
-	            ]
-	        }
-	    ],
-	    "layer2.tint": "color(var(--background) l(+ 55%))",
-	    "layer1.opacity": 0,
-	    "layer2.opacity": 1
-
-	},
-	{
-		"class": "icon_folder_loading",
-		"layer1.texture": {
-			"keyframes": [
-				"SublimePlus/assets/simple/sidebar/folder/spinner-1.png",
-				"SublimePlus/assets/simple/sidebar/folder/spinner-2.png",
-				"SublimePlus/assets/simple/sidebar/folder/spinner-3.png",
-				"SublimePlus/assets/simple/sidebar/folder/spinner-4.png",
-				"SublimePlus/assets/simple/sidebar/folder/spinner-5.png",
-				"SublimePlus/assets/simple/sidebar/folder/spinner-6.png",
-				"SublimePlus/assets/simple/sidebar/folder/spinner-7.png",
-				"SublimePlus/assets/simple/sidebar/folder/spinner-8.png",
-			],
-			"loop": true,
-			"frame_time": 0.08
+		{
+			"class": "grid_layout_control",
+			"border_size": 1,
+			"border_color": "color(var(--background) l(+ 8%))"
 		},
-		"layer1.tint": "color(var(--background) l(+ 60%))",
-		"layer0.opacity": 0,
-		"content_margin": [8, 8]
-	},
-	{
-		"class": "icon_folder_dup",
-		"content_margin": [8, 8],
-		"layer0.texture": "SublimePlus/assets/simple/sidebar/folder/folder.png",
-		"layer0.opacity": 0.75,
-		"layer1.texture": "SublimePlus/assets/simple/sidebar/folder/folder-symlink.png",
-		"layer1.tint": "color(var(--background) l(+ 50%))",
-		"layer1.opacity": 0.3
-	},
-	{
-		"class": "icon_folder_dup",
-		"parents": [{ "class": "tree_row", "attributes": ["hover"]}],
-		"layer0.opacity": 1,
-	},
-	{
-		"class": "icon_folder_dup",
-		"parents": [{"class": "tree_row", "attributes": ["expanded"] }],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "disclosure_button_control",
-		"content_margin": [0, 0, 0, 0]
-	},
-	{
-		"class": "close_button",
-		"content_margin": [0, 0],
-		"layer0.tint": "[80, 73, 73]",
-		"layer0.texture": "",
-		"layer0.opacity": 0
-	},
-	{
-		"class": "close_button",
-		"parents": [{ "class": "tree_row", "attributes": ["hover"] }],
-		"layer0.opacity": 0.6
-	},
-	{
-		"class": "close_button",
-		"attributes": ["dirty"],
-		"layer0.texture": "",
-		"layer0.opacity": 0
-	},
-	{
-		"class": "close_button",
-		"attributes": ["hover"],
-		"layer0.opacity": 0
-	},
 
-	{
-		"class": "tabset_control",
-		"tab_overlap": 0,
-		"tab_width": 100,
-		"tab_min_width": 140,
-		"tab_height": 34,
-		"mouse_wheel_switch": true,
-		"layer0.tint": "color(var(--background))",
-		"layer0.opacity": 1,
-		"content_margin": [0, 0]
-	},
-	{
-		"class": "tabset_control",
-		"layer1.texture": "SublimePlus/assets/simple/tab/tab-bg0.png",
-		"layer1.inner_margin": [8, 8, 0, 10],
-		"layer1.tint": "color(var(--background)",
-		"layer1.opacity": 1,
-	},
-	{
-		"class": "tab_control",
-		"layer0.tint": [0, 0, 0],
-		"layer0.opacity": 1,
-		"layer1.tint": "transparent",
-		"layer1.opacity": 1,
-		"layer2.tint": "transparent",
-		//"layer2.tint": "color(var(--background))",
-		"layer2.opacity": 0.3,
-		"content_margin": [10, -8, 10, 0],
-		"max_margin_trim": 7,
-		"tint_index": 1,
-		"tint_modifier": "transparent",
-		"accent_tint_index": 2,
-		"hit_test_level": 0.3
-	},
+		{
+			"class": "label_control",
+			"color": [170, 170, 170],
 
-	{
-		"class": "tab_control",
-		"settings": ["show_tab_close_buttons_on_left"],
-		"close_button_side": "left"
-	},
-	{
-		"class": "tab_control", "attributes": ["selected"],
-		"layer1.texture": "SublimePlus/assets/simple/tab/tab-sel0.png",
-		"layer1.inner_margin": [8, 8, 12, 10],
-		"layer1.tint": "color(var(--background) l(- 20%))",
-		"layer1.opacity": 0.5,
-		"layer2.texture": "SublimePlus/assets/simple/tab/tab-sel2.png",
-		"layer2.inner_margin": [8, 2, 12, -18],
-		"layer2.tint": "color(var(--background) l(+ 38%))",
-		"layer2.opacity": 1
-	},
-	{
-		"class": "tab_control", "attributes": ["hover"],
-		"layer2.tint": [0, 0, 0],
-		"layer2.opacity": 0.6,
-	},
-	{
-		"class": "tab_control", "attributes": ["selected", "hover"],
-		"layer2.opacity": 1,
-		"layer1.tint": "color(var(--background) l(- 20%))",
-		"layer2.tint": "color(var(--background) l(+ 38%))",
-	},
-	{
-		"class": "tab_label",
-		"fg": [130, 130, 130],
+			"font.bold": false,
+			"font.face": "Consolas",
+			"font.size": 12
+		},
+		{
+			"class": "button_control",
+			"content_margin": [15, 10, 15, 10],
+			"min_size": [70, 0],
+			"layer0.texture": "SublimePlus/assets/simple/widget/btn-border.png",
+			"layer0.inner_margin": [10, 8],
+			"layer0.tint": "color(var(--background) l(+ 12%))",
+			"layer0.opacity": 1
+		},
+		{
+			"class": "button_control",
+			"attributes": ["hover"],
+			"layer0.opacity": 1,
+			"layer0.tint": "color(var(--background) l(+ 18%))"
+		},
+		{
+			"class": "button_control",
+			"attributes": ["pressed"],
+			"layer0.opacity": 1,
+			"layer0.tint": "color(var(--background) l(+ 22%))"
+		},
+		{
+			"class": "label_control",
+			"parents": [{"class": "button_control"}],
+			"color": [170, 170, 170]
+		},
+		{
+			"class": "label_control",
+			"parents": [{"class": "button_control", "attributes": ["hover"]}],
+			"color": [180, 180, 180]
+		},
+		{
+			"class": "label_control",
+			"parents": [{"class": "button_control", "attributes": ["pressed"]}],
+			"color": [199, 199, 199]
+		},
 
-		"font.italic": false,
-		"font.bold": false,
-		"font.face": "Consolas",
-		"font.size": 13.45
-	},
-	{
-		"class": "tab_label",
-		"parents": [{"class": "tab_control", "attributes": ["selected"]}],
-		"fg": [160, 160, 160]
-	},
-	{
-		"class": "tab_label",
-		"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
-		"fg": [170, 170, 170]
-	},
-	{
-		"class": "tab_label",
-		"parents": [{"class": "tab_control", "attributes": ["hover"]}],
-		"fg": "color(var(--background) l(+ 32%))"
-	},
-	{
-		"class": "tab_label",
-		"parents": [{"class": "tab_control", "attributes": ["selected","hover"]}],
-		"fg": [160, 160, 160]
-	},
-	{
-		"class": "tab_label",
-		"attributes": ["transient"],
-		"font.italic": true
-	},
-	{
-		"class": "tab_close_button",
-		"content_margin": [8, 8],
-		"layer0.texture": "SublimePlus/assets/simple/tab/tab-close.png",
-		"layer0.tint": "color(var(--background) l(+ 28%))",
-		"layer0.opacity": 1
-	},
-	{
-		"class": "tab_close_button",
-		"attributes": ["hover"],
-		"layer0.tint": "color(var(--background) l(+ 38%))",
-	},
-	{
-		"class": "tab_close_button",
-		"attributes": ["pressed"],
-		"layer0.tint": "color(var(--background) l(+ 58%))",
-	},
-	{
-		"class": "tab_close_button",
-		"parents": [{"class": "tab_control", "attributes": ["selected"]}],
-		"layer0.tint": "color(var(--background) l(+ 28%))",
-	},
-	{
-		"class": "tab_close_button",
-		"parents": [{"class": "tab_control", "attributes": ["selected"]}],
-		"attributes": ["hover"],
-		"layer0.tint": "color(var(--background) l(+ 38%))",
-	},
-	{
-		"class": "tab_close_button",
-		"parents": [{"class": "tab_control", "attributes": ["selected"]}],
-		"attributes": ["pressed"],
-		"layer0.tint": "color(var(--background) l(+ 58%))",
-	},
-	{
-		"class": "tab_close_button",
-		"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
-		"layer0.texture": "SublimePlus/assets/simple/tab/circle.png",
-		"layer0.tint": "color(var(--background) l(+ 38%))",
-		"content_margin": [5, 10, 10, 5]
-	},
-	{
-		"class": "tab_close_button",
-		"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
-		"attributes": ["hover"],
-		"layer0.tint": "color(var(--background) l(+ 48%))",
-	},
-	{
-		"class": "tab_close_button",
-		"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
-		"attributes": ["pressed"],
-		"layer0.tint": "color(var(--background) l(+ 60%))",
-	},
-	{
-		"class": "tab_close_button",
-		"parents": [{"class": "tab_control", "attributes": ["selected", "dirty"]}],
-		"layer0.tint": "color(var(--background) l(+ 38%))",
-	},
-	{
-		"class": "tab_close_button",
-		"parents": [{"class": "tab_control", "attributes": ["selected", "dirty"]}],
-		"attributes": ["hover"],
-		"layer0.tint": "color(var(--background) l(+ 48%))",
-	},
-	{
-		"class": "tab_close_button",
-		"parents": [{"class": "tab_control", "attributes": ["selected", "dirty"]}],
-		"attributes": ["pressed"],
-		"layer0.tint": "color(var(--background) l(+ 60%))",
-	},
-	{
-		"class": "scroll_tabs_left_button",
-		"content_margin": [0, 0],
-		"layer0.opacity": 0
-	},
-	{
-		"class": "scroll_tabs_left_button",
-		"attributes": ["hover"]
-	},
-	{
-		"class": "scroll_tabs_right_button",
-		"content_margin": [0, 0],
-		"layer0.opacity": 0
-	},
-	{
-		"class": "scroll_tabs_right_button",
-		"attributes": ["hover"]
-	},
-	{
-		"class": "show_tabs_dropdown_button",
-		"content_margin": [9, 8, 12, 5],
-		"layer0.texture": "SublimePlus/assets/simple/tab/tab-dropdown.png",
-		"layer0.tint": "color(var(--background) l(+ 19%))",
-		"layer0.opacity": 1
-	},
-	{
-		"class": "show_tabs_dropdown_button",
-		"attributes": ["hover"],
-		"layer0.tint": "color(var(--background) l(+ 35%))"
-	},
-	{
-		"class": "show_tabs_dropdown_button",
-		"attributes": ["pressed"],
-		"layer0.tint": "color(var(--background) l(+ 45%))"
-	},
+		{
+			"class": "text_line_control",
+			"layer0.texture": "SublimePlus/assets/simple/widget/input-bg.png",
+			"layer0.opacity": 1,
+			"layer0.inner_margin": [10, 8],
+			"layer0.tint": "color(var(--background) l(+ 4%))",
+			"content_margin": [10, 6, 10, 6]
+		},
+		{
+			"class": "text_line_control",
+			"parents": [{"class": "overlay_control"}],
+			"layer0.texture": "SublimePlus/assets/simple/widget/input-bg.png",
+			"layer0.tint": "color(var(--background) l(+ 4%))",
+			"layer0.opacity": 1,
+			"layer1.texture": {
+				"keyframes": [
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-1.png",
+					"SublimePlus/assets/simple/overlay/input-search-2.png",
+					"SublimePlus/assets/simple/overlay/input-search-3.png",
+					"SublimePlus/assets/simple/overlay/input-search-4.png",
+					"SublimePlus/assets/simple/overlay/input-search-4.png",
+					"SublimePlus/assets/simple/overlay/input-search-4.png",
+					"SublimePlus/assets/simple/overlay/input-search-4.png",
+					"SublimePlus/assets/simple/overlay/input-search-4.png",
+					"SublimePlus/assets/simple/overlay/input-search-4.png",
+					"SublimePlus/assets/simple/overlay/input-search-4.png",
+					"SublimePlus/assets/simple/overlay/input-search-4.png",
+					"SublimePlus/assets/simple/overlay/input-search-3.png",
+					"SublimePlus/assets/simple/overlay/input-search-2.png"
+				],
+				"loop": true,
+				"frame_time": 0.05
+			},
+			"layer1.opacity": 1,
+			"layer1.tint": "color(var(--background) l(+ 25%))",
+			"layer1.inner_margin": [32, 32, 0, 0],
+			//"layer1.inner_margin": [48, 48, 0, 0],
+			//"layer1.inner_margin": [64, 64, 0, 0],
+			"content_margin": [40, 6, 10, 6],
+			//"content_margin": [60, 14, 10, 14],
+			//"content_margin": [80, 24, 10, 24],
+		},
+		{
+			"class": "dropdown_button_control",
+			"content_margin": [8, 8],
+			"layer0.texture": "SublimePlus/assets/simple/widget/button/dropdown.png",
+			"layer0.tint": "color(var(--background) l(+ 25%))",
+			"layer0.opacity": 1
+		},
+		{
+			"class": "dropdown_button_control",
+			"attributes": ["hover"],
+			"layer0.tint": "color(var(--background) l(+ 30%))"
+		},
+		{
+			"class": "dropdown_button_control",
+			"attributes": ["pressed"],
+			"layer0.tint": "color(var(--background) l(+ 35%))"
+		},
 
-	{
-		"class": "status_container",
-		"content_margin": [0, 5, 0, 8]
+		{
+			"class": "sidebar_container",
+			"layer0.texture": "SublimePlus/assets/simple/sidebar/sidebar-bg-clock-nb.png",
+			"layer0.inner_margin": [15, 55, 15, 0],
+			//"layer0.inner_margin": [15, 70, 15, 0],
+			//"layer0.inner_margin": [15, 92, 15, 0],
+			"layer0.tint": "color(var(--background)",
+			"layer0.opacity": 1,
+			"content_margin": [-5, 7, 0, 0],
+			//"content_margin": [0, 60, 0, 0],
+			//"content_margin": [0, 82, 0, 0],
+		},
+		{
+			"class": "sidebar_container",
+			"layer0.texture": "SublimePlus/assets/simple/sidebar/sidebar-bg-nb.png",
+			"layer0.inner_margin": [15, 55, 15, 0],
+			"layer0.tint": "color(var(--background))",
+			"layer0.opacity": 1,
+			"content_margin": [0, 0, 0, 0]
+		},
 
-	},
-	{
-		"class": "label_control",
-		"parents": [{"class": "status_bar"}],
-		"color": [170, 170, 170],
-		"font.face": "Consolas",
-		"font.bold": false,
-		"font.size": 12
-	},
-	{
-		"class": "status_bar",
-		"layer0.texture": "SublimePlus/assets/simple/status-bar/status-bar-bg.png",
-		"layer0.inner_margin": [10, 0, 0, 0],
-		"layer0.tint": "color(var(--background))",
-		"layer0.opacity": 1,
-		"content_margin": [5, 2, 20, 0]
-	},
-	{
-		"class": "panel_button_control",
-		"content_margin": [12, 8],
-		"layer0.texture": "SublimePlus/assets/simple/status-bar/switch-panel.png",
-		"layer0.tint": [170, 170, 170],
-		"layer0.opacity": 1
-	},
-	{
-		"class": "panel_button_control",
-		"attributes": ["hover"],
-		"layer0.tint": [217, 217, 217]
-	},
-	{
-		"class": "panel_button_control",
-		"attributes": ["pressed"],
-		"layer0.tint": [217, 217, 217]
-	},
+		{
+			"class": "sidebar_tree",
+			"row_padding": [15, 4],
+			"indent": 12,
+			"indent_offset": -5,
+			"indent_top_level": false,
+			"dark_content": false,
+		},
 
-	{
-		"class": "sidebar_button_control",
-		"content_margin": [11, 18, 18 , 5],
-		"layer0.texture": "SublimePlus/assets/simple/status-bar/switch-panel.png",
-		"layer0.tint": "color(var(--background) l(+ 18%))",
-		"layer0.opacity": 1
-	},
-	{
-		"class": "sidebar_button_control",
-		"attributes": ["hover"],
-		"layer0.tint": "color(var(--background) l(+ 35%))"
-	},
-	{
-		"class": "sidebar_button_control",
-		"attributes": ["pressed"],
-		"layer0.tint": "color(var(--background) l(+ 45%))"
-	},
-	{
-		"class": "status_button",
-		"min_size": [80, 0],
-		"layer0.tint": [19, 24, 31],
-		"layer0.opacity": 0
-	},
-	{
-		"class": "label_control",
-		"parents": [{"class": "status_button"}],
-		"color": [160, 160, 160],
-	},
-	{
-		"class": "label_control",
-		"parents": [{"class": "status_button", "attributes": ["hover"]}],
-		"color": [170, 170, 170],
-	},
-	{
-		"class": "label_control",
-		"parents": [{"class": "status_button", "attributes": ["pressed"]}],
-		"color": [180, 180, 180],
-	},
+		{
+			"class": "sidebar_heading",
+			"color": [155, 155, 155],
+			"font.bold": false,
+			"font.size": 14
+		},
+		{
+			"class": "tree_row",
+			"layer1.texture": "SublimePlus/assets/simple/sidebar/tree-highlight-1p.png",
+			"layer1.tint": "color(var(--background) l(+ 25%))",
+			"layer1.inner_margin": [15, 0, 12, 0],
+			"layer1.opacity": { "target": 0.0, "speed": 10.0, "interpolation": "smoothstep" }
+		},
+		{
+			"class": "tree_row",
+			"attributes": ["hover"],
+			"layer1.texture": "SublimePlus/assets/simple/sidebar/tree-highlight-2p.png"
+		},
+		{
+			"class": "sidebar_label",
+			"color": [180, 180, 180],
+			"font.size": 14
+		},
+		{
+			"class": "sidebar_label",
+			"parents": [{"class": "tree_row","attributes": ["hover"]}],
+			"color": "color(var(--background) l(+ 35%))",
+		},
+		{
+			"class": "sidebar_label",
+			"parents": [{"class": "tree_row","attributes": ["selected"]}],
+			"color": "color(var(--background) l(+ 35%))",
+		},
+		{
+		    "class": "sidebar_label",
+		    "parents": [
+		        {
+		            "class": "tree_row",
+		            "attributes": [
+		                "highlighted"
+		            ]
+		        }
+		    ],
+		    "fg": "color(var(--background) l(+ 45%))"
+		},
+		{
+			"class": "sidebar_label",
+			"parents": [{"class": "tree_row","attributes": ["expandable"]}],
+			"color": "color(var(--background) l(+ 30%))",
+			"font.bold": false
+		},
+		{
+			"class": "sidebar_label",
+			"parents": [{"class": "tree_row", "attributes": ["expandable", "hover"]}],
+			"color": "color(var(--background) l(+ 35%))",
+		},
+		{
+			"class": "sidebar_label",
+			"parents": [{"class": "tree_row", "attributes": ["expanded"]}],
+			"color": "color(var(--background) l(+ 35%))",
+		},
+		{
+			"class": "sidebar_label",
+			"attributes": ["transient"],
+			"font.italic": false
+		},
+		{
+			"class": "icon_file_type",
+			"layer0.opacity": 0.75,
+			"layer0.inner_margin": [0, 2, 0, -2],
+			"content_margin": [8, 8]
+		},
+		{
+			"class": "icon_file_type",
+			"parents": [{"class": "tree_row", "attributes": ["selected"]}],
+			"layer0.opacity": 1
+		},
+		{
+			"class": "icon_file_type",
+			"parents": [{"class": "tree_row", "attributes": ["hover"]}],
+			"layer0.opacity": 0.5
+		},
+		{
+			"class": "icon_folder",
+			"content_margin": [8, 8],
+			"layer0.tint": "color(var(--background))",
+			"layer0.opacity": 0,
+			"layer1.texture": "SublimePlus/assets/simple/sidebar/folder/folder-close.png",
+			"layer1.tint": "color(var(--background) l(+ 50%))",
+			"layer1.opacity": 0.7,
+			"layer2.texture": "SublimePlus/assets/simple/sidebar/folder/folder-open.png",
+			"layer2.tint": "color(var(--background) l(+ 40%))",
+			"layer2.opacity": 0
+		},
+		{
+			"class": "icon_folder",
+			"parents": [{ "class": "tree_row", "attributes": ["expanded"] }],
+			"layer1.opacity": 0,
+			"layer2.opacity": 1
+		},
+		{
+			"class": "icon_folder",
+			"parents": [{ "class": "tree_row", "attributes": ["hover"] }],
+			"layer1.opacity": 1,
+		},
+		{
+			"class": "icon_folder",
+			"parents": [{ "class": "tree_row", "attributes": ["expanded", "hover"] }],
+			"layer2.texture": {
+				"keyframes": [
+					"SublimePlus/assets/simple/sidebar/folder/folder-open-1.png",
+					"SublimePlus/assets/simple/sidebar/folder/folder-open-1.png",
+					"SublimePlus/assets/simple/sidebar/folder/folder-open-2.png",
+					"SublimePlus/assets/simple/sidebar/folder/folder-open-3.png",
+					"SublimePlus/assets/simple/sidebar/folder/folder-open-4.png",
+					"SublimePlus/assets/simple/sidebar/folder/folder-open-5.png",
+					"SublimePlus/assets/simple/sidebar/folder/folder-open-5.png",
+					"SublimePlus/assets/simple/sidebar/folder/folder-open-5.png",
+					"SublimePlus/assets/simple/sidebar/folder/folder-open-6.png",
+					"SublimePlus/assets/simple/sidebar/folder/folder-open-6.png",
+					"SublimePlus/assets/simple/sidebar/folder/folder-open-6.png",
+					"SublimePlus/assets/simple/sidebar/folder/folder-open-6.png",
+					"SublimePlus/assets/simple/sidebar/folder/folder-open.png"
+				],
+				"loop": false,
+				"frame_time": 0.01
+			},
+			"layer1.opacity": 0,
+			"layer2.opacity": 1
+		},
+		{
+			"class": "icon_folder",
+			"parents": [{ "class": "tree_row", "attributes": ["selected"] }],
+			"layer1.tint": "color(var(--background) l(+ 60%))",
+		},
+		{
+		    "class": "icon_folder",
+		    "parents": [
+		        {
+		            "class": "tree_row",
+		            "attributes": [
+		                "highlighted"
+		            ]
+		        }
+		    ],
+		    "layer1.tint": "color(var(--background) l(+ 55%))",
+		    "layer1.opacity": 1,
+		    "layer2.opacity": 0
 
-	{
-		"class": "panel_control",
-		"layer0.tint": "color(var(--background)",
-		"layer0.opacity": 1,
-		"layer1.texture": "SublimePlus/assets/simple/widget/widget-bg0.png",
-		"layer1.inner_margin": [6, 1, 2, 1],
-		"layer1.tint": "color(var(--background))",
-		"layer1.opacity": 1,
-		"layer2.texture": "SublimePlus/assets/simple/widget/widget-bg2.png",
-		"layer2.inner_margin": [6, 1, 2, 1],
-		"layer2.tint": "color(var(--background) l(+ 4%))",
-		"layer2.opacity": 1,
-		"content_margin": [5, 0, 0, 5]
-	},
-	{
-		"class": "icon_button_control",
-		"layer0.tint": [0, 0, 0],
-		"layer0.opacity": 0,
-		"content_margin": [4, 8]
-	},
-	{
-		"class": "icon_regex",
-		"layer0.texture": "SublimePlus/assets/simple/widget/button/regex.png",
-		"layer0.tint": "color(var(--background) l(+ 12%))",
-		"layer0.opacity": 1,
-		"content_margin": [10, 10]
-	},
-	{
-		"class": "icon_regex",
-		"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_regex",
-		"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_case",
-		"layer0.texture": "SublimePlus/assets/simple/widget/button/matchcase.png",
-		"layer0.tint": "color(var(--background) l(+ 12%))",
-		"layer0.opacity": 1,
-		"content_margin": [10, 10]
-	},
-	{
-		"class": "icon_case",
-		"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_case",
-		"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_whole_word",
-		"layer0.texture": "SublimePlus/assets/simple/widget/button/word.png",
-		"layer0.tint": "color(var(--background) l(+ 12%))",
-		"layer0.opacity": 1,
-		"content_margin": [10, 10]
-	},
-	{
-		"class": "icon_whole_word",
-		"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_whole_word",
-		"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_wrap",
-		"layer0.texture": "SublimePlus/assets/simple/widget/button/wrap.png",
-		"layer0.tint": "color(var(--background) l(+ 12%))",
-		"layer0.opacity": 1,
-		"content_margin": [10, 10]
-	},
-	{
-		"class": "icon_wrap",
-		"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_wrap",
-		"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_in_selection",
-		"layer0.texture": "SublimePlus/assets/simple/widget/button/inselection.png",
-		"layer0.tint": "color(var(--background) l(+ 12%))",
-		"layer0.opacity": 1,
-		"content_margin": [10, 10]
-	},
-	{
-		"class": "icon_in_selection",
-		"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_in_selection",
-		"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_highlight",
-		"layer0.texture": "SublimePlus/assets/simple/widget/button/highlight.png",
-		"layer0.tint": "color(var(--background) l(+ 12%))",
-		"layer0.opacity": 1,
-		"content_margin": [10, 10]
-	},
-	{
-		"class": "icon_highlight",
-		"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_highlight",
-		"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_preserve_case",
-		"layer0.texture": "SublimePlus/assets/simple/widget/button/replace-preserve-case.png",
-		"layer0.tint": "color(var(--background) l(+ 12%))",
-		"layer0.opacity": 1,
-		"content_margin": [10, 10]
-	},
-	{
-		"class": "icon_preserve_case",
-		"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_preserve_case",
-		"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_context",
-		"layer0.texture": "SublimePlus/assets/simple/widget/button/context.png",
-		"layer0.tint": "color(var(--background) l(+ 12%))",
-		"layer0.opacity": 1,
-		"content_margin": [10, 10]
-	},
-	{
-		"class": "icon_context",
-		"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_context",
-		"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_use_buffer",
-		"layer0.texture": "SublimePlus/assets/simple/widget/button/buffer.png",
-		"layer0.tint": "color(var(--background) l(+ 12%))",
-		"layer0.opacity": 1,
-		"content_margin": [10, 10]
-	},
-	{
-		"class": "icon_use_buffer",
-		"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_use_buffer",
-		"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_reverse",
-		"layer0.texture": "SublimePlus/assets/simple/widget/button/reverse.png",
-		"layer0.tint": "color(var(--background) l(+ 12%))",
-		"layer0.opacity": 1,
-		"content_margin": [10, 10]
-	},
-	{
-		"class": "icon_reverse",
-		"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_reverse",
-		"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
+		},
+		{
+		    "class": "icon_folder",
+		    "parents": [
+		        {
+		            "class": "tree_row",
+		            "attributes": [
+		                "highlighted",
+		                "expanded"
+		            ]
+		        }
+		    ],
+		    "layer2.tint": "color(var(--background) l(+ 55%))",
+		    "layer1.opacity": 0,
+		    "layer2.opacity": 1
 
-	{
-		"class": "icon_use_gitignore",
-		"layer0.texture": "SublimePlus/assets/simple/widget/button/gitignore.png",
-		"layer0.tint": "color(var(--background) l(+ 12%))",
-		"layer0.opacity": 1,
-		"content_margin": [10, 10]
-	},
-	{
-		"class": "icon_use_gitignore",
-		"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
-	{
-		"class": "icon_use_gitignore",
-		"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
-		"layer0.tint": "color(var(--background) l(+ 50%))",
-	},
+		},
+		{
+			"class": "icon_folder_loading",
+			"layer1.texture": {
+				"keyframes": [
+					"SublimePlus/assets/simple/sidebar/folder/spinner-1.png",
+					"SublimePlus/assets/simple/sidebar/folder/spinner-2.png",
+					"SublimePlus/assets/simple/sidebar/folder/spinner-3.png",
+					"SublimePlus/assets/simple/sidebar/folder/spinner-4.png",
+					"SublimePlus/assets/simple/sidebar/folder/spinner-5.png",
+					"SublimePlus/assets/simple/sidebar/folder/spinner-6.png",
+					"SublimePlus/assets/simple/sidebar/folder/spinner-7.png",
+					"SublimePlus/assets/simple/sidebar/folder/spinner-8.png",
+				],
+				"loop": true,
+				"frame_time": 0.08
+			},
+			"layer1.tint": "color(var(--background) l(+ 60%))",
+			"layer0.opacity": 0,
+			"content_margin": [8, 8]
+		},
+		{
+			"class": "icon_folder_dup",
+			"content_margin": [8, 8],
+			"layer0.texture": "SublimePlus/assets/simple/sidebar/folder/folder.png",
+			"layer0.opacity": 0.75,
+			"layer1.texture": "SublimePlus/assets/simple/sidebar/folder/folder-symlink.png",
+			"layer1.tint": "color(var(--background) l(+ 50%))",
+			"layer1.opacity": 0.3
+		},
+		{
+			"class": "icon_folder_dup",
+			"parents": [{ "class": "tree_row", "attributes": ["hover"]}],
+			"layer0.opacity": 1,
+		},
+		{
+			"class": "icon_folder_dup",
+			"parents": [{"class": "tree_row", "attributes": ["expanded"] }],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "disclosure_button_control",
+			"content_margin": [0, 0, 0, 0]
+		},
+		{
+			"class": "close_button",
+			"content_margin": [0, 0],
+			"layer0.tint": "[80, 73, 73]",
+			"layer0.texture": "",
+			"layer0.opacity": 0
+		},
+		{
+			"class": "close_button",
+			"parents": [{ "class": "tree_row", "attributes": ["hover"] }],
+			"layer0.opacity": 0.6
+		},
+		{
+			"class": "close_button",
+			"attributes": ["dirty"],
+			"layer0.texture": "",
+			"layer0.opacity": 0
+		},
+		{
+			"class": "close_button",
+			"attributes": ["hover"],
+			"layer0.opacity": 0
+		},
 
-	{
-		"class": "overlay_control",
-		"layer0.texture": "SublimePlus/assets/simple/overlay/overlay-bg-shadow.png",
-		"layer0.inner_margin": [25, 45, 25, 35],
-		"layer0.opacity": 1,
-		"layer0.tint": "color(var(--background) l(- 4%))",
-		"layer1.texture": "SublimePlus/assets/simple/overlay/overlay-bg.png",
-		"layer1.inner_margin": [25, 45, 25, 35],
-		"layer1.opacity": 1,
-		"layer1.tint": "color(var(--background) l(+ 2%))",
-		"layer2.texture": "SublimePlus/assets/simple/overlay/overlay-bd.png",
-		"layer2.inner_margin": [25, 45, 25, 35],
-		"layer2.opacity": 1,
-		"layer2.tint": "color(var(--background) l(+ 4%))",
-		"content_margin": [24, 45, 24, 35]
-	},
-	{
-		"class": "mini_quick_panel_row",
-		"layer0.tint": "color(var(--background) l(+ 2%))",
-		"layer0.inner_margin": [2, 2, 2, 2],
-		"layer0.opacity": 1
-	},
-	{
-		"class": "mini_quick_panel_row",
-		"attributes": ["selected"],
-		"layer0.tint": "color(var(--background) l(+ 8%))",
-		"layer0.opacity": 1
-	},
-	{
-		"class": "quick_panel",
-		"row_padding": [20, 5],
-		"layer0.tint": "color(var(--background) l(+ 2%))",
-		"layer0.opacity": 1
-	},
-	{
-		"class": "quick_panel",
-		"parents": [{"class": "overlay_control"}],
-		"row_padding": [20, 5, 6, 5],
-		"layer0.opacity": 1
-	},
-	{
-		"class": "quick_panel_row",
-		"layer0.texture": "",
-		"layer0.tint": "color(var(--background) l(+ 2%))",
-		"layer0.inner_margin": 0,
-		"layer0.opacity": 1
-	},
-	{
-		"class": "quick_panel_row",
-		"parents": [{"class": "overlay_control"}],
-		"layer0.tint": "color(var(--background) l(+ 2%))",
-		"layer0.opacity": 1
-	},
-	{
-		"class": "quick_panel_row",
-		"attributes": ["selected"],
-		"layer0.tint": "color(var(--background) l(+ 8%))"
-	},
-	{
-		"class": "quick_panel_label",
-		"fg": [179, 179, 179],
-		"match_fg": [217, 217, 217],
-		"selected_fg": [255, 238, 153],
-		"selected_match_fg": [170, 255, 153],
-		"font.face": "system",
-		"font.size": 14
-	},
-	{
-		"class": "quick_panel_label",
-		"parents": [{"class": "overlay_control"}],
-		"fg": [179, 179, 179],
-		"match_fg": [217, 217, 217],
-		"selected_fg": [255, 238, 153],
-		"selected_match_fg": [170, 255, 153],
-		"font.face": "system",
-		"font.size": 14
-	},
-	{
-		"class": "quick_panel_path_label",
+		{
+			"class": "tabset_control",
+			"tab_overlap": 0,
+			"tab_width": 100,
+			"tab_min_width": 140,
+			"tab_height": 34,
+			"mouse_wheel_switch": true,
+			"layer0.tint": "color(var(--background))",
+			"layer0.opacity": 1,
+			"content_margin": [0, 0]
+		},
+		{
+			"class": "tabset_control",
+			"layer1.texture": "SublimePlus/assets/simple/tab/tab-bg0.png",
+			"layer1.inner_margin": [8, 8, 0, 10],
+			"layer1.tint": "color(var(--background)",
+			"layer1.opacity": 1,
+		},
+		{
+			"class": "tab_control",
+			"layer0.tint": [0, 0, 0],
+			"layer0.opacity": 1,
+			"layer1.tint": "transparent",
+			"layer1.opacity": 1,
+			"layer2.tint": "transparent",
+			//"layer2.tint": "color(var(--background))",
+			"layer2.opacity": 0.3,
+			"content_margin": [10, -8, 10, 0],
+			"max_margin_trim": 7,
+			"tint_index": 1,
+			"tint_modifier": "transparent",
+			"accent_tint_index": 2,
+			"hit_test_level": 0.3
+		},
 
-		"fg": [140, 140, 140],
+		{
+			"class": "tab_control",
+			"settings": ["show_tab_close_buttons_on_left"],
+			"close_button_side": "left"
+		},
+		{
+			"class": "tab_control", "attributes": ["selected"],
+			"layer1.texture": "SublimePlus/assets/simple/tab/tab-sel0.png",
+			"layer1.inner_margin": [8, 8, 12, 10],
+			"layer1.tint": "color(var(--background) l(- 20%))",
+			"layer1.opacity": 0.5,
+			"layer2.texture": "SublimePlus/assets/simple/tab/tab-sel2.png",
+			"layer2.inner_margin": [8, 2, 12, -18],
+			"layer2.tint": "color(var(--background) l(+ 38%))",
+			"layer2.opacity": 1
+		},
+		{
+			"class": "tab_control", "attributes": ["hover"],
+			"layer2.tint": [0, 0, 0],
+			"layer2.opacity": 0.6,
+		},
+		{
+			"class": "tab_control", "attributes": ["selected", "hover"],
+			"layer2.opacity": 1,
+			"layer1.tint": "color(var(--background) l(- 20%))",
+			"layer2.tint": "color(var(--background) l(+ 38%))",
+		},
+		{
+			"class": "tab_label",
+			"fg": [130, 130, 130],
 
-		"match_fg": [217, 217, 217],
+			"font.italic": false,
+			"font.bold": false,
+			"font.face": "Consolas",
+			"font.size": 13.45
+		},
+		{
+			"class": "tab_label",
+			"parents": [{"class": "tab_control", "attributes": ["selected"]}],
+			"fg": [160, 160, 160]
+		},
+		{
+			"class": "tab_label",
+			"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
+			"fg": [170, 170, 170]
+		},
+		{
+			"class": "tab_label",
+			"parents": [{"class": "tab_control", "attributes": ["hover"]}],
+			"fg": "color(var(--background) l(+ 32%))"
+		},
+		{
+			"class": "tab_label",
+			"parents": [{"class": "tab_control", "attributes": ["selected","hover"]}],
+			"fg": [160, 160, 160]
+		},
+		{
+			"class": "tab_label",
+			"attributes": ["transient"],
+			"font.italic": true
+		},
+		{
+			"class": "tab_close_button",
+			"content_margin": [8, 8],
+			"layer0.texture": "SublimePlus/assets/simple/tab/tab-close.png",
+			"layer0.tint": "color(var(--background) l(+ 28%))",
+			"layer0.opacity": 1
+		},
+		{
+			"class": "tab_close_button",
+			"attributes": ["hover"],
+			"layer0.tint": "color(var(--background) l(+ 38%))",
+		},
+		{
+			"class": "tab_close_button",
+			"attributes": ["pressed"],
+			"layer0.tint": "color(var(--background) l(+ 58%))",
+		},
+		{
+			"class": "tab_close_button",
+			"parents": [{"class": "tab_control", "attributes": ["selected"]}],
+			"layer0.tint": "color(var(--background) l(+ 28%))",
+		},
+		{
+			"class": "tab_close_button",
+			"parents": [{"class": "tab_control", "attributes": ["selected"]}],
+			"attributes": ["hover"],
+			"layer0.tint": "color(var(--background) l(+ 38%))",
+		},
+		{
+			"class": "tab_close_button",
+			"parents": [{"class": "tab_control", "attributes": ["selected"]}],
+			"attributes": ["pressed"],
+			"layer0.tint": "color(var(--background) l(+ 58%))",
+		},
+		{
+			"class": "tab_close_button",
+			"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
+			"layer0.texture": "SublimePlus/assets/simple/tab/circle.png",
+			"layer0.tint": "color(var(--background) l(+ 38%))",
+			"content_margin": [5, 10, 10, 5]
+		},
+		{
+			"class": "tab_close_button",
+			"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
+			"attributes": ["hover"],
+			"layer0.tint": "color(var(--background) l(+ 48%))",
+		},
+		{
+			"class": "tab_close_button",
+			"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
+			"attributes": ["pressed"],
+			"layer0.tint": "color(var(--background) l(+ 60%))",
+		},
+		{
+			"class": "tab_close_button",
+			"parents": [{"class": "tab_control", "attributes": ["selected", "dirty"]}],
+			"layer0.tint": "color(var(--background) l(+ 38%))",
+		},
+		{
+			"class": "tab_close_button",
+			"parents": [{"class": "tab_control", "attributes": ["selected", "dirty"]}],
+			"attributes": ["hover"],
+			"layer0.tint": "color(var(--background) l(+ 48%))",
+		},
+		{
+			"class": "tab_close_button",
+			"parents": [{"class": "tab_control", "attributes": ["selected", "dirty"]}],
+			"attributes": ["pressed"],
+			"layer0.tint": "color(var(--background) l(+ 60%))",
+		},
+		{
+			"class": "scroll_tabs_left_button",
+			"content_margin": [0, 0],
+			"layer0.opacity": 0
+		},
+		{
+			"class": "scroll_tabs_left_button",
+			"attributes": ["hover"]
+		},
+		{
+			"class": "scroll_tabs_right_button",
+			"content_margin": [0, 0],
+			"layer0.opacity": 0
+		},
+		{
+			"class": "scroll_tabs_right_button",
+			"attributes": ["hover"]
+		},
+		{
+			"class": "show_tabs_dropdown_button",
+			"content_margin": [9, 8, 12, 5],
+			"layer0.texture": "SublimePlus/assets/simple/tab/tab-dropdown.png",
+			"layer0.tint": "color(var(--background) l(+ 19%))",
+			"layer0.opacity": 1
+		},
+		{
+			"class": "show_tabs_dropdown_button",
+			"attributes": ["hover"],
+			"layer0.tint": "color(var(--background) l(+ 35%))"
+		},
+		{
+			"class": "show_tabs_dropdown_button",
+			"attributes": ["pressed"],
+			"layer0.tint": "color(var(--background) l(+ 45%))"
+		},
 
-		"selected_fg": [229, 229, 229],
+		{
+			"class": "status_container",
+			"content_margin": [0, 5, 0, 8]
 
-		"selected_match_fg": [0, 181, 217],
-		"font.face": "system",
-		"font.size": 12
-	},
-	{
-		"class": "quick_panel_score_label",
+		},
+		{
+			"class": "label_control",
+			"parents": [{"class": "status_bar"}],
+			"color": [170, 170, 170],
+			"font.face": "Consolas",
+			"font.bold": false,
+			"font.size": 12
+		},
+		{
+			"class": "status_bar",
+			"layer0.texture": "SublimePlus/assets/simple/status-bar/status-bar-bg.png",
+			"layer0.inner_margin": [10, 0, 0, 0],
+			"layer0.tint": "color(var(--background))",
+			"layer0.opacity": 1,
+			"content_margin": [5, 2, 20, 0]
+		},
+		{
+			"class": "panel_button_control",
+			"content_margin": [12, 8],
+			"layer0.texture": "SublimePlus/assets/simple/status-bar/switch-panel.png",
+			"layer0.tint": [170, 170, 170],
+			"layer0.opacity": 1
+		},
+		{
+			"class": "panel_button_control",
+			"attributes": ["hover"],
+			"layer0.tint": [217, 217, 217]
+		},
+		{
+			"class": "panel_button_control",
+			"attributes": ["pressed"],
+			"layer0.tint": [217, 217, 217]
+		},
 
-		"fg": [140, 140, 140],
+		{
+			"class": "sidebar_button_control",
+			"content_margin": [11, 18, 18 , 5],
+			"layer0.texture": "SublimePlus/assets/simple/status-bar/switch-panel.png",
+			"layer0.tint": "color(var(--background) l(+ 18%))",
+			"layer0.opacity": 1
+		},
+		{
+			"class": "sidebar_button_control",
+			"attributes": ["hover"],
+			"layer0.tint": "color(var(--background) l(+ 35%))"
+		},
+		{
+			"class": "sidebar_button_control",
+			"attributes": ["pressed"],
+			"layer0.tint": "color(var(--background) l(+ 45%))"
+		},
+		{
+			"class": "status_button",
+			"min_size": [80, 0],
+			"layer0.tint": [19, 24, 31],
+			"layer0.opacity": 0
+		},
+		{
+			"class": "label_control",
+			"parents": [{"class": "status_button"}],
+			"color": [160, 160, 160],
+		},
+		{
+			"class": "label_control",
+			"parents": [{"class": "status_button", "attributes": ["hover"]}],
+			"color": [170, 170, 170],
+		},
+		{
+			"class": "label_control",
+			"parents": [{"class": "status_button", "attributes": ["pressed"]}],
+			"color": [180, 180, 180],
+		},
 
-		"selected_fg": [229, 229, 229],
-		"font.face": "system",
-		"font.size": 14
-	},
+		{
+			"class": "panel_control",
+			"layer0.tint": "color(var(--background)",
+			"layer0.opacity": 1,
+			"layer1.texture": "SublimePlus/assets/simple/widget/widget-bg0.png",
+			"layer1.inner_margin": [6, 1, 2, 1],
+			"layer1.tint": "color(var(--background))",
+			"layer1.opacity": 1,
+			"layer2.texture": "SublimePlus/assets/simple/widget/widget-bg2.png",
+			"layer2.inner_margin": [6, 1, 2, 1],
+			"layer2.tint": "color(var(--background) l(+ 4%))",
+			"layer2.opacity": 1,
+			"content_margin": [5, 0, 0, 5]
+		},
+		{
+			"class": "icon_button_control",
+			"layer0.tint": [0, 0, 0],
+			"layer0.opacity": 0,
+			"content_margin": [4, 8]
+		},
+		{
+			"class": "icon_regex",
+			"layer0.texture": "SublimePlus/assets/simple/widget/button/regex.png",
+			"layer0.tint": "color(var(--background) l(+ 12%))",
+			"layer0.opacity": 1,
+			"content_margin": [10, 10]
+		},
+		{
+			"class": "icon_regex",
+			"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_regex",
+			"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_case",
+			"layer0.texture": "SublimePlus/assets/simple/widget/button/matchcase.png",
+			"layer0.tint": "color(var(--background) l(+ 12%))",
+			"layer0.opacity": 1,
+			"content_margin": [10, 10]
+		},
+		{
+			"class": "icon_case",
+			"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_case",
+			"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_whole_word",
+			"layer0.texture": "SublimePlus/assets/simple/widget/button/word.png",
+			"layer0.tint": "color(var(--background) l(+ 12%))",
+			"layer0.opacity": 1,
+			"content_margin": [10, 10]
+		},
+		{
+			"class": "icon_whole_word",
+			"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_whole_word",
+			"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_wrap",
+			"layer0.texture": "SublimePlus/assets/simple/widget/button/wrap.png",
+			"layer0.tint": "color(var(--background) l(+ 12%))",
+			"layer0.opacity": 1,
+			"content_margin": [10, 10]
+		},
+		{
+			"class": "icon_wrap",
+			"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_wrap",
+			"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_in_selection",
+			"layer0.texture": "SublimePlus/assets/simple/widget/button/inselection.png",
+			"layer0.tint": "color(var(--background) l(+ 12%))",
+			"layer0.opacity": 1,
+			"content_margin": [10, 10]
+		},
+		{
+			"class": "icon_in_selection",
+			"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_in_selection",
+			"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_highlight",
+			"layer0.texture": "SublimePlus/assets/simple/widget/button/highlight.png",
+			"layer0.tint": "color(var(--background) l(+ 12%))",
+			"layer0.opacity": 1,
+			"content_margin": [10, 10]
+		},
+		{
+			"class": "icon_highlight",
+			"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_highlight",
+			"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_preserve_case",
+			"layer0.texture": "SublimePlus/assets/simple/widget/button/replace-preserve-case.png",
+			"layer0.tint": "color(var(--background) l(+ 12%))",
+			"layer0.opacity": 1,
+			"content_margin": [10, 10]
+		},
+		{
+			"class": "icon_preserve_case",
+			"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_preserve_case",
+			"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_context",
+			"layer0.texture": "SublimePlus/assets/simple/widget/button/context.png",
+			"layer0.tint": "color(var(--background) l(+ 12%))",
+			"layer0.opacity": 1,
+			"content_margin": [10, 10]
+		},
+		{
+			"class": "icon_context",
+			"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_context",
+			"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_use_buffer",
+			"layer0.texture": "SublimePlus/assets/simple/widget/button/buffer.png",
+			"layer0.tint": "color(var(--background) l(+ 12%))",
+			"layer0.opacity": 1,
+			"content_margin": [10, 10]
+		},
+		{
+			"class": "icon_use_buffer",
+			"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_use_buffer",
+			"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_reverse",
+			"layer0.texture": "SublimePlus/assets/simple/widget/button/reverse.png",
+			"layer0.tint": "color(var(--background) l(+ 12%))",
+			"layer0.opacity": 1,
+			"content_margin": [10, 10]
+		},
+		{
+			"class": "icon_reverse",
+			"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_reverse",
+			"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
 
-	{
-		"class": "scroll_bar_control",
-		"layer0.tint": "color(var(--background))",
-		"layer0.opacity": 1,
-		"blur": false
-	},
-	{
-		"class": "puck_control",
-		"layer0.texture": "SublimePlus/assets/simple/scroll-bar/scroll-bar-v-mpk-flat.png",
-		"layer0.tint": "color(var(--background) l(+ 22%))",
-		"layer0.opacity": 1,
-		"layer0.inner_margin": [0, 10],
-		"content_margin": [7, 24],
-		"blur": false
-	},
-	{
-		"class": "scroll_bar_control",
-		"attributes": ["horizontal"],
-		"layer0.tint": "color(var(--background))",
-		"layer0.opacity": 1,
-		"blur": false
-	},
-	{
-		"class": "puck_control",
-		"attributes": ["horizontal"],
-		"layer0.texture": "SublimePlus/assets/simple/scroll-bar/scroll-bar-h-flat.png",
-		"layer0.opacity": 1,
-		"layer0.inner_margin": [10, 0],
-		"content_margin": [24, 5],
-		"blur": false
-	},
-	{
-		"class": "scroll_corner_control",
-		"layer0.tint": "color(var(--background))",
-		"layer0.opacity": 1
-	},
-	{
-		"class": "scroll_bar_control",
-		"parents": [{"class": "sidebar_container"}],
-		"layer0.tint": "color(var(--background))",
-		"layer0.opacity": 1,
-		"layer1.texture": "SublimePlus/assets/simple/scroll-bar/scroll-bar-v-sbg0.png",
-		"layer1.opacity": 1,
-		"layer1.inner_margin": [0, 10, 5, 10],
-		"layer1.tint": "color(var(--background))",
-		"blur": false
-	},
-	{
-		"class": "puck_control",
-		"parents": [{"class": "sidebar_container"}],
-		"layer0.texture": "SublimePlus/assets/simple/scroll-bar/scroll-bar-v-spk-flat.png",
-		"layer0.tint": "color(var(--background) l(+ 15%))",
-		"layer0.opacity": 1,
-		"layer0.inner_margin": [0, 10],
-		"content_margin": [7, 24],
-		"blur": false
-	},
-	{
-		"class": "scroll_bar_control",
-		"parents": [{"class": "sidebar_container"}],
-		"attributes": ["horizontal"],
-		"layer0.tint": "color(var(--background))",
-		"layer0.opacity": 1,
-		"blur": false
-	},
-	{
-		"class": "puck_control",
-		"parents": [{"class": "sidebar_container"}],
-		"attributes": ["horizontal"],
-		"layer0.texture": "SublimePlus/assets/simple/scroll-bar/scroll-bar-h-flat.png",
-		"layer0.opacity": 1,
-		"layer0.inner_margin": [10, 0],
-		"content_margin": [24, 5],
-		"blur": false
-	},
-	{
-		"class": "scroll_corner_control",
-		"parents": [{"class": "sidebar_container"}],
-		"layer0.tint": "color(var(--background))",
-		"layer0.opacity": 1,
-		"layer1.texture": "SublimePlus/assets/simple/scroll-bar/scroll-bar-scn.png",
-		"layer1.inner_margin": [0, 1],
-		"layer1.tint": "color(var(--background))",
-		"layer1.opacity": 1
-	},
-	{
-		"class": "scroll_bar_control",
-		"parents": [{"class": "overlay_control"}],
-		"layer0.tint": "[color(var(--background) l(+ 2%))]",
-		"blur": false
-	},
-	// Scroll Bars
-	{
-	    "class": "scroll_area_control",
-	    "settings": ["overlay_scroll_bars"],
-	    "overlay": true
-	},
-	{
-		"class": "fold_button_control",
-		"layer0.texture": "SublimePlus/assets/simple/editor/fold@2x.png",
-		"layer0.opacity": 1,
-		"layer0.inner_margin": 0,
-		"layer0.tint": "color(var(--background) l(+ 30%))",
-		"content_margin": [8, 6, 8, 6]
-	},
-	{
-		"class": "fold_button_control",
-		"attributes": ["hover"],
-		"layer0.tint": "color(var(--background) l(+ 45%))",
-	},
-	{
-		"class": "fold_button_control",
-		"attributes": ["expanded"],
-		"layer0.texture": "SublimePlus/assets/simple/editor/unfold.png"
-	},
+		{
+			"class": "icon_use_gitignore",
+			"layer0.texture": "SublimePlus/assets/simple/widget/button/gitignore.png",
+			"layer0.tint": "color(var(--background) l(+ 12%))",
+			"layer0.opacity": 1,
+			"content_margin": [10, 10]
+		},
+		{
+			"class": "icon_use_gitignore",
+			"parents": [{"class": "icon_button_control", "attributes": ["selected"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
+		{
+			"class": "icon_use_gitignore",
+			"parents": [{"class": "icon_button_control", "attributes": ["pressed"]}],
+			"layer0.tint": "color(var(--background) l(+ 50%))",
+		},
 
-	{
-		"class": "popup_shadow",
-		"settings": ["popup_shadows"],
-		"platforms": ["linux"],
-		"layer0.texture": "SublimePlus/assets/simple/overlay/linux_shadow.png",
-		"layer0.inner_margin": [24, 20, 24, 28],
-		"layer0.draw_center": false,
-		"layer0.opacity": 1.0,
-		"content_margin": [24, 20, 24, 28]
-	},
-	{
-		"class": "popup_shadow",
-		"settings": ["popup_shadows"],
-		"platforms": ["osx"],
-		"layer0.texture": "SublimePlus/assets/simple/overlay/mac_shadow.png",
-		"layer0.inner_margin": [24, 20, 24, 28],
-		"layer0.draw_center": false,
-		"layer0.opacity": 1.0,
-		"content_margin": [24, 20, 24, 28]
-	},
-	{
-		"class": "popup_shadow",
-		"settings": ["popup_shadows"],
-		"platforms": ["windows"],
-		"layer0.texture": "SublimePlus/assets/simple/overlay/windows_shadow.png",
-		"layer0.inner_margin": [15, 14, 15, 16],
-		"layer0.draw_center": false,
-		"layer0.opacity": 1.0,
-		"content_margin": [15, 14, 15, 16]
-	},
+		{
+			"class": "overlay_control",
+			"layer0.texture": "SublimePlus/assets/simple/overlay/overlay-bg-shadow.png",
+			"layer0.inner_margin": [25, 45, 25, 35],
+			"layer0.opacity": 1,
+			"layer0.tint": "color(var(--background) l(- 4%))",
+			"layer1.texture": "SublimePlus/assets/simple/overlay/overlay-bg.png",
+			"layer1.inner_margin": [25, 45, 25, 35],
+			"layer1.opacity": 1,
+			"layer1.tint": "color(var(--background) l(+ 2%))",
+			"layer2.texture": "SublimePlus/assets/simple/overlay/overlay-bd.png",
+			"layer2.inner_margin": [25, 45, 25, 35],
+			"layer2.opacity": 1,
+			"layer2.tint": "color(var(--background) l(+ 4%))",
+			"content_margin": [24, 45, 24, 35]
+		},
+		{
+			"class": "mini_quick_panel_row",
+			"layer0.tint": "color(var(--background) l(+ 2%))",
+			"layer0.inner_margin": [2, 2, 2, 2],
+			"layer0.opacity": 1
+		},
+		{
+			"class": "mini_quick_panel_row",
+			"attributes": ["selected"],
+			"layer0.tint": "color(var(--background) l(+ 8%))",
+			"layer0.opacity": 1
+		},
+		{
+			"class": "quick_panel",
+			"row_padding": [20, 5],
+			"layer0.tint": "color(var(--background) l(+ 2%))",
+			"layer0.opacity": 1
+		},
+		{
+			"class": "quick_panel",
+			"parents": [{"class": "overlay_control"}],
+			"row_padding": [10, 5, 6, 5],
+			"layer0.opacity": 1
+		},
+		{
+		    "class": "quick_panel",
+		    "parents": [
+		        {
+		            "class": "overlay_control goto_symbol_in_project"
+		        }
+		    ],
+		    "row_padding": [
+		        0,
+		        0,
+		        0,
+		        0
+		    ]
+		},
+		{
+			"class": "quick_panel_row",
+			"layer0.texture": "",
+			"layer0.tint": "color(var(--background) l(+ 2%))",
+			"layer0.inner_margin": 0,
+			"layer0.opacity": 1
+		},
+		{
+			"class": "quick_panel_row",
+			"parents": [{"class": "overlay_control"}],
+			"layer0.tint": "color(var(--background) l(+ 2%))",
+			"layer0.opacity": 1
+		},
+		{
+			"class": "quick_panel_row",
+			"attributes": ["selected"],
+			"layer0.tint": "color(var(--background) l(+ 8%))"
+		},
+		{
+			"class": "quick_panel_label",
+			"fg": [179, 179, 179],
+			"match_fg": [217, 217, 217],
+			"selected_fg": [255, 238, 153],
+			"selected_match_fg": [170, 255, 153],
+			"font.face": "system",
+			"font.size": 14
+		},
+		{
+			"class": "quick_panel_label",
+			"parents": [{"class": "overlay_control"}],
+			"fg": [179, 179, 179],
+			"match_fg": [217, 217, 217],
+			"selected_fg": [255, 238, 153],
+			"selected_match_fg": [170, 255, 153],
+			"font.face": "system",
+			"font.size": 14
+		},
+		{
+			"class": "quick_panel_path_label",
 
-	{
-		"class": "popup_control",
-		"layer0.tint": [26, 33, 41],
-		"layer0.opacity": 1,
-		"content_margin": [0, 0]
-	},
-	{
-		"class": "auto_complete",
-		"row_padding": [12, 3],
-		"layer0.tint": "color(var(--background) l(- 20%))",
-		"layer0.opacity": 1
-	},
-	{
-		"class": "auto_complete_label",
-		"fg": [160, 160, 160],
-		"match_fg": [0, 205, 250],
-		"selected_fg": [0, 205, 250],
-		"selected_match_fg": [0, 205, 250]
-	},
-	{
-		"class": "table_row",
-		"layer0.tint": "color(var(--background) l(+ 8%))",
-		"layer0.opacity": 0
-	},
-	{
-		"class": "table_row",
-		"attributes": ["selected"],
-		"layer0.opacity": 1
-	},
+			"fg": [140, 140, 140],
 
-	{
-		"class": "tool_tip_control",
-		"layer0.tint": "color(var(--background))",
-		"layer0.inner_margin": [0, 0],
-		"layer0.opacity": 1,
-		"content_margin": [10, 6]
-	},
-	{
-		"class": "tool_tip_label_control",
-		"color": [170, 170, 170],
-		"font.face": "Consolas",
-		"font.size": 12
-	},
+			"match_fg": [217, 217, 217],
 
-	{
-		"class": "minimap_control",
+			"selected_fg": [229, 229, 229],
 
-		"viewport_color": [96, 122, 153],
-		"viewport_opacity": 0.4
-	},
+			"selected_match_fg": [0, 181, 217],
+			"font.face": "system",
+			"font.size": 12
+		},
+		{
+			"class": "quick_panel_score_label",
 
-	{
-		"class": "dialog",
-		"layer0.tint": "color(var(--background))",
-		"layer0.opacity": 1
-	},
-	{
-		"class": "progress_gauge_control",
-		"layer0.tint": [255, 204, 103],
-		"layer0.opacity": 1,
-		"content_margin": [0, 6]
-	},
-	{
-		"class": "progress_bar_control",
-		"layer0.tint": [32, 41, 51],
-		"layer0.opacity": 1
-	}
+			"fg": [140, 140, 140],
 
-]
+			"selected_fg": [229, 229, 229],
+			"font.face": "system",
+			"font.size": 14
+		},
+
+		{
+			"class": "scroll_bar_control",
+			"layer0.tint": "color(var(--background))",
+			"layer0.opacity": 1,
+			"blur": false
+		},
+		{
+			"class": "puck_control",
+			"layer0.texture": "SublimePlus/assets/simple/scroll-bar/scroll-bar-v-mpk-flat.png",
+			"layer0.tint": "color(var(--background) l(+ 22%))",
+			"layer0.opacity": 1,
+			"layer0.inner_margin": [0, 10],
+			"content_margin": [7, 24],
+			"blur": false
+		},
+		{
+			"class": "scroll_bar_control",
+			"attributes": ["horizontal"],
+			"layer0.tint": "color(var(--background))",
+			"layer0.opacity": 1,
+			"blur": false
+		},
+		{
+			"class": "puck_control",
+			"attributes": ["horizontal"],
+			"layer0.texture": "SublimePlus/assets/simple/scroll-bar/scroll-bar-h-flat.png",
+			"layer0.opacity": 1,
+			"layer0.inner_margin": [10, 0],
+			"content_margin": [24, 5],
+			"blur": false
+		},
+		{
+			"class": "scroll_corner_control",
+			"layer0.tint": "color(var(--background))",
+			"layer0.opacity": 1
+		},
+		{
+			"class": "scroll_bar_control",
+			"parents": [{"class": "sidebar_container"}],
+			"layer0.tint": "color(var(--background))",
+			"layer0.opacity": 1,
+			"layer1.texture": "SublimePlus/assets/simple/scroll-bar/scroll-bar-v-sbg0.png",
+			"layer1.opacity": 1,
+			"layer1.inner_margin": [0, 10, 5, 10],
+			"layer1.tint": "color(var(--background))",
+			"blur": false
+		},
+		{
+			"class": "puck_control",
+			"parents": [{"class": "sidebar_container"}],
+			"layer0.texture": "SublimePlus/assets/simple/scroll-bar/scroll-bar-v-spk-flat.png",
+			"layer0.tint": "color(var(--background) l(+ 15%))",
+			"layer0.opacity": 1,
+			"layer0.inner_margin": [0, 10],
+			"content_margin": [7, 24],
+			"blur": false
+		},
+		{
+			"class": "scroll_bar_control",
+			"parents": [{"class": "sidebar_container"}],
+			"attributes": ["horizontal"],
+			"layer0.tint": "color(var(--background))",
+			"layer0.opacity": 1,
+			"blur": false
+		},
+		{
+			"class": "puck_control",
+			"parents": [{"class": "sidebar_container"}],
+			"attributes": ["horizontal"],
+			"layer0.texture": "SublimePlus/assets/simple/scroll-bar/scroll-bar-h-flat.png",
+			"layer0.opacity": 1,
+			"layer0.inner_margin": [10, 0],
+			"content_margin": [24, 5],
+			"blur": false
+		},
+		{
+			"class": "scroll_corner_control",
+			"parents": [{"class": "sidebar_container"}],
+			"layer0.tint": "color(var(--background))",
+			"layer0.opacity": 1,
+			"layer1.texture": "SublimePlus/assets/simple/scroll-bar/scroll-bar-scn.png",
+			"layer1.inner_margin": [0, 1],
+			"layer1.tint": "color(var(--background))",
+			"layer1.opacity": 1
+		},
+		{
+			"class": "scroll_bar_control",
+			"parents": [{"class": "overlay_control"}],
+			"layer0.tint": "[color(var(--background) l(+ 2%))]",
+			"blur": false
+		},
+		// Scroll Bars
+		{
+		    "class": "scroll_area_control",
+		    "settings": ["overlay_scroll_bars"],
+		    "overlay": true
+		},
+		{
+			"class": "fold_button_control",
+			"layer0.texture": "SublimePlus/assets/simple/editor/fold@2x.png",
+			"layer0.opacity": 1,
+			"layer0.inner_margin": 0,
+			"layer0.tint": "color(var(--background) l(+ 30%))",
+			"content_margin": [8, 6, 8, 6]
+		},
+		{
+			"class": "fold_button_control",
+			"attributes": ["hover"],
+			"layer0.tint": "color(var(--background) l(+ 45%))",
+		},
+		{
+			"class": "fold_button_control",
+			"attributes": ["expanded"],
+			"layer0.texture": "SublimePlus/assets/simple/editor/unfold.png"
+		},
+
+		{
+			"class": "popup_shadow",
+			"settings": ["popup_shadows"],
+			"platforms": ["linux"],
+			"layer0.texture": "SublimePlus/assets/simple/overlay/linux_shadow.png",
+			"layer0.inner_margin": [24, 20, 24, 28],
+			"layer0.draw_center": false,
+			"layer0.opacity": 1.0,
+			"content_margin": [24, 20, 24, 28]
+		},
+		{
+			"class": "popup_shadow",
+			"settings": ["popup_shadows"],
+			"platforms": ["osx"],
+			"layer0.texture": "SublimePlus/assets/simple/overlay/mac_shadow.png",
+			"layer0.inner_margin": [24, 20, 24, 28],
+			"layer0.draw_center": false,
+			"layer0.opacity": 1.0,
+			"content_margin": [24, 20, 24, 28]
+		},
+		{
+			"class": "popup_shadow",
+			"settings": ["popup_shadows"],
+			"platforms": ["windows"],
+			"layer0.texture": "SublimePlus/assets/simple/overlay/windows_shadow.png",
+			"layer0.inner_margin": [15, 14, 15, 16],
+			"layer0.draw_center": false,
+			"layer0.opacity": 1.0,
+			"content_margin": [15, 14, 15, 16]
+		},
+
+		{
+			"class": "popup_control",
+			"layer0.tint": [26, 33, 41],
+			"layer0.opacity": 1,
+			"content_margin": [0, 0]
+		},
+		{
+			"class": "auto_complete",
+			"row_padding": [12, 3],
+			"layer0.tint": "color(var(--background) l(- 20%))",
+			"layer0.opacity": 1
+		},
+		{
+			"class": "auto_complete_label",
+			"fg": [160, 160, 160],
+			"match_fg": [0, 205, 250],
+			"selected_fg": [0, 205, 250],
+			"selected_match_fg": [0, 205, 250]
+		},
+		{
+			"class": "table_row",
+			"layer0.tint": "color(var(--background) l(+ 8%))",
+			"layer0.opacity": 0
+		},
+		{
+			"class": "table_row",
+			"attributes": ["selected"],
+			"layer0.opacity": 1
+		},
+
+		{
+			"class": "tool_tip_control",
+			"layer0.tint": "color(var(--background))",
+			"layer0.inner_margin": [0, 0],
+			"layer0.opacity": 1,
+			"content_margin": [10, 6]
+		},
+		{
+			"class": "tool_tip_label_control",
+			"color": [170, 170, 170],
+			"font.face": "Consolas",
+			"font.size": 12
+		},
+
+		{
+			"class": "minimap_control",
+
+			"viewport_color": [96, 122, 153],
+			"viewport_opacity": 0.4
+		},
+
+		{
+			"class": "dialog",
+			"layer0.tint": "color(var(--background))",
+			"layer0.opacity": 1
+		},
+		{
+			"class": "progress_gauge_control",
+			"layer0.tint": [255, 204, 103],
+			"layer0.opacity": 1,
+			"content_margin": [0, 6]
+		},
+		{
+			"class": "progress_bar_control",
+			"layer0.tint": [32, 41, 51],
+			"layer0.opacity": 1
+		}
+
+	]
+}

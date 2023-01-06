@@ -1,0 +1,40 @@
+{
+	"tab_colors": {
+		".sublime-syntax": "DementiveDark.sublime-color-scheme",
+		".sublime-settings": "DementiveLight.sublime-color-scheme",
+	},
+	"theme": "Dementive.sublime-theme",
+	"color_scheme": "DementiveDark.sublime-color-scheme",
+
+	"show_syntax": false,
+	"show_encoding": true,
+
+	"caret_style": "phase",
+	"caret_extra_top": 2,
+	"caret_extra_bottom": 2,
+	
+	"line_padding_top": 1,
+	"line_padding_bottom": 1,
+
+	"auto_complete_cycle": true,
+	"auto_complete_use_history": true,
+	"auto_complete_trailing_symbols": true,
+
+	"shift_tab_unindent": true,
+	"overlay_scroll_bars": "enabled",
+
+	"show_full_path": false,
+	"show_project_first": true,
+
+	"preview_on_click": "only_left",
+
+	/*"font_size": 15,*/
+	"font_face": "JetBrains Mono",
+	"dark_color_scheme": "Celeste.sublime-color-scheme",
+	"light_color_scheme": "Celeste.sublime-color-scheme",
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"font_size": 16,
+}

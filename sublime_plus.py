@@ -436,26 +436,45 @@ class ToggleNotePadCommand(sublime_plugin.ApplicationCommand):
                     view.settings().set("draw_centered",False)
             notepad_toggle = False
 
+
+# def save_output_panel_contents():
+#     window = sublime.active_window()
+#     if window.find_output_panel("NotePad") == None:
+#         return 1
+#     view = window.find_output_panel("NotePad")
+#     region = sublime.Region(0, len(self.view))
+#     string = view.substr(region)
+#     print(string)
+
 class OutputPanelNotePadCommand(sublime_plugin.ApplicationCommand):
+
+    def __init__(self):
+        self.shown = False
+
     def panel_creation(self, window, view):
         window.focus_view(view)
         if settings.get("temp_notepad_color_scheme_mode") == "Light":
             view.settings().set("color_scheme", "NotepadLight.hidden-color-scheme")
         elif settings.get("temp_notepad_color_scheme_mode") == "Dark":
             view.settings().set("color_scheme", "Notepad.hidden-color-scheme")
+        view.assign_syntax("scope:text.notes")
         view.settings().set("font_size", settings.get("temp_notepad_font_size"))
         if not settings.get("show_gutter_in_notepad"):
             view.settings().set('gutter',False)
         if settings.get("draw_centered_temp_notepad"):
             view.settings().set("draw_centered",True)
+        self.shown = True
 
     def run(self):
         window = sublime.active_window()
         if window.find_output_panel("NotePad") == None:
-            window.create_output_panel("NotePad")
+            panel = window.create_output_panel("NotePad")
             window.run_command("show_panel", {"panel": "output.NotePad"})
-            view = window.find_output_panel("NotePad")
-            self.panel_creation(window, view)
+            self.panel_creation(window, panel)
+        #elif self.shown:
+            #window.destroy_output_panel("NotePad")
+            #save_output_panel_contents()
+            #self.shown = False
         else:
             window.run_command("show_panel", {"panel": "output.NotePad"})
             view = window.find_output_panel("NotePad")
@@ -1279,13 +1298,11 @@ class AllAutocomplete(sublime_plugin.EventListener):
             matches.append((trigger, contents))
         return matches
 
-
 def is_excluded(scope, excluded_scopes):
     for excluded_scope in excluded_scopes:
         if excluded_scope in scope:
             return True
     return False
-
 
 def filter_words(words):
     MIN_WORD_SIZE = settings.get("min_word_size", 3)

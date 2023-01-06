@@ -77,6 +77,7 @@
     "rules": [
         {
             "class": "title_bar",
+            "settings": ["themed_title_bar"],
             "bg": "var(titleBarBackground)",
             "fg": "var(titleBarForeground)"
         },
@@ -478,7 +479,7 @@
                         "added"
                     ]
                 }
-            ],
+            ], 
             "color": "var(vcsUntracked)"
         },
         {

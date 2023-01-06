@@ -11,7 +11,7 @@
     // This option will automatically hide the sidebar when the sidebar is no longer the main focus
     // If true sidebar will auto hide when something else becomes the focus
     // If false side bar will NOT auto hide when something else becomes the focus
-    "hide_side_bar_when_not_focused": true,
+    "hide_side_bar_when_not_focused": false,
 
 
     //Will the side bar automatically be shown when there are no open files(views)
@@ -70,7 +70,8 @@
         ".php",
         ".js",
         ".scala",
-        ".py"
+        ".py",
+        ".php"
     ],
 
     // List of websites that will show up when the select_favorite_website command is used. Add as many websites as you want
@@ -164,7 +165,7 @@
     // Light = Use the light notepad scheme
     // Default = Don't change the color scheme when making a new notepad, use the default one.
 
-    "notepad_color_scheme_mode": "Dark",
+    "notepad_color_scheme_mode": "Default",
 
 
     //What color scheme should the temporary notepad use?

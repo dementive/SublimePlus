@@ -7,7 +7,7 @@
 	{ "keys": ["ctrl+;"], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/AppendSemiColon.sublime-macro"} },
 	{ "keys": ["ctrl+shift+d"], "command": "run_macro_file", "args": {"file": "Packages/Default/Delete Line.sublime-macro"} },
 	{ "keys": ["alt+["], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/AppendBrackets.sublime-macro"} },
-	{ "keys": ["ctrl+alt+["], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/AppendBracketsWithEquals.sublime-macro"} },
+	{ "keys": ["alt+="], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/AppendBracketsWithEquals.sublime-macro"} },
 
 	//Folding
 	{ "keys": ["ctrl+1"], "command": "toggle_code_fold" },
@@ -54,7 +54,7 @@
 	{ "keys": ["alt+l"], "command": "fast_move", "args": {"direction": "right"}},
 	{ "keys": ["alt+j"], "command": "fast_move", "args": {"direction": "left"}},
 
-	// fast move with selection for alt+ctrl+shift
+	// fast move with selection for alt+shift
 	{ "keys": ["alt+shift+i"], "command": "fast_move", "args": {"direction": "up", "extend": true}},
 	{ "keys": ["alt+shift+k"], "command": "fast_move", "args": {"direction": "down", "extend": true}},
 	{ "keys": ["alt+shift+l"], "command": "fast_move", "args": {"direction": "right", "extend": true}},
@@ -74,6 +74,11 @@
 	{ "keys": ["ctrl+shift+h"], "command": "move_to", "args": {"to": "bol", "forward": true, "extend": true}},
 	{ "keys": ["ctrl+shift+;"], "command": "move_to", "args": {"to": "eol", "forward": false, "extend": true}},
 
+	// Move by words without selection
+	{ "keys": ["ctrl+alt+shift+j"], "command": "move", "args": {"by": "words", "forward": false, "extend": true} },
+	{ "keys": ["ctrl+alt+shift+l"], "command": "move", "args": {"by": "word_ends", "forward": true, "extend": true} },
+	{ "keys": ["ctrl+alt+shift+i"], "command": "move", "args": {"by": "lines", "forward": false, "extend": true}},
+	{ "keys": ["ctrl+alt+shift+k"], "command": "move", "args": {"by": "lines", "forward": true, "extend": true}},
 
 	// Sidebar opening and navigation
 	{ "keys": ["alt+a"], "command": "toggle_side_bar" },

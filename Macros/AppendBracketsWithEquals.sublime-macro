@@ -27,5 +27,12 @@
 			"file": "res://Packages/Default/Add Line in Braces.sublime-macro"
 		},
 		"command": "run_macro_file"
-	}
+	},
+	{
+		"args":
+		{
+			"characters": "\t"
+		},
+		"command": "insert"
+	},
 ]

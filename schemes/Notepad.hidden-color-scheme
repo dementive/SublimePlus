@@ -1,10 +1,24 @@
 ﻿{
     "variables":
     {
-        "black": "#000001",
+        "black": "#000003",
         "grey": "rgb(100, 100, 100)",
         "grey2": "rgb(8, 8, 8)",
-        "white": "rgb(195, 195, 195"
+        "white": "rgb(195, 195, 195)",
+        "red": "hsl(0, 93%, 59%)",
+        "red2": "rgb(215,90,90)",
+        "blue": "hsl(190, 81%, 67%)",
+        "grey2": "rgb(19, 19, 19)",
+        "white3": "hsl(60, 30%, 96%)",
+        "green": "hsl(120, 100%, 25%)",
+        "green2": "hsl(120, 100%, 45%)",
+        "green3": "rgb(90,215,90)",
+        "orange": "hsl(32, 98%, 56%)",
+        "orange2": "hsl(30, 83%, 34%)",
+        "orange3": "hsl(47, 100%, 79%)",
+        "purple": "hsl(261, 100%, 75%)",
+        "yellow": "hsl(54, 70%, 68%)",
+        "yellow2": "hsl(80, 76%, 53%)",
     },
     "globals":
     {
@@ -27,4 +41,30 @@
         "bracket_contents_foreground": "var(white)",
         "tags_options": "stippled_underline",
     },
+    "rules": [
+        {
+            "scope": "list.element.start",
+            "foreground": "var(green3)"
+        },
+        {
+            "scope": "list.element.second",
+            "foreground": "var(orange)"
+        },
+        {
+            "scope": "list.element.third",
+            "foreground": "var(blue)"
+        },
+        {
+            "scope": "list.element.fourth",
+            "foreground": "var(red)"
+        },
+        {
+            "scope": "list.element.fifth",
+            "foreground": "var(purple)"
+        },
+        {
+            "scope": "list.element.dot",
+            "foreground": "var(red)"
+        },
+    ]
 }
