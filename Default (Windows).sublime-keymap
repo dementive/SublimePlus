@@ -2,17 +2,27 @@
 	{ "keys": ["alt+w"], "command": "open_workspace_from_list", "args": {"close": true}},
 	{ "keys": ["alt+shift+w"], "command": "open_workspace_from_list" },
 	{ "keys": ["alt+s"], "command": "select_color_scheme" },
-	{ "keys": ["f10"], "command": "clear_console" },
+	{ "keys": ["f10"], "command": "show_panel", "args": {"panel": "find_in_files"}},
+	{ "keys": ["f9"], "command": "show_panel", "args": {"panel": "find", "reverse": true}},
+	{ "keys": ["f8"], "command": "clear_console" },
+	{ "keys": ["f2"], "command": "rename_file" },
+	
 
 	{ "keys": ["ctrl+;"], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/AppendSemiColon.sublime-macro"} },
 	{ "keys": ["ctrl+shift+d"], "command": "run_macro_file", "args": {"file": "Packages/Default/Delete Line.sublime-macro"} },
 	{ "keys": ["alt+["], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/AppendBrackets.sublime-macro"} },
 	{ "keys": ["alt+="], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/AppendBracketsWithEquals.sublime-macro"} },
+	{ "keys": ["alt+."], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/ListDot.sublime-macro"} },
+	{ "keys": ["ctrl+."], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/ListDotSecond.sublime-macro"} },
+	{ "keys": ["ctrl+shift+."], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/ListDotThird.sublime-macro"} },
+	{ "keys": ["alt+shift+."], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/ListDotFourth.sublime-macro"} },
+
+	{ "keys": ["alt+u"], "command": "underline_selection" },
 
 	//Folding
 	{ "keys": ["ctrl+1"], "command": "toggle_code_fold" },
 	{ "keys": ["ctrl+2"], "command": "toggle_fold_comments" },
-	{ "keys": ["alt+f"], "command": "gen_toggle_fold_selection" },
+	{ "keys": ["alt+f"], "command": "folder_handler" },
 
 	// Distraction free view with no full screen that also has a ton of settings
 	{ "keys": ["alt+n"], "command": "toggle_note_pad" },

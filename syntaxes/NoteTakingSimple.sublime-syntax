@@ -1,0 +1,51 @@
+%YAML 1.2
+---
+name: Simple Note Taking Syntax
+scope: text.notepad
+file_extensions:
+  - note
+
+variables:
+  valid_variable: '[A-Za-z_0-9\s\(][A-Za-z_0-9\s\)]*'
+
+contexts:
+  main:
+    - include: note-comments
+    - include: tokens
+
+  tokens:
+    - match: --
+      scope: entity.name.title
+      push:
+        - match: ({{valid_variable}})
+          scope: constant.numeric
+          push:
+            - match: --
+              scope: entity.name.title
+              pop: 3
+
+    - match: '({{valid_variable}}):'
+      scope: keyword.header.start
+
+
+    - match: '•'
+      scope: storage.type
+
+    - match: '□'
+      scope: entity.name
+
+    - match: '▢'
+      scope: string
+
+    - match: '◯'
+      scope: variable.parameter
+
+    - match: '\s-\s|=|->|~|<|>|<=|>=|\+|-|/'
+      scope: keyword
+
+    - match: '[0-9]|%|¹|²|³|⁴|⁵|⁶|⁷|⁸|⁹|₁|₂|₃|₄|₅|₆|₇|₈|₉|ⁿ'
+      scope: constant.numeric
+
+  note-comments:
+    - match: (#|//).*$\n?
+      scope: comment

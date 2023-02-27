@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import webbrowser, re, functools, os, zlib, subprocess, json, inspect, time
+import webbrowser, re, functools, os, zlib, subprocess, json, inspect, time, random
 from itertools import tee, chain
 from os.path import basename
 
@@ -762,6 +762,24 @@ class TabContextTerminalCommand(sublime_plugin.TextCommand):
       return True
     else: return False
 
+class TabContextDeleteCommand(sublime_plugin.TextCommand):
+  def run(self, edit, args=None, index=-1, group=-1, **kwargs):
+    window = self.view.window()
+    views = window.views_in_group(group)
+    view = views[index]
+    file_name = view.file_name()
+
+    if file_name:
+        if sublime.ok_cancel_dialog(f"Are you sure you want to delete\n{file_name}?", "Delete"):
+            import Default.send2trash as send2trash
+            try:
+                send2trash.send2trash(file_name)
+                view.close()
+            except:
+                window.status_message("Unable to delete")
+    else:
+        sublime.set_timeout(lambda: sublime.status_message('Selected file cannot be deleted.'), 0)
+
 class SearchOnlineInputHandler(sublime_plugin.TextInputHandler):
 
     def __init__(self, stype):
@@ -1363,3 +1381,59 @@ else:
     plugin_loaded()
     def is_empty_match(match):
         return match is None
+
+
+class FolderHandler(sublime_plugin.TextCommand):
+
+    def input_description(self):
+        return "Fold Level"
+
+    def input(self, args):
+        if 'level' not in args:
+            return FoldingInputHandler()
+
+    def run(self, edit, level):
+        if level != "Unfold All":
+            self.view.run_command("fold_by_level", {"level": int(level)})
+        else:
+            self.view.run_command("unfold_all")
+
+class FoldingInputHandler(sublime_plugin.ListInputHandler):
+
+    def name(self):
+        return 'level'
+
+    def list_items(self):
+        keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Unfold All"]
+        return keys
+
+class UnderlineSelectionCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        # TODO turn into a toggle
+        selection = self.view.sel()
+        num = random.random()
+        for region in selection:
+            str_buffer = self.view.substr(region)
+            if len(str_buffer) == 0:
+                sublime.set_timeout(lambda: sublime.status_message( 'There is no text selected!'), 0)
+            else:
+                regions = [region]
+                self.view.add_regions(str_buffer + str(num), regions, "region.redish", "", sublime.HIDE_ON_MINIMAP | sublime.PERSISTENT | sublime.DRAW_SOLID_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE )
+                #self.view.add_regions("mark", regions, "mark", "dot", sublime.HIDDEN | sublime.PERSISTENT)
+
+class UnderscoreToSpaceCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        # Changes all underscores in current selections to spaces
+        selection = self.view.sel()
+        for region in selection:
+            string = self.view.substr(region).replace("_", " ").replace("-", " ")
+            self.view.erase(edit, region)
+            self.view.insert(edit, region.a, string)
+
+class UnderscoreToTitleCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        selection = self.view.sel()
+        for region in selection:
+            string = self.view.substr(region).replace("_", " ").title()
+            self.view.erase(edit, region)
+            self.view.insert(edit, region.a, string)

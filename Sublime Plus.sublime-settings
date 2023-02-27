@@ -64,14 +64,7 @@
     // What file extentions should auto save be on for? Only valid if auto_save_only_included is true
     "included_auto_save_files_field": [
         ".cpp",
-        ".c",
-        ".rb",
-        ".yml",
-        ".php",
-        ".js",
-        ".scala",
-        ".py",
-        ".php"
+        ".c"
     ],
 
     // List of websites that will show up when the select_favorite_website command is used. Add as many websites as you want
