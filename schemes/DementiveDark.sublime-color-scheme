@@ -386,5 +386,11 @@
             "background": "hsla(80, 65%, 53%, 0.30)",
             "foreground_adjust": "l(+ 10%)"
         },
+        {
+            "name": "Semantic Reference",
+            "scope": "variable.parameter",
+            "foreground": ["hsl(15, 85%, 45%)", "hsl(38, 99%, 60%)"],
+            "font_style": "italic"
+        },
 	]
 }

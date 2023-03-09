@@ -1,21 +1,21 @@
 {
-    "name": "Dark PRO Blue X-Deep",
-    "author": "Dragan Milenkovic",
+    "name": "Dark PRO Black",
     "variables":
     {
         "black": "hsl(0, 0%, 0%)",
-        "black2": "hsl(224, 15%, 15%)",
+        "black2": "rgb(15, 15, 15)",
         "blue": "hsl(218, 100%, 61%)",
         "blue2": "hsl(213, 100%, 61%)",
         "blue3": "hsl(209, 97%, 62%)",
-        "blue4": "hsl(216, 18%, 36%)",
-        "blue5": "hsl(198, 100%, 50%)",
+        "blue4": "hsl(216, 21%, 23%)",
+        "blue5": "hsl(216, 18%, 36%)",
         "blue6": "hsl(218, 20%, 32%)",
         "blue7": "hsl(219, 20%, 27%)",
-        "blue8": "hsl(219, 22%, 25%)",
-        "blue9": "hsl(197, 100%, 55%)",
+        "blue8": "hsl(197, 100%, 55%)",
+        "blue9": "hsl(195, 100%, 57%)",
         "blue10": "hsl(220, 17%, 45%)",
-        "blue11": "hsl(193, 100%, 56%)",
+        "blue11": "hsl(212, 16%, 63%)",
+        "blue12": "hsl(193, 100%, 56%)",
         "cyan": "hsl(185, 100%, 57%)",
         "cyan2": "hsl(190, 100%, 66%)",
         "cyan3": "hsl(191, 100%, 59%)",
@@ -24,7 +24,8 @@
         "orange2": "hsl(43, 81%, 78%)",
         "orange3": "hsl(44, 100%, 70%)",
         "orange4": "hsl(44, 100%, 70%)",
-        "orange5": "hsl(24, 97%, 55%)",
+        "orange5": "hsl(44, 100%, 70%)",
+        "orange6": "hsl(24, 97%, 55%)",
         "purple": "hsl(267, 100%, 75%)",
         "purple2": "hsl(264, 100%, 76%)",
         "purple3": "hsl(261, 100%, 75%)",
@@ -33,11 +34,14 @@
         "red": "hsl(356, 100%, 65%)",
         "red2": "hsl(351, 93%, 57%)",
         "red3": "hsl(349, 100%, 69%)",
-        "red4": "hsl(346, 100%, 64%)",
+        "red4": "hsl(350, 100%, 64%)",
         "red5": "hsl(338, 95%, 56%)",
         "white": "hsl(60, 36%, 96%)",
         "white2": "hsl(60, 30%, 96%)",
-        "yellow": "hsl(60, 12%, 79%)"
+        "yellow": "hsl(60, 12%, 79%)",
+        "yellow2": "hsl(80, 76%, 53%)",
+        "grey3": "rgb(190, 190, 190)",
+        "grey4": "rgb(60, 60, 60)"
     },
     "globals":
     {
@@ -46,29 +50,29 @@
         "caret": "var(white)",
         "invisibles": "var(blue6)",
         "line_highlight": "var(blue7)",
-        "selection": "var(blue8)",
-        "selection_border": "var(blue4)",
-        "active_guide": "color(var(orange5) alpha(0.69))",
+        "selection": "color(var(grey4) alpha(0.3))",
+        "selection_border": "var(grey3)",
+        "active_guide": "color(var(orange6) alpha(0.69))",
         "find_highlight_foreground": "var(black)",
         "find_highlight": "var(orange3)",
-        "brackets_options": "underline",
-        "brackets_foreground": "color(var(white2) alpha(0.65))",
+        "brackets_options": "foreground",
+        "brackets_foreground": "var(red)",
         "bracket_contents_options": "underline",
-        "bracket_contents_foreground": "color(var(white2) alpha(0.65))",
+        "bracket_contents_foreground": "color(var(red) alpha(0.9))",
         "tags_options": "stippled_underline"
     },
     "rules":
     [
         {
-            "name": "Entity name",
-            "scope": "entity.name - (entity.name.filename | entity.name.section | entity.name.tag | entity.name.label)",
-            "foreground": "var(green)"
+            "name": "Semantic Reference",
+            "scope": "variable.parameter",
+            "foreground": ["hsl(15, 85%, 45%)", "hsl(38, 99%, 60%)"],
+            "font_style": "italic"
         },
         {
-            "name": "Language variable",
-            "scope": "variable.language",
-            "foreground": "var(orange6)",
-            "font_style": "italic"
+            "name": "Entity name",
+            "scope": "entity.name - (entity.name.filename | entity.name.section | entity.name.tag | entity.name.label)",
+            "foreground": "var(green)",
         },
         {
             "name": "Comment",
@@ -78,7 +82,7 @@
         {
             "name": "String",
             "scope": "string",
-            "foreground": "var(orange3)"
+            "foreground": "color(var(orange4) alpha(0.94))"
         },
         {
             "name": "Number",
@@ -123,24 +127,19 @@
         {
             "name": "PHP Storage type (e.g. esc_html)",
             "scope": "source.php storage.type",
-            "foreground": "var(blue9)",
+            "foreground": "var(blue8)",
             "font_style": "italic"
         },
         {
             "name": "JS Storage type (e.g. var)",
             "scope": "source.js storage.type",
-            "foreground": "var(blue9)",
+            "foreground": "var(blue8)",
             "font_style": "italic"
         },
         {
             "name": "Function call",
             "scope": "variable.function",
-            "foreground": "var(blue11)"
-        },
-        {
-            "name": "JS Function call",
-            "scope": "source.js variable.function",
-            "foreground": "var(blue9)"
+            "foreground": "var(blue12)"
         },
         {
             "name": "Keyword declaration",
@@ -174,25 +173,20 @@
             "font_style": "italic"
         },
         {
-            "name": "Function name",
-            "scope": "entity.name.function",
-            "foreground": "var(green)"
-        },
-        {
-            "name": "Function argument",
-            "scope": "variable.parameter",
-            "foreground": "var(orange5)",
+            "name": "Language variable",
+            "scope": "variable.language",
+            "foreground": "var(orange6)",
             "font_style": "italic"
         },
         {
             "name": "Punctuation string end",
             "scope": "punctuation.definition.string.end",
-            "foreground": "var(orange5)"
+            "foreground": "var(orange6)"
         },
         {
             "name": "Punctuation string begin",
             "scope": "punctuation.definition.string.begin",
-            "foreground": "var(orange5)"
+            "foreground": "var(orange6)"
         },
         {
             "name": "Tag name",
@@ -242,42 +236,9 @@
             "background": "var(purple3)"
         },
         {
-            "name": "JSON String",
-            "scope": "meta.structure.dictionary.json string.quoted.double.json",
-            "foreground": "var(yellow)"
-        },
-        {
-            "name": "diff.header",
-            "scope": "meta.diff, meta.diff.header",
-            "foreground": "var(blue10)"
-        },
-        {
-            "name": "diff.deleted",
-            "scope": "markup.deleted",
-            "foreground": "var(red4)"
-        },
-        {
-            "name": "diff.inserted",
-            "scope": "markup.inserted",
-            "foreground": "var(green)"
-        },
-        {
-            "name": "diff.changed",
-            "scope": "markup.changed",
-            "foreground": "var(orange3)"
-        },
-        {
-            "scope": "constant.numeric.line-number.find-in-files - match",
-            "foreground": "color(var(purple3) alpha(0.63))"
-        },
-        {
-            "scope": "entity.name.filename.find-in-files",
-            "foreground": "var(orange3)"
-        },
-        {
             "name": "CSS Constants",
             "scope": "source.css support.constant",
-            "foreground": "var(cyan2)"
+            "foreground": "var(blue9)"
         },
         {
             "name": "CSS Functions ( aka scale() )",
@@ -287,13 +248,13 @@
         {
             "name": "CSS Properties",
             "scope": "source.css support.type, source.css support.class",
-            "foreground": "var(blue5)",
+            "foreground": "var(blue11)",
             "font_style": "italic"
         },
         {
             "name": "CSS Class Names",
             "scope": "source.css entity.other.attribute-name",
-            "foreground": "var(orange4)"
+            "foreground": "var(orange5)"
         },
         {
             "name": "CSS String",
@@ -325,6 +286,39 @@
         {
             "scope": "source.php keyword.operator.arithmetic",
             "foreground": "var(red)"
+        },
+        {
+            "name": "JSON String",
+            "scope": "meta.structure.dictionary.json string.quoted.double.json",
+            "foreground": "var(yellow)"
+        },
+        {
+            "name": "diff.header",
+            "scope": "meta.diff, meta.diff.header",
+            "foreground": "var(blue10)"
+        },
+        {
+            "name": "diff.deleted",
+            "scope": "markup.deleted",
+            "foreground": "var(red4)"
+        },
+        {
+            "name": "diff.inserted",
+            "scope": "markup.inserted",
+            "foreground": "var(green)"
+        },
+        {
+            "name": "diff.changed",
+            "scope": "markup.changed",
+            "foreground": "var(orange3)"
+        },
+        {
+            "scope": "constant.numeric.line-number.find-in-files - match",
+            "foreground": "color(var(purple3) alpha(0.63))"
+        },
+        {
+            "scope": "entity.name.filename.find-in-files",
+            "foreground": "var(orange3)"
         }
     ]
 }

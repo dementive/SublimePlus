@@ -18,7 +18,7 @@ contexts:
       scope: entity.name.title
       push:
         - match: ({{valid_variable}})
-          scope: constant.numeric
+          scope: meta.toc-list
           push:
             - match: --
               scope: entity.name.title

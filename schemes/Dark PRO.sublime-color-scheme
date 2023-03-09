@@ -39,7 +39,10 @@
         "red5": "hsl(338, 95%, 56%)",
         "white": "hsl(60, 36%, 96%)",
         "white2": "hsl(60, 30%, 96%)",
-        "yellow": "hsl(60, 12%, 79%)"
+        "yellow": "hsl(60, 12%, 79%)",
+        "yellow2": "hsl(80, 76%, 53%)",
+        "grey3": "rgb(190, 190, 190)",
+        "grey4": "rgb(60, 60, 60)"
     },
     "globals":
     {
@@ -48,19 +51,30 @@
         "caret": "var(white)",
         "invisibles": "var(blue6)",
         "line_highlight": "var(blue7)",
-        "selection": "var(blue4)",
-        "selection_border": "var(blue5)",
+        "selection": "color(var(grey4) alpha(0.3))",
+        "selection_border": "var(grey3)",
         "active_guide": "color(var(orange6) alpha(0.69))",
         "find_highlight_foreground": "var(black)",
         "find_highlight": "var(orange3)",
-        "brackets_options": "underline",
-        "brackets_foreground": "color(var(white2) alpha(0.65))",
+        "brackets_options": "foreground",
+        "brackets_foreground": "var(red)",
         "bracket_contents_options": "underline",
-        "bracket_contents_foreground": "color(var(white2) alpha(0.65))",
+        "bracket_contents_foreground": "color(var(red) alpha(0.9))",
         "tags_options": "stippled_underline"
     },
     "rules":
     [
+        {
+            "name": "Entity name",
+            "scope": "entity.name - (entity.name.filename | entity.name.section | entity.name.tag | entity.name.label)",
+            "foreground": "var(green)"
+        },
+        {
+            "name": "Language variable",
+            "scope": "variable.language",
+            "foreground": "var(orange6)",
+            "font_style": "italic"
+        },
         {
             "name": "Comment",
             "scope": "comment",
@@ -311,6 +325,12 @@
         {
             "scope": "entity.name.filename.find-in-files",
             "foreground": "var(orange3)"
-        }
+        },
+        {
+            "name": "Semantic Reference",
+            "scope": "variable.parameter",
+            "foreground": ["hsl(15, 85%, 45%)", "hsl(38, 99%, 60%)"],
+            "font_style": "italic"
+        },
     ]
 }

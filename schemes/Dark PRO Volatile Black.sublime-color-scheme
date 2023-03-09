@@ -57,6 +57,17 @@
     "rules":
     [
         {
+            "name": "Entity name",
+            "scope": "entity.name - (entity.name.filename | entity.name.section | entity.name.tag | entity.name.label)",
+            "foreground": "var(green)"
+        },
+        {
+            "name": "Language variable",
+            "scope": "variable.language",
+            "foreground": "var(orange6)",
+            "font_style": "italic"
+        },
+        {
             "name": "Comment",
             "scope": "comment",
             "foreground": "var(grey)"
