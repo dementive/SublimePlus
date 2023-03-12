@@ -1,7 +1,18 @@
-import sublime, sublime_plugin
-import webbrowser, re, functools, os, zlib, subprocess, json, inspect, time, random
+import sublime
+import sublime_plugin
+import webbrowser
+import re
+import functools
+import os
+import zlib
+import subprocess
+import json
+import inspect
+import time
+import random
 from itertools import tee, chain
 from os.path import basename
+from sublime import Region
 
 # ------------------------------------------------------
 # -                    Plugin Setup                    -
@@ -20,13 +31,41 @@ MAX_VIEWS = 20
 MAX_WORDS_PER_VIEW = 150
 MAX_FIX_TIME_SECS_PER_VIEW = 0.02
 
+
 def plugin_loaded():
+    def load_plugin():
+        if settings.get("rainbow_brackets_enabled"):
+            ColorSchemeManager.init()
+            active_view = sublime.active_window().active_view()
+            RainbowBracketsViewManager.check_view_load_listener(active_view)
+        else:
+            ColorSchemeManager.init()
+            active_view = sublime.active_window().active_view()
+            RainbowBracketsViewManager.check_view_load_listener(active_view)
+            ColorSchemeManager.clear_color_schemes()
+            for view in sublime.active_window().views():
+                RainbowBracketsViewManager.sweep_view(view)
+
     global settings
     settings = sublime.load_settings("Sublime Plus.sublime-settings")
     for window in sublime.windows():
-      for view in window.views():
-        view.run_command("auto_fold_code_restore")
+        for view in window.views():
+            view.run_command("auto_fold_code_restore")
     build()
+
+    sublime.set_timeout_async(load_plugin)
+
+
+def plugin_unloaded():
+    if settings.get("rainbow_brackets_enabled"):
+        ColorSchemeManager.prefs.clear_on_change("color_scheme")
+        ColorSchemeManager.settings.clear_on_change("default_config")
+    else:
+        ColorSchemeManager.prefs.clear_on_change("color_scheme")
+        ColorSchemeManager.settings.clear_on_change("default_config")
+        ColorSchemeManager.clear_color_schemes()
+        for view in sublime.active_window().views():
+            RainbowBracketsViewManager.sweep_view(view)
 
 
 def build():
@@ -35,26 +74,26 @@ def build():
     key_map = []
 
     default_replacements = settings.get('default_replacements', {})
-    if(default_replacements == False):
+    if (default_replacements is False):
         default_replacements = {}
-    elif(type(default_replacements) is not dict):
+    elif (type(default_replacements) is not dict):
         print('invalid default_replacements in settings')
         return
 
     default_triggers = settings.get('default_triggers', [])
-    if(default_triggers == False):
+    if (default_triggers is False):
         default_triggers = []
-    elif(type(default_triggers) is not list):
+    elif (type(default_triggers) is not list):
         print('invalid default_triggers in settings')
         return
 
     custom_replacements = settings.get('custom_replacements', {})
-    if(type(custom_replacements) is not dict):
+    if (type(custom_replacements) is not dict):
         print('invalid custom_replacements in settings')
         return
 
     custom_triggers = settings.get('custom_triggers', [])
-    if(type(custom_triggers) is not list):
+    if (type(custom_triggers) is not list):
         print('invalid custom_triggers in settings')
         return
 
@@ -86,12 +125,12 @@ def build():
 
             key_map.append(entry)
 
-
-    if(not key_map):
+    if (not key_map):
         print('no key maps')
         return
 
-    current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    current_dir = os.path.dirname(os.path.abspath(
+        inspect.getfile(inspect.currentframe())))
 
     key_map_data = open('%s/Default.sublime-keymap' % current_dir, 'w')
     key_map_data.write(json.dumps(key_map))
@@ -105,8 +144,10 @@ def build():
 def char_at(view, point):
     return view.substr(sublime.Region(point, point + 1))
 
+
 def is_space(view, point):
     return char_at(view, point).isspace()
+
 
 def is_newline(view, point):
     return char_at(view, point) == "\n"
@@ -115,23 +156,28 @@ def is_newline(view, point):
 # -                Comment Fold Methods                -
 # ------------------------------------------------------
 
+
 def previous_and_current(iterable, *iterables):
     prevs, items = tee(iterable, 2)
     prevs = chain([None], prevs)
     return zip(prevs, items, *iterables)
 
+
 def is_comment_multi_line(view, region):
     return len(view.lines(region)) > 1
+
 
 def is_comment_doc_block(view, region):
     region_str = view.substr(region)
     return region_str.rfind('/**') != -1
+
 
 def normalize_comment(view, region):
     if is_comment_multi_line(view, region):
         return normalize_multiline_comment(view, region)
     else:
         return normalize_singleline_comment(view, region)
+
 
 def normalize_singleline_comment(view, region):
     region_str = view.substr(region)
@@ -141,6 +187,7 @@ def normalize_singleline_comment(view, region):
         return region
     else:
         return sublime.Region(region.begin(), region.begin() + last_newline)
+
 
 def normalize_multiline_comment(view, region):
     lines = view.lines(region)
@@ -152,6 +199,7 @@ def normalize_multiline_comment(view, region):
 # -                  Comment Methods                   -
 # ------------------------------------------------------
 
+
 def selections(view, default_to_all=True):
     regions = [r for r in view.sel() if not r.empty()]
     if not regions and default_to_all:
@@ -162,10 +210,11 @@ def selections(view, default_to_all=True):
 # -                   Code Fold Class                  -
 # ------------------------------------------------------
 
+
 class CodeNodes:
 
     def __init__(self, view):
-        self.regions = None # collection of Region objects
+        self.regions = None  # collection of Region objects
         self.view = view
         self.fold_regions = []
         self.find_code()
@@ -209,10 +258,11 @@ class CodeNodes:
 # -                 Comment Fold Class                 -
 # ------------------------------------------------------
 
+
 class CommentNodes:
 
     def __init__(self, view):
-        self.comments = None # collection of Region objects
+        self.comments = None  # collection of Region objects
         self.settings = sublime.load_settings("Sublime Plus.sublime-settings")
         self.view = view
         self.find_comments()
@@ -237,13 +287,16 @@ class CommentNodes:
             self.concatenate_adjacent_comments()
 
     def remove_single_line_comments(self):
-        self.comments = [c for c in self.comments if is_comment_multi_line(self.view, c) or is_comment_doc_block(self.view, c)]
+        self.comments = [c for c in self.comments if is_comment_multi_line(
+            self.view, c) or is_comment_doc_block(self.view, c)]
 
     def remove_multi_line_comments(self):
-        self.comments = [c for c in self.comments if not is_comment_multi_line(self.view, c) or is_comment_doc_block(self.view, c)]
+        self.comments = [c for c in self.comments if not is_comment_multi_line(
+            self.view, c) or is_comment_doc_block(self.view, c)]
 
     def remove_doc_block_comments(self):
-        self.comments = [c for c in self.comments if not is_comment_doc_block(self.view, c)]
+        self.comments = [
+            c for c in self.comments if not is_comment_doc_block(self.view, c)]
 
     def concatenate_adjacent_comments(self):
         """
@@ -264,7 +317,8 @@ class CommentNodes:
 
             # prev wont be set on first iteration
             if prev_comment and is_adjacent(prev_comment, comment):
-                concatenated_comment = concatenate(concatenated_comments.pop(), comment)
+                concatenated_comment = concatenate(
+                    concatenated_comments.pop(), comment)
 
             concatenated_comments.append(concatenated_comment or comment)
 
@@ -301,9 +355,8 @@ class CommentHeaderCommand(sublime_plugin.TextCommand):
             if bannerText:
                 self.view.erase(edit, region)
                 self.view.insert(edit, region.begin(),
-                                 self.full_screen_banner(bannerText,symbol))
-                region_len = (region.begin() +
-                              self.ROW_LENGTH*(2+len(self.lines)))
+                                 self.full_screen_banner(bannerText, symbol))
+                region_len = (region.begin() + self.ROW_LENGTH * (2 + len(self.lines)))
                 self.view \
                     .selection \
                     .add(sublime.Region(region.begin(), region_len))
@@ -324,10 +377,10 @@ class CommentHeaderCommand(sublime_plugin.TextCommand):
 
             # center each line
             for line in self.lines:
-                result += "{2} {0:^{1}}{2}\n".format(line, self.ROW_LENGTH-4,
-                                                     symbol)
+                result += "{2} {0:^{1}}{2}\n".format(line, self.ROW_LENGTH - 4, symbol)
             return result
         return outer_row() + inner_row() + outer_row()
+
 
 class CommentHeaderTwoCommand(sublime_plugin.TextCommand):
 
@@ -340,9 +393,8 @@ class CommentHeaderTwoCommand(sublime_plugin.TextCommand):
             if bannerText:
                 self.view.erase(edit, region)
                 self.view.insert(edit, region.begin(),
-                                 self.full_screen_banner(bannerText,symbol_two))
-                region_len = (region.begin() +
-                              self.ROW_LENGTH_TWO*(2+len(self.lines)))
+                                 self.full_screen_banner(bannerText, symbol_two))
+                region_len = (region.begin() + self.ROW_LENGTH_TWO * (2 + len(self.lines)))
                 self.view \
                     .selection \
                     .add(sublime.Region(region.begin(), region_len))
@@ -363,7 +415,7 @@ class CommentHeaderTwoCommand(sublime_plugin.TextCommand):
 
             # center each line
             for line in self.lines:
-                result += "{2} {0:^{1}}{2}\n".format(line, self.ROW_LENGTH_TWO-4,
+                result += "{2} {0:^{1}}{2}\n".format(line, self.ROW_LENGTH_TWO - 4,
                                                      symbol_two)
             return result
         return outer_row() + inner_row() + outer_row()
@@ -380,7 +432,7 @@ class NotePadMakeCommand(sublime_plugin.ApplicationCommand):
         window = sublime.active_window()
         view = window.active_view()
 
-        if window.is_menu_visible() == True:
+        if window.is_menu_visible() is True:
             window.set_menu_visible(False)
         window.set_sidebar_visible(False)
         if not settings.get("show_tabs_in_notepad"):
@@ -391,8 +443,8 @@ class NotePadMakeCommand(sublime_plugin.ApplicationCommand):
             window.set_minimap_visible(False)
 
         if not settings.get("show_gutter_in_notepad"):
-            view.settings().set('gutter',False)
-        view.settings().set("toggle_status_bar",False)
+            view.settings().set('gutter', False)
+        view.settings().set("toggle_status_bar", False)
         window.run_command('hide_panel')
         old_scheme = view.settings().get("color_scheme")
         original_centered_setting = view.settings().get("draw_centered")
@@ -401,12 +453,14 @@ class NotePadMakeCommand(sublime_plugin.ApplicationCommand):
         elif settings.get("notepad_color_scheme_mode") == "Dark":
             view.settings().set("color_scheme", "Notepad.hidden-color-scheme")
         if settings.get("draw_centered_notepad"):
-            view.settings().set("draw_centered",True)
+            view.settings().set("draw_centered", True)
+
 
 class NotePadNewCommand(sublime_plugin.ApplicationCommand):
     def run(self):
         sublime.run_command("new_window")
         sublime.run_command('note_pad_make')
+
 
 class ToggleNotePadCommand(sublime_plugin.ApplicationCommand):
     def run(self):
@@ -424,16 +478,16 @@ class ToggleNotePadCommand(sublime_plugin.ApplicationCommand):
             window.set_tabs_visible(True)
             window.set_status_bar_visible(True)
             window.set_minimap_visible(True)
-            view.settings().set("gutter",True)
-            view.settings().set("toggle_status_bar",True)
+            view.settings().set("gutter", True)
+            view.settings().set("toggle_status_bar", True)
             if settings.get("notepad_color_scheme_mode") != "Default":
                 view.settings().set("color_scheme", old_scheme)
             if settings.get("draw_centered_notepad"):
                 # If draw_centered was already on, turn it back on. Else turn it off
                 if original_centered_setting:
-                    view.settings().set("draw_centered",True)
+                    view.settings().set("draw_centered", True)
                 else:
-                    view.settings().set("draw_centered",False)
+                    view.settings().set("draw_centered", False)
             notepad_toggle = False
 
 
@@ -460,21 +514,17 @@ class OutputPanelNotePadCommand(sublime_plugin.ApplicationCommand):
         view.assign_syntax("scope:text.notes")
         view.settings().set("font_size", settings.get("temp_notepad_font_size"))
         if not settings.get("show_gutter_in_notepad"):
-            view.settings().set('gutter',False)
+            view.settings().set('gutter', False)
         if settings.get("draw_centered_temp_notepad"):
-            view.settings().set("draw_centered",True)
+            view.settings().set("draw_centered", True)
         self.shown = True
 
     def run(self):
         window = sublime.active_window()
-        if window.find_output_panel("NotePad") == None:
+        if window.find_output_panel("NotePad") is None:
             panel = window.create_output_panel("NotePad")
             window.run_command("show_panel", {"panel": "output.NotePad"})
             self.panel_creation(window, panel)
-        #elif self.shown:
-            #window.destroy_output_panel("NotePad")
-            #save_output_panel_contents()
-            #self.shown = False
         else:
             window.run_command("show_panel", {"panel": "output.NotePad"})
             view = window.find_output_panel("NotePad")
@@ -484,10 +534,12 @@ class OutputPanelNotePadCommand(sublime_plugin.ApplicationCommand):
 # *                Folding Commands               *
 # *************************************************
 
+
 class GenToggleFoldSelectionCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         view = self.view
         selection = view.sel()
+
         def is_folded(region):
             return self.view.unfold(region)
 
@@ -498,13 +550,15 @@ class GenToggleFoldSelectionCommand(sublime_plugin.TextCommand):
                 self.view.unfold(region)
             str_buffer = view.substr(region)
             if len(str_buffer) == 0:
-                sublime.set_timeout(lambda: sublime.status_message( 'There is no text selected!'), 0)
+                sublime.set_timeout(lambda: sublime.status_message(
+                    'There is no text selected!'), 0)
 
 
 class ToggleFoldEverythingCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         view = self.view
         region = sublime.Region(0, len(self.view))
+
         def is_folded(region):
             return self.view.unfold(region)
 
@@ -513,140 +567,151 @@ class ToggleFoldEverythingCommand(sublime_plugin.TextCommand):
         else:
             self.view.unfold(region)
 
+
 class ToggleCodeFoldCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         code = CodeNodes(self.view)
         code.toggle_code_folding()
+
 
 class CodeFoldCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         code = CodeNodes(self.view)
         code.code_fold()
 
+
 class CodeUnfoldCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         code = CodeNodes(self.view)
         code.code_unfold()
+
 
 class ToggleFoldCommentsCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         comments = CommentNodes(self.view)
         comments.toggle_folding()
 
+
 class FoldCommentsCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         comments = CommentNodes(self.view)
         comments.fold()
+
 
 class UnfoldCommentsCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         comments = CommentNodes(self.view)
         comments.unfold()
 
+
 class SplitSelectionCommand(sublime_plugin.TextCommand):
 
-  def run(self, edit, separator = None):
+    def run(self, edit, separator=None):
 
-    self.savedSelection = [r for r in self.view.sel()]
+        self.savedSelection = [r for r in self.view.sel()]
 
-    selectionSize = sum(map(lambda region: region.size(), self.savedSelection))
-    if selectionSize == 0:
-      # nothing to do
-      sublime.status_message("Cannot split an empty selection.")
-      return
+        selectionSize = sum(
+            map(lambda region: region.size(), self.savedSelection))
+        if selectionSize == 0:
+            # nothing to do
+            sublime.status_message("Cannot split an empty selection.")
+            return
 
-    if separator != None:
-      self.splitSelection(separator)
-    else:
-      onConfirm, onChange = self.getHandlers()
+        if separator is not None:
+            self.splitSelection(separator)
+        else:
+            onConfirm, onChange = self.getHandlers()
 
-      inputView = sublime.active_window().show_input_panel(
-        "Separating character(s) for splitting the selection",
-        " ",
-        onConfirm,
-        onChange,
-        self.restoreSelection
-      )
+            inputView = sublime.active_window().show_input_panel(
+                "Separating character(s) for splitting the selection",
+                " ",
+                onConfirm,
+                onChange,
+                self.restoreSelection
+            )
 
-      inputView.run_command("select_all")
+            inputView.run_command("select_all")
 
-  def getHandlers(self):
-    live_split_selection = settings.get("live_split_selection")
+    def getHandlers(self):
+        live_split_selection = settings.get("live_split_selection")
 
-    if live_split_selection:
-      onConfirm = None
-      onChange = self.splitSelection
-    else:
-      onConfirm = self.splitSelection
-      onChange = None
+        if live_split_selection:
+            onConfirm = None
+            onChange = self.splitSelection
+        else:
+            onConfirm = self.splitSelection
+            onChange = None
 
-    return (onConfirm, onChange)
+        return (onConfirm, onChange)
 
-  def restoreSelection(self):
+    def restoreSelection(self):
 
-    selection = self.view.sel()
-    selection.clear()
-    for region in self.savedSelection:
-      selection.add(region)
+        selection = self.view.sel()
+        selection.clear()
+        for region in self.savedSelection:
+            selection.add(region)
 
-  def splitSelection(self, separator):
+    def splitSelection(self, separator):
 
-    view = self.view
-    newRegions = []
+        view = self.view
+        newRegions = []
 
-    for region in self.savedSelection:
-      currentPosition = region.begin()
-      regionString = view.substr(region)
+        for region in self.savedSelection:
+            currentPosition = region.begin()
+            regionString = view.substr(region)
 
-      if separator:
-        subRegions = regionString.split(separator)
-      else:
-        # take each character separately
-        subRegions = list(regionString)
+            if separator:
+                subRegions = regionString.split(separator)
+            else:
+                # take each character separately
+                subRegions = list(regionString)
 
-      for subRegion in subRegions:
-        newRegion = sublime.Region(
-          currentPosition,
-          currentPosition + len(subRegion)
-        )
-        newRegions.append(newRegion)
-        currentPosition += len(subRegion) + len(separator)
+            for subRegion in subRegions:
+                newRegion = sublime.Region(
+                    currentPosition,
+                    currentPosition + len(subRegion)
+                )
+                newRegions.append(newRegion)
+                currentPosition += len(subRegion) + len(separator)
 
-    selection = view.sel()
-    selection.clear()
-    for region in newRegions:
-      selection.add(region)
+        selection = view.sel()
+        selection.clear()
+        for region in newRegions:
+            selection.add(region)
 
-    window = sublime.active_window()
-    window.run_command("move", {"by": "characters", "forward": True})
-    window.run_command("move", {"by": "characters", "forward": False})
+        window = sublime.active_window()
+        window.run_command("move", {"by": "characters", "forward": True})
+        window.run_command("move", {"by": "characters", "forward": False})
+
 
 class CycleThroughRegionsCommand(sublime_plugin.TextCommand):
 
-  def run(self, edit):
+    def run(self, edit):
 
-    view = self.view
-    visibleRegion = view.visible_region()
-    selectedRegions = view.sel()
+        view = self.view
+        visibleRegion = view.visible_region()
+        selectedRegions = view.sel()
 
-    nextRegion = None
+        nextRegion = None
 
-    for region in selectedRegions:
-      str_buffer = view.substr(region)
-      if len(str_buffer) == 0:
-        sublime.set_timeout(lambda: sublime.status_message( 'There is no text selected!'), 0)
-      if region.end() > visibleRegion.b:
-        nextRegion = region
-        break
+        for region in selectedRegions:
+            str_buffer = view.substr(region)
+            if len(str_buffer) == 0:
+                sublime.set_timeout(lambda: sublime.status_message(
+                    'There is no text selected!'), 0)
+            if region.end() > visibleRegion.b:
+                nextRegion = region
+                break
 
-    if nextRegion is None:
-      nextRegion = selectedRegions[0]
+        if nextRegion is None:
+            nextRegion = selectedRegions[0]
 
-    view.show(nextRegion, False)
+        view.show(nextRegion, False)
 
 # **********************************
 # *         Basic Movement         *
 # **********************************
+
 
 class MoveToTopOfFileCommand(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -654,6 +719,7 @@ class MoveToTopOfFileCommand(sublime_plugin.TextCommand):
         selection = sublime.Region(0, 0)
         self.view.sel().add(selection)
         self.view.show(selection)
+
 
 class MoveToBottomOfFileCommand(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -667,24 +733,30 @@ class MoveToBottomOfFileCommand(sublime_plugin.TextCommand):
 # *          Fast Movement         *
 # **********************************
 
+
 class FastMoveCommand(sublime_plugin.TextCommand):
     def run(self, edit, direction, extend=False):
         window = sublime.active_window()
         if (direction == "up"):
             for i in range(settings.get("fast_move_horizontal_character_amount")):
-                window.run_command("move", {"by": "lines", "forward": False, "extend": extend})
+                window.run_command(
+                    "move", {"by": "lines", "forward": False, "extend": extend})
         if (direction == "down"):
             for i in range(settings.get("fast_move_horizontal_character_amount")):
-                window.run_command("move", {"by": "lines", "forward": True, "extend": extend})
+                window.run_command(
+                    "move", {"by": "lines", "forward": True, "extend": extend})
         if (direction == "left"):
             for i in range(settings.get("fast_move_horizontal_character_amount")):
-                window.run_command("move", {"by": "characters", "forward": False, "extend": extend})
+                window.run_command(
+                    "move", {"by": "characters", "forward": False, "extend": extend})
         if (direction == "right"):
             for i in range(settings.get("fast_move_horizontal_character_amount")):
-                window.run_command("move", {"by": "characters", "forward": True, "extend": extend})
+                window.run_command(
+                    "move", {"by": "characters", "forward": True, "extend": extend})
+
 
 class RenameFileInTabCommand(sublime_plugin.TextCommand):
-    def run (self, edit, args=None, index=-1, group=-1, **kwargs):
+    def run(self, edit, args=None, index=-1, group=-1, **kwargs):
         w = self.view.window()
         views = w.views_in_group(group)
         view = views[index]
@@ -695,10 +767,11 @@ class RenameFileInTabCommand(sublime_plugin.TextCommand):
 
         directory, fn = os.path.split(full_path)
         v = w.show_input_panel("New file name:",
-            fn,
-            functools.partial(self.on_done, full_path, directory),
-            None,
-            None)
+                               fn,
+                               functools.partial(
+                                   self.on_done, full_path, directory),
+                               None,
+                               None)
         name, ext = os.path.splitext(fn)
 
         v.sel().clear()
@@ -726,6 +799,7 @@ class RenameFileInTabCommand(sublime_plugin.TextCommand):
         except Exception as e:
             sublime.error_message("Unable to rename: " + str(e))
 
+
 class CopyFilePath(sublime_plugin.TextCommand):
     def run(self, edit, args=None, index=-1, group=-1, **kwargs):
         w = self.view.window()
@@ -738,47 +812,56 @@ class CopyFilePath(sublime_plugin.TextCommand):
 
         sublime.set_clipboard(file_name)
 
+
 class TabContextTerminalCommand(sublime_plugin.TextCommand):
-  def run(self, edit, args=None, index=-1, group=-1, **kwargs):
-    window = self.view.window()
-    views = window.views_in_group(group)
-    view = views[index]
+    def run(self, edit, args=None, index=-1, group=-1, **kwargs):
+        window = self.view.window()
+        views = window.views_in_group(group)
+        view = views[index]
 
-    file_name = view.file_name()
+        file_name = view.file_name()
 
-    if file_name:
-      env = os.environ.copy()
-      res_str = file_name[file_name.rfind("\\"):len(file_name)]
-      file_name = file_name.replace(res_str, "")
-      subprocess.Popen("cmd.exe", env=env, cwd=file_name)
-    else:
-        sublime.set_timeout(lambda: sublime.status_message('Selected file cannot be opened in Terminal.'), 0)
-  def is_enabled(self):
-    if sublime.platform() == "windows":
-      return True
-    else: return False
-  def is_visible(self):
-    if sublime.platform() == "windows":
-      return True
-    else: return False
+        if file_name:
+            env = os.environ.copy()
+            res_str = file_name[file_name.rfind("\\"):len(file_name)]
+            file_name = file_name.replace(res_str, "")
+            subprocess.Popen("cmd.exe", env=env, cwd=file_name)
+        else:
+            sublime.set_timeout(lambda: sublime.status_message(
+                'Selected file cannot be opened in Terminal.'), 0)
+
+    def is_enabled(self):
+        if sublime.platform() == "windows":
+            return True
+        else:
+            return False
+
+    def is_visible(self):
+        if sublime.platform() == "windows":
+            return True
+        else:
+            return False
+
 
 class TabContextDeleteCommand(sublime_plugin.TextCommand):
-  def run(self, edit, args=None, index=-1, group=-1, **kwargs):
-    window = self.view.window()
-    views = window.views_in_group(group)
-    view = views[index]
-    file_name = view.file_name()
+    def run(self, edit, args=None, index=-1, group=-1, **kwargs):
+        window = self.view.window()
+        views = window.views_in_group(group)
+        view = views[index]
+        file_name = view.file_name()
 
-    if file_name:
-        if sublime.ok_cancel_dialog(f"Are you sure you want to delete\n{file_name}?", "Delete"):
-            import Default.send2trash as send2trash
-            try:
-                send2trash.send2trash(file_name)
-                view.close()
-            except:
-                window.status_message("Unable to delete")
-    else:
-        sublime.set_timeout(lambda: sublime.status_message('Selected file cannot be deleted.'), 0)
+        if file_name:
+            if sublime.ok_cancel_dialog(f"Are you sure you want to delete\n{file_name}?", "Delete"):
+                import Default.send2trash as send2trash
+                try:
+                    send2trash.send2trash(file_name)
+                    view.close()
+                except:
+                    window.status_message("Unable to delete")
+        else:
+            sublime.set_timeout(lambda: sublime.status_message(
+                'Selected file cannot be deleted.'), 0)
+
 
 class SearchOnlineInputHandler(sublime_plugin.TextInputHandler):
 
@@ -788,12 +871,12 @@ class SearchOnlineInputHandler(sublime_plugin.TextInputHandler):
     def name(self):
         return 'url'
 
-
     def placeholder(self):
         if self.stype == "search":
             return ""
         else:
             return "Open Url"
+
 
 class SearchOnlineCommand(sublime_plugin.TextCommand):
 
@@ -807,25 +890,29 @@ class SearchOnlineCommand(sublime_plugin.TextCommand):
 
     def run(self, edit, url, stype):
         if stype == "search":
-            webbrowser.open_new_tab('http://www.google.com/search?btnG=1&q=%s' % url)
+            webbrowser.open_new_tab(
+                'http://www.google.com/search?btnG=1&q=%s' % url)
         elif stype == "url":
             webbrowser.open_new_tab(url)
 
 
 class WebsiteInputHandler(sublime_plugin.ListInputHandler):
 
-    def __init__(self): self.site_dict = settings.get('favorite_website_list')
+    def __init__(self):
+        self.site_dict = settings.get('favorite_website_list')
 
     def name(self):
         return 'website'
 
     def list_items(self):
         keys = []
-        for x in self.site_dict: keys.append(x)
+        for x in self.site_dict:
+            keys.append(x)
         return keys
 
     def preview(self, value):
         return self.site_dict[value]
+
 
 class SelectFavoriteWebsiteCommand(sublime_plugin.TextCommand):
 
@@ -840,10 +927,12 @@ class SelectFavoriteWebsiteCommand(sublime_plugin.TextCommand):
         site_dict = settings.get('favorite_website_list')
         webbrowser.open_new_tab(site_dict[website])
 
+
 class WorkspaceListInputHandler(sublime_plugin.ListInputHandler):
 
     def __init__(self):
-        self.project_directories = settings.get('sublime_workspace_directories_list')
+        self.project_directories = settings.get(
+            'sublime_workspace_directories_list')
 
     def find_workspaces(self):
         s_workspace_file = re.compile("^.*?\.sublime-workspace$")
@@ -864,6 +953,7 @@ class WorkspaceListInputHandler(sublime_plugin.ListInputHandler):
             list_items.append(workspace)
         return list_items
 
+
 class CloseWindowListInputHandler(sublime_plugin.ListInputHandler):
 
     def name(self):
@@ -874,6 +964,7 @@ class CloseWindowListInputHandler(sublime_plugin.ListInputHandler):
             ('Close Current Workspace', True),
             ('Keep Current Workspace', False)
         ]
+
 
 class OpenWorkspaceFromListCommand(sublime_plugin.WindowCommand):
 
@@ -887,11 +978,12 @@ class OpenWorkspaceFromListCommand(sublime_plugin.WindowCommand):
             return CloseWindowListInputHandler()
 
     def run(self, workspace, close):
-        if workspace != None:
+        if workspace is not None:
             workspace = workspace + ".sublime-workspace"
-            project_directories = settings.get('sublime_workspace_directories_list')
+            project_directories = settings.get(
+                'sublime_workspace_directories_list')
             if len(project_directories) > 0:
-                #space_path = os.path.abspath(workspace)
+                # space_path = os.path.abspath(workspace)
                 s_workspace_file = re.compile("^.*?\.sublime-workspace$")
                 results = []
                 for directory in project_directories:
@@ -907,7 +999,8 @@ class OpenWorkspaceFromListCommand(sublime_plugin.WindowCommand):
                                 else:
                                     os.startfile(workspace)
         else:
-            sublime.set_timeout(lambda: sublime.status_message( 'No directories have been added to the workspace directories list. See Sublime Plus.sublime-setting for more info.'), 0)
+            sublime.set_timeout(lambda: sublime.status_message(
+                'No directories have been added to the workspace directories list. See Sublime Plus.sublime-setting for more info.'), 0)
 
 
 class AutoCloseEmptyGroup(sublime_plugin.EventListener):
@@ -920,11 +1013,11 @@ class AutoCloseEmptyGroup(sublime_plugin.EventListener):
             view.settings().set("auto_close_empty_group_is_tabless_view", True)
 
     def close_empty_group(self):
-       window = sublime.active_window()
-       for group in range(window.num_groups()):
-           if len(window.views_in_group(group)) == 0:
-               window.run_command("close_pane")
-               return
+        window = sublime.active_window()
+        for group in range(window.num_groups()):
+            if len(window.views_in_group(group)) == 0:
+                window.run_command("close_pane")
+                return
 
     def on_close(self, view):
         if view.settings().get("auto_close_empty_group_is_tabless_view") is True:
@@ -933,6 +1026,7 @@ class AutoCloseEmptyGroup(sublime_plugin.EventListener):
 
     def on_post_move(self, view):
         self.close_empty_group()
+
 
 class TreeViewGoToParentNode(sublime_plugin.WindowCommand):
     def run(self):
@@ -947,6 +1041,7 @@ class TreeViewGoToRootNode(sublime_plugin.WindowCommand):
 class TreeViewGoToChildNode(sublime_plugin.WindowCommand):
     def run(self):
         self.window.run_command('move_to', {'to': 'eol', 'extend': False})
+
 
 class TreeViewMoveDown(sublime_plugin.WindowCommand):
     def run(self):
@@ -989,6 +1084,7 @@ class PolyfillSetLayoutCommand(sublime_plugin.WindowCommand):
         view = self.window.active_view_in_group(active_group_before)
         self.window.set_view_index(view, self.window.active_group(), 0)
 
+
 class DoubleClickAtCaretCommand(sublime_plugin.TextCommand):
     def run(self, edit, **kwargs):
         view = self.view
@@ -1003,7 +1099,8 @@ class DoubleClickAtCaretCommand(sublime_plugin.TextCommand):
                     'y': vector[1]
                 },
                 'by': 'words',
-                'additive': idx > 0 or kwargs.get('additive', False) # if there are multiple selections, act like pressing Ctrl while double clicking - otherwise we will end up with only one selection. The first double click should replace any existing selections unless told otherwise.
+                # if there are multiple selections, act like pressing Ctrl while double clicking - otherwise we will end up with only one selection. The first double click should replace any existing selections unless told otherwise.
+                'additive': idx > 0 or kwargs.get('additive', False)
             })
 
 
@@ -1012,6 +1109,7 @@ class ClearConsoleCommand(sublime_plugin.ApplicationCommand):
     Clear out the Sublime console by temporarily setting the scroll back length
     to a single line and outputting a line, causing the history to be dropped.
     """
+
     def run(self):
         s = sublime.load_settings('Preferences.sublime-settings')
         scrollback = s.get('console_max_history_lines')
@@ -1022,190 +1120,206 @@ class ClearConsoleCommand(sublime_plugin.ApplicationCommand):
 
 # Listen to changes in views to automatically save code folds.
 class AutoFoldCodeListener(sublime_plugin.EventListener):
-  def on_load_async(self, view):
-    view.run_command("auto_fold_code_restore")
+    def on_load_async(self, view):
+        view.run_command("auto_fold_code_restore")
 
-  def on_post_save_async(self, view):
-    # Keep only the latest version, since it's guaranteed that on open, the
-    # saved version of the file is opened.
-    if settings.get("save_folds_on_save"):
-        _save_view_data(view, True)
+    def on_post_save_async(self, view):
+        # Keep only the latest version, since it's guaranteed that on open, the
+        # saved version of the file is opened.
+        if settings.get("save_folds_on_save"):
+            _save_view_data(view, True)
 
-  # Listening on close events is required to handle hot exit, for whom there is
-  # no available listener.
-  def on_close(self, view):
-    # In this case, we don't clear the previous versions view data, so that on
-    # open, depending on the previous close being a hot exit or a regular window
-    # close, the corresponding view data is retrieved.
-    #
-    # If a user performs multiple modifications and hot exits, the view data for
-    # each version is stored. This is acceptable, since the first user initiated
-    # save will purge the versions and store only the latest.
-    _save_view_data(view, False)
+    # Listening on close events is required to handle hot exit, for whom there is
+    # no available listener.
+    def on_close(self, view):
+        # In this case, we don't clear the previous versions view data, so that on
+        # open, depending on the previous close being a hot exit or a regular window
+        # close, the corresponding view data is retrieved.
+        #
+        # If a user performs multiple modifications and hot exits, the view data for
+        # each version is stored. This is acceptable, since the first user initiated
+        # save will purge the versions and store only the latest.
+        _save_view_data(view, False)
 
-  def on_text_command(self, view, command_name, args):
-    if command_name == 'unfold_all' and view.file_name() != None:
-      _clear_cache(view.file_name())
+    def on_text_command(self, view, command_name, args):
+        if command_name == 'unfold_all' and view.file_name() is not None:
+            _clear_cache(view.file_name())
 
 # ------------------- #
 #   Window Commands   #
 # ------------------- #
 
 # Clears all the saved code folds and unfolds all the currently open windows.
+
+
 class AutoFoldCodeClearAllCommand(sublime_plugin.WindowCommand):
-  def run(self):
-    _clear_cache('*')
-    self.window.run_command('auto_fold_code_unfold_all')
+    def run(self):
+        _clear_cache('*')
+        self.window.run_command('auto_fold_code_unfold_all')
 
 # Clears the cache for the current view, and unfolds all its regions.
-class AutoFoldCodeClearCurrentCommand(sublime_plugin.WindowCommand):
-  def run(self):
-    view = self.window.active_view()
-    if view and view.file_name():
-      view.unfold(sublime.Region(0, view.size()))
-      _clear_cache(view.file_name())
 
-  def is_enabled(self):
-    view = self.window.active_view()
-    return view != None and view.file_name() != None
+
+class AutoFoldCodeClearCurrentCommand(sublime_plugin.WindowCommand):
+    def run(self):
+        view = self.window.active_view()
+        if view and view.file_name():
+            view.unfold(sublime.Region(0, view.size()))
+            _clear_cache(view.file_name())
+
+    def is_enabled(self):
+        view = self.window.active_view()
+        return view is not None and view.file_name() is not None
 
 # Unfold all code folds in all open files.
+
+
 class AutoFoldCodeUnfoldAllCommand(sublime_plugin.WindowCommand):
-  def run(self):
-    for window in sublime.windows():
-      for view in window.views():
-        view.unfold(sublime.Region(0, view.size()))
+    def run(self):
+        for window in sublime.windows():
+            for view in window.views():
+                view.unfold(sublime.Region(0, view.size()))
 
 # ----------------- #
 #   Text Commands   #
 # ----------------- #
 
+
 class AutoFoldCodeRestoreCommand(sublime_plugin.TextCommand):
-  def run(self, edit):
-    file_name = self.view.file_name()
-    if file_name == None:
-      return
+    def run(self, edit):
+        file_name = self.view.file_name()
+        if file_name is None:
+            return
 
-    # Skip restoring folds if the file size is larger than `max_buffer_size`.
-    settings = _load_storage_settings(save_on_reset=True)
-    if self.view.size() > settings.get("max_buffer_size", MAX_BUFFER_SIZE_DEFAULT):
-      return
+        # Skip restoring folds if the file size is larger than `max_buffer_size`.
+        settings = _load_storage_settings(save_on_reset=True)
+        if self.view.size() > settings.get("max_buffer_size", MAX_BUFFER_SIZE_DEFAULT):
+            return
 
-    view_content_checksum = _compute_view_content_checksum(self.view)
+        view_content_checksum = _compute_view_content_checksum(self.view)
 
-    # Restore folds
-    view_folds_data = settings.get("folds").get(file_name, {})
-    for a, b in view_folds_data.get(view_content_checksum, []):
-      self.view.fold(sublime.Region(a, b))
+        # Restore folds
+        view_folds_data = settings.get("folds").get(file_name, {})
+        for a, b in view_folds_data.get(view_content_checksum, []):
+            self.view.fold(sublime.Region(a, b))
 
-    # Restore selections
-    if settings.get("save_selections") == True:
-      view_selection_data = settings.get("selections").get(file_name, {})
-      self.view.selection.clear()
-      for a, b in view_selection_data.get(view_content_checksum, []):
-        self.view.selection.add(sublime.Region(a, b))
+        # Restore selections
+        if settings.get("save_selections"):
+            view_selection_data = settings.get("selections").get(file_name, {})
+            self.view.selection.clear()
+            for a, b in view_selection_data.get(view_content_checksum, []):
+                self.view.selection.add(sublime.Region(a, b))
 
 # ----------- #
 #   Helpers   #
 # ----------- #
 
 # Save the folded regions of the view to disk.
+
+
 def _save_view_data(view, clean_existing_versions):
-  file_name = view.file_name()
-  if file_name == None:
-    return
+    file_name = view.file_name()
+    if file_name is None:
+        return
 
-  # Skip saving data if the file size is larger than `max_buffer_size`.
-  settings = _load_storage_settings(save_on_reset=False)
-  if view.size() > settings.get("max_buffer_size", MAX_BUFFER_SIZE_DEFAULT):
-    return
+    # Skip saving data if the file size is larger than `max_buffer_size`.
+    settings = _load_storage_settings(save_on_reset=False)
+    if view.size() > settings.get("max_buffer_size", MAX_BUFFER_SIZE_DEFAULT):
+        return
 
-  def _save_region_data(data_key, regions):
-    all_data = settings.get(data_key)
-    if regions:
-      if clean_existing_versions or not file_name in all_data:
-        all_data[file_name] = {}
+    def _save_region_data(data_key, regions):
+        all_data = settings.get(data_key)
+        if regions:
+            if clean_existing_versions or file_name not in all_data:
+                all_data[file_name] = {}
 
-      view_data = all_data.get(file_name)
-      view_data[view_content_checksum] = regions
-    else:
-      all_data.pop(file_name, None)
+            view_data = all_data.get(file_name)
+            view_data[view_content_checksum] = regions
+        else:
+            all_data.pop(file_name, None)
 
-    settings.set(data_key, all_data)
+        settings.set(data_key, all_data)
 
-  view_content_checksum = _compute_view_content_checksum(view)
+    view_content_checksum = _compute_view_content_checksum(view)
 
-  # Save folds
-  fold_regions = [(r.a, r.b) for r in view.folded_regions()]
-  _save_region_data("folds", fold_regions)
+    # Save folds
+    fold_regions = [(r.a, r.b) for r in view.folded_regions()]
+    _save_region_data("folds", fold_regions)
 
-  # Save selections if set
-  if settings.get("save_selections") == True:
-    selection_regions = [(r.a, r.b) for r in view.selection]
-    _save_region_data("selections", selection_regions)
+    # Save selections if set
+    if settings.get("save_selections") is True:
+        selection_regions = [(r.a, r.b) for r in view.selection]
+        _save_region_data("selections", selection_regions)
 
-  # Save settings
-  sublime.save_settings(__storage_file__)
+    # Save settings
+    sublime.save_settings(__storage_file__)
 
 # Clears the cache. If name is '*', it will clear the whole cache.
 # Otherwise, pass in the file_name of the view to clear the view's cache.
+
+
 def _clear_cache(name):
-  settings = _load_storage_settings(save_on_reset=False)
+    settings = _load_storage_settings(save_on_reset=False)
 
-  def _clear_cache_section(data_key):
-    all_data = settings.get(data_key)
-    file_names_to_delete = [file_name for file_name in all_data if name == '*' or file_name == name]
-    for file_name in file_names_to_delete:
-      all_data.pop(file_name)
-    settings.set(data_key, all_data)
+    def _clear_cache_section(data_key):
+        all_data = settings.get(data_key)
+        file_names_to_delete = [
+            file_name for file_name in all_data if name == '*' or file_name == name]
+        for file_name in file_names_to_delete:
+            all_data.pop(file_name)
+        settings.set(data_key, all_data)
 
-  _clear_cache_section("folds")
-  _clear_cache_section("selections")
-  sublime.save_settings(__storage_file__)
+    _clear_cache_section("folds")
+    _clear_cache_section("selections")
+    sublime.save_settings(__storage_file__)
 
 # Loads the settings, resetting the storage file, if the version is old (or broken).
 # Returns the settings instance
+
+
 def _load_storage_settings(save_on_reset):
-  try:
-    settings = sublime.load_settings(__storage_file__)
-  except Exception as e:
-    print('[AutoFoldCode.] Error loading settings file (file will be reset): ', e)
-    save_on_reset = True
+    try:
+        settings = sublime.load_settings(__storage_file__)
+    except Exception as e:
+        print('[AutoFoldCode.] Error loading settings file (file will be reset): ', e)
+        save_on_reset = True
 
-  if _is_old_storage_version(settings):
-    settings.set("max_buffer_size", MAX_BUFFER_SIZE_DEFAULT)
-    settings.set("version", CURRENT_STORAGE_VERSION)
-    settings.set("folds", {})
-    settings.set("selections", {})
+    if _is_old_storage_version(settings):
+        settings.set("max_buffer_size", MAX_BUFFER_SIZE_DEFAULT)
+        settings.set("version", CURRENT_STORAGE_VERSION)
+        settings.set("folds", {})
+        settings.set("selections", {})
 
-    if save_on_reset:
-      sublime.save_settings(__storage_file__)
+        if save_on_reset:
+            sublime.save_settings(__storage_file__)
 
-  return settings
+    return settings
+
 
 def _is_old_storage_version(settings):
-  settings_version = settings.get("version", 0)
+    settings_version = settings.get("version", 0)
 
-  # Consider the edge case of a file named "version".
-  return not isinstance(settings_version, int) or settings_version < CURRENT_STORAGE_VERSION
+    # Consider the edge case of a file named "version".
+    return not isinstance(settings_version, int) or settings_version < CURRENT_STORAGE_VERSION
 
 # Returns the checksum in Python hex string format.
 #
 # The view content returned is always the latest version, even when closing
 # without saving.
-def _compute_view_content_checksum(view):
-  view_content = view.substr(sublime.Region(0, view.size()))
-  int_crc32 = zlib.crc32(view_content.encode('utf-8'))
-  return hex(int_crc32 % (1<<32))
 
+
+def _compute_view_content_checksum(view):
+    view_content = view.substr(sublime.Region(0, view.size()))
+    int_crc32 = zlib.crc32(view_content.encode('utf-8'))
+    return hex(int_crc32 % (1 << 32))
 
 
 # ----------------------------------
 # -            AutoSave            -
 # ----------------------------------
-
 num_modifications = 0
 recently_saved = False
+
 
 class AutoSaveEventListener(sublime_plugin.EventListener):
 
@@ -1222,7 +1336,8 @@ class AutoSaveEventListener(sublime_plugin.EventListener):
                 for path in settings.get("included_auto_save_files_field"):
                     if filename.endswith(path):
                         num_modifications = 0
-                        sublime.set_timeout(lambda: self.save_file(view), delay)
+                        sublime.set_timeout(
+                            lambda: self.save_file(view), delay)
                         recently_saved = True
                         sublime.set_timeout(lambda: self.set_recent(), delay)
             else:
@@ -1237,11 +1352,12 @@ class AutoSaveEventListener(sublime_plugin.EventListener):
     def save_file(self, view):
         if view.is_dirty() and not view.is_loading() and not view.is_auto_complete_visible():
             view.run_command("save")
-            sublime.status_message(' ') #don't clog up status
+            sublime.status_message(' ')  # don't clog up status
 
     def set_recent(self):
         global recently_saved
         recently_saved = False
+
 
 class SelectionToSnippetCommand(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -1252,7 +1368,8 @@ class SelectionToSnippetCommand(sublime_plugin.TextCommand):
         for region in selection:
             str_buffer = view.substr(region)
             if len(str_buffer) == 0:
-                sublime.set_timeout(lambda: sublime.status_message( 'There is no text selected!'), 0)
+                sublime.set_timeout(lambda: sublime.status_message(
+                    'There is no text selected!'), 0)
             else:
                 str_out = str_out + "\n" + str_buffer
 
@@ -1260,16 +1377,16 @@ class SelectionToSnippetCommand(sublime_plugin.TextCommand):
         window.run_command('new_file')
         snippet_view = window.active_view()
         snippet_view.set_name("snippet.sublime-snippet")
-        snippet_view.run_command("insert_snippet_contents", {'string': str_out})
+        snippet_view.run_command(
+            "insert_snippet_contents", {'string': str_out})
 
 
 class InsertSnippetContentsCommand(sublime_plugin.TextCommand):
     def run(self, edit, string):
         snippet_head = "<snippet>\n\t<content><![CDATA["
-        snippet_foot = "\n\t]]></content>\n\t<!-- ${1:Selection Field 1}.${2:Selection Field 2} -->\n\t<tabTrigger>add_centralization</tabTrigger>\n\t<scope>source.python</scope>\n\t<description>Description</description>\n</snippet>"                       
+        snippet_foot = "\n\t]]></content>\n\t<!-- ${1:Selection Field 1}.${2:Selection Field 2} -->\n\t<tabTrigger>add_centralization</tabTrigger>\n\t<scope>source.python</scope>\n\t<description>Description</description>\n</snippet>"
         string = snippet_head + string + snippet_foot
         self.view.insert(edit, len(self.view), string)
-
 
 
 # ----------------------------------
@@ -1279,6 +1396,7 @@ class InsertSnippetContentsCommand(sublime_plugin.TextCommand):
 class AllAutocomplete(sublime_plugin.EventListener):
 
     def on_query_completions(self, view, prefix, locations):
+        return None
         if is_excluded(view.scope_name(locations[0]), settings.get("exclude_from_completion", [])):
             return []
 
@@ -1316,11 +1434,13 @@ class AllAutocomplete(sublime_plugin.EventListener):
             matches.append((trigger, contents))
         return matches
 
+
 def is_excluded(scope, excluded_scopes):
     for excluded_scope in excluded_scopes:
         if excluded_scope in scope:
             return True
     return False
+
 
 def filter_words(words):
     MIN_WORD_SIZE = settings.get("min_word_size", 3)
@@ -1346,16 +1466,17 @@ def fix_truncation(view, words):
     start_time = time.time()
 
     for i, w in enumerate(words):
-        #The word is truncated if and only if it cannot be found with a word boundary before and after
+        # The word is truncated if and only if it cannot be found with a word boundary before and after
 
         # this fails to match strings with trailing non-alpha chars, like
         # 'foo?' or 'bar!', which are common for instance in Ruby.
         match = view.find(r'\b' + re.escape(w) + r'\b', 0)
         truncated = is_empty_match(match)
         if truncated:
-            #Truncation is always by a single character, so we extend the word by one word character before a word boundary
+            # Truncation is always by a single character, so we extend the word by one word character before a word boundary
             extended_words = []
-            view.find_all(r'\b' + re.escape(w) + r'\w\b', 0, "$0", extended_words)
+            view.find_all(r'\b' + re.escape(w) + r'\w\b',
+                          0, "$0", extended_words)
             if len(extended_words) > 0:
                 fixed_words += extended_words
             else:
@@ -1363,13 +1484,13 @@ def fix_truncation(view, words):
                 # use the old word if we didn't find any extended matches
                 fixed_words.append(w)
         else:
-            #Pass through non-truncated words
+            # Pass through non-truncated words
             fixed_words.append(w)
 
         # if too much time is spent in here, bail out,
         # and don't bother fixing the remaining words
         if time.time() - start_time > MAX_FIX_TIME_SECS_PER_VIEW:
-            return fixed_words + words[i+1:]
+            return fixed_words + words[i + 1:]
 
     return fixed_words
 
@@ -1379,6 +1500,7 @@ if sublime.version() >= '3000':
         return match.empty()
 else:
     plugin_loaded()
+
     def is_empty_match(match):
         return match is None
 
@@ -1398,6 +1520,7 @@ class FolderHandler(sublime_plugin.TextCommand):
         else:
             self.view.run_command("unfold_all")
 
+
 class FoldingInputHandler(sublime_plugin.ListInputHandler):
 
     def name(self):
@@ -1407,6 +1530,7 @@ class FoldingInputHandler(sublime_plugin.ListInputHandler):
         keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Unfold All"]
         return keys
 
+
 class UnderlineSelectionCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         # TODO turn into a toggle
@@ -1415,20 +1539,23 @@ class UnderlineSelectionCommand(sublime_plugin.TextCommand):
         for region in selection:
             str_buffer = self.view.substr(region)
             if len(str_buffer) == 0:
-                sublime.set_timeout(lambda: sublime.status_message( 'There is no text selected!'), 0)
+                sublime.set_timeout(lambda: sublime.status_message(
+                    'There is no text selected!'), 0)
             else:
                 regions = [region]
-                self.view.add_regions(str_buffer + str(num), regions, "region.redish", "", sublime.HIDE_ON_MINIMAP | sublime.PERSISTENT | sublime.DRAW_SOLID_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE )
-                #self.view.add_regions("mark", regions, "mark", "dot", sublime.HIDDEN | sublime.PERSISTENT)
+                self.view.add_regions(str_buffer + str(num), regions, "region.redish", "", sublime.HIDE_ON_MINIMAP | sublime.PERSISTENT | sublime.DRAW_SOLID_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
+
 
 class UnderscoreToSpaceCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         # Changes all underscores in current selections to spaces
         selection = self.view.sel()
         for region in selection:
-            string = self.view.substr(region).replace("_", " ").replace("-", " ")
+            string = self.view.substr(region).replace(
+                "_", " ").replace("-", " ")
             self.view.erase(edit, region)
             self.view.insert(edit, region.a, string)
+
 
 class UnderscoreToTitleCommand(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -1437,3 +1564,527 @@ class UnderscoreToTitleCommand(sublime_plugin.TextCommand):
             string = self.view.substr(region).replace("_", " ").title()
             self.view.erase(edit, region)
             self.view.insert(edit, region.a, string)
+
+
+class Tree:
+    __slots__ = ["opening", "closing", "contain"]
+
+    def __init__(self, opening, closing, contain):
+        self.opening = opening
+        self.closing = closing
+        self.contain = contain
+
+
+class RainbowBracketsControllerCommand(sublime_plugin.WindowCommand):
+    def run(self, action):
+        view = self.window.active_view()
+
+        if action == "make rainbow":
+            RainbowBracketsViewManager.color_view(view)
+
+        elif action == "clear rainbow":
+            RainbowBracketsViewManager.sweep_view(view)
+
+        elif action == "clear color schemes":
+            ColorSchemeManager.clear_color_schemes()
+
+    def is_visible(self):
+        if settings.get("rainbow_brackets_enabled"):
+            return True
+        else:
+            return False
+
+
+class RainbowBracketsViewListener():
+    def __init__(self, view, syntax, config):
+        self.bad_key = config["bad_key"]
+        self.bad_scope = config["bad_scope"]
+        self.coloring = config["coloring"]
+        self.keys = config["keys"]
+        self.brackets = config["bracket_pairs"]
+        self.pattern = config["pattern"]
+        self.scopes = config["scopes"]
+        self.selector = config["selector"]
+        self.color_number = len(self.keys)
+        self.bad_bracket_regions = []
+        self.bracket_regions_lists = []
+        self.bracket_regions_trees = []
+        self.regexp = re.compile(self.pattern)
+        self.syntax = syntax
+        self.view = view
+
+    def __del__(self):
+        self.clear_bracket_regions()
+
+    def load(self):
+        self.check_bracket_regions()
+
+    def check_bracket_regions(self):
+        if self.coloring:
+            self.construct_bracket_trees_and_lists()
+            self.clear_bracket_regions()
+            if self.bracket_regions_lists:
+                for level, regions in enumerate(self.bracket_regions_lists):
+                    self.view.add_regions(
+                        self.keys[level],
+                        regions,
+                        scope=self.scopes[level],
+                        flags=sublime.DRAW_NO_OUTLINE | sublime.PERSISTENT)
+            if self.bad_bracket_regions:
+                self.view.add_regions(
+                    self.bad_key,
+                    self.bad_bracket_regions,
+                    scope=self.bad_scope,
+                    flags=sublime.DRAW_EMPTY | sublime.PERSISTENT)
+        else:
+            self.construct_bracket_trees()
+
+    def clear_bracket_regions(self):
+        self.view.erase_regions(self.bad_key)
+        for key in self.keys:
+            self.view.erase_regions(key)
+
+    def construct_bracket_trees(self):
+        self.bracket_regions_trees = []
+
+        brackets = self.brackets
+        selector = self.selector
+        number_levels = self.color_number
+        match_selector = self.view.match_selector
+        view_full_text = self.view.substr(Region(0, self.view.size()))
+        match_iterator = self.regexp.finditer(view_full_text)
+
+        opening_stack = []
+        tree_node_stack = [Tree(None, None, self.bracket_regions_trees)]
+        tree_node_stack_append = tree_node_stack.append
+        opening_stack_append = opening_stack.append
+        tree_node_stack_pop = tree_node_stack.pop
+        opening_stack_pop = opening_stack.pop
+
+        def handle(bracket, region):
+            if bracket in brackets:
+                tree_node_stack_append(Tree(region, None, []))
+                opening_stack_append(bracket)
+
+            elif opening_stack and bracket == brackets[opening_stack[-1]]:
+                opening_stack_pop()
+                node = tree_node_stack_pop()
+                node.closing = region
+                tree_node_stack[-1].contain.append(node)
+
+        self.handle_matches(selector, match_selector, match_iterator, handle)
+
+    def construct_bracket_trees_and_lists(self):
+        self.bad_bracket_regions = []
+        self.bracket_regions_lists = []
+        self.bracket_regions_trees = []
+
+        brackets = self.brackets
+        selector = self.selector
+        number_levels = self.color_number
+        match_selector = self.view.match_selector
+        view_full_text = self.view.substr(Region(0, self.view.size()))
+        match_iterator = self.regexp.finditer(view_full_text)
+
+        opening_stack = []
+        tree_node_stack = [Tree(None, None, self.bracket_regions_trees)]
+        tree_node_stack_append = tree_node_stack.append
+        opening_stack_append = opening_stack.append
+        tree_node_stack_pop = tree_node_stack.pop
+        opening_stack_pop = opening_stack.pop
+
+        regions_by_level = [list() for i in range(number_levels)]
+        appends_by_level = [rs.append for rs in regions_by_level]
+
+        def handle(bracket, region):
+            if bracket in brackets:
+                tree_node_stack_append(Tree(region, None, []))
+                opening_stack_append(bracket)
+
+            elif opening_stack and bracket == brackets[opening_stack[-1]]:
+                opening_stack_pop()
+                node = tree_node_stack_pop()
+                node.closing = region
+                tree_node_stack[-1].contain.append(node)
+                level = len(opening_stack) % number_levels
+                appends_by_level[level](node.opening)
+                appends_by_level[level](node.closing)
+            else:
+                self.bad_bracket_regions.append(region)
+
+        self.handle_matches(selector, match_selector, match_iterator, handle)
+        self.bracket_regions_lists = [ls for ls in regions_by_level if ls]
+
+    def handle_matches(self, selector, match_selector, match_iterator, handle):
+        if selector:
+            for m in match_iterator:
+                if match_selector(m.span()[0], selector):
+                    continue
+                handle(m.group(), Region(*m.span()))
+        else:
+            for m in match_iterator:
+                handle(m.group(), Region(*m.span()))
+
+
+class RainbowBracketsViewManager(sublime_plugin.EventListener):
+    configs_by_stx = {}
+    syntaxes_by_ext = {}
+    view_listeners = {}
+    is_ready = False
+
+    @classmethod
+    def load_config(cls, settings):
+        cls.is_ready = False
+
+        default_config = settings.get("default_config", {})
+        configs_by_stx = settings.get("syntax_specific", {})
+        syntaxes_by_ext = {}
+
+        for syntax, config in configs_by_stx.items():
+            for key in ("enabled", "coloring"):
+                if key not in config:
+                    config[key] = True
+            for key in default_config.keys():
+                if key not in config:
+                    config[key] = default_config[key]
+            for ext in config.get("extensions", []):
+                syntaxes_by_ext[ext] = syntax
+
+        if "coloring" not in default_config:
+            default_config["coloring"] = False
+        if "enabled" not in default_config:
+            default_config["enabled"] = True
+
+        configs_by_stx["<default>"] = default_config
+
+        for syntax, config in configs_by_stx.items():
+            levels = range(len(config["rainbow_colors"]))
+            config["keys"] = ["rb_l%d_%s" % (i, syntax) for i in levels]
+            config["scopes"] = ["%s.l%d.rb" % (syntax, i) for i in levels]
+            config["bad_key"] = "rb_mismatch_%s" % syntax
+            config["bad_scope"] = "%s.mismatch.rb" % syntax
+
+            pairs = config["bracket_pairs"]
+            brackets = sorted(list(pairs.keys()) + list(pairs.values()))
+
+            config["pattern"] = "|".join(re.escape(b) for b in brackets)
+            config["selector"] = "|".join(config.pop("ignored_scopes"))
+
+        cls.syntaxes_by_ext = syntaxes_by_ext
+        cls.configs_by_stx = configs_by_stx
+        cls.is_ready = True
+
+    @classmethod
+    def check_view_add_listener(cls, view, force=False):
+        if not cls.is_ready:
+            if force:
+                msg = "SublimePlus: error in loading settings."
+                sublime.error_message(msg)
+            return
+
+        if view.view_id in cls.view_listeners:
+            return cls.view_listeners[view.view_id]
+
+        if view.settings().get("rb_enable", True):
+            syntax = cls.get_view_syntax(view) or "<default>"
+            config = cls.configs_by_stx[syntax]
+            if config["enabled"] or force:
+                if config["bracket_pairs"]:
+                    listener = RainbowBracketsViewListener(
+                        view, syntax, config)
+                    cls.view_listeners[view.view_id] = listener
+                    return listener
+                elif force:
+                    sublime.error_message("empty brackets list")
+        return None
+
+    @classmethod
+    def get_view_syntax(cls, view):
+        syntax = view.syntax().name
+        if syntax in cls.configs_by_stx:
+            return syntax
+        filename = view.file_name()
+        if filename:
+            ext = os.path.splitext(filename)[1]
+            return cls.syntaxes_by_ext.get(ext, None)
+        return None
+
+    @classmethod
+    def force_add_listener(cls, view):
+        view.settings().set("rb_enable", True)
+        return cls.check_view_add_listener(view, force=True)
+
+    @classmethod
+    def get_view_listener(cls, view):
+        return cls.view_listeners.get(view.view_id, None)
+
+    @classmethod
+    def check_view_load_listener(cls, view):
+        listener = cls.check_view_add_listener(view)
+        if listener and not listener.bracket_regions_trees:
+            listener.load()
+
+    @classmethod
+    def color_view(cls, view):
+        listener = cls.get_view_listener(view)
+        if listener and not listener.coloring:
+            listener.coloring = True
+            listener.check_bracket_regions()
+        elif not listener:
+            listener = cls.force_add_listener(view)
+            if listener:
+                listener.coloring = True
+                listener.load()
+
+    @classmethod
+    def sweep_view(cls, view):
+        listener = cls.get_view_listener(view)
+        if listener and listener.coloring:
+            listener.coloring = False
+            listener.clear_bracket_regions()
+
+    @classmethod
+    def get_view_bracket_pairs(cls, view):
+        listener = cls.get_view_listener(view)
+        return listener and listener.brackets
+
+    @classmethod
+    def get_view_bracket_trees(cls, view):
+        listener = cls.get_view_listener(view)
+        if not listener:
+            cls.setup_view_listener(view)
+            listener = cls.get_view_listener(view)
+        return listener and listener.bracket_regions_trees
+
+    def on_load(self, view):
+        if settings.get("rainbow_brackets_enabled"):
+            self.check_view_load_listener(view)
+
+    def on_post_save(self, view):
+        if settings.get("rainbow_brackets_enabled"):
+            self.check_view_load_listener(view)
+
+    def on_activated(self, view):
+        if settings.get("rainbow_brackets_enabled"):
+            self.check_view_load_listener(view)
+
+    def on_modified(self, view):
+        if settings.get("rainbow_brackets_enabled"):
+            listener = self.view_listeners.get(view.view_id, None)
+            listener and listener.check_bracket_regions()
+
+    def on_close(self, view):
+        if settings.get("rainbow_brackets_enabled"):
+            self.view_listeners.pop(view.view_id, None)
+
+
+class ColorSchemeManager(sublime_plugin.EventListener):
+    DEFAULT_CS = "Packages/Color Scheme - Default/Monokai.sublime-color-scheme"
+
+    @classmethod
+    def init(cls):
+        def load_settings_build_cs():
+            RainbowBracketsViewManager.load_config(cls.settings)
+            cls.build_color_scheme()
+
+        cls.prefs = sublime.load_settings("Preferences.sublime-settings")
+        cls.settings = settings
+        cls.prefs.add_on_change("color_scheme", cls.rebuild_color_scheme)
+        cls.settings.add_on_change("default_config", load_settings_build_cs)
+        cls.color_scheme = cls.prefs.get("color_scheme", cls.DEFAULT_CS)
+
+        load_settings_build_cs()
+
+    @classmethod
+    def color_scheme_cache_path(cls):
+        return os.path.join(sublime.packages_path(), "User", "Color Schemes", "RainbowBrackets")
+
+    @classmethod
+    def color_scheme_name(cls):
+        return os.path.basename(
+            cls.color_scheme).replace("tmTheme", "sublime-color-scheme")
+
+    @classmethod
+    def clear_color_schemes(cls, all=False):
+        color_scheme_path = cls.color_scheme_cache_path()
+        color_scheme_name = cls.color_scheme_name()
+        for file in os.listdir(color_scheme_path):
+            if file != color_scheme_name or all:
+                try:
+                    os.remove(os.path.join(color_scheme_path, file))
+                except:
+                    pass
+
+    @classmethod
+    def rebuild_color_scheme(cls):
+        scheme = cls.prefs.get("color_scheme", cls.DEFAULT_CS)
+        if scheme != cls.color_scheme:
+            cls.color_scheme = scheme
+            cls.build_color_scheme()
+
+    @classmethod
+    def build_color_scheme(cls):
+        def nearest_color(color):
+            b = int(color[5:7], 16)
+            b += 1 - 2 * (b == 255)
+            return color[:-2] + "%02x" % b
+
+        def color_scheme_background(color_scheme):
+            view = sublime.active_window().active_view()
+            # origin_color_scheme = view.settings().get("color_scheme")
+            view.settings().set("color_scheme", color_scheme)
+            background = view.style().get("background")
+            # view.settings().set("color_scheme", origin_color_scheme)
+            return background
+
+        background = color_scheme_background(cls.color_scheme)
+        nearest_background = nearest_color(background)
+
+        rules = []
+        for value in RainbowBracketsViewManager.configs_by_stx.values():
+            rules.append({
+                "scope": value["bad_scope"],
+                "foreground": value["mismatch_color"],
+                "background": background
+            })
+            for scope, color in zip(value["scopes"], value["rainbow_colors"]):
+                rules.append({
+                    "scope": scope,
+                    "foreground": color,
+                    "background": nearest_background
+                })
+        color_scheme_data = {
+            "name": os.path.splitext(os.path.basename(cls.color_scheme))[0],
+            "author": "https://github.com/absop/RainbowBrackets",
+            "variables": {},
+            "globals": {},
+            "rules": rules
+        }
+
+        color_scheme_path = cls.color_scheme_cache_path()
+        color_scheme_name = cls.color_scheme_name()
+        color_scheme_file = os.path.join(color_scheme_path, color_scheme_name)
+        # We only need to write a same named color_scheme,
+        # then sublime will load and apply it automatically.
+        os.makedirs(color_scheme_path, exist_ok=True)
+        with open(color_scheme_file, "w+") as file:
+            file.write(json.dumps(color_scheme_data))
+
+
+COMMENT_STYLES = {
+    'number-sign': ['#'],
+    'graphql': ['#'],
+    'double-slash': ['//'],
+    'double-dash': ['--'],
+    'semicolon': [';'],
+    'percentage': ['%'],
+    'erlang': ['%'],
+    'documentation': ['///', '//!'],
+}
+
+
+class CommentsAwareEnterCommand(sublime_plugin.TextCommand):
+    """
+    Context aware Enter handler.
+    Preserves line comments scope (by adding escaping chars as needed)
+    and auto indents in comments.
+    """
+
+    def run(self, edit):
+        for region in reversed(self.view.sel()):
+            pos = region.end()
+            delims = COMMENT_STYLES.get(comment_style(self.view, pos), [])
+            line = line_start_str(self.view, pos)
+
+            replacement = "\n"
+            for delim in delims:
+                if delim not in line:
+                    continue
+                start, delim, end = re.split(
+                    r'(%s+)' % re.escape(delim), line, 1)
+                start = re.sub(r'\S', ' ', start)
+                if self.view.settings().get('linecomments_label_indent', True):
+                    end = re.search(r'^\s*([A-Z]+:|-)?\s*', end).group()
+                else:
+                    end = re.search(r'^\s*(-)?\s*', end).group()
+                if '-' not in end:
+                    end = ' ' * len(end)
+                replacement = "\n" + start + delim + end
+                break
+            else:
+                # If no delim before cursor fall back to Sublime Text default
+                self.view.run_command("insert", {"characters": "\n"})
+                return
+
+            self.view.erase(edit, region)
+            self.view.insert(edit, region.begin(), replacement)
+
+
+class CommentsAwareJoinLinesCommand(sublime_plugin.TextCommand):
+    """
+    Context aware join lines.
+    Removes comment marker and extraneous space.
+    """
+
+    def run(self, edit):
+        for region in reversed(self.view.sel()):
+            pos = region.end()
+            delims = COMMENT_STYLES.get(comment_style(self.view, pos), [])
+            next_line = line_f(self.view, pos)
+            next_line_str = self.view.substr(next_line)
+
+            for delim in delims:
+                if delim in next_line_str:
+                    start, _, end = re.split(
+                        r'(%s+)' % re.escape(delim), next_line_str, 1)
+                    if not start or start.isspace():
+                        next_line = sublime.Region(
+                            next_line.a - 1, next_line.b)
+                        end = re.sub(r'^\s+', ' ', end)
+                        self.view.replace(edit, next_line, end)
+                        return
+
+            self.view.run_command('join_lines')
+
+
+# View tools
+
+def line_start(view, pos):
+    line = view.line(pos)
+    return sublime.Region(line.begin(), pos)
+
+
+def line_start_str(view, pos):
+    return view.substr(line_start(view, pos))
+
+
+def line_f(view, pos):
+    return view.line(newline_f(view, pos))
+
+
+if sublime.version() >= '3000':
+    def newline_f(view, pos):
+        return view.find_by_class(pos, True, sublime.CLASS_LINE_START)
+else:
+    def newline_f(view, pos):
+        region = view.find(r'^', pos + 1)
+        return region.end()
+
+
+# Scopes
+
+def comment_style(view, pos):
+    parsed_scope = parse_scope(scope_name(view, pos))
+    return first(vec[2] for vec in parsed_scope if vec[:2] == ['comment', 'line'])
+
+
+def scope_name(view, pos):
+    return view.scope_name(pos)
+
+
+def parse_scope(scope_name):
+    return [name.split('.') for name in scope_name.split()]
+
+
+def first(seq):
+    return next(iter(seq), None)

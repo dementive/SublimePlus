@@ -27,4 +27,19 @@
 	{ "caption": "AutoFoldCode: Clear All", "command": "auto_fold_code_clear_all" },
 	{ "caption": "AutoFoldCode: Clear Current File", "command": "auto_fold_code_clear_current" },
 	{ "caption": "AutoFoldCode: Unfold All Open Files", "command": "auto_fold_code_unfold_all" },
+	{
+	    "caption": "Sublime Plus: Make Rainbow Brackets",
+	    "command": "rainbow_brackets_controller",
+	    "args": { "action": "make rainbow" }
+	},
+	{
+	    "caption": "Sublime Plus: Clear Rainbow Brackets",
+	    "command": "rainbow_brackets_controller",
+	    "args": { "action": "clear rainbow" }
+	},
+	{
+	    "caption": "Sublime Plus: Clear Rainbow Color Schemes",
+	    "command": "rainbow_brackets_controller",
+	    "args": { "action": "clear color schemes" }
+	}
 ]
