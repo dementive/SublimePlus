@@ -3,10 +3,6 @@
 	  "caption": "Sublime Plus: Focus File on Sidebar",
 	  "command": "focus_file_on_sidebar"
 	},
-	{ "command": "comment_header", "caption": "Sublime Plus: Comment Header" },
-	{ "command": "comment_header_two", "caption": "Sublime Plus: Comment Subheader" },
-	{ "command": "toggle_code_fold", "caption": "Sublime Plus: Toggle Code Fold" },
-	{ "command": "toggle_fold_comments", "caption": "Sublime Plus: Toggle Comment Fold" },
 	{ "command": "split_selection", "caption": "Sublime Plus: Split Selection" },
 	{ "command": "cycle_through_regions", "caption": "Sublime Plus: Cycle Through Selections" },
 	{ "command": "toggle_note_pad", "caption": "Sublime Plus: Toggle Notepad" },
@@ -14,15 +10,9 @@
 	{ "command": "output_panel_note_pad", "caption": "Sublime Plus: Temporary Notepad" },
 	{ "command": "move_to_top_of_file", "caption": "Sublime Plus: Move to Top of File" },
 	{ "command": "move_to_bottom_of_file", "caption": "Sublime Plus: Move to Bottom of File" },
-	{ "command": "select_favorite_website", "caption": "Sublime Plus: Favorite Websites" },
 	{ "command": "clear_console", "caption": "Sublime Plus: Clear Console" },
 	{ "command": "folder_handler", "caption": "Sublime Plus: Fold..." },
 	{ "command": "open_workspace_from_list", "caption": "Sublime Plus: Open Workspace" },
-	{ "command": "underscore_to_space", "caption": "Sublime Plus: Underscores to Spaces" },
-	{ "command": "underscore_to_title", "caption": "Sublime Plus: Underscore to Title" },
-
-	{ "caption": "Sublime Plus: Search Online", "command": "search_online", "args": {"stype": "search"} },
-	{ "caption": "Sublime Plus: Open Url", "command": "search_online", "args": {"stype": "url"} },
 
 	{ "caption": "AutoFoldCode: Clear All", "command": "auto_fold_code_clear_all" },
 	{ "caption": "AutoFoldCode: Clear Current File", "command": "auto_fold_code_clear_current" },
@@ -41,5 +31,11 @@
 	    "caption": "Sublime Plus: Clear Rainbow Color Schemes",
 	    "command": "rainbow_brackets_controller",
 	    "args": { "action": "clear color schemes" }
-	}
+	},
+
+	// Simple diff commands, need to have 2 views side by side and then the compare command can be used
+	{ "caption": "Sublime Plus: Diff Compare", "command": "diffy" },
+
+	// Remove diff regions
+	{ "caption": "Sublime Plus: Diff Clear", "command": "diffy", "args": {"action": "clear"} },
 ]

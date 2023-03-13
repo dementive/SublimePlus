@@ -8,6 +8,27 @@
     // If false it'll reveal and focus the current file on sidebar (basically makes the command only open the sidebar)
     "close_sidebar_if_opened": true,
 
+    // Sidebar Hover settings
+
+    // Should the sidebar be shown when hovering over the gutter?
+    "sidebar_toggle_on_hover": false,
+
+    // 2 options:
+    // open - just open the sidebar
+    // open_and_focus - open and put focus on sidebar instead of the text buffer, selection will be restored when going back to view
+    "sidebar_hover_open_mode": "open",
+
+    // Ms delay to open the sidebar when hovering over the gutter
+    "sidebar_hover_open_time": 325,
+
+    // Ms delay to close the sidebar when hovering over the gutter
+    "sidebar_hover_close_time": 250,
+
+    // Should the sidebar be automatically hidden after hovering away?
+    "sidebar_toggle_auto_hide": true,
+
+    // Sidebar Hover settings end
+
     // This option will automatically hide the sidebar when the sidebar is no longer the main focus
     // If true sidebar will auto hide when something else becomes the focus
     // If false side bar will NOT auto hide when something else becomes the focus
@@ -23,7 +44,7 @@
     //Will the side bar be automatically closed after X changes have been made. Where X is change_count_sidebar_auto_close
     // If true sidebar will close after X changes
     // If false sidebar will not automatically close after changes
-    "close_sidebar_after_changes": true,
+    "close_sidebar_after_changes": false,
 
 
     // How many changes have to be made before the sidebar is automatically closed if close_sidebar_after_changes is true
@@ -67,11 +88,6 @@
         ".c"
     ],
 
-    // List of websites that will show up when the select_favorite_website command is used. Add as many websites as you want
-    "favorite_website_list": {
-        "Google" : "https://www.google.com/webhp?btnG=1",
-        "Wikipedia" : "https://www.wikipedia.org/",
-    },
     // List of directories that contain sublime workspaces that will populate the open workspace command. Add as many directories as you want.
     // Can be very useful for quickly switching between sets of files via the command palette
     // Works in a similar way to the open_switch_project command but it is only filled with valid entries & is only workspaces.
@@ -83,57 +99,8 @@
         // "C:\\Users\\yourusername\\Desktop\\test"
     ],
 
-    // The character that is used for the comment formatting header box
-    // Default is "-" which looks like:
-    /*
-    ---------------
-    -   comment   -
-    ---------------
-    */
-    "comment_format": "-", //bigger
-    "comment_format_two": "-", //smaller
 
-    // Comment folding settings
-    // Adjacent single- and block comments
-    // get turned into a single fold
-    //
-    // Example:
-    //
-    // # Foo bar baz
-    // # baz bar foo
-    //
-    // Would get turned into:
-    // (..)
-    //
-    // Instead of:
-    // (..)
-    // (..)
-    "concatenate_adjacent_comments": true,
-
-    // Includes "inline" comments, like so:
-    //
-    // function foobar(baz) {
-    //  return baz * 2; // this is an inline comment <--
-    // }
-    "fold_single_line_comments": true,
-
-    // Includes "multiline" comments, like so:
-    /*
-    function foobar(baz) {
-    return baz * 2;
-    } */
-    "fold_multi_line_comments": true,
-
-    // Includes "docblock" comments, like so:
-    /**
-     * Foobar function
-     * @param {Number} baz
-     * @return {Number} Foobar number
-     */
-    "fold_doc_block_comments": true,
-
-
-    //Line split command setting
+    // Line split command setting
     // Will the split selection be shown before or after it is done?
     // Default, true, is before
 
@@ -167,7 +134,7 @@
     // Light = Use the light notepad scheme
     // Default = Don't change the color scheme when making a new notepad, use the default one.
 
-    "temp_notepad_color_scheme_mode": "Dark",
+    "temp_notepad_color_scheme_mode": "Default",
 
     // The font size of the temp notepad. This is a setting because the output panel font can't be changed.
     "temp_notepad_font_size": 17,
@@ -200,7 +167,7 @@
             "constant"
         ],
 
-        // For this setting to update you will have to go into Packages/User and delete the "Color Schemes" folder and then restart sublime.
+        // For this setting Dto update you will have to go into Packages/User and delete the "Color Schemes" folder and then restart sublime.
         "rainbow_colors": [
             "#ff3333", // level0
             "#FF6A00", // level1
@@ -230,6 +197,8 @@
             "extensions": [
                 ".gui",
                 ".txt",
+                ".shader",
+                ".fxh"
             ],
             "ignored_scopes": [
                 "comment"
@@ -285,93 +254,6 @@
             ]
         }
     },
-
-    // Autospell settings
-    "default_triggers": [
-      "-",
-      ":",
-      ";",
-      "_",
-      ",",
-      ".",
-      " ",
-      "enter"
-    ],
-    "default_replacements": {
-      "remvoe": "remove",
-      "karam": "karma",
-      "resovle": "resolve",
-      "adn": "and",
-      "agin": "again",
-      "alos": "also",
-      "amzaing": "amazing",
-      "anf": "and",
-      "anythign": "anything",
-      "aslo": "also",
-      "avalibale": "avaliable",
-      "becuase": "because",
-      "begining": "beginning",
-      "cahnged": "changed",
-      "charater": "character",
-      "charaters": "characters",
-      "charcter": "character",
-      "charcters": "characters",
-      "chari": "chair",
-      "charis": "chairs",
-      "defualt": "default",
-      "differnt": "different",
-      "dooing": "dooing",
-      "everthing": "everything",
-      "everythign": "everything",
-      "exmaple": "example",
-      "exmaples": "examples",
-      "gam": "game",
-      "goin": "going",
-      "haev": "have",
-      "htat": "that",
-      "hte": "the",
-      "lvo": "love",
-      "locatoin": "location",
-      "otehrwise": "otherwise",
-      "optoins": "options",
-      "otpions": "options",
-      "otpoins": "options",
-      "packge": "package",
-      "performa": "performs",
-      "proccessor": "processor",
-      "pubilc": "public",
-      "reccommend": "recommend",
-      "removs": "removes",
-      "reponse": "response",
-      "roels": "roles",
-      "roght": "right",
-      "searhc": "search",
-      "seperate": "separate",
-      "shoudl": "should",
-      "somethign": "something",
-      "startes": "starts",
-      "stroner": "stronger",
-      "surevy": "survey",
-      "taht": "that",
-      "teh": "the",
-      "tehere": "there",
-      "thay": "they",
-      "tpye": "type",
-      "trak": "track",
-      "udpate": "update",
-      "waht": "what",
-      "wahts": "whats",
-      "wansts": "wants",
-      "wnt": "want",
-    },
-
-
-    // An array of syntax names to exclude from being autocompleted.
-    // Can be a partial string, for instance, "css" would match scss code.
-    // "exclude_from_completion": [
-    //      "css",
-    //      "scss"
-    // ]
 
 
     // AUTOFOLD -------------------------------------------------------------

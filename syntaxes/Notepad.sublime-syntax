@@ -1,16 +1,28 @@
 %YAML 1.2
 ---
-name: Notepad Syntax
-scope: text.notepad
+name: Notes Syntax
+scope: text.notes
 hidden: true
 
 contexts:
   main:
-    - match: '1'
-      scope: list.element.start # Green
-
     - match: \.
-      scope: list.element.dot # Red
+      scope: list.element.dot
 
-    - match: hello
+    - match: \b1\b\.
       scope: list.element.start
+
+    - match: \b5\b\.
+      scope: list.element.fifth
+
+    - match: \b4\b\.
+      scope: list.element.fourth
+
+    - match: ---|\b3\b\.
+      scope: list.element.third
+
+    - match: --|\b2\b\.
+      scope: list.element.second
+
+    - match: ->|-|•
+      scope: list.element.dot

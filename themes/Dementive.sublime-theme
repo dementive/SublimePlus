@@ -1,18 +1,14 @@
 {
 
 	"variables": {
-        "overlayBorder": "#161b22",
-        "panelControlBackground": "#010409",
-        "panelControlForeground": "#c9d1d9",
-        "panelControlBorder": "#30363d",
-        "panelRowBackground": "#010409",
-        "panelRowForeground": "#c9d1d9",
-        "panelRowLabelForeground": "#c9d1d9",
-        "panelRowSelectedBackground": "rgba(110,118,129,0.4)",
-        "panelRowSelectedForeground": "#c9d1d9",
-        "panelRowMatchForeground": "#388bfd",
-        "panelRowSelectedMatchForeground": "#388bfd",
-        "panelRowLinkForeground": "#58a6ff",
+		"sidebar_ignored": "hsl(221, 12%, 69%)", // Mariana blue6
+		"sidebar_untracked": "hsl(114, 31%, 68%)", // Mariana green
+		"sidebar_modified": "hsl(32, 93%, 66%)", // Mariana orange
+		"sidebar_missing": "hsl(357, 79%, 65%)", // Mariana red
+		"sidebar_added": "hsl(114, 31%, 68%)", // Mariana green
+		"sidebar_staged": "hsl(32, 93%, 66%)", // Mariana orange
+		"sidebar_deleted": "hsl(357, 79%, 65%)", // Mariana red
+		"sidebar_unmerged": "hsl(357, 79%, 65%)", // Mariana red
 	},
 	"rules": [
 
@@ -400,6 +396,183 @@
 			"layer0.tint": "color(var(--background) l(+ 50%))",
 		},
 		{
+		    "class": "vcs_status_badge",
+		    "layer0.opacity": 1.0,
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["ignored"]}],
+		    "content_margin": 0
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "tree_row", "attributes": ["expandable"]}, {"class": "file_system_entry", "attributes": ["ignored"]}],
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "settings": {"hide_sidebar_status_icons": true},
+		    "content_margin": 0
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "settings": {"git_status_icons": "disabled"},
+		    "content_margin": 0
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "tree_row", "attributes": ["expandable"]}, {"class": "file_system_entry", "attributes": ["ignored"]}],
+		    "layer0.texture": "SublimePlus/status_icons/status_ignored.png",
+		    "layer0.tint": "var(sidebar_ignored)"
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "tree_row", "attributes": ["expandable"]}, {"class": "file_system_entry", "attributes": ["ignored"]}],
+		    "settings": {"git_status_icons": "octicons"},
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "tree_row", "attributes": ["expandable"]}, {"class": "file_system_entry", "attributes": ["ignored"]}],
+		    "settings": {"git_status_icons": "codicons"},
+		    "layer0.texture": "SublimePlus/status_icons/codicons/status_ignored.png",
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["untracked"]}],
+		    "layer0.texture": "SublimePlus/status_icons/status_untracked.png",
+		    "layer0.tint": "var(sidebar_untracked)"
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["untracked"]}],
+		    "settings": {"git_status_icons": "octicons"},
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["untracked"]}],
+		    "settings": {"git_status_icons": "codicons"},
+		    "layer0.texture": "SublimePlus/status_icons/codicons/status_untracked.png",
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["added"]}],
+		    "layer0.texture": "SublimePlus/status_icons/status_added.png",
+		    "layer0.tint": "var(sidebar_added)"
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["added"]}],
+		    "settings": {"git_status_icons": "octicons"},
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["added"]}],
+		    "settings": {"git_status_icons": "codicons"},
+		    "layer0.texture": "SublimePlus/status_icons/codicons/status_added.png",
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["modified"]}],
+		    "layer0.texture": "SublimePlus/status_icons/status_modified.png",
+		    "layer0.tint": "var(sidebar_modified)"
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["modified"]}],
+		    "settings": {"git_status_icons": "octicons"},
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["modified"]}],
+		    "settings": {"git_status_icons": "codicons"},
+		    "layer0.texture": "SublimePlus/status_icons/codicons/status_modified.png",
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["staged"]}],
+		    "layer0.texture": "SublimePlus/status_icons/status_staged.png",
+		    "layer0.tint": "var(sidebar_staged)"
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["staged"]}],
+		    "settings": {"git_status_icons": "octicons"},
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["staged"]}],
+		    "settings": {"git_status_icons": "codicons"},
+		    "layer0.texture": "SublimePlus/status_icons/codicons/status_staged.png",
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["missing"]}],
+		    "layer0.texture": "SublimePlus/status_icons/status_missing.png",
+		    "layer0.tint": "var(sidebar_missing)"
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["missing"]}],
+		    "settings": {"git_status_icons": "octicons"},
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["missing"]}],
+		    "settings": {"git_status_icons": "codicons"},
+		    "layer0.texture": "SublimePlus/status_icons/codicons/status_missing.png",
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["deleted"]}],
+		    "layer0.texture": "SublimePlus/status_icons/status_deleted.png",
+		    "layer0.tint": "var(sidebar_deleted)"
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["deleted"]}],
+		    "settings": {"git_status_icons": "octicons"},
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["deleted"]}],
+		    "settings": {"git_status_icons": "codicons"},
+		    "layer0.texture": "SublimePlus/status_icons/codicons/status_deleted.png",
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["unmerged"]}],
+		    "layer0.texture": "SublimePlus/status_icons/status_unmerged.png",
+		    "layer0.tint": "var(sidebar_unmerged)"
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["unmerged"]}],
+		    "settings": {"git_status_icons": "octicons"},
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
+		    "class": "vcs_status_badge",
+		    "parents": [{"class": "file_system_entry", "attributes": ["unmerged"]}],
+		    "settings": {"git_status_icons": "codicons"},
+		    "layer0.texture": "SublimePlus/status_icons/codicons/status_unmerged.png",
+		    "content_margin": [15, 15, 0, 0]
+		},
+		{
 			"class": "disclosure_button_control",
 			"content_margin": [0, 0, 0, 0]
 		},
@@ -542,7 +715,7 @@
 		},
 		{
 			"class": "tab_close_button",
-			"parents": [{"class": "tab_control", "attributes": ["selected"]}],
+			"parents": [{"class": "tab_control ", "attributes": ["selected"]}],
 			"layer0.tint": "color(var(--background) l(+ 28%))",
 		},
 		{
@@ -648,7 +821,20 @@
 			"layer0.inner_margin": [10, 0, 0, 0],
 			"layer0.tint": "color(var(--background))",
 			"layer0.opacity": 1,
-			"content_margin": [5, 2, 20, 0]
+			"content_margin": [5, 2, 0, 0]
+		},
+		{
+		    "class": "vcs_branch_icon",
+		    "layer0.opacity": 1.0,
+		    "layer0.tint": "#a0a0a0",
+		},
+		{
+		    "class": "vcs_status",
+		    "spacing": 4
+		},
+		{
+		    "class": "vcs_changes_annotation",
+		    "border_color": "var(--accent)"
 		},
 		{
 			"class": "panel_button_control",
@@ -686,25 +872,27 @@
 			"layer0.tint": "color(var(--background) l(+ 45%))"
 		},
 		{
-			"class": "status_button",
-			"min_size": [80, 0],
-			"layer0.tint": [19, 24, 31],
-			"layer0.opacity": 0
+		    "class": "status_button",
+		    "layer0.tint": "color(var(--background) lightness(+ 3%))",
+		    "layer0.opacity": {"target": 0.0, "speed": 6.0, "interpolation": "smoothstep"},
+		    "layer1.tint": "color(var(--background) lightness(- 2%))",
+		    "layer1.opacity": {"target": 0.0, "speed": 6.0, "interpolation": "smoothstep"},
+		    "layer2.tint": "rgb(80, 80, 80)",
+		    "layer2.opacity": 1.0,
+		    "layer2.inner_margin": [1, 0, 0, 0],
+		    "layer2.draw_center": false,
+		    "min_size": [0, 25],
+		    "content_margin": [12, 0]
 		},
 		{
-			"class": "label_control",
-			"parents": [{"class": "status_button"}],
-			"color": [160, 160, 160],
+		    "class": "status_button",
+		    "attributes": ["hover"],
+		    "layer0.opacity": {"target": 1.0, "speed": 6.0, "interpolation": "smoothstep"}
 		},
 		{
-			"class": "label_control",
-			"parents": [{"class": "status_button", "attributes": ["hover"]}],
-			"color": [170, 170, 170],
-		},
-		{
-			"class": "label_control",
-			"parents": [{"class": "status_button", "attributes": ["pressed"]}],
-			"color": [180, 180, 180],
+		    "class": "status_button",
+		    "attributes": ["pressed"],
+		    "layer1.opacity": {"target": 1.0, "speed": 6.0, "interpolation": "smoothstep"}
 		},
 
 		{

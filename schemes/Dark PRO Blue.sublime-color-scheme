@@ -67,7 +67,7 @@
         {
             "name": "Language variable",
             "scope": "variable.language",
-            "foreground": "var(orange6)",
+            "foreground": "var(orange5)",
             "font_style": "italic"
         },
         {
