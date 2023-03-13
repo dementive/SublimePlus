@@ -10,6 +10,8 @@
 	// f2 is the same as rename key as windows file explorer
 	{ "keys": ["f2"], "command": "rename_file" },
 	
+	// Goto recently closed files
+	{ "keys": ["ctrl+alt+r"], "command": "goto_recent" },
 
 	// Macros
 	{ "keys": ["ctrl+;"], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/AppendSemiColon.sublime-macro"} },

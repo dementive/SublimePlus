@@ -27,13 +27,16 @@ Many new keybindings to make navigation of the buffer and ui feel more natural.
 Many of the commands have keybindings but some are only in certain menus and others are only avaibable in the command palette.
 to see all the commands added by the plugin look through the .sublime-menu, .sublime-keymap, and .sublime-commands files.
 
-# File Icons
+# Additional Plugins
 
-The 2 themes in this plugin support file icon customization via the ```A File Icon``` package found here:
-
-https://packagecontrol.io/packages/A%20File%20Icon
+The themes in this plugin support file icon customization via the [A File Icon](https://packagecontrol.io/packages/A%20File%20Icon)
 
 I recommend you install it for a better experience with the sidebar.
+
+Some other plugins that work great with sublime plus are:
+[LSP](https://packagecontrol.io/packages/LSP)
+[Git](https://packagecontrol.io/packages/Git)
+[Git Gutter](https://packagecontrol.io/packages/GitGutter)
 
 # Notes
 

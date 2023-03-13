@@ -7,7 +7,12 @@ import zlib
 import subprocess
 import json
 import difflib
+import time
+import Default.send2trash as send2trash
 from os.path import basename
+from operator import itemgetter
+from itertools import groupby
+from collections import deque
 
 # ------------------------------------------------------
 # -                    Plugin Setup                    -
@@ -446,7 +451,6 @@ class TabContextDeleteCommand(sublime_plugin.TextCommand):
 
         if file_name:
             if sublime.ok_cancel_dialog(f"Are you sure you want to delete\n{file_name}?", "Delete"):
-                import Default.send2trash as send2trash
                 try:
                     send2trash.send2trash(file_name)
                     view.close()
@@ -457,7 +461,178 @@ class TabContextDeleteCommand(sublime_plugin.TextCommand):
                 'Selected file cannot be deleted.'), 0)
 
 
+class ToggleReadonlyCommand(sublime_plugin.TextCommand):
+    def run(self, edit, args=None, index=-1, group=-1, **kwargs):
+        window = self.view.window()
+        views = window.views_in_group(group)
+        view = views[index]
+        if (view.is_read_only()):
+            view.set_read_only(False)
+            view.set_status('toggle_readonly', 'Read only off')
+            sublime.set_timeout(lambda: ToggleReadonlyCommand.clear_status(view), 1250)
+        else:
+            view.set_read_only(True)
+            view.set_status('toggle_readonly', 'Read only')
+
+    @staticmethod
+    def clear_status(view):
+        view.set_status('toggle_readonly', '')
+
+
+class TabContextEventListener(sublime_plugin.EventListener):
+
+    def check_readonly(self, view):
+        if view.is_read_only():
+            view.set_status('toggle_readonly', 'Readonly')
+        else:
+            view.set_status('toggle_readonly', '')
+
+    def on_activated(self, view):
+        self.check_readonly(view)
+
+
+class SortTabs(object):
+    sorting_indexes = (1,)
+
+    def __init__(self, *args, **kwargs):
+        super(SortTabs, self).__init__(*args, **kwargs)
+
+    def run(self, sort=True, close=False, current_grp_only=None):
+        # store the last command if sort is True
+        # so not if it's a close only call
+        # save active view to restore it latter
+        self.current_view = self.window.active_view()
+
+        self.current_grp_only = current_grp_only
+        if current_grp_only is None:
+            self.current_grp_only = settings.get('current_group_only', False)
+
+        list_views = []
+        # init, fill and sort list_views
+        self.init_file_views(list_views)
+        self.fill_list_views(list_views)
+        self.sort_list_views(list_views)
+        message = ''
+        if sort:
+            self.sort_views(list_views)
+            message = '%s' % (self.description(), )
+        if close is not False:
+            closed_view = self.close_views(list_views, close)
+            message = 'Closed %i view(s) using %s' % (closed_view, self.description())
+
+        if message:
+            sublime.status_message(message)
+        # restore active view
+        self.window.focus_view(self.current_view)
+
+    def init_file_views(self, list_views):
+        if self.current_grp_only:
+            current_grp, _ = self.window.get_view_index(self.current_view)
+        for view in self.window.views():
+            group, _ = self.window.get_view_index(view)
+            if not self.current_grp_only or (group == current_grp):
+                list_views.append([view, group])
+
+    def fill_list_views(self, list_views):
+        pass
+
+    def sort_list_views(self, list_views):
+        # sort list_views using sorting_indexes
+        list_views.sort(key=itemgetter(*self.sorting_indexes))
+
+    def sort_views(self, list_views):
+        # sort views according to list_views
+        for group, groupviews in groupby(list_views, itemgetter(1)):
+            for index, view in enumerate(v[0] for v in groupviews):
+                # remove flag for auto sorting
+                view.settings().erase('sorttabs_tosort')
+                if self.window.get_view_index(view) != (group, index):
+                    self.window.set_view_index(view, group, index)
+
+    def close_views(self, list_views, close):
+        if close < 0:
+            # close is a percent of opened views
+            close = int(len(list_views) / 100.0 * abs(close))
+        close = close if close else 1
+        closed = 0
+        for view in (v[0] for v in list_views[-close:]):
+            if view.id() != self.current_view.id() and not view.is_dirty() and not view.is_scratch():
+                self.window.focus_view(view)
+                self.window.run_command('close_file')
+                closed += 1
+        return closed
+
+    def description(self, *args):
+        # use class __doc__ for description
+        return self.__doc__
+
+
+class SortTabsByNameCommand(SortTabs, sublime_plugin.WindowCommand):
+    '''Sort Tabs by file name'''
+    sorting_indexes = (1, 2)
+
+    def fill_list_views(self, list_views):
+        super(SortTabsByNameCommand, self).fill_list_views(list_views)
+        for item in list_views:
+            filename = os.path.basename(item[0].file_name() if item[0].file_name() else '')
+            item.append(filename.lower())
+
+
+class SortTabsByFilePathCommand(SortTabsByNameCommand, sublime_plugin.WindowCommand):
+    '''Sort Tabs by file path'''
+    sorting_indexes = (1, 3, 2)
+
+    def fill_list_views(self, list_views):
+        super(SortTabsByFilePathCommand, self).fill_list_views(list_views)
+        for item in list_views:
+            dirname = os.path.dirname(item[0].file_name() if item[0].file_name() else '')
+            item.append(dirname.lower())
+
+
+class SortTabsByTypeCommand(SortTabsByNameCommand):
+    '''Sort Tabs by file type'''
+    sorting_indexes = (1, 3, 2)
+
+    def fill_list_views(self, list_views):
+        super(SortTabsByTypeCommand, self).fill_list_views(list_views)
+        # add syntax to each element of list_views
+        for item in list_views:
+            item.append(item[0].settings().get('syntax', ''))
+
+
+class SortTabsByDateCommand(SortTabsByNameCommand):
+    '''Sort Tabs by modification date'''
+    sorting_indexes = (1, 3, 4, 2)
+
+    def fill_list_views(self, list_views):
+        super(SortTabsByDateCommand, self).fill_list_views(list_views)
+        # add modifcation date and dirty flag to each element of list_views
+        for item in list_views:
+            modified = 0
+            dirty = item[0].is_dirty()
+            if not dirty:
+                dirty = True
+                filepath = item[0].file_name()
+                if filepath is not None:
+                    try:
+                        modified = os.path.getmtime(filepath)
+                        dirty = False
+                    except WindowsError:
+                        pass
+            item.extend([not dirty, -modified])
+
+class SortTabsByLastActivationCommand(SortTabsByNameCommand):
+    '''Sort Tabs by last activation'''
+    sorting_indexes = (1, 3, 2)
+
+    def fill_list_views(self, list_views):
+        super(SortTabsByLastActivationCommand, self).fill_list_views(list_views)
+        # add syntax to each element of list_views
+        for item in list_views:
+            item.append(-item[0].settings().get('sorttabs_lastactivated', 0))
+
 # Workspace
+
 
 class CloseWindowListInputHandler(sublime_plugin.ListInputHandler):
 
@@ -878,6 +1053,48 @@ class ClearConsoleCommand(sublime_plugin.ApplicationCommand):
         s.set('console_max_history_lines', 1)
         print("")
         s.set('console_max_history_lines', scrollback)
+
+
+class GotoRecentListener(sublime_plugin.EventListener):
+    def on_deactivated(self, view):
+        if view.file_name():
+            view.window().run_command("goto_recent", {"file_name": view.file_name()})
+
+
+class GotoRecentCommand(sublime_plugin.WindowCommand):
+    def __init__(self, window):
+        sublime_plugin.WindowCommand.__init__(self, window)
+        self.recent_files = []
+        self.enabled = True
+
+    def unshift(self, file_name):
+        item = [os.path.basename(file_name), file_name]
+
+        for _ in range(self.recent_files.count(item)):
+            self.recent_files.remove(item)
+
+        self.recent_files.insert(0, item)
+
+    def selected(self, index):
+        if index >= 0:
+            target_file = self.recent_files[index][1]
+
+            if self.window.active_view():
+                current_file = self.window.active_view().file_name()
+                self.unshift(current_file)
+
+            self.window.open_file(target_file)
+
+        self.enabled = True
+
+    def run(self, file_name=None):
+        if self.enabled:
+            if file_name:
+                self.unshift(file_name)
+            else:
+                self.enabled = False
+                print(self.recent_files)
+                self.window.show_quick_panel(self.recent_files, self.selected)
 
 
 # Folding Commands
@@ -1550,3 +1767,32 @@ class AutoCloseEmptyGroup(sublime_plugin.EventListener):
 
     def on_post_move(self, view):
         self.close_empty_group()
+
+
+class AutoSortTabsListener(sublime_plugin.EventListener):
+    def on_load(self, view):
+        if settings.get('sort_on_load_save'):
+            if not self._run_sort(view):
+                view.settings().set('sorttabs_tosort', True)
+
+    def on_post_save(self, view):
+        if settings.get('sort_on_load_save'):
+            self._run_sort(view)
+
+    def on_activated(self, view):
+        view.settings().set('sorttabs_lastactivated', time.time())
+        if settings.get('sort_on_load_save'):
+            if view.settings().get('sorttabs_tosort'):
+                if self._run_sort(view):
+                    view.settings().erase('sorttabs_tosort')
+
+    def _run_sort(self, view):
+        if view.window() and view.window().get_view_index(view)[1] != -1:
+            cmd = settings.get('sort_on_load_save_command')
+            if not cmd:
+                # Last used sort
+                cmd = internal_settings().get('last_cmd')
+            if cmd:
+                view.window().run_command(cmd)
+            return True
+        return False

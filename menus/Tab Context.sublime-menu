@@ -1,9 +1,35 @@
 [
     { "caption": "-" },
     { "command": "fileop_reveal_in_side_bar", "caption": "Reveal in Side Bar", "args": { "group": -1, "index": -1 }},
-    { "command": "copy_file_path", "caption": "Copy File Path", "args": { "group": -1, "index": -1 } },
+    { "command": "toggle_readonly", "caption": "Toggle Read only", "args": { "group": -1, "index": -1 } },
     { "command": "tab_context_terminal", "caption": "Open Terminal", "args": { "group": -1, "index": -1 } },
     { "caption": "-" },
+    { "command": "copy_file_path", "caption": "Copy File Path", "args": { "group": -1, "index": -1 } },
     { "command": "rename_file_in_tab", "caption": "Rename file...", "args": { "group": -1, "index": -1 } },
     { "command": "tab_context_delete", "caption": "Delete...", "args": { "group": -1, "index": -1 } },
+    {
+      "caption": "Sort",
+      "children": [
+            {
+                "caption": "Sort by Name",
+                "command": "sort_tabs_by_name",
+            },
+            {
+                "caption": "Sort by File Type",
+                "command": "sort_tabs_by_type",
+            },
+            {
+                "caption": "Sort by Date",
+                "command": "sort_tabs_by_date",
+            },
+            {
+                "caption": "Sort by Last Activation",
+                "command": "sort_tabs_by_last_activation",
+            },
+            {
+                "caption": "Sort by File Path",
+                "command": "sort_tabs_by_file_path",
+            },
+        ]
+    },
 ]

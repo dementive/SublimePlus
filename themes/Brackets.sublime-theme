@@ -96,7 +96,7 @@
 		"button_border_shadow_light": "#f2f4f4",
 		"button_background_pressed_dark": "color(var(--background) l(+ 20%))",
 		"button_background_pressed_light": "#d3d7d7",
-		"button_background_selected_dark": "#284160",
+		"button_background_selected_dark": "color(var(--background) l(+ 30%))",
 		"button_background_selected_light": "#e0f0fa",
 		"button_border_shadow_pressed_dark": "#353535",
 		"button_border_shadow_pressed_light": "#c7caca",
@@ -610,7 +610,7 @@
 			"tab_overlap": 1,
 			"tab_height": 32,
 			"connector_height": 2,
-			"spacing": 5
+			"spacing": 1
 		},
 		{
 			"class": "tabset_control",
@@ -2116,18 +2116,18 @@
 			"class": "sidebar_button_control",
 			"content_margin": [11, 18, 18 , 5],
 			"layer0.texture": "SublimePlus/assets/simple/status-bar/switch-panel.png",
-			"layer0.tint": "color(var(--background) l(+ 18%))",
+			"layer0.tint": "color(var(--background) l(+ 30%))",
 			"layer0.opacity": 1
 		},
 		{
 			"class": "sidebar_button_control",
 			"attributes": ["hover"],
-			"layer0.tint": "color(var(--background) l(+ 35%))"
+			"layer0.tint": "color(var(--background) l(+ 40%))",
 		},
 		{
 			"class": "sidebar_button_control",
 			"attributes": ["pressed"],
-			"layer0.tint": "color(var(--background) l(+ 45%))"
+			"layer0.tint": "color(var(--background) l(+ 30%))",
 		},
 		{
 			"class": "status_button",
@@ -2177,7 +2177,7 @@
 		},
 		{
 			"class": "vcs_changes_annotation",
-			"border_color": "var(--accent)"
+			"border_color": "color(var(--accent) l(+ 15%))"
 		},
 ////////[ Dialogs ]/////////////////////////////////////////////////////////////
 		{

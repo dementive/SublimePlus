@@ -146,6 +146,22 @@
     //Sets the draw_centered setting to true/false for the temporary notepad
     "draw_centered_temp_notepad": false,
 
+    // Sort tabs settings
+    // Automatically sort tabs when loading or saving a file.
+    "sort_on_load_save" : false,
+
+    // Command to use for automatic sort.
+    // If not specified, it use the last used sorting command
+    // Available defaults command are:
+    //  sort_tabs_by_name
+    //  sort_tabs_by_file_path
+    //  sort_tabs_by_type
+    //  sort_tabs_by_date
+    "sort_on_load_save_command" : "sort_tabs_by_date",
+
+    // Only sort current group (pane)
+    "current_group_only" : false,
+
     // Rainbow bracket settings
 
     "rainbow_brackets_enabled": true, // For this to take effect you need to restart sublime
@@ -167,7 +183,7 @@
             "constant"
         ],
 
-        // For this setting Dto update you will have to go into Packages/User and delete the "Color Schemes" folder and then restart sublime.
+        // For this setting to update you will have to go into Packages/User and delete the "Color Schemes" folder and then restart sublime.
         "rainbow_colors": [
             "#ff3333", // level0
             "#FF6A00", // level1
