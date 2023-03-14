@@ -621,6 +621,7 @@ class SortTabsByDateCommand(SortTabsByNameCommand):
                         pass
             item.extend([not dirty, -modified])
 
+
 class SortTabsByLastActivationCommand(SortTabsByNameCommand):
     '''Sort Tabs by last activation'''
     sorting_indexes = (1, 3, 2)
@@ -632,6 +633,32 @@ class SortTabsByLastActivationCommand(SortTabsByNameCommand):
             item.append(-item[0].settings().get('sorttabs_lastactivated', 0))
 
 # Workspace
+
+
+class WorkspaceListInputHandler(sublime_plugin.ListInputHandler):
+
+    def __init__(self):
+        self.project_directories = settings.get(
+            'sublime_workspace_directories_list')
+
+    def find_workspaces(self):
+        s_workspace_file = re.compile("^.*?\.sublime-workspace$")
+        results = []
+        for directory in self.project_directories:
+            for name in os.listdir(directory):
+                if s_workspace_file.match(name):
+                    results.append(name)
+        return results
+
+    def name(self):
+        return 'workspace'
+
+    def list_items(self):
+        list_items = []
+        for workspace in self.find_workspaces():
+            workspace = workspace.replace(".sublime-workspace", "")
+            list_items.append(workspace)
+        return list_items
 
 
 class CloseWindowListInputHandler(sublime_plugin.ListInputHandler):
@@ -1093,7 +1120,6 @@ class GotoRecentCommand(sublime_plugin.WindowCommand):
                 self.unshift(file_name)
             else:
                 self.enabled = False
-                print(self.recent_files)
                 self.window.show_quick_panel(self.recent_files, self.selected)
 
 

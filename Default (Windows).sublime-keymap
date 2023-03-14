@@ -10,7 +10,7 @@
 	// f2 is the same as rename key as windows file explorer
 	{ "keys": ["f2"], "command": "rename_file" },
 	
-	// Goto recently closed files
+	// Goto recently closed
 	{ "keys": ["ctrl+alt+r"], "command": "goto_recent" },
 
 	// Macros
