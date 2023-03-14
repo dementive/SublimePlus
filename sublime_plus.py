@@ -129,7 +129,7 @@ class OutputPanelNotePadCommand(sublime_plugin.ApplicationCommand):
             view.settings().set("color_scheme", "NotepadLight.hidden-color-scheme")
         elif settings.get("temp_notepad_color_scheme_mode") == "Dark":
             view.settings().set("color_scheme", "Notepad.hidden-color-scheme")
-        view.assign_syntax("scope:text.notes")
+        #view.assign_syntax("scope:text.notes")
         view.settings().set("font_size", settings.get("temp_notepad_font_size"))
         if not settings.get("show_gutter_in_notepad"):
             view.settings().set('gutter', False)
@@ -1116,7 +1116,7 @@ class GotoRecentCommand(sublime_plugin.WindowCommand):
 
     def run(self, file_name=None):
         if self.enabled:
-            if file_name:
+            if file_name and file_name is not None:
                 self.unshift(file_name)
             else:
                 self.enabled = False
@@ -1559,8 +1559,11 @@ class RainbowBracketsViewManager(sublime_plugin.EventListener):
 
     @classmethod
     def get_view_syntax(cls, view):
-        if view is not None:
-            syntax = view.syntax().name
+        if view:
+            try:
+                syntax = view.syntax().name
+            except AttributeError:
+                return None
             if syntax in cls.configs_by_stx:
                 return syntax
             filename = view.file_name()

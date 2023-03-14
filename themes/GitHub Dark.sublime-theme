@@ -986,7 +986,7 @@
         {
             "class": "text_line_control",
             "layer0.opacity": 1,
-            "layer0.texture": "SublimePlus/assets/simple/widget/input-bg.png",
+            "layer0.texture": "SublimePlus/textures/assets/simple/widget/input-bg.png",
             "layer0.inner_margin": [
                 10,
                 8
@@ -1001,7 +1001,7 @@
         },
         // {
         //     "class": "text_line_control",
-        //     "layer0.texture": "SublimePlus/assets/simple/widget/input-bg.png",
+        //     "layer0.texture": "SublimePlus/textures/assets/simple/widget/input-bg.png",
         //     "layer0.opacity": 1,
         //     "layer0.inner_margin": [10, 8],
         //     "layer0.tint": "color(var(--background) l(+ 4%))",
@@ -1928,7 +1928,7 @@
         {
             "class": "panel_button_control",
             "content_margin": [12, 8],
-            "layer0.texture": "SublimePlus/assets/simple/status-bar/switch-panel.png",
+            "layer0.texture": "SublimePlus/textures/assets/simple/status-bar/switch-panel.png",
             "layer0.tint": [170, 170, 170],
             "layer0.opacity": 1
         },
@@ -1946,7 +1946,7 @@
         {
             "class": "sidebar_button_control",
             "content_margin": [11, 18, 18 , 5],
-            "layer0.texture": "SublimePlus/assets/simple/status-bar/switch-panel.png",
+            "layer0.texture": "SublimePlus/textures/assets/simple/status-bar/switch-panel.png",
             "layer0.tint": "color(var(--background) l(+ 18%))",
             "layer0.opacity": 1
         },

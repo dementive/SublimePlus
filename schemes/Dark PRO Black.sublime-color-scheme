@@ -2,6 +2,7 @@
     "name": "Dark PRO Black",
     "variables":
     {
+        "--bluish": "hsl(207,  82%,  66%)",
         "black": "hsl(0, 0%, 0%)",
         "black2": "rgb(15, 15, 15)",
         "blue": "hsl(218, 100%, 61%)",

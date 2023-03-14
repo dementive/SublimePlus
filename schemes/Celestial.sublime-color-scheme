@@ -1,6 +1,7 @@
 {
     "gutter_settings": "D8D5E82E-3D5B-46B5-B38E-8C841C21347D",
     "variables": {
+        "--bluish": "hsl(207,  82%,  66%)",
         "color00": "#100020",
         "color01": "#F8F8F2",
         "color02": "#61bbc8",

@@ -3,6 +3,7 @@
     "color_space_name": "sRGB",
     "semantic_class": "theme.dark.gotham",
     "variables": {
+        "--bluish": "hsl(207,  82%,  66%)",
         "color00": "#0A0F14",
         "color01": "#98D1CE",
         "color02": "#245361",

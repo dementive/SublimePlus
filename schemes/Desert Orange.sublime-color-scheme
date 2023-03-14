@@ -1,6 +1,7 @@
 {
     "name": "Dark Desert",
     "variables": {
+        "--bluish": "hsl(207,  82%,  66%)",
         "color00": "#010100 ",
         "color01": "#FFF8DC",
         "color02": "#3B3A32",

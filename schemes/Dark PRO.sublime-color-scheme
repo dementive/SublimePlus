@@ -3,6 +3,7 @@
     "author": "Dragan Milenkovic",
     "variables":
     {
+        "--bluish": "hsl(207,  82%,  66%)",
         "black": "hsl(0, 0%, 0%)",
         "black2": "hsl(222, 15%, 13%)",
         "blue": "hsl(218, 100%, 61%)",

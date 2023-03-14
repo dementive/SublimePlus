@@ -62,9 +62,11 @@
         "green2": "hsl(120, 100%, 45%)",
         "green3": "rgb(90,205,90)",
         "tooltips": "rgb(25,195,255)",
-        "envy": "#7f9f7f"
+        "envy": "#7f9f7f",
+        "--bluish": "hsl(207,  82%,  66%)",
     },
     "globals": {
+        "highlight": "var(link)",
         "background": "var(color00)",
         "caret": "var(color01)",
         "foreground": "var(color01)",
