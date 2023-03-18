@@ -1,0 +1,95 @@
+{
+	// A list of valid spell checker words added by the user.
+	"added_words": [],
+
+	// Disable auto completion entirely, even when explictly requested.
+	// Added in 405x.
+	"auto_complete_disabled": false,
+
+	// Disable auto completions from (all third-party) plugins entirely,
+	// even when explictly requested. Mainly for plugin developers for testing.
+	// Added in 4057.
+	"auto_complete_enable_plugins": true,
+
+	// Show the auto completion popup when a completion is likely to be requested.
+	// Added in 40xx.
+	"auto_complete_when_likely": true,
+
+	// Set the context menu for this view (type).
+	// Expects a ".sublime-menu" file name.
+	// Useful for plugins that create widget-like views or output panels.
+	// Added in 405x.
+	"context_menu": null,
+
+	// The default extension to be shown for new untitled files
+	// in the OS file save manager.
+	"default_extension": "",
+
+	// UI scaling factor (deprecated)
+	// Removed in 3181.
+	"dpi_scale": 1.0,
+
+	// Draw UI shadows
+	// when the buffer doesn't fit into the view horizontally.
+	"draw_shadows": true,
+
+	// List of extensions that should be opened with a corresponding syntax.
+	// Only makes sense in syntax-specific settings.
+	"extensions": [],
+
+	// Use the themed title bar on Linux. Disabled by default for non-gnome DE's
+	// or when `XDG_CURRENT_DESKTOP` is not set.
+	// Added in 4097.
+	"gtk_client_side_window_decorations": false,
+
+	// Whether the new key translation behavior should be used.
+	// Added in 4103.
+	"gtk_enable_key_translation": true,
+
+	// Hide the mouse pointer while typing.
+	"hide_pointer_while_typing": true,
+
+	// A list of words ignored by the spell checker.
+	"ignored_words": [],
+
+	// Emulate a block caret.
+	// Deprecated by `block_caret` (3190).
+	"inverse_caret_state": false,
+
+	// Show the first completion candidate as a phantom.
+	// Experimental setting since 4057.
+	"mini_auto_complete": false,
+
+	// Scroll to the clicked location
+	// instead of using the minimap as an extension of the scrollbar.
+	// Disabling this allows dragging the minimap from anywhere.
+	"minimap_scroll_to_clicked_text": true,
+
+	// Scroll over the tab bar to switch tabs.
+	"mouse_wheel_switches_tabs": false,
+
+	// Renders all characters as dots.
+	// Only useful for password input panels.
+	"password": false,
+
+	// Choose a browser to print the current view based on
+	// https://docs.python.org/3/library/webbrowser.html#webbrowser.get
+	// Added in 4094.
+	"print_using_browser": null,
+
+	// Shows legacy color schemes in UI: Select Color Scheme.
+	// Added in 3136.
+	"show_legacy_color_schemes": false,
+
+	// Path to the syntax definition for a view.
+	// To be used in widget settings files.
+	"syntax": "Packages/Text/Plain text.tmLanguage",
+
+	// Check for updates on startup.
+	// Only available to registered users.
+	"update_check": true,
+
+	// Increases width of the caret (deprecated).
+	// Use `caret_extra_width` instead.
+	"wide_caret": false,
+}

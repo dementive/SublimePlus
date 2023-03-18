@@ -1,0 +1,89 @@
+{
+    "scope": "(meta.build.collection.sublime-build | meta.variant.sublime-build) - meta.cmd - string - comment",
+    "completions": [
+        {
+            "trigger": "cmd",
+            "contents": "\"cmd\": [\"$1\"],$0",
+            "details": "Executable & arguments to run",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "shell_cmd",
+            "contents": "\"shell_cmd\": \"$1\",$0",
+            "details": "Command line for the shell",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "file_regex",
+            "contents": "\"file_regex\": \"$1\",$0",
+            "details": "Regular expression for build output",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "line_regex",
+            "contents": "\"line_regex\": \"$1\",$0",
+            "details": "Regular expression for build output",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "working_dir",
+            "contents": "\"working_dir\": \"$1\",$0",
+            "details": "Directory to run in",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "encoding",
+            "contents": "\"encoding\": \"$1\",$0",
+            "details": "Encoding of the build output",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "env",
+            "contents": "\"env\": {\n\t$0\n},",
+            "details": "Environment variable overrides",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "quiet",
+            "contents": "\"quiet\": true,$0",
+            "details": "Silence debug output",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "kill",
+            "contents": "\"kill\": true,$0",
+            "details": "Kill the running process",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "kill_previous",
+            "contents": "\"kill_previous\": true,$0",
+            "details": "Kill the previously runnning build",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "update_annotations_only",
+            "contents": "\"update_annotations_only\": true,$0",
+            "details": "Update annotations only",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "word_wrap",
+            "contents": "\"word_wrap\": \"$1\",$0",
+            "details": "Enable word wrapping for output panel",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "syntax",
+            "contents": "\"syntax\": \"$1\",$0",
+            "details": "Set syntax for output panel",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "path",
+            "contents": "\"path\": \"$1\",$0",
+            "details": "Override PATH variable",
+            "kind": ["keyword", "k", "exec"],
+        },
+    ],
+}

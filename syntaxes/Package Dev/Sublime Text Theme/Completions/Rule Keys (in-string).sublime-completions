@@ -1,0 +1,358 @@
+{
+    "scope": "meta.rule-key.sublime-theme",
+    "completions": [
+        // selectors
+        {
+            "trigger": "class",
+            "details": "Class selector",
+            "kind": ["keyword", "k", "selector"],
+        },
+        {
+            "trigger": "settings",
+            "details": "Setting setting selector",
+            "kind": ["keyword", "k", "selector"],
+        },
+        {
+            "trigger": "parents",
+            "details": "Parent selector",
+            "kind": ["keyword", "k", "selector"],
+        },
+        {
+            "trigger": "platforms",
+            "details": "Platform selector",
+            "kind": ["keyword", "k", "selector"],
+        },
+        {
+            "trigger": "attributes",
+            "details": "Attribute selector",
+            "kind": ["keyword", "k", "selector"],
+        },
+
+        // strings
+        {
+            "trigger": "font.face",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "case",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "style",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "close_button_side",
+            "kind": ["keyword", "k", "property"],
+        },
+
+        // colors
+        {
+            "trigger": "border_color",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "line_selection_color",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "line_selection_border_color",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "highlight_color",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "highlight_border_color",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "headline_color",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "match_fg",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "selected_fg",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "selected_match_fg",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "fg",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "color",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "bg",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "background_color",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "shadow_color",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "viewport_color",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "color_scheme_tint",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "color_scheme_tint_2",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "link_color",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "left_shadow",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "right_shadow",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "top_shadow",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "bottom_shadow",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "monospace_background_color",
+            "kind": ["keyword", "k", "property"],
+        },
+
+        // color adjusters
+        {
+            "trigger": "background_modifier",
+            "kind": ["keyword", "k", "property"],
+        },
+
+        // numbers
+        {
+            "trigger": "num_colors",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "tab_overlap",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "tab_width",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "tab_min_width",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "tab_height",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "tint_index",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "accent_tint_index",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "border_size",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "spacing",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "inside_spacing",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "outside_vspacing",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "outside_hspacing",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "left_shadow_size",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "right_shadow_size",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "top_shadow_size",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "bottom_shadow_size",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "connector_height",
+            "kind": ["keyword", "k", "property"],
+        },
+
+        // number sequences (optional)
+        {
+            "trigger": "inner_margin",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "content_margin",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "row_padding",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "max_margin_trim",
+            "kind": ["keyword", "k", "property"],
+        },
+        // number sequences (always)
+        {
+            "trigger": "min_size",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "icon_spacing",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "tint_modifier",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "shadow_offset",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "accent_tint_modifier",
+            "kind": ["keyword", "k", "property"],
+        },
+
+        // floats
+        {
+            "trigger": "line_selection_border_radius",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "line_selection_border_width",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "indent",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "indent_offset",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "opacity",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "viewport_opacity",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "hit_test_level",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "font.size",
+            "kind": ["keyword", "k", "property"],
+        },
+
+        // booleans
+        {
+            "trigger": "dark_content",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "indent_top_level",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "spacer_rows",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "font.bold",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "font.italic",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "mouse_wheel_switch",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "fg_blend",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "overlay",
+            "kind": ["keyword", "k", "property"],
+        },
+
+        // layer*.
+        {
+            "trigger": "layer.tint",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "layer.draw_center",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "layer.repeat",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "layer.opacity",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "layer.inner_margin",
+            "kind": ["keyword", "k", "property"],
+        },
+        {
+            "trigger": "layer.texture",
+            "kind": ["keyword", "k", "property"],
+        },
+
+        // other
+        {
+            "trigger": "texture",
+            "kind": ["keyword", "k", "property"],
+        },
+    ]
+}

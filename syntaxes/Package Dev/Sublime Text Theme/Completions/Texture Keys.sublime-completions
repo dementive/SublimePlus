@@ -1,0 +1,20 @@
+{
+    "scope": "meta.texture-mapping.sublime-theme - meta.texture-mapping.sublime-theme meta.sequence - string - comment",
+    "completions": [
+        {
+            "trigger": "keyframes",
+            "contents": "\"keyframes\": [\n\t\"$0\"\n],",
+            "kind": ["keyword", "k", "texture"],
+        },
+        {
+            "trigger": "frame_time",
+            "contents": "\"frame_time\": ${0:1.0},",
+            "kind": ["keyword", "k", "texture"],
+        },
+        {
+            "trigger": "loop",
+            "contents": "\"loop\": ${0:true},",
+            "kind": ["keyword", "k", "texture"],
+        },
+    ]
+}

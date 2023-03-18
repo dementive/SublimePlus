@@ -1,0 +1,82 @@
+%YAML 1.2
+---
+name: Sublime Text Settings (JSON)
+file_extensions:
+  - sublime-settings
+  - sublime-settings-hints
+scope: source.json.sublime.settings
+contexts:
+  main:
+    - match: (?=\{)
+      push: [only-comments, main-mapping-pop]
+    - include: expect-mapping-rest
+
+  main-mapping-pop:
+    - match: \{
+      scope: punctuation.section.mapping.begin.json
+      set:
+        - meta_scope: meta.settings-mapping.sublime-settings meta.mapping.json
+        - match: \}
+          scope: punctuation.section.mapping.end.json
+          pop: true
+        - match: (?=")
+          push: [in-mapping-expect-comma, main-key]
+        - include: expect-key-rest
+
+  main-key:
+    - clear_scopes: 1
+    - match: '"'
+      scope: punctuation.definition.string.begin.json
+      set:
+        - clear_scopes: 1
+        - meta_scope: meta.mapping.key.json string.quoted.double.json
+        - meta_content_scope: entity.name.other.key.sublime-settings
+        # we need to set another context to not have meta_content_scope
+        # affect the closing quotation mark
+        - match: (?=")
+          set:
+            - clear_scopes: 1
+            - match: '"'
+              scope: meta.mapping.key.json string.quoted.double.json punctuation.definition.string.end.json
+              set: [expect-any-settings-value, expect-colon]
+        - include: inside-string
+        - match: '[\w]+(\.)'
+          scope: keyword.other.namespace.sublime-settings
+          captures:
+            1: punctuation.separator.namespace.sublime-settings
+
+  comments:
+    - include: Sublime JSON.sublime-syntax#comments
+
+  only-comments:
+    - include: Sublime JSON.sublime-syntax#only-comments
+
+  expect-colon:
+    - include: Sublime JSON.sublime-syntax#expect-colon
+
+  expect-any-settings-value:
+    - match: ''
+      set:
+        - meta_content_scope: meta.expect-value.sublime-settings
+        - include: comments
+        - match: (?=\S)
+          set: [settings-mapping-value-meta, Sublime JSON.sublime-syntax#expect-any-value]
+        - include: Sublime JSON.sublime-syntax#expect-any-value
+
+  settings-mapping-value-meta:
+    - clear_scopes: 1
+    - meta_scope: meta.setting-value.sublime-settings dummy  # 'dummy' will be cleared
+    - match: ''
+      pop: true
+
+  expect-mapping-rest:
+    - include: Sublime JSON.sublime-syntax#expect-mapping-rest
+
+  expect-key-rest:
+    - include: Sublime JSON.sublime-syntax#expect-key-rest
+
+  inside-string:
+    - include: Sublime JSON.sublime-syntax#inside-string
+
+  in-mapping-expect-comma:
+    - include: Sublime JSON.sublime-syntax#in-mapping-expect-comma

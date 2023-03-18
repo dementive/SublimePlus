@@ -1,0 +1,20 @@
+// Settings in here override those in "LSP/LSP.sublime-settings"
+{
+	// Show code actions:
+	// "annotation" - show an annotation on the right when code actions are available.
+	// "bulb" - show a bulb in the gutter when code actions are available.
+	// "" - don't show code actions.
+	"show_code_actions": "bulb",
+
+	// Open the diagnostics panel automatically on save when diagnostics level is
+	// equal to or less than:
+	// none: 0 (never open the panel automatically)
+	// error: 1
+	// warning: 2
+	// info: 3
+	// hint: 4
+	"show_diagnostics_panel_on_save": 1,
+
+	// Show symbol references in Sublime's quick panel instead of the bottom panel.
+	"show_references_in_quick_panel": true,
+}

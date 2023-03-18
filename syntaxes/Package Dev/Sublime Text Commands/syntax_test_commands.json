@@ -1,0 +1,58 @@
+// SYNTAX TEST "Packages/PackageDev/Package/Sublime Text Commands/Sublime Text Commands.sublime-syntax"
+
+// <- source.json.sublime.commands
+
+// comment
+// ^^^^^^^ comment.line.double-slash - meta.keybinding.collection.sublime-commands - meta.sequence.json
+[
+// <- meta.sequence.json punctuation.section.sequence.begin.json
+
+    {
+        "caption" : "Word Wrap: Toggle",
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.json meta.sublime-commands.collection.sublime-commands meta.mapping - meta.mapping meta.mapping
+//      ^^^^^^^^^ meta.mapping.key.json meta.main-key.sublime-commands string.quoted.double.json
+//       ^^^^^^^ keyword.other.main.sublime-commands
+//               ^ - invalid
+//                ^ punctuation.separator.mapping.key-value.json
+//                  ^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json string.quoted.double.json meta.caption.sublime
+        "command": "toggle_setting",
+//      ^^^^^^^^^ meta.mapping.key.json meta.main-key.sublime-commands string.quoted.double.json
+//       ^^^^^^^ keyword.other.main.sublime-commands
+//               ^ punctuation.separator.mapping.key-value.json
+//                 ^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.command-name.sublime string.quoted.double.json
+//                  ^^^^^^^^^^^^^^ meta.command-name.sublime
+   "foo": "bar",
+// ^^^^^ meta.mapping.key.json meta.main-key.sublime-commands string.quoted.double.json
+//  ^^^ - keyword.other.main.sublime-commands
+//        ^^^^^ meta.mapping.value.json string.quoted.double.json
+        "args": {"setting": "word_wrap"},
+//      ^^^^^^ meta.mapping.key.json meta.main-key.sublime-commands string.quoted.double.json
+//       ^^^^ keyword.other.main.sublime-commands
+//            ^ punctuation.separator.mapping.key-value.json
+//              ^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.mapping -  meta.mapping meta.mapping meta.mapping
+//              ^ punctuation.section.mapping.begin.json
+//                                     ^ punctuation.section.mapping.end.json
+//               ^^^^^^^^^ meta.mapping.value.json meta.mapping.key.json string.quoted.double.json
+//                        ^ punctuation.separator.mapping.key-value.json
+//                          ^^^^^^^^^^^ meta.mapping.value.json meta.mapping.value.json string.quoted.double.json
+    "platform": "!Windows", "platform": "Win",
+//  ^^^^^^^^^^ meta.mapping.key.json meta.main-key.sublime-commands string.quoted.double.json
+//  ^ punctuation.definition.string.begin.json
+//   ^^^^^^^^ keyword.other.main.sublime-commands
+//            ^ punctuation.separator.mapping.key-value.json
+//              ^^^^^^^^^^ meta.mapping.value.json meta.platform-name.sublime-commands string.quoted.double.json
+//              ^ punctuation.definition.string.begin.json
+//               ^ keyword.operator.logical.sublime-commands
+//                ^^^^^^^ support.constant.command-name.sublime-commands
+//                       ^ punctuation.definition.string.end.json
+//                                      ^^^^^ string.quoted.double.json - invalid
+    },
+
+    abc
+//  ^^^ invalid.illegal.expected-mapping.sublime-commands
+
+]
+  ,[]//fgfg
+// <- - invalid.illegal
+//^^^ invalid.illegal.expected-comment-or-eof.sublime
+//   ^^ comment.line.double-slash - invalid.illegal

@@ -1,0 +1,31 @@
+{
+    "scope": "meta.completions-key.sublime-completions",
+
+    "completions": [
+        {
+            "trigger": "annotation",
+            "details": "Right-side annotation",
+            "kind": ["keyword", "k", "completion"],
+        },
+        {
+            "trigger": "contents",
+            "details": "Snippet contents",
+            "kind": ["keyword", "k", "completion"],
+        },
+        {
+            "trigger": "details",
+            "details": "Description",
+            "kind": ["keyword", "k", "completion"],
+        },
+        {
+            "trigger": "kind",
+            "details": "Kind metadata",
+            "kind": ["keyword", "k", "completion"],
+        },
+        {
+            "trigger": "trigger",
+            "details": "Snippet trigger",
+            "kind": ["keyword", "k", "completion"],
+        },
+    ]
+}

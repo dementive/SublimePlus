@@ -62,7 +62,25 @@ def plugin_unloaded():
 # -                      Commands                      -
 # ------------------------------------------------------
 
+# Git Gui statusbar button override
+
+class GgcOpenCommand(sublime_plugin.WindowCommand):
+    def run(self):
+        os.startfile(settings.get("git_gui_path"))
+
+
+class CommandEventListener(sublime_plugin.EventListener):
+    def on_window_command(self, view, command_name, args):
+        # Clicking on the repo button in the status bar will open a custom git gui instead of sublime merge
+        if command_name == "sublime_merge_open_repo":
+            path = settings.get("git_gui_path")
+            if path != "none":
+                return ('ggc_open')
+            else:
+                return ('sublime_merge_open_repo')
+
 # Notepad
+
 
 class ToggleNotePadCommand(sublime_plugin.ApplicationCommand):
 

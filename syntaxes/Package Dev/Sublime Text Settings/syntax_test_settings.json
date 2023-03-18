@@ -1,0 +1,68 @@
+// SYNTAX TEST "Packages/PackageDev/Package/Sublime Text Settings/Sublime Text Settings.sublime-syntax"
+// <- source.json.sublime.settings
+
+// comment
+// <- comment.line
+
+s
+// <- invalid.illegal.expected-mapping.sublime
+
+{ // comment
+// <- meta.mapping.json punctuation.section.mapping.begin.json
+// ^ meta.mapping.json comment.line.double-slash.js punctuation.definition.comment.json
+
+    "key": "value"  ,
+// ^^^^^^^^^^^^^^^^^ meta.mapping - meta.mapping meta.mapping
+//  ^^^^^ meta.mapping.key.json string.quoted.double.json - meta.mapping.json
+//  ^ punctuation.definition.string.begin.json
+//      ^ punctuation.definition.string.end.json
+//       ^ punctuation.separator.mapping.key-value.json
+//         ^^^^^^^ meta.setting-value.sublime-settings meta.mapping.value.json string.quoted.double.json
+//                  ^ punctuation.separator.mapping.pair.json
+//       ^ - meta.expect-value.sublime-settings
+//        ^ meta.expect-value.sublime-settings
+//                ^^^ meta.expect-comma.sublime
+//                   ^ - meta.expect-comma.sublime
+
+    "another_key": 123,
+//  ^ - entity.name.other.key.sublime-settings
+//   ^^^^^^^^^^^ meta.mapping.key.json string.quoted.double.json entity.name.other.key.sublime-settings
+//              ^ - entity.name.other.key.sublime-settings
+
+    "an_array": ["with", "strings"],
+//              ^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json
+
+    "a_normal_object": {"normal key": "value"},
+//                     ^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json
+//                       ^ - entity.name.other.key
+
+    "package_name.setting": null
+//   ^^^^^^^^^^^^^^^^^^^^ entity.name.other.key.sublime-settings
+//   ^^^^^^^^^^^^^ keyword.other.namespace.sublime-settings
+//               ^ punctuation.separator.namespace.sublime-settings
+
+    "package_name.module_name.setting": null
+//^^ invalid.illegal.expected-comma.inside-mapping.json
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ entity.name.other.key.sublime-settings
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^ keyword.other.namespace.sublime-settings
+//               ^ punctuation.separator.namespace.sublime-settings
+//                           ^ punctuation.separator.namespace.sublime-settings
+
+    "key_without_comma": false,
+// ^ invalid.illegal.expected-comma.inside-mapping.json
+//                       ^^^^^ meta.mapping.value.json constant.language.boolean.json
+
+    "invalid_value": a
+//                   ^ - invalid.illegal.expected-value
+
+
+    , // trailing commas are okay
+//  ^ punctuation.separator.mapping.pair.json
+
+    ,  // but not two consecutive commas
+//  ^ invalid.illegal.expected-key.json
+}
+
+not-a-comment // but this is
+// <- invalid.illegal.expected-comment-or-eof.sublime
+//            ^^ comment.line.double-slash.js

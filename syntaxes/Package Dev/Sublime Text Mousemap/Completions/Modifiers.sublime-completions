@@ -1,0 +1,41 @@
+{
+	"scope": "meta.modifiers.sublime-mousemap string.quoted.double.json",
+	"completions": [
+		{
+			"trigger": "shift",
+			"kind": ["snippet", "m", "Modifier"],
+		},
+		{
+			"trigger": "ctrl",
+			"kind": ["snippet", "m", "Modifier"],
+		},
+		{
+			"trigger": "alt",
+			"kind": ["snippet", "m", "Modifier"],
+		},
+		{
+			"trigger": "super",
+			"kind": ["snippet", "m", "Modifier"],
+		},
+		{
+			"trigger": "button1",
+			"kind": ["snippet", "m", "Modifier"],
+		},
+		{
+			"trigger": "button2",
+			"kind": ["snippet", "m", "Modifier"],
+		},
+		{
+			"trigger": "button3",
+			"kind": ["snippet", "m", "Modifier"],
+		},
+		{
+			"trigger": "button4",
+			"kind": ["snippet", "m", "Modifier"],
+		},
+		{
+			"trigger": "button5",
+			"kind": ["snippet", "m", "Modifier"],
+		},
+	]
+}

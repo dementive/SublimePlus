@@ -17,30 +17,105 @@ C:\Users\YOURUSERNAME\AppData\Roaming\Sublime Text 3\Packages\SublimePlus
 
 # Features
 
-A ton of commands that make using sublime text overall a better experience. 20+ color schemes and 2 themes.
+
+### Commands
+
+A ton of commands that make using sublime text overall a better experience, these include:
+
+1. Git Gui Override
+	- Overrides the repository button command in the status bar to open a custom git gui application. Command Name: 'ggc_open'
+
+2. Notepad
+	- Distractionless view command with a lot of settings. Command Name: 'toggle_note_pad'
+	- Temporary notepad in a pane that deletes your notes when application is closed. Command Name: 'output_panel_note_pad'
+
+3. Selection
+	- Fold Selection. Command Name: 'toggle_fold_selection'
+	- Split Selection. Split current selection by a specified character. Command Name: 'split_selection'
+	- Selection to Snippet. Make a snippet from the current selection. Command Name: 'selection_to_snippet'
+	- Cycle Through Selections. Command Name: 'cycle_through_regions'
+
+4. Movement
+	- Fast Move. Move cursor up, down, left, or right by a certain amount of characters. Command Name: 'fast_move'. Args: {direction: "up", extend=true }
+	- Sidebar Navigation. With the default sublime plus keybindings file these commands allow navigation of sidebar files and folder with the "ijkl" keys
+
+5. Tab Context Commands that show when rightclicking any tab
+	- Rename File in Tab. Command Name: 'rename_file_in_tab'
+	- Copy File Path. Command Name: 'copy_file_path'
+	- Delete in tab. Command Name: 'tab_context_delete'
+	- Toggle Read Only. Command Name: 'toggle_read_only'
+	- Sort Tabs. Several different ways to sort tabs
+
+6. Workspace
+	- Open Workspace From List. Shows a list of workspaces that are defined in settings and open them. Command Name: 'open_workspace_from_list'. Args: {close: false}
+
+7. Layout
+	- Set Layout. Similar to the Origami package but better, use the default keybindings file.
+
+8. Autofold
+	- Folds will be remembered when files are closed, this can be disabled with settings.
+
+9. List Handlers
+	- Go to Recent. A command pallete list input handler to quickly open recently closed files. Command Name: 'goto_recent'
+	- Folder Handler. Easily fold or unfold different levels of a file. Command Name: 'folder_handler'
+
+10. Rainbow Brackets
+	A simple version of the (Rainbow Brackets)[https://github.com/absop/RainbowBrackets] package has been included and has the following commands:
+	- Make Rainbow
+	- Clear Rainbow
+	- Clear Color Schemes
+
+11. Diffy
+	A simple version of the (Diffy)[https://packagecontrol.io/packages/Diffy] package 
+	- Diffy. With 2 tabs side by side in a group use this command and it will draw regions that show the diffs of the two files.
+
+12. Event Listeners
+	- Auto Save. Automatically save files under certain conditions, there are a lot of settings so you can define the exact behavior you want.
+	- Auto Close Empty Group. When groups are empty they will be automatically closed.
+	- Auto Sort Tabs. This is disabled by default and can be enabled in settings to automatically sort opened tabs when opening/closing files.
+
+13. Sidebar Commands/Events
+	I wouldn't recommend using any other plugins that make changes to the sidebar, your experience with the sidebar will only be worse because almost all available sidebar plugins are integrated into sublime plus.
+
+	- Reveal file in sidebar. Command that will reveal the currently opened file in the sidebar and focus on the sidebar
+	- Auto hide sidebar on focus. Disabled by default, will automatically hide the sidebar when focus changes to a view.
+	- Auto hide sidebar after keystrokes. Disabled by default, will automatically hide the side bar after X keystrokes have been made.
+	- Sidebar Hover. Open the sidebar when hovering over the gutter. Disabled by default, can be enabled in settings.
+	- Menu Commands: Copy relative path, copy absolute path, copy name, open/run, duplicate, move, and delete have all been added to the sidebar context menu.
+
+### Color Schemes
+
+45 color custom color schemes are included with Sublime Plus
+
+### Themes
+
+3 custom UI themes are included: Dementive, Github Dark, and Brackets
+
+### Syntax
+
+A "mini" version of the great package dev plugin that only contains the syntaxes has been included.
+
+
+### Settings
 
 There are a wide variety of customizable settings for many of the plugins features that can all be accessed from the main preferences menu.
 
-Main features are: Many new context, tab, and sidebar menu commands. Greatly improved sidebar opening, navigation, and management.
-Many new keybindings to make navigation of the buffer and ui feel more natural.
 
-Many of the commands have keybindings but some are only in certain menus and others are only avaibable in the command palette.
-to see all the commands added by the plugin look through the .sublime-menu, .sublime-keymap, and .sublime-commands files.
+### Keybindings
+
+Many new keybindings have been added to make navigation of the buffer and ui feel more natural.
+
+By default the keybindings file for this plugin is completely commented out, this is to prevent conflicts with other packages and so users can customize keybindings to their liking.
+I recommend using the keybindings that are commented out by simply copying the default file into your keybindings in your user folder and then unccomenting all of them, then make any changes you feel are necessary from there.
+
+Keybindings can easily be edited from the main preferences menu.
 
 # Additional Plugins
 
-The themes in this plugin support file icon customization via the [A File Icon](https://packagecontrol.io/packages/A%20File%20Icon)
-
-I recommend you install it for a better experience with the sidebar.
-
 Some other plugins that work great with sublime plus are:
-[LSP](https://packagecontrol.io/packages/LSP)
-[Git](https://packagecontrol.io/packages/Git)
-[Git Gutter](https://packagecontrol.io/packages/GitGutter)
 
-# Notes
-
-I wouldn't recommend using too many other plugins that change menus or a lot of keybindings with this plugin.
-Sublime Plus changes a lot of menus and keybindings.
-So additional plugins can make the sublime experience worse by clogging up the menus and making keybindings confusing.
-This is especially true for any other plugins that change the Sidebar.
+- [Terminus](https://packagecontrol.io/packages/Terminus) - Fully working terminal directly in sublime text
+- [LSP](https://packagecontrol.io/packages/LSP) - Amazing Language Server support that turns sublime into a full feature IDE for almost all languages
+- [Git](https://packagecontrol.io/packages/Git) - Very helpful Git integration that adds all the useful git commands directly into the editor
+- [Git Gutter](https://packagecontrol.io/packages/GitGutter) - Hover over diffs in the gutter to get a detailed breakdown of git diffs
+- [A File Icon](https://packagecontrol.io/packages/A%20File%20Icon) - This is required to have file icons in the sidebar for the custom themes, I highly recommend using it.

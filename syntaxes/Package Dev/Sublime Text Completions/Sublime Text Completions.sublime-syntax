@@ -1,0 +1,409 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Sublime Text Completions (JSON)
+file_extensions:
+  - sublime-completions
+scope: source.json.sublime.completions
+
+variables:
+  kinds: (?:ambiguous|function|keyword|markup|namespace|navigation|snippet|type|variable)
+
+  # Excerpts from HTML.sublime-syntax
+  ascii_space: '\t\n\f '
+  attribute_name_char: '[{{ascii_space}}=/>]'
+  attribute_name_start: (?=[^{{attribute_name_char}}])
+  attribute_name_break: (?={{attribute_name_char}})
+  unquoted_attribute_start: (?=[^{{ascii_space}}=>])
+  unquoted_attribute_break: (?=[{{ascii_space}}]|/?>)
+  tag_name_char: '[^{{ascii_space}}/<>]'
+  tag_name_break: (?=[^{{tag_name_char}}])
+
+contexts:
+  main:
+    - match: (?=\{)
+      push: main-mapping
+    - include: expect-mapping-rest
+
+  main-mapping:
+    - match: \{
+      scope: punctuation.section.mapping.begin.json
+      push:
+        - meta_scope: meta.completions.collection.sublime-completions meta.mapping.json
+        - match: \}
+          scope: punctuation.section.mapping.end.json
+          set: only-comments
+        - match: (?=")
+          push: [in-mapping-expect-comma, main-key]
+        - include: expect-key-rest
+
+  main-key:
+    - clear_scopes: 1
+    - match: (")(scope)(")
+      scope: meta.mapping.key.json meta.main-key.sublime-completions string.quoted.double.json
+      captures:
+        1: punctuation.definition.string.begin.json
+        2: keyword.other.main.sublime-completions
+        3: punctuation.definition.string.end.json
+      set: [expect-scope-string-value, expect-colon]
+    - match: (")(completions)(")
+      scope: meta.mapping.key.json meta.main-key.sublime-completions string.quoted.double.json
+      captures:
+        1: punctuation.definition.string.begin.json
+        2: keyword.other.main.sublime-completions
+        3: punctuation.definition.string.end.json
+      set: [expect-completions-sequence-value, expect-colon]
+    - match: '"'
+      scope: punctuation.definition.string.begin.json
+      set:
+        - clear_scopes: 1
+        - meta_scope: meta.mapping.key.json meta.main-key.sublime-completions string.quoted.double.json
+        - match: '"'
+          scope: punctuation.definition.string.end.json
+          set: [expect-any-value, expect-colon]
+
+  expect-completions-sequence-value:
+    - match: (?=\[)
+      push: [mapping-value-meta, completions-sequence-pop]
+    - include: expect-sequence-rest
+
+  completions-sequence-pop:
+    - match: \[
+      scope: meta.completions.sublime-completions punctuation.section.sequence.begin.json
+      set:
+        - meta_scope: meta.sequence.json
+        - meta_content_scope: meta.completions.sublime-completions
+        - match: \]
+          scope: meta.completions.sublime-completions punctuation.section.sequence.end.json
+          pop: true
+        - match: (?=")
+          push: [in-sequence-expect-comma, snippet-string-pop]
+        - match: (?=\{)
+          push: [in-sequence-expect-comma, completions-mapping-pop]
+        - include: comments
+        - match: \S
+          scope: invalid.illegal.expected-mapping-or-string.sublime-completions
+    - include: expect-sequence-rest
+
+  completions-mapping-pop:
+    - match: \{
+      scope: punctuation.section.mapping.begin.json
+      set:
+        - meta_scope: meta.mapping.json
+        - match: \}
+          scope: punctuation.section.mapping.end.json
+          pop: true
+        - match: (?=")
+          push: [in-mapping-expect-comma, completions-key]
+        - include: expect-key-rest
+
+  completions-key:
+    - clear_scopes: 1
+    - match: (\")(trigger)(\")
+      scope: meta.mapping.key.json meta.completions-key.sublime-completions string.quoted.double.json
+      captures:
+        1: punctuation.definition.string.begin.json
+        2: support.function.completions.key.sublime-completions
+        3: punctuation.definition.string.end.json
+      set: [expect-trigger-string-value, expect-colon]
+    - match: (\")(contents)(\")
+      scope: meta.mapping.key.json meta.completions-key.sublime-completions string.quoted.double.json
+      captures:
+        1: punctuation.definition.string.begin.json
+        2: support.function.completions.key.sublime-completions
+        3: punctuation.definition.string.end.json
+      set: [expect-snippet-string-value, expect-colon]
+    - match: (\")(annotation)(\")
+      scope: meta.mapping.key.json meta.completions-key.sublime-completions string.quoted.double.json
+      captures:
+        1: punctuation.definition.string.begin.json
+        2: support.function.completions.key.sublime-completions
+        3: punctuation.definition.string.end.json
+      set: [expect-string-value, expect-colon]
+    - match: (\")(kind)(\")
+      scope: meta.mapping.key.json meta.completions-key.sublime-completions string.quoted.double.json
+      captures:
+        1: punctuation.definition.string.begin.json
+        2: support.function.completions.key.sublime-completions
+        3: punctuation.definition.string.end.json
+      set: [expect-kind-value, expect-colon]
+    - match: (\")(details)(\")
+      scope: meta.mapping.key.json meta.completions-key.sublime-completions string.quoted.double.json
+      captures:
+        1: punctuation.definition.string.begin.json
+        2: support.function.completions.key.sublime-completions
+        3: punctuation.definition.string.end.json
+      set: [expect-details-string-value, expect-colon]
+    - match: '"'
+      scope: punctuation.definition.string.begin.json
+      set:
+        - clear_scopes: 1
+        - meta_scope: meta.mapping.key.json meta.completions-key.sublime-completions string.quoted.double.json
+        - match: '"'
+          scope: punctuation.definition.string.end.json
+          set: [expect-any-value, expect-colon]
+
+  expect-trigger-string-value:
+    - match: (?=")
+      set: [mapping-value-meta, trigger-string-pop]
+    - include: expect-string-rest
+
+  trigger-string-pop:
+    - match: '"'
+      scope: punctuation.definition.string.begin.json
+      set:
+        - meta_scope: string.quoted.double.json meta.trigger.sublime-completions
+        - match: \\t
+          scope: constant.character.escape.json punctuation.separator.trigger.json
+        - include: string-escape
+        - match: '"'
+          scope: punctuation.definition.string.end.json
+          pop: true
+
+  expect-details-string-value:
+    - match: (?=")
+      set: [mapping-value-meta, details-string-pop]
+    - include: expect-string-rest
+
+  details-string-pop:
+    - match: '"'
+      scope: punctuation.definition.string.begin.json
+      set:
+        - meta_scope: string.quoted.double.json meta.details.sublime-completions
+        - include: string-escape
+        - include: html-entities
+        - include: html-tag
+        # TODO: match simple HTML tags
+        # a|b|i|u|em|strong|code|tt
+        - match: '"'
+          scope: punctuation.definition.string.end.json
+          pop: true
+
+  expect-kind-value:
+    - match: (?=\[)
+      set: [mapping-value-meta, kind-tuple-pop]
+    - match: (?=")
+      set: [mapping-value-meta, kind-string-pop]
+    - match: \S
+      scope: invalid.illegal.expected-sequence-or-string.sublime-completions
+
+  kind-tuple-pop:
+    - match: \[
+      scope: meta.kind-tuple.sublime-completions punctuation.section.sequence.begin.json
+      set:
+        - - meta_scope: meta.sequence.json
+          - meta_content_scope: meta.kind-tuple.sublime-completions
+          - match: \]
+            scope: meta.kind-tuple.sublime-completions punctuation.section.sequence.end.json
+            pop: true
+          - include: comments
+          - include: expect-string-rest
+        - in-sequence-expect-comma
+        - in-sequence-string-pop  # description/tooltip
+        - in-sequence-expect-comma
+        - in-sequence-string-pop  # symbol
+        - in-sequence-expect-comma
+        - kind-string-pop
+
+  kind-string-pop:
+    - match: (?=\])
+      pop: true
+    - match: '"'
+      scope: punctuation.definition.string.begin.json
+      set:
+        - meta_scope: string.quoted.double.json meta.kind.sublime-completions
+        - include: string-escape
+        - match: '{{kinds}}'
+          scope: constant.language.kind.sublime-completions
+        - match: '"'
+          scope: punctuation.definition.string.end.json
+          pop: true
+
+  kind-symbol-string-pop:
+    - match: '"'
+      scope: punctuation.definition.string.begin.json
+      set:
+        - meta_scope: string.quoted.double.json meta.kind.sublime-completions
+        - include: string-escape
+        - match: '{{kinds}}'
+          scope: constant.language.kind.sublime-completions
+        - match: '"'
+          scope: punctuation.definition.string.end.json
+          pop: true
+
+  #############################################
+  # Modified excepts from HTML.sublime-syntax
+
+  html-tag:
+    - match: (</?)((?:b|i|u|em|strong|code|tt){{tag_name_break}})
+      captures:
+        1: punctuation.definition.tag.begin.html
+        2: entity.name.tag.inline.any.html
+      push:
+        - meta_scope: meta.tag.inline.any.html
+        - include: tag-end-maybe-self-closing
+        - include: tag-generic-attributes
+    - match: (</?)(?i:a{{tag_name_break}})
+      captures:
+        1: punctuation.definition.tag.begin.html
+        2: entity.name.tag.inline.a.html
+      scope: punctuation.definition.tag.begin.html
+      push:
+        - meta_scope: meta.tag.inline.a.html
+        - include: tag-end-maybe-self-closing
+        - include: tag-generic-attributes
+
+  tag-end-maybe-self-closing:
+    - match: (?=")
+      pop: true
+    - match: /?>
+      scope: punctuation.definition.tag.end.html
+      pop: true
+
+  tag-generic-attributes:
+    - match: '{{attribute_name_start}}'
+      push:
+        - tag-generic-attribute-meta
+        - tag-generic-attribute-equals
+        - tag-generic-attribute-name
+
+  tag-generic-attribute-meta:
+    - meta_scope: meta.attribute-with-value.html
+    - include: immediately-pop
+
+  tag-generic-attribute-name:
+    - meta_scope: entity.other.attribute-name.html
+    - match: (?=")
+      pop: true
+    - match: '{{attribute_name_break}}'
+      pop: true
+    - match: '["''`<]'
+      scope: invalid.illegal.attribute-name.html
+
+  tag-generic-attribute-equals:
+    - match: '='
+      scope: punctuation.separator.key-value.html
+      set: tag-generic-attribute-value
+    - include: else-pop
+
+  tag-generic-attribute-value:
+    - match: (?=")
+      pop: true
+    - match: \\"
+      scope: punctuation.definition.string.begin.html
+      set:
+        - meta_scope: string.quoted.double.html
+        - match: (?=")
+          pop: true
+        - match: \\"
+          scope: punctuation.definition.string.end.html
+          pop: true
+        - include: html-entities
+    - match: "'"
+      scope: punctuation.definition.string.begin.html
+      set:
+        - meta_scope: string.quoted.single.html
+        - match: (?=")
+          pop: true
+        - match: "'"
+          scope: punctuation.definition.string.end.html
+          pop: true
+        - include: html-entities
+    - match: '{{unquoted_attribute_start}}'
+      set:
+        - meta_scope: string.unquoted.html
+        - match: (?=")
+          pop: true
+        - match: '{{unquoted_attribute_break}}'
+          pop: true
+        - match: '["''`<]'
+          scope: invalid.illegal.attribute-value.html
+        - include: html-entities
+    - include: else-pop
+
+  html-entities:
+    - match: (&#[xX])\h+(;)
+      scope: constant.character.entity.hexadecimal.html
+      captures:
+        1: punctuation.definition.entity.html
+        2: punctuation.terminator.entity.html
+    - match: (&#)[0-9]+(;)
+      scope: constant.character.entity.decimal.html
+      captures:
+        1: punctuation.definition.entity.html
+        2: punctuation.terminator.entity.html
+    - match: (&)[a-zA-Z0-9]+(;)
+      scope: constant.character.entity.named.html
+      captures:
+        1: punctuation.definition.entity.html
+        2: punctuation.terminator.entity.html
+
+
+  immediately-pop:
+    - match: ''
+      pop: true
+
+  else-pop:
+    - match: (?=\S|")
+      pop: true
+
+  #############################################
+
+  comments:
+    - include: Sublime JSON.sublime-syntax#comments
+
+  only-comments:
+    - include: Sublime JSON.sublime-syntax#only-comments
+
+  expect-colon:
+    - include: Sublime JSON.sublime-syntax#expect-colon
+
+  in-sequence-expect-comma:
+    - include: Sublime JSON.sublime-syntax#in-sequence-expect-comma
+
+  expect-sequence-rest:
+    - include: Sublime JSON.sublime-syntax#expect-sequence-rest
+
+  in-mapping-expect-comma:
+    - include: Sublime JSON.sublime-syntax#in-mapping-expect-comma
+
+  expect-mapping-rest:
+    - include: Sublime JSON.sublime-syntax#expect-mapping-rest
+
+  string-escape:
+    - include: Sublime JSON.sublime-syntax#string-escape
+
+  expect-any-value:
+    - include: Sublime JSON.sublime-syntax#expect-any-value
+
+  string-pop:
+    - include: Sublime JSON.sublime-syntax#string-pop
+
+  in-sequence-string-pop:
+    - match: (?=\])
+      pop: true
+    - include: Sublime JSON.sublime-syntax#string-pop
+
+  expect-string-rest:
+    - include: Sublime JSON.sublime-syntax#expect-string-rest
+
+  expect-string-value:
+    - include: Sublime JSON.sublime-syntax#expect-string-value
+
+  expect-scope-string-value:
+    - include: Sublime JSON.sublime-syntax#expect-scope-string-value
+
+  expect-snippet-string-value:
+    - include: Sublime JSON.sublime-syntax#expect-snippet-string-value
+
+  snippet-string-pop:
+    - include: Sublime JSON.sublime-syntax#snippet-string-pop
+
+  expect-key-rest:
+    - include: Sublime JSON.sublime-syntax#expect-key-rest
+
+  mapping-value-meta:
+    - clear_scopes: 1
+    - meta_scope: meta.mapping.value.json
+    - match: ''
+      pop: true

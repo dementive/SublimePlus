@@ -1,0 +1,20 @@
+{
+    "scope": "meta.platforms-sequence.sublime-theme - string - comment",
+    "completions": [
+        {
+            "trigger": "linux",
+            "contents": "\"linux\"",
+            "kind": ["snippet", "p", "Platform"],
+        },
+        {
+            "trigger": "osx",
+            "contents": "\"osx\"",
+            "kind": ["snippet", "p", "Platform"],
+        },
+        {
+            "trigger": "windows",
+            "contents": "\"windows\"",
+            "kind": ["snippet", "p", "Platform"],
+        },
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "scope": "meta.kind.sublime-completions",
+
+    "completions": [
+        {
+            "trigger": "ambiguous",
+            "kind": ["type", "k", "kind"],
+        },
+        {
+            "trigger": "function",
+            "kind": ["type", "k", "kind"],
+        },
+        {
+            "trigger": "keyword",
+            "kind": ["type", "k", "kind"],
+        },
+        {
+            "trigger": "markup",
+            "kind": ["type", "k", "kind"],
+        },
+        {
+            "trigger": "namespace",
+            "kind": ["type", "k", "kind"],
+        },
+        {
+            "trigger": "navigation",
+            "kind": ["type", "k", "kind"],
+        },
+        {
+            "trigger": "snippet",
+            "kind": ["type", "k", "kind"],
+        },
+        {
+            "trigger": "type",
+            "kind": ["type", "k", "kind"],
+        },
+        {
+            "trigger": "variable",
+            "kind": ["type", "k", "kind"],
+        },
+    ]
+}

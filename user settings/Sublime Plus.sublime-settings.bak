@@ -1,0 +1,16 @@
+{
+    "git_gui_path": "C:\\Users\\demen\\AppData\\Local\\GitHubDesktop\\GitHubDesktop.exe",
+    "sublime_workspace_directories_list": [
+        "C:\\Users\\demen\\Desktop\\Projects"
+	],
+    "included_auto_save_files_field": [
+        ".rb",
+        ".yml",
+        ".php",
+        ".scala",
+        ".php",
+        ".note",
+        ".notes",
+        ".tsx"
+    ],
+}

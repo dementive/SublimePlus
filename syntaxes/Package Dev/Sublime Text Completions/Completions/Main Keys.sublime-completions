@@ -1,0 +1,17 @@
+{
+    "scope": "meta.completions.collection.sublime-completions - meta.completions.sublime-completions - string - comment",
+    "completions": [
+        {
+            "trigger": "scope",
+            "contents": "\"scope\": \"$1\",$0",
+            "details": "Scope selector",
+            "kind": ["keyword", "k", "main"],
+        },
+        {
+            "trigger": "completions",
+            "contents": "\"completions\": [\n\t$0\n],",
+            "details": "Completions collection",
+            "kind": ["keyword", "k", "main"],
+        },
+    ]
+}

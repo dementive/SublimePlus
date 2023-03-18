@@ -1,0 +1,16 @@
+{
+    "scope": "meta.main-key.sublime-completions",
+
+    "completions": [
+        {
+            "trigger": "scope",
+            "details": "Scope selector",
+            "kind": ["keyword", "k", "main"],
+        },
+        {
+            "trigger": "completions",
+            "details": "Completions collection",
+            "kind": ["keyword", "k", "main"],
+        },
+    ]
+}

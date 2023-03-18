@@ -1,0 +1,55 @@
+{
+    "scope": "meta.inside-plist.plist - (comment | meta.tag | meta.inside-value | meta.inside-dict-key)",
+    "completions": [
+        {
+            "trigger": "array",
+            "contents": "<array>\n\t$0\n</array>",
+            "kind": ["snippet", "t", "tag"],
+        },
+        {
+            "trigger": "data",
+            "contents": "<data>$1</data>",
+            "kind": ["snippet", "t", "tag"],
+        },
+        {
+            "trigger": "date",
+            "contents": "<date>$1</date>",
+            "kind": ["snippet", "t", "tag"],
+        },
+        {
+            "trigger": "dict",
+            "contents": "<dict>\n\t$0\n</dict>",
+            "kind": ["snippet", "t", "tag"],
+        },
+        {
+            "trigger": "false",
+            "contents": "<false />",
+            "kind": ["snippet", "t", "tag"],
+        },
+        {
+            "trigger": "integer",
+            "contents": "<integer>$1</integer>",
+            "kind": ["snippet", "t", "tag"],
+        },
+        {
+            "trigger": "key",
+            "contents": "<key>$1</key>",
+            "kind": ["snippet", "t", "tag"],
+        },
+        {
+            "trigger": "real",
+            "contents": "<real>$1</real>",
+            "kind": ["snippet", "t", "tag"],
+        },
+        {
+            "trigger": "string",
+            "contents": "<string>$1</string>",
+            "kind": ["snippet", "t", "tag"],
+        },
+        {
+            "trigger": "true",
+            "contents": "<true />",
+            "kind": ["snippet", "t", "tag"],
+        },
+    ]
+}

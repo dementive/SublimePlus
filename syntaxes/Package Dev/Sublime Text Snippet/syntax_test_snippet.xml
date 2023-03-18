@@ -1,0 +1,344 @@
+# SYNTAX TEST "Packages/PackageDev/Package/Sublime Text Snippet/Sublime Text Snippet.sublime-syntax"
+<!-- comment -->
+#^^^^^^^^^^^^^^^ comment.block.xml
+#^^^ punctuation.definition.comment.begin.xml
+#            ^^^ punctuation.definition.comment.end.xml
+<snippet>
+    <content><!-- comment --><![CDATA[
+#   ^^^^^^^^^ meta.tag
+#    ^^^^^^^ entity.name.tag.localname meta.toc-list.content
+#   ^ punctuation.definition.tag.begin
+#           ^ punctuation.definition.tag.end
+#            ^^^^^^^^^^^^^^^^ comment.block.xml
+#                            ^^^^^^^^^^^ meta.tag.cdata
+#                            ^^^ punctuation.definition.tag.begin
+#                               ^^^^^ entity.name.tag.cdata
+#                                    ^ punctuation.definition.tag.begin
+#                                     ^ source.sublime.snippet
+      Original: ${1:Hey, Joe!}
+#               ^^^^^^^^^^^^^^ meta.text-substitution
+#              ^ - meta.text-substitution
+#                             ^ - meta.text-substitution
+#               ^^ keyword.other.block
+#                 ^ constant.numeric
+#                  ^ keyword.operator.alternation
+#                            ^ keyword.other.block
+
+Transformation: ${1/./=/g}
+#               ^^^^^^^^^^ meta.text-substitution
+#              ^ - meta.text-substitution
+#                         ^ - meta.text-substitution
+#               ^^ keyword.other.block
+#                 ^ constant.numeric
+#                  ^ keyword.other.regex.start
+#                   ^ keyword.other.any
+#                    ^ keyword.other.regex.mid
+#                      ^ keyword.other.regex.end
+#                       ^ constant.other.regex-modifier
+#                        ^ keyword.other.block
+
+Transformation: ${1/^(\w)|(?:_(\w))/(?1\u$1:)(?2 \u${2}:)/g}
+#                   ^^^^^^^^^^^^^^^ source.regexp
+#                                   ^^^^^^^^^^^^^^^^^^^^^ source.regexp-replacement
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.text-substitution
+#              ^ - meta.text-substitution
+#                                                           ^ - meta.text-substitution
+#               ^^ keyword.other.block
+#                 ^ constant.numeric
+#                  ^ keyword.other.regex.start
+#                   ^ keyword.control.anchor
+#                    ^^^^ meta.group
+#                     ^^ keyword.control.character-class
+#                        ^ keyword.operator.alternation
+#                         ^^^^^^^^^ meta.group
+#                                  ^ keyword.other.regex.mid
+#                                   ^^^^^^^^^ meta.group.conditional
+#                                   ^^^ keyword.other.backref-and-recursion.conditional
+#                                      ^^ keyword.operator.case-conversion
+#                                        ^^ keyword.other.backref-and-recursion
+#                                          ^ keyword.operator.alternation
+#                                           ^ keyword.other.backref-and-recursion.conditional
+#                                            ^^^ keyword.other.backref-and-recursion.conditional
+#                                                ^^ keyword.operator.case-conversion
+#                                                  ^^^^ keyword.other.backref-and-recursion
+#                                                      ^ keyword.operator.alternation
+#                                                       ^ keyword.other.backref-and-recursion.conditional
+#                                                        ^ keyword.other.regex.end
+#                                                         ^ constant.other.regex-modifier
+#                                                          ^ keyword.other.block
+
+      Original: ${1:text_in_snail_case}
+#               ^^ keyword.other.block
+#                 ^ constant.numeric
+#                  ^ keyword.operator.alternation
+#                                     ^ keyword.other.block
+
+First Name: ${1:Joe}
+Second Name: ${2:Bloggs}
+Address: ${3:Main Street 1234}
+User name: ${4:$TM_FULLNAME}
+#          ^^^^^^^^^^^^^^^^^ meta.text-substitution
+#         ^ - meta.text-substitution
+#                           ^ - meta.text-substitution
+#          ^^ keyword.other.block
+#            ^ constant.numeric
+#             ^ keyword.operator.alternation
+#              ^ keyword.other.block
+#               ^^^^^^^^^^^ constant.language
+#                          ^ keyword.other.block
+
+Test: ${1:Nested ${2:Placeholder}}
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.text-substitution
+#                ^^^^^^^^^^^^^^^^ meta.text-substitution meta.text-substitution
+#    ^ - meta.text-substitution
+#                                 ^ - meta.text-substitution
+#     ^^ keyword.other.block
+#       ^ constant.numeric
+#        ^ keyword.operator.alternation
+#                ^^ keyword.other.block
+#                  ^ constant.numeric
+#                   ^ keyword.operator.alternation
+#                               ^^ keyword.other.block
+
+No braces: $1 $SELECTION
+#          ^ keyword.other.block
+#           ^ constant.numeric
+#             ^ keyword.other.block
+#              ^^^^^^^^^ constant.language
+
+Literal dollar: \$5 \\ \}
+#               ^^ constant.character.escape - keyword
+#                 ^ - constant.numeric
+#                   ^^ constant.character.escape.snippet
+#                      ^^ - constant.character.escape
+
+\label{sec:${TM_FILENAME:${SELECTION/(?i:(?<example>á))|\\\w+\{(.*?)\}|\\(.)|(\w)|([^\w\\]+)/(?{5}_:\L$2${3}(?{example}a:\4)\E)/g}}}
+#     ^ - keyword
+#         ^ - keyword
+#          ^ keyword.other.block
+#           ^ keyword.other.block.begin
+#            ^^^^^^^^^^^ constant.language
+#                       ^ keyword.operator.alternation
+#                        ^ keyword.other.block
+#                         ^ keyword.other.block.begin
+#                          ^^^^^^^^^ constant.language
+#                                   ^ keyword.other.regex.start
+#                                    ^^^^^^^^^^^^^^^^^^ meta.group
+#                                                       ^^ constant.character.escape
+#                                                           ^ keyword.operator.quantifier.regexp
+#                                                            ^^ constant.character.escape - keyword
+#                                                                   ^^ constant.character.escape - keyword
+#                                                                                           ^ keyword.other.regex.mid
+#                                                                                            ^^^^^ keyword.other.backref-and-recursion.conditional
+#                                                                                                 ^ meta.literal
+#                                                                                                  ^ keyword.operator.alternation
+#                                                                                                   ^^ keyword.operator.case-conversion
+#                                                                                                     ^^ keyword.other.backref-and-recursion
+#                                                                                                           ^^^^^^^^^^^ keyword.other.backref-and-recursion.conditional
+#                                                                                                                      ^ meta.literal - keyword.other.backref-and-recursion.conditional
+#                                                                                                                        ^^ keyword.other.backref-and-recursion
+#                                                                                                                           ^^ keyword.operator.case-conversion
+#                                                                                                                              ^ keyword.other.regex.end
+#                                                                                                                                ^^ keyword.other.block.end
+#                                                                                                                                  ^ - keyword
+
+stray brackets:
+ ${1/example)/)$$$0\\ \../}
+#^ keyword.other.block
+# ^ keyword.other.block.begin
+#           ^ invalid.illegal
+#            ^ keyword.other.regex.mid
+#             ^ meta.literal
+#              ^^ constant.character.escape
+#                ^^ keyword.other.backref-and-recursion.regexp-replacement
+#                  ^^ constant.character.escape
+#                    ^ meta.literal
+#                     ^^ constant.character.escape
+#                       ^ meta.literal
+#                        ^ keyword.other.regex.end
+#                         ^ keyword.other.block.end
+
+ ${1:default/no/regex$2/}
+#^^^^^^^^^^^^^^^^^^^^^^^ meta.text-substitution
+#   ^ keyword.operator.alternation
+#    ^^^^^^^^^^^^^^^^^^^ string.unquoted.text-substitution
+#           ^ - keyword
+#              ^ - keyword
+#                    ^ keyword.other.block
+#                     ^ constant.numeric
+
+ $ 1.00  $---
+#^ invalid.illegal.unescaped-dollar
+#        ^ invalid.illegal.unescaped-dollar
+
+ ${0:$TM_SELECTED_TEXT\}}
+#  ^ constant
+#     ^^^^^^^^^^^^^^^^ constant.language
+#   ^^ - constant
+#                     ^^ constant.character.escape.snippet
+#                       ^ - constant
+
+${My_Own_Constant}
+# ^^^^^^^^^^^^^^^ constant.other
+
+${1My_Own_Constant}
+# ^^^^^^^^^^^^^^^^ constant.other
+
+${10}
+# ^^ constant.numeric
+
+${1/test/abc/:substituation not valid here}
+#  ^ keyword.other.regex.start
+#       ^ keyword.other.regex.mid
+#           ^ keyword.other.regex.end
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ invalid.illegal.unexpected-token
+#                                         ^ keyword.other.block.end - invalid
+
+${1/test/escaped slash\/real slash/gx} x mode not supported properly in snippets
+#  ^ keyword.other.regex.start
+#       ^ keyword.other.regex.mid
+#                     ^^ constant.character.escape
+#                      ^ - keyword.other.regex.mid
+#                                 ^ keyword.other.regex.end
+#                                  ^ constant.other.regex-modifier
+#                                   ^ invalid.illegal.unexpected-token
+#                                    ^ keyword.other.block.end - invalid
+
+It is possible to include a literal newline in the replacement: ${1/test/_
+ /}.
+#^ keyword.other.regex.end
+# ^ keyword.other.block.end
+
+
+${TM_CURRENT_LINE/^\\s*((?:\/\/[\/!]?|#|%|--|::|(?i:rem)|'|;)\\s*).*/$1/}
+#                          ^^^^ constant.character.escape.regexp
+#                               ^^ constant.character.escape.regexp
+#                                                                      ^ keyword.other.regex.end.snippet
+
+${TM_CURRENT_LINE/^\\s*((?:\\/\1/}
+#                            ^ keyword.other.regex.mid.snippet
+ ]]>snippet<</content>
+#^^^ meta.tag.cdata punctuation.definition.tag.end
+#   ^^^^^^^ source.sublime.snippet
+#          ^ invalid.illegal.missing-entity.xml - source.sublime.snippet
+#           ^^^^^^^^^^ meta.tag - string
+#           ^^ punctuation.definition.tag.begin
+#                    ^ punctuation.definition.tag.end
+    <!-- Optional: Tab trigger to activate the snippet -->
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment
+    <tabTrigger>test-snippet</tabTrigger>
+#   ^^^^^^^^^^^^ meta.tag
+#    ^^^^^^^^^^ meta.toc-list.trigger
+    <!-- Optional: Scope the tab trigger will be active in -->
+    <scope>text <!-- c --></scope>
+#    ^^^^^ meta.toc-list.scope
+#          ^^^^^^^^^^^^^^^ meta.scope.sublime-snippet
+#          ^^^^ string.unquoted.scope-segment
+#               ^^^^^^^^^^ meta.scope.sublime-snippet comment.block.xml
+</snippet>
+
+<!-- NOTE: multiple payloads inside a snippet file are not supported
+           but they are in this test file to avoid the need for using multiple
+           test files, and to test the interactions between different scenarios
+-->
+
+<content> no cdata ${1} </content>
+#                  ^^^^ meta.text-substitution
+#                  ^^ keyword.other.block
+#                    ^ constant.numeric
+#                     ^ keyword.other.block
+#                       ^^^^^^^^^^ meta.tag
+
+<content>
+    <![CDATA[ cdata on a
+    different line ${1} ]]> </content>
+#                  ^^^^ meta.text-substitution
+#                  ^^ keyword.other.block
+#                    ^ constant.numeric
+#                     ^ keyword.other.block
+
+<content>
+    <![CDATA[ example ${1} ]]>
+#            ^^^^^^^^^^^^^^ string.unquoted.cdata.xml - string.unquoted.cdata.xml string.unquoted.cdata.xml
+#                     ^^ keyword.other.block
+#                       ^ constant.numeric
+#                        ^ keyword.other.block
+
+    <![CDATA[ example ${1} ]]>
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^ invalid.illegal.multiple-cdata-not-allowed
+#  ^ - invalid
+#                             ^ - invalid
+</content>
+#^^^^^^^^^ meta.tag.xml
+# ^^^^^^^ entity.name.tag.localname.xml
+
+<content>
+    <![CDATA[ example </content> ${1} ]]>
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.cdata
+#   ^^^ punctuation.definition.tag.begin
+#      ^^^^^ entity.name.tag.cdata.xml
+#           ^ punctuation.definition.tag.begin.xml - string
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^ string
+#                                     ^ - string
+#                     ^^^^^^^^^^ - entity.name.tag
+#                                ^^^^ meta.text-substitution
+#                                ^^ keyword.other.block
+#                                  ^ constant.numeric
+#                                   ^ keyword.other.block
+#                                     ^^^ punctuation.definition.tag.end
+</content>
+#^^^^^^^^^ meta.tag
+
+<scope>text.html &amp; test</scope>
+#      ^^^^ string.unquoted.scope-segment
+#          ^ punctuation.separator.scope-segments
+#           ^^^^ string.unquoted.scope-segment
+#                ^^^^^ keyword.operator.with.scope-selector
+#                      ^^^^ string.unquoted.scope-segment
+<scope><![CDATA[text.html &amp; test]]></scope>
+#      ^^^^^^^^^ invalid.illegal
+#               ^^^^ string.unquoted.scope-segment
+#                   ^ punctuation.separator.scope-segments
+#                    ^^^^ string.unquoted.scope-segment
+#                         ^^^^^ keyword.operator.with
+#                               ^^^^ string.unquoted.scope-segment
+#                                   ^^^ invalid.illegal
+<scope>text.html &amp; test
+#                          ^ invalid.illegal.newline-not-supported-here.sublime-snippet
+</scope>
+
+<scope>(source.c | source.c++) &amp; entity, (&amp;) | entity</scope>
+#      ^ punctuation.section.group.begin.scope-selector
+#       ^^^^^^ string.unquoted.scope-segment.scope-selector
+#             ^ punctuation.separator.scope-segments.scope-selector
+#              ^ string.unquoted.scope-segment.scope-selector
+#                ^ keyword.operator.or.scope-selector
+#                  ^^^^^^ string.unquoted.scope-segment.scope-selector
+#                        ^ punctuation.separator.scope-segments.scope-selector
+#                         ^^^ string.unquoted.scope-segment.scope-selector
+#                            ^ punctuation.section.group.end.scope-selector
+#                              ^^^^^ keyword.operator.with.scope-selector
+#                                    ^^^^^^ string.unquoted.scope-segment.scope-selector
+#                                          ^ keyword.operator.or.scope-selector
+#                                            ^ punctuation.section.group.begin.scope-selector
+#                                             ^^^^^ keyword.operator.with.scope-selector
+#                                                  ^ punctuation.section.group.end.scope-selector
+#                                                    ^ keyword.operator.or.scope-selector
+#                                                      ^^^^^^ string.unquoted.scope-segment.scope-selector
+
+<tabTrigger> </tabTrigger>
+#^^^^^^^^^^ meta.tag.xml entity.name.tag.localname.xml meta.toc-list.trigger.sublime-snippet
+
+<description> </description>
+#^^^^^^^^^^^ meta.tag.xml entity.name.tag.localname.xml meta.toc-list.description.sublime-snippet
+
+
+<unknownTag>fgfg</unknownTag>
+#^^^^^^^^^^ invalid.deprecated.unknown-snippet-tag.sublime-snippet
+#          ^ - invalid
+#               ^^ - invalid
+#                 ^^^^^^^^^^ invalid.deprecated.unknown-snippet-tag.sublime-snippet
+# <- meta.tag
+#^^^^^^^^^^^ meta.tag
+#           ^^^^ - meta.tag
+#               ^^^^^^^^^^^^^ meta.tag

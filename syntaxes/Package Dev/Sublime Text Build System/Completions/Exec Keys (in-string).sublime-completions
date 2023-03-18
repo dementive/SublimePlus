@@ -1,0 +1,75 @@
+{
+    "scope": "meta.main-key.sublime-build",
+    "completions": [
+        {
+            "trigger": "cmd",
+            "details": "Executable & arguments to run",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "shell_cmd",
+            "details": "Command line for the shell",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "file_regex",
+            "details": "Regular expression for build output",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "line_regex",
+            "details": "Regular expression for build output",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "working_dir",
+            "details": "Directory to run in",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "encoding",
+            "details": "Encoding of the build output",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "env",
+            "details": "Environment variable overrides",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "quiet",
+            "details": "Silence debug output",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "kill",
+            "details": "Kill the running process",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "kill_previous",
+            "details": "Kill the previously runnning build",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "update_annotations_only",
+            "details": "Update annotations only",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "word_wrap",
+            "details": "Enable word wrapping for output panel",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "syntax",
+            "details": "Set syntax for output panel",
+            "kind": ["keyword", "k", "exec"],
+        },
+        {
+            "trigger": "path",
+            "details": "Override PATH variable",
+            "kind": ["keyword", "k", "exec"],
+        },
+    ],
+}

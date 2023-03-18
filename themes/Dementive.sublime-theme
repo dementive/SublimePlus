@@ -423,7 +423,7 @@
 		{
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "tree_row", "attributes": ["expandable"]}, {"class": "file_system_entry", "attributes": ["ignored"]}],
-		    "layer0.texture": "SublimePlus/status_icons/status_ignored.png",
+		    "layer0.texture": "SublimePlus/textures/status_ignored.png",
 		    "layer0.tint": "var(sidebar_ignored)"
 		},
 		{
@@ -436,13 +436,13 @@
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "tree_row", "attributes": ["expandable"]}, {"class": "file_system_entry", "attributes": ["ignored"]}],
 		    "settings": {"git_status_icons": "codicons"},
-		    "layer0.texture": "SublimePlus/status_icons/codicons/status_ignored.png",
+		    "layer0.texture": "SublimePlus/textures/codicons/status_ignored.png",
 		    "content_margin": [15, 15, 0, 0]
 		},
 		{
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["untracked"]}],
-		    "layer0.texture": "SublimePlus/status_icons/status_untracked.png",
+		    "layer0.texture": "SublimePlus/textures/status_untracked.png",
 		    "layer0.tint": "var(sidebar_untracked)"
 		},
 		{
@@ -455,13 +455,13 @@
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["untracked"]}],
 		    "settings": {"git_status_icons": "codicons"},
-		    "layer0.texture": "SublimePlus/status_icons/codicons/status_untracked.png",
+		    "layer0.texture": "SublimePlus/textures/codicons/status_untracked.png",
 		    "content_margin": [15, 15, 0, 0]
 		},
 		{
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["added"]}],
-		    "layer0.texture": "SublimePlus/status_icons/status_added.png",
+		    "layer0.texture": "SublimePlus/textures/status_added.png",
 		    "layer0.tint": "var(sidebar_added)"
 		},
 		{
@@ -474,13 +474,13 @@
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["added"]}],
 		    "settings": {"git_status_icons": "codicons"},
-		    "layer0.texture": "SublimePlus/status_icons/codicons/status_added.png",
+		    "layer0.texture": "SublimePlus/textures/codicons/status_added.png",
 		    "content_margin": [15, 15, 0, 0]
 		},
 		{
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["modified"]}],
-		    "layer0.texture": "SublimePlus/status_icons/status_modified.png",
+		    "layer0.texture": "SublimePlus/textures/status_modified.png",
 		    "layer0.tint": "var(sidebar_modified)"
 		},
 		{
@@ -493,13 +493,13 @@
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["modified"]}],
 		    "settings": {"git_status_icons": "codicons"},
-		    "layer0.texture": "SublimePlus/status_icons/codicons/status_modified.png",
+		    "layer0.texture": "SublimePlus/textures/codicons/status_modified.png",
 		    "content_margin": [15, 15, 0, 0]
 		},
 		{
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["staged"]}],
-		    "layer0.texture": "SublimePlus/status_icons/status_staged.png",
+		    "layer0.texture": "SublimePlus/textures/status_staged.png",
 		    "layer0.tint": "var(sidebar_staged)"
 		},
 		{
@@ -512,13 +512,13 @@
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["staged"]}],
 		    "settings": {"git_status_icons": "codicons"},
-		    "layer0.texture": "SublimePlus/status_icons/codicons/status_staged.png",
+		    "layer0.texture": "SublimePlus/textures/codicons/status_staged.png",
 		    "content_margin": [15, 15, 0, 0]
 		},
 		{
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["missing"]}],
-		    "layer0.texture": "SublimePlus/status_icons/status_missing.png",
+		    "layer0.texture": "SublimePlus/textures/status_missing.png",
 		    "layer0.tint": "var(sidebar_missing)"
 		},
 		{
@@ -531,13 +531,13 @@
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["missing"]}],
 		    "settings": {"git_status_icons": "codicons"},
-		    "layer0.texture": "SublimePlus/status_icons/codicons/status_missing.png",
+		    "layer0.texture": "SublimePlus/textures/codicons/status_missing.png",
 		    "content_margin": [15, 15, 0, 0]
 		},
 		{
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["deleted"]}],
-		    "layer0.texture": "SublimePlus/status_icons/status_deleted.png",
+		    "layer0.texture": "SublimePlus/textures/status_deleted.png",
 		    "layer0.tint": "var(sidebar_deleted)"
 		},
 		{
@@ -550,13 +550,13 @@
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["deleted"]}],
 		    "settings": {"git_status_icons": "codicons"},
-		    "layer0.texture": "SublimePlus/status_icons/codicons/status_deleted.png",
+		    "layer0.texture": "SublimePlus/textures/codicons/status_deleted.png",
 		    "content_margin": [15, 15, 0, 0]
 		},
 		{
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["unmerged"]}],
-		    "layer0.texture": "SublimePlus/status_icons/status_unmerged.png",
+		    "layer0.texture": "SublimePlus/textures/status_unmerged.png",
 		    "layer0.tint": "var(sidebar_unmerged)"
 		},
 		{
@@ -569,7 +569,7 @@
 		    "class": "vcs_status_badge",
 		    "parents": [{"class": "file_system_entry", "attributes": ["unmerged"]}],
 		    "settings": {"git_status_icons": "codicons"},
-		    "layer0.texture": "SublimePlus/status_icons/codicons/status_unmerged.png",
+		    "layer0.texture": "SublimePlus/textures/codicons/status_unmerged.png",
 		    "content_margin": [15, 15, 0, 0]
 		},
 		{

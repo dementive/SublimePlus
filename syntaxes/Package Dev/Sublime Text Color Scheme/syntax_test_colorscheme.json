@@ -1,0 +1,217 @@
+// SYNTAX TEST "Packages/PackageDev/Package/Sublime Text Color Scheme/Sublime Text Color Scheme.sublime-syntax"
+
+// <- source.json.sublime.color-scheme
+
+// comment
+// ^^^^^^^ comment.line.double-slash - meta.color-scheme.collection
+{
+    "author": "PackageDev contributors",
+//   ^^^^^^ meta.color-scheme.collection.sublime-color-scheme meta.mapping.key.json meta.main-key.sublime-color-scheme string.quoted.double.json keyword.other.main.sublime-color-scheme
+//          ^ punctuation.separator.mapping.key-value.json
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json
+//                                     ^ punctuation.separator.mapping.pair.json
+    "name": "Just a syntax test, nothing to see here",
+//  ^^^^^^ meta.main-key
+//          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json string.quoted.double.json
+    "variables":
+//  ^ punctuation.definition.string.begin.json
+//  ^^^^^^^^^^^ meta.mapping.key.json meta.main-key.sublime-color-scheme string.quoted.double.json
+//            ^ punctuation.definition.string.end.json
+//             ^ punctuation.separator.mapping.key-value.json
+    {
+//  ^ meta.variables.sublime-color-scheme meta.mapping.json punctuation.section.mapping.begin.json
+        "color_radical_red": "#F92672", // http://chir.ag/projects/name-that-color/#F92672
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value meta.mapping - meta.mapping meta.mapping meta.mapping
+//      ^^^^^^^^^^^^^^^^^^^ meta.mapping.key.json string.quoted.double.json meta.variable-name.sublime-color-scheme
+//       ^^^^^^^^^^^^^^^^^ entity.name.variable.sublime-color-scheme
+//                         ^ punctuation.separator.mapping.key-value.json
+//                           ^^^^^^^^^ string.quoted.double.json meta.color.sublime-color-scheme
+//                           ^ punctuation.definition.string.begin.json
+//                                   ^ punctuation.definition.string.end.json
+//                                    ^ punctuation.separator.mapping.pair.json
+//                            ^ punctuation.definition.constant.css
+//                             ^^^^^^ constant.other.color.rgb-value.css
+        "color_pear_green": "#A6E22E",
+
+    },
+//  ^ punctuation.section.mapping.end.json
+//   ^ punctuation.separator.mapping.pair.json - meta.variables.sublime-color-scheme
+    "globals":
+//  ^^^^^^^^^ meta.main-key.sublime-color-scheme string.quoted.double.json
+//   ^^^^^^^ keyword.other.main.sublime-color-scheme
+    {
+//  ^ meta.globals.sublime-color-scheme meta.mapping.json punctuation.section.mapping.begin.json
+        "accent": "var(color_pear_green)",
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value meta.mapping - meta.mapping meta.mapping meta.mapping
+//      ^^^^^^^^ meta.mapping.key.json meta.globals-key.sublime-color-scheme string.quoted.double.json
+//      ^ punctuation.definition.string.begin.json
+//             ^ punctuation.definition.string.end.json
+//       ^^^^^^ entity.name.globals.sublime-color-scheme
+//              ^ punctuation.separator.mapping.key-value.json
+//                ^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json string.quoted.double.json meta.color.sublime-color-scheme
+//                ^ punctuation.definition.string.begin.json
+//                 ^^^ support.function.var.css
+//                    ^ punctuation.section.group.begin.css
+//                     ^^^^^^^^^^^^^^^^ variable.other.sublime-color-scheme
+//                                     ^ punctuation.section.group.end.css
+//                                      ^ punctuation.definition.string.end.json
+//                                       ^ punctuation.separator.mapping.pair.json
+        "stack_guide": "#9D550FB0",
+        "shadow_width": "12",
+        "shadow": "#cccccc",
+        "caret": "var(unclosed_var",
+//                    ^^^^^^^^^^^^ variable.other.sublime-color-scheme
+//                                ^ punctuation.definition.string.end.json
+        "invisibles": "#F8F8F239",
+        "brackets_options": "squiggly_underline stippled_underline",
+//                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.underline-style.sublime-color-scheme string.quoted.double.json
+//                           ^^^^^^^^^^^^^^^^^^ support.constant.underline-style.color-scheme
+//                                              ^^^^^^^^^^^^^^^^^^ support.constant.underline-style.color-scheme
+        "bracket_contents_options": "squiggly_underline bold italic",
+//                                   ^^^^^^^^^^^^^^^^^^ support.constant.underline-style.color-scheme
+//                                                      ^^^^ support.constant.font-style.color-scheme
+//                                                           ^^^^^^ support.constant.font-style.color-scheme
+        "implicit_selection_foreground": "true",
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ entity.name.globals.sublime-color-scheme
+//                                       ^^^^^^ meta.boolean-string.sublime-color-scheme string.quoted.double.json - invalid
+//                                        ^^^^ support.constant.boolean-string.color-scheme
+//                                             ^ punctuation.separator.mapping.pair.json
+        "implicit_selection_foreground": false,
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ entity.name.globals.sublime-color-scheme
+//                                       ^^^^^ invalid.illegal.expected-string.sublime
+//                                            ^ punctuation.separator.mapping.pair.json
+        "random": "nope",
+//      ^^^^^^^^^^^^^^^^^ meta.mapping.value meta.mapping - meta.mapping meta.mapping meta.mapping
+//      ^^^^^^^^ meta.mapping.key.json meta.globals-key.sublime-color-scheme string.quoted.double.json
+//       ^^^^^^ - entity.name
+//              ^ punctuation.separator.mapping.key-value.json
+//                ^^^^^^ meta.mapping.value.json string.quoted.double.json
+//                      ^ punctuation.separator.mapping.pair.json
+        "selection_border_width": "1",
+//       ^^^^^^^^^^^^^^^^^^^^^^ entity.name.globals.sublime-color-scheme
+//                                ^^^ meta.mapping.value.json string.quoted.double.json
+//                                 ^ constant.numeric.json
+        "selection_border": "#ffffff40",
+//       ^^^^^^^^^^^^^^^^ meta.globals-key string.quoted.double entity.name.globals
+//                           ^^^^^^^^^ constant.other.color.rgba-value
+        "selection_corner_style": "round",
+//       ^^^^^^^^^^^^^^^^^^^^^^ entity.name.globals.sublime-color-scheme
+//                                 ^^^^^ support.constant.corner-style.color-scheme
+        "selection_corner_radius": "4",
+//       ^^^^^^^^^^^^^^^^^^^^^^^ entity.name.globals.sublime-color-scheme
+//                                 ^^^ meta.mapping.value.json string.quoted.double.json
+//                                  ^ constant.numeric.json
+        "fold_marker": "#ffcc00",
+//       ^^^^^^^^^^^ entity.name.globals.sublime-color-scheme
+//                      ^^^^^^^ constant.other.color.rgb-value.css
+
+        "sheet_css": "html { background: blue; }",
+//       ^^^^^^^^^ entity.name.globals.sublime-color-scheme
+//                   ^ string.quoted.double.json meta.css.sublime-color-scheme punctuation.definition.string.begin.json
+//                    ^^^^ source.css meta.selector.css
+    },
+//  ^ punctuation.section.mapping.end.json
+//   ^ punctuation.separator.mapping.pair.json
+
+    "rules":
+//  ^^^^^^^ meta.color-scheme.collection.sublime-color-scheme meta.mapping.key.json meta.main-key.sublime-color-scheme string.quoted.double.json
+//  ^ punctuation.definition.string.begin.json
+//   ^^^^^ keyword.other.main.sublime-color-scheme
+//        ^ punctuation.definition.string.end.json
+    [
+//  ^ meta.sequence.json punctuation.section.sequence.begin.json
+        {
+//      ^ meta.rules.collection.sublime-color-scheme meta.sequence.json meta.rule.sublime-color-scheme meta.mapping.json punctuation.section.mapping.begin.json
+            "scope": "punctuation.definition.hard-line-break.markdown",
+//          ^^^^^^^ meta.rules.collection.sublime-color-scheme meta.sequence.json meta.rule.sublime-color-scheme meta.mapping.key.json meta.rule-key.sublime-color-scheme string.quoted.double.json
+//           ^^^^^ keyword.other.rule.sublime-color-scheme
+//                 ^ punctuation.separator.mapping.key-value.json
+//                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.scope-selector.sublime string.quoted.double.json
+//                   ^ punctuation.definition.string.begin.json
+//                                                                   ^ punctuation.definition.string.end.json
+//                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.scope-selector
+//                    ^^^^^^^^^^^ string.unquoted.scope-segment.scope-selector
+//                               ^ punctuation.separator.scope-segments.scope-selector
+            "foreground": "var(color_radical_red)",
+//          ^ punctuation.definition.string.begin.json
+//           ^^^^^^^^^^ keyword.other.rule.sublime-color-scheme
+//                     ^ punctuation.definition.string.end.json
+//                         ^^^^^^^^^^^^^^^^^^^^^^ source.css-color meta.function-call.var.css
+//                         ^^^ support.function.var.css
+//                             ^^^^^^^^^^^^^^^^^ variable.other.sublime-color-scheme
+//                                               ^ punctuation.definition.string.end.json
+            "foreground": "blend(hsl(219, 10%, 6%) 50%)",
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json string.quoted.double.json meta.color.sublime-color-scheme
+//                        ^ punctuation.definition.string.begin.json
+//                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.css-color meta.function-call
+//                               ^^^^^^^^^^^^^^^^^ meta.function-call meta.function-call
+            "foreground": "color(var(color_radical_red) tint(20%))",
+//                                   ^^^^^^^^^^^^^^^^^ variable.other.sublime-color-scheme
+            "foreground": "#F8F8F0",
+        },
+        {
+            "scope": "meta.structure.dictionary.key.json string.quoted.double.json",
+            "foreground": "#A6E22E",
+            "font_style": "bold italic",
+//                        ^^^^^^^^^^^^^ meta.mapping.value.json meta.font-style.sublime-color-scheme string.quoted.double.json
+//           ^^^^^^^^^^ meta.rule-key.sublime-color-scheme string.quoted.double.json keyword.other.rule.sublime-color-scheme
+//                         ^^^^ support.constant.font-style.color-scheme
+//                             ^ - support
+//                              ^^^^^^ support.constant.font-style.color-scheme
+        },
+        {
+            "name": "I have a name",
+//          ^^^^^^ meta.rule-key.name.sublime-color-scheme string.quoted.double.json
+//                ^ punctuation.separator.mapping.key-value.json
+//                  ^^^^^^^^^^^^^^^ string.quoted.double.json
+            "scope": "text.html.markdown & (punctuation.definition.list_item, punctuation.definition.blockquote, punctuation.definition.italic, punctuation.definition.bold, punctuation.definition.image, punctuation.definition.link)",
+            "foreground": "#F83333",
+        },
+        {
+            "scope": "entity.name.section.markdown, punctuation.accessor, punctuation.separator.continuation.line, punctuation.separator.context-name.sublime-syntax, punctuation.separator.namespace, punctuation.definition.block, punctuation.section.interpolation",
+            "foreground": "var(color_radical_red)",
+        },
+        {
+            "scope": "variable.other, meta.generic-name - entity.name",
+            "foreground":
+            [
+//          ^ meta.mapping.value.json meta.sequence.json meta.foreground.color-list.sublime-color-scheme punctuation.section.sequence.begin.json
+                "hsl(100, 100%, 56%)",
+//              ^^^^^^^^^^^^^^^^^^^^^ meta.foreground.color-list.sublime-color-scheme string.quoted.double.json meta.color.sublime-color-scheme
+//               ^^^ support.function.color.css
+//                   ^^^ constant.numeric
+//              ^ punctuation.definition.string.begin.json
+//                                  ^ punctuation.definition.string.end.json
+//                                   ^ punctuation.separator.sequence.json
+                "hsl(200, 100%, 56%)",
+//              ^^^^^^^^^^^^^^^^^^^^^ meta.foreground.color-list.sublime-color-scheme string.quoted.double.json meta.color.sublime-color-scheme
+//               ^^^ support.function.color.css
+//                   ^^^ constant.numeric
+//              ^ punctuation.definition.string.begin.json
+//                                  ^ punctuation.definition.string.end.json
+//                                   ^ punctuation.separator.sequence.json
+            ],
+//          ^ meta.foreground.color-list.sublime-color-scheme punctuation.section.sequence.end.json
+//           ^ punctuation.separator.mapping.pair.json
+        },
+        {
+            "scope": "variable.other.readwrite",
+            "background": "color(var(color_radical_red) blend(#FFF 50% hsl))",
+//                               ^^^ support.function.var.css
+//                                                           ^^^^^^^^^^^^^^ source.css-color meta.function-call.arguments.css meta.group.css meta.function-call.arguments.css meta.group.css
+//                                                           ^ punctuation.section.group.begin.css
+//                                                            ^^^^ constant.other.color.rgb-value.css
+//                                                                 ^^^ meta.number.integer.decimal.css
+//                                                                     ^^^ keyword.other.color-space.css
+//                                                                        ^^ punctuation.section.group.end.css
+            "foreground_adjust": "l(+ 50%)",
+//                               ^^^^^^^^^^ meta.color-adjuster.sublime-color-scheme
+//                                ^^^^^^^^ source.css-color-adjuster meta.function-call
+        }
+    ],
+}
+
+  ,[]//fgfg
+// <- - invalid.illegal
+//^^^ invalid.illegal.expected-comment-or-eof.sublime
+//   ^^ comment.line.double-slash - invalid.illegal

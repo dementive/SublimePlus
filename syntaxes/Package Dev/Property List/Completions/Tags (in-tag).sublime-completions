@@ -1,0 +1,49 @@
+{
+    "scope": "text.xml.plist meta.tag.xml - punctuation.definition.tag.begin.xml",
+    "completions": [
+        {
+            "trigger": "array",
+            "kind": ["type", "t", "tag"],
+        },
+        {
+            "trigger": "data",
+            "kind": ["type", "t", "tag"],
+        },
+        {
+            "trigger": "date",
+            "kind": ["type", "t", "tag"],
+        },
+        {
+            "trigger": "dict",
+            "kind": ["type", "t", "tag"],
+        },
+        {
+            "trigger": "false",
+            "kind": ["type", "t", "tag"],
+        },
+        {
+            "trigger": "integer",
+            "kind": ["type", "t", "tag"],
+        },
+        {
+            "trigger": "key",
+            "kind": ["type", "t", "tag"],
+        },
+        {
+            "trigger": "plist",
+            "kind": ["type", "t", "tag"],
+        },
+        {
+            "trigger": "real",
+            "kind": ["type", "t", "tag"],
+        },
+        {
+            "trigger": "string",
+            "kind": ["type", "t", "tag"],
+        },
+        {
+            "trigger": "true",
+            "kind": ["type", "t", "tag"],
+        },
+    ]
+}

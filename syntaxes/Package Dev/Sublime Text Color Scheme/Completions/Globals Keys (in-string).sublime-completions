@@ -1,0 +1,260 @@
+{
+    "scope": "meta.globals-key.sublime-color-scheme",
+    "completions": [
+        {
+            "trigger": "accent",
+            "details": "Accent color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "active_guide",
+            "details": "Guide color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "background",
+            "details": "Background color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "block_caret",
+            "details": "Block caret color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "block_caret_corner_style",
+            "details": "Block caret corner style",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "block_caret_border",
+            "details": "Block caret border color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "block_caret_underline",
+            "details": "Color of the block caret in selection",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "block_caret_corner_radius",
+            "details": "Block caret corner radius",
+            "kind": ["keyword", "k", "globals"],
+        },        
+        {
+            "trigger": "bracket_contents_foreground",
+            "details": "Foreground color of highlighted brackets (inside)",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "bracket_contents_options",
+            "details": "Font options of highlighted brackets (inside)",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "brackets_foreground",
+            "details": "Foreground color of highlighted brackets",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "brackets_options",
+            "details": "Font options of highlighted brackets",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "caret",
+            "details": "Caret color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "find_highlight",
+            "details": "Color of find highlights",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "find_highlight_foreground",
+            "details": "Foreground color of find highlights",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "fold_marker",
+            "details": "Folding marker color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "foreground",
+            "details": "Text color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "guide",
+            "details": "Guide color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "gutter",
+            "details": "Gutter color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "gutter_foreground",
+            "details": "Gutter foreground color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "gutter_foreground_highlight",
+            "details": "Gutter foreground highlighted color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "highlight",
+            "details": "Border color of inactive search results",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "implicit_selection_foreground",
+            // "details": "TODO",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "inactive_selection",
+            "details": "Inactive selection color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "inactive_selection_border",
+            "details": "Inactive selection border color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "inactive_selection_foreground",
+            "details": "Foreground color of inactive selection",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "invisibles",
+            "details": "Color of whitspace characters",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "line_diff_added",
+            "details": "Color of added minidiff gutter marks",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "line_diff_deleted",
+            "details": "Color of deleted minidiff gutter marks",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "line_diff_modified",
+            "details": "Color of modified minidiff gutter marks",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "line_diff_width",
+            "details": "Width of minidiff gutter marks",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "line_highlight",
+            "details": "Background color of the active line",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "minimap_border",
+            "details": "Minimap border color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "misspelling",
+            "details": "Color of spellchecker annotations",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "phantom_css",
+            "details": "CSS overrides for phantom views",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "popup_css",
+            "details": "CSS overrides for popups",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "rulers",
+            "details": "Ruler color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "scroll_highlight",
+            "details": "Search results color on scroll bar",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "scroll_selected_highlight",
+            "details": "Search results color of selected on scroll bar",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "selection",
+            "details": "Selection color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "selection_border",
+            "details": "Selection border color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "selection_border_width",
+            "details": "Selection border width",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "selection_corner_radius",
+            "details": "Selection corner radius",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "selection_corner_style",
+            "details": "Selection corner style",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "selection_foreground",
+            "details": "Selection foreground color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "shadow",
+            "details": "Shadow color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "shadow_width",
+            "details": "Shadow width",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "sheet_css",
+            "details": "CSS overrides for sheets",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "stack_guide",
+            "details": "Stack guide color",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "tags_foreground",
+            "details": "Color of active tags",
+            "kind": ["keyword", "k", "globals"],
+        },
+        {
+            "trigger": "tags_options",
+            "details": "Font options for active tags",
+            "kind": ["keyword", "k", "globals"],
+        },
+    ]
+}

@@ -1,0 +1,113 @@
+%YAML 1.2
+---
+name: Sublime Text Snippet (XML)
+scope: text.xml.sublime.snippet
+file_extensions:
+  - sublime-snippet
+first_line_match: '<snippet>'
+
+contexts:
+  main:
+    - include: comments
+    - match: '(<)(content)(>)'
+      scope: meta.tag.xml
+      captures:
+        1: punctuation.definition.tag.begin.xml
+        2: entity.name.tag.localname.xml meta.toc-list.content.sublime-snippet
+        3: punctuation.definition.tag.end.xml
+      push:
+        - include: comments
+        - match: '(<!\[)(CDATA)(\[)'
+          captures:
+            1: punctuation.definition.tag.begin.xml
+            2: entity.name.tag.cdata.xml
+            3: punctuation.definition.tag.begin.xml
+          set:
+            - meta_scope: meta.tag.cdata.xml
+            - meta_content_scope: string.unquoted.cdata.xml
+            - match: (?=\]\]>)
+              set:
+                - match: '\]\]>'
+                  scope: meta.tag.cdata.xml punctuation.definition.tag.end.xml
+                  set:
+                    - include: comments
+                    - match: '<!\[CDATA\['
+                      push:
+                        - meta_scope: invalid.illegal.multiple-cdata-not-allowed.sublime-snippet
+                        - match: '\]\]>'
+                          pop: true
+                    - include: inside_content
+            - match: ''
+              push: scope:source.sublime.snippet
+              with_prototype:
+                - match: (?=\]\]>)
+                  pop: true
+        - match: '(?=\S)'
+          set: inside_content
+    - match: '(<)(scope)(>)'
+      scope: meta.tag.xml
+      captures:
+        1: punctuation.definition.tag.begin.xml
+        2: entity.name.tag.localname.xml meta.toc-list.scope.sublime-snippet
+        3: punctuation.definition.tag.end.xml
+      push: # CDATA not supported here
+        - meta_content_scope: meta.scope.sublime-snippet
+        - include: comments
+        - match: '<!\[CDATA\[|\]\]>'
+          scope: invalid.illegal.cdata-not-supported-here.sublime-snippet
+        - match: '\n'
+          scope: invalid.illegal.newline-not-supported-here.sublime-snippet
+        - match: '(?=</scope>)'
+          pop: true
+        - include: scope:source.scope-selector
+      with_prototype:
+        - match: '&amp;'
+          scope: keyword.operator.with.scope-selector
+    - match: '(<)(tabTrigger)(>)'
+      scope: meta.tag.xml
+      captures:
+        1: punctuation.definition.tag.begin.xml
+        2: entity.name.tag.localname.xml meta.toc-list.trigger.sublime-snippet
+        3: punctuation.definition.tag.end.xml
+    - match: '(<)(description)(>)'
+      scope: meta.tag.xml
+      captures:
+        1: punctuation.definition.tag.begin.xml
+        2: entity.name.tag.localname.xml meta.toc-list.description.sublime-snippet
+        3: punctuation.definition.tag.end.xml
+    - match: '<(?!/?(?:snippet|tabTrigger|scope|description)\s*>)/?'
+      scope: punctuation.definition.tag.begin.xml
+      push:
+        - meta_scope: meta.tag.xml
+        - meta_content_scope: invalid.deprecated.unknown-snippet-tag.sublime-snippet
+        - match: '>'
+          scope: punctuation.definition.tag.end.xml
+          pop: true
+        - include: scope:text.xml
+    - include: scope:text.xml
+
+  inside_content:
+    - match: '(</)(content)(>)'
+      scope: meta.tag.xml
+      captures:
+        1: punctuation.definition.tag.begin.xml
+        2: entity.name.tag.localname.xml
+        3: punctuation.definition.tag.end.xml
+      pop: true
+    - include: scope:text.xml
+    - match: ''
+      push: scope:source.sublime.snippet
+      with_prototype:
+        - include: comments
+        - match: (?=<)
+          pop: true
+
+  comments:
+    # this is simplified; actual xml comments are more complicated
+    - match: '<!--'
+      scope: punctuation.definition.comment.begin.xml
+      push:
+        - meta_scope: comment.block.xml
+        - match: '-->'
+          scope: punctuation.definition.comment.end.xml
+          pop: true

@@ -10,6 +10,7 @@ from collections import defaultdict
 
 change_count_trigger = 0
 
+
 def plugin_loaded():
     global close_sidebar_if_opened
     global change_count_trigger

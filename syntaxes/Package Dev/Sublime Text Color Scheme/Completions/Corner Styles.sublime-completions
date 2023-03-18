@@ -1,0 +1,20 @@
+{
+    "scope": "meta.corner-style.sublime-color-scheme",
+    "completions": [
+        {
+            "trigger": "cut",
+            "details": "Triangular",
+            "kind": ["type", "c", "corner style"],
+        },
+        {
+            "trigger": "round",
+            "details": "Rounded",
+            "kind": ["type", "c", "corner style"],
+        },
+        {
+            "trigger": "square",
+            "details": "Square",
+            "kind": ["type", "c", "corner style"],
+        },
+    ]
+}

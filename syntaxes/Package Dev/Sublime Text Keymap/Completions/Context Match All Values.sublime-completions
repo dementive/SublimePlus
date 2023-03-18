@@ -1,0 +1,14 @@
+{
+	"scope": "meta.context.key-value.match-all.sublime-keymap - comment",
+
+	"completions": [
+		{
+			"trigger": "true",
+			"kind": ["snippet", "b", "boolean"],
+		},
+		{
+			"trigger": "false",
+			"kind": ["snippet", "b", "boolean"],
+		},
+	]
+}

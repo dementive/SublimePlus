@@ -1,0 +1,77 @@
+{
+	"scope": "meta.button-name.sublime-mousemap",
+	"completions": [
+		{
+			"trigger": "button1",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button2",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button3",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button4",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button5",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button6",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button7",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button8",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button9",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button10",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button11",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button12",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button13",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button14",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button15",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "button16",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "scroll_up",
+			"kind": ["snippet", "b", "Button"],
+		},
+		{
+			"trigger": "scroll_down",
+			"kind": ["snippet", "b", "Button"],
+		},
+	]
+}

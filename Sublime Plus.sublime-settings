@@ -1,5 +1,10 @@
 {
 
+    // The full path to an executable to open when clicking the repository button in the status bar
+    // none = use the default, which opens sublime merge
+    // Example: "C:\\Users\\YOUR USERNAME HERE\\AppData\\Local\\GitHubDesktop\\GitHubDesktop.exe"
+    "git_gui_path": "none",
+
     //SIDEBAR SETTINGS
     //I think these make the sidebar act more like it "should"
 

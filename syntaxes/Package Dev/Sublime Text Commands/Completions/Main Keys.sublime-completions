@@ -1,0 +1,24 @@
+{
+    "scope": "meta.sublime-commands.collection.sublime-commands meta.mapping - string - comment",
+    "completions": [
+        {
+            "trigger": "caption",
+            "contents": "\"caption\": \"$1\",$0",
+            "details": "Command caption",
+            "kind": ["keyword", "k", "main"],
+        },
+        {
+            "trigger": "command",
+            "contents": "\"command\": \"$1\",$0",
+            "details": "Command name",
+            "kind": ["keyword", "k", "main"],
+        },
+        {
+            "trigger": "platform",
+            "contents": "\"platform\": \"$1\",$0",
+            "details": "Platform name",
+            "kind": ["keyword", "k", "main"],
+        }
+        // args provided by plugin
+    ]
+}

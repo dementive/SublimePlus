@@ -1,0 +1,529 @@
+{
+    "scope": "meta.class-selector.sublime-theme",
+    // https://www.sublimetext.com/docs/themes.html
+    // document.querySelectorAll(".enum:not(.attributes):not(.settings):not(.properties) > dt .element").forEach((e) => console.log(e.textContent))
+    //
+    // 'kind_container' and 'kind_label' are documented twice.
+    "completions": [
+        {
+            "trigger": "title_bar",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "window",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "edit_window",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "switch_project_window",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "sidebar_container",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "sidebar_tree",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "tree_row",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "sidebar_heading",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "file_system_entry",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "sidebar_label",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "close_button",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "disclosure_button_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_folder",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_folder_loading",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_folder_dup",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_file_type",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "vcs_status_badge",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "tabset_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "tab_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "tab_label",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "tab_close_button",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "scroll_tabs_left_button",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "scroll_tabs_right_button",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "show_tabs_dropdown_button",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "tab_connector",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "overlay_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "quick_panel",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "mini_quick_panel_row",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "quick_panel_row",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "kind_container",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "kind_label",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "symbol_container",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "quick_panel_label",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "quick_panel_path_label",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "quick_panel_label hint",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "quick_panel_detail_label",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "sheet_contents",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "text_area_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "grid_layout_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "minimap_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "fold_button_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "popup_control html_popup",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "popup_control auto_complete_popup",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "auto_complete",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "table_row",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "trigger_container",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "auto_complete_label",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "auto_complete_label auto_complete_hint",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "auto_complete_detail_pane",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "auto_complete_info",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "auto_complete_kind_name_label",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "auto_complete_details",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "panel_control find_panel",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "panel_control replace_panel",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "panel_control find_in_files_panel",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "panel_control input_panel",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "panel_control console_panel",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "panel_control output_panel",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "panel_control switch_project_panel",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "panel_grid_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "panel_close_button",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "status_bar",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "panel_button_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "sidebar_button_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "status_container",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "status_button",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "vcs_status",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "vcs_branch_icon",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "vcs_changes_annotation",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "dialog",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "progress_bar_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "progress_gauge_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "scroll_area_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "scroll_bar_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "scroll_track_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "scroll_corner_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "puck_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "text_line_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "dropdown_button_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "button_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_button_group",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_button_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_regex",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_case",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_whole_word",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_wrap",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_in_selection",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_highlight",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_preserve_case",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_context",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_use_buffer",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "icon_use_gitignore",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "label_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "title_label_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "tool_tip_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "tool_tip_label_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "radio_button_list_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "checkbox_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "checkbox_box_control",
+            "kind": ["snippet", "e", "Element"],
+        },
+
+        // The following have been added manually
+        {
+            "trigger": "popup_control annotation_popup",
+            "kind": ["snippet", "e", "Element"],
+        },
+        {
+            "trigger": "annotation_close_button",
+            "kind": ["snippet", "e", "Element"],
+        },
+
+        // overlay_control specializations
+        {
+            "trigger": "overlay_control goto_file",
+            "kind": ["snippet", "o", "overlay type"],
+        },
+        {
+            "trigger": "overlay_control goto_symbol",
+            "kind": ["snippet", "o", "overlay type"],
+        },
+        {
+            "trigger": "overlay_control goto_symbol_in_project",
+            "kind": ["snippet", "o", "overlay type"],
+        },
+        {
+            "trigger": "overlay_control goto_line",
+            "kind": ["snippet", "o", "overlay type"],
+        },
+        {
+            "trigger": "overlay_control goto_word",
+            "kind": ["snippet", "o", "overlay type"],
+        },
+        {
+            "trigger": "overlay_control command_palette",
+            "kind": ["snippet", "o", "overlay type"],
+        },
+
+        // kind_container specializations
+        {
+            "trigger": "kind_container kind_ambiguous",
+            "kind": ["snippet", "k", "kind type"],
+        },
+        {
+            "trigger": "kind_container kind_function",
+            "kind": ["snippet", "k", "kind type"],
+        },
+        {
+            "trigger": "kind_container kind_keyword",
+            "kind": ["snippet", "k", "kind type"],
+        },
+        {
+            "trigger": "kind_container kind_markup",
+            "kind": ["snippet", "k", "kind type"],
+        },
+        {
+            "trigger": "kind_container kind_namespace",
+            "kind": ["snippet", "k", "kind type"],
+        },
+        {
+            "trigger": "kind_container kind_navigation",
+            "kind": ["snippet", "k", "kind type"],
+        },
+        {
+            "trigger": "kind_container kind_snippet",
+            "kind": ["snippet", "k", "kind type"],
+        },
+        {
+            "trigger": "kind_container kind_type",
+            "kind": ["snippet", "k", "kind type"],
+        },
+        {
+            "trigger": "kind_container kind_variable",
+            "kind": ["snippet", "k", "kind type"],
+        },
+        {
+            "trigger": "kind_container kind_color_redish",
+            "kind": ["snippet", "k", "kind color"],
+            "details": "<code>redish</code> quick panel symbols",
+        },
+        {
+            "trigger": "kind_container kind_color_orangish",
+            "kind": ["snippet", "k", "kind color"],
+            "details": "<code>orangish</code> quick panel symbols",
+        },
+        {
+            "trigger": "kind_container kind_color_yellowish",
+            "kind": ["snippet", "k", "kind color"],
+            "details": "<code>yellowish</code> quick panel symbols",
+        },
+        {
+            "trigger": "kind_container kind_color_greenish",
+            "kind": ["snippet", "k", "kind color"],
+            "details": "<code>greenish</code> quick panel symbols",
+        },
+        {
+            "trigger": "kind_container kind_color_cyanish",
+            "kind": ["snippet", "k", "kind color"],
+            "details": "<code>cyanish</code> quick panel symbols",
+        },
+        {
+            "trigger": "kind_container kind_color_bluish",
+            "kind": ["snippet", "k", "kind color"],
+            "details": "<code>bluish</code> quick panel symbols",
+        },
+        {
+            "trigger": "kind_container kind_color_purplish",
+            "kind": ["snippet", "k", "kind color"],
+            "details": "<code>purplish</code> quick panel symbols",
+        },
+        {
+            "trigger": "kind_container kind_color_pinkish",
+            "kind": ["snippet", "k", "kind color"],
+            "details": "<code>pinkish</code> quick panel symbols",
+        },
+        {
+            "trigger": "kind_container kind_color_dark",
+            "kind": ["snippet", "k", "kind color"],
+            "details": "<code>dark</code> quick panel symbols",
+        },
+        {
+            "trigger": "kind_container kind_color_light",
+            "kind": ["snippet", "k", "kind color"],
+            "details": "<code>light</code> quick panel symbols",
+        },
+    ]
+}

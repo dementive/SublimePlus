@@ -1,0 +1,169 @@
+{
+    "scope": "meta.attributes-sequence.sublime-theme string",
+    "completions": [
+        {
+            "trigger": "hover",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "file_light",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "file_medium",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "file_medium_dark",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "file_dark",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "hscrollable",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "scrollable",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "selectable",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "selected",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "expandable",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "expanded",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "dirty",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "transient",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "highlighted",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "multiple",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "left",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "right",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "left_overhang",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "right_overhang",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "left_of_selected",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "right_of_selected",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "left_of_hover",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "right_of_hover",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "panel_visible",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "dark",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "horizontal",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "pressed",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "disabled",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "checked",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "confirm",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "highlighted",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "left",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "right",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "ignored",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "untracked",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "modified",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "missing",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "added",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "staged",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "deleted",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+        {
+            "trigger": "unmerged",
+            "kind": ["snippet", "a", "Attribute"],
+        },
+    ]
+}

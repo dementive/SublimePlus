@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[{ "command": "$1", "args": {$2} },]]></content>
+	<tabTrigger>e</tabTrigger>
+	<scope>meta.macro.collection.sublime-macro - meta.mapping - string - comment</scope>
+</snippet>

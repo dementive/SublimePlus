@@ -1,0 +1,30 @@
+{
+	"scope": "meta.context.key-value.operator.unknown.sublime-keymap",
+
+	"completions": [
+		{
+			"trigger": "equal",
+			"kind": ["function", "o", "operator"],
+		},
+		{
+			"trigger": "not_equal",
+			"kind": ["function", "o", "operator"],
+		},
+		{
+			"trigger": "regex_match",
+			"kind": ["function", "o", "operator"],
+		},
+		{
+			"trigger": "not_regex_match",
+			"kind": ["function", "o", "operator"],
+		},
+		{
+			"trigger": "regex_contains",
+			"kind": ["function", "o", "operator"],
+		},
+		{
+			"trigger": "not_regex_contains",
+			"kind": ["function", "o", "operator"],
+		}
+	]
+}

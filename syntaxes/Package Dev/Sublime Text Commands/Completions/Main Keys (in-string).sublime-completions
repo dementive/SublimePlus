@@ -1,0 +1,26 @@
+{
+    "scope": "meta.main-key.sublime-commands",
+
+    "completions": [
+        {
+            "trigger": "caption",
+            "details": "Command caption",
+            "kind": ["keyword", "k", "main"],
+        },
+        {
+            "trigger": "command",
+            "details": "Command name",
+            "kind": ["keyword", "k", "main"],
+        },
+        {
+            "trigger": "args",
+            "details": "Command argumnts",
+            "kind": ["keyword", "k", "main"],
+        },
+        {
+            "trigger": "platform",
+            "details": "Platform name",
+            "kind": ["keyword", "k", "main"],
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+	"scope": "meta.unknown-context-key.sublime-keymap",
+
+	"completions": [
+		{
+			"trigger": "key",
+			"details": "Key",
+			"kind": ["keyword", "k", "context"],
+		},
+		{
+			"trigger": "operator",
+			"details": "Operator",
+			"kind": ["keyword", "k", "context"],
+		},
+		{
+			"trigger": "operand",
+			"details": "Operand",
+			"kind": ["keyword", "k", "context"],
+		},
+		{
+			"trigger": "match_all",
+			"details": "Match all selections?",
+			"kind": ["keyword", "k", "context"],
+		}
+	]
+}

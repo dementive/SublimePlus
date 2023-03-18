@@ -1,0 +1,15 @@
+{
+    "scope": "meta.parent-key.sublime-theme",
+    "completions": [
+        {
+            "trigger": "class",
+            "details": "Parent class",
+            "kind": ["keyword", "k", "selector"],
+        },
+        {
+            "trigger": "attributes",
+            "details": "Parent attributes",
+            "kind": ["keyword", "k", "selector"],
+        },
+    ]
+}
