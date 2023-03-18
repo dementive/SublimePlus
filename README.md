@@ -67,6 +67,7 @@ A ton of commands that make using sublime text overall a better experience, thes
 	- Clear Color Schemes
 
 11. Diffy
+
 	A simple version of the (Diffy)[https://packagecontrol.io/packages/Diffy] package 
 	- Diffy. With 2 tabs side by side in a group use this command and it will draw regions that show the diffs of the two files.
 
