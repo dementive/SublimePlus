@@ -60,6 +60,7 @@ A ton of commands that make using sublime text overall a better experience, thes
 	- Folder Handler. Easily fold or unfold different levels of a file. Command Name: 'folder_handler'
 
 10. Rainbow Brackets
+	
 	A simple version of the (Rainbow Brackets)[https://github.com/absop/RainbowBrackets] package has been included and has the following commands:
 	- Make Rainbow
 	- Clear Rainbow
@@ -75,6 +76,7 @@ A ton of commands that make using sublime text overall a better experience, thes
 	- Auto Sort Tabs. This is disabled by default and can be enabled in settings to automatically sort opened tabs when opening/closing files.
 
 13. Sidebar Commands/Events
+	
 	I wouldn't recommend using any other plugins that make changes to the sidebar, your experience with the sidebar will only be worse because almost all available sidebar plugins are integrated into sublime plus.
 
 	- Reveal file in sidebar. Command that will reveal the currently opened file in the sidebar and focus on the sidebar
