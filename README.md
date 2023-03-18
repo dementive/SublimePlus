@@ -96,7 +96,7 @@ A ton of commands that make using sublime text overall a better experience, thes
 
 ### Syntax
 
-A "mini" version of the great package dev plugin that only contains the syntaxes has been included.
+A "mini" version of the great [Package Dev](https://github.com/SublimeText/PackageDev) plugin that only contains the syntaxes has been included.
 
 
 ### Settings
