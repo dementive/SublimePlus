@@ -61,14 +61,14 @@ A ton of commands that make using sublime text overall a better experience, thes
 
 10. Rainbow Brackets
 	
-	A simple version of the (Rainbow Brackets)[https://github.com/absop/RainbowBrackets] package has been included and has the following commands:
+	A simple version of the [Rainbow Brackets](https://github.com/absop/RainbowBrackets) package has been included and has the following commands:
 	- Make Rainbow
 	- Clear Rainbow
 	- Clear Color Schemes
 
 11. Diffy
 
-	A simple version of the (Diffy)[https://packagecontrol.io/packages/Diffy] package 
+	A simple version of the [Diffy](https://packagecontrol.io/packages/Diffy) package 
 	- Diffy. With 2 tabs side by side in a group use this command and it will draw regions that show the diffs of the two files.
 
 12. Event Listeners
