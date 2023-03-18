@@ -1,6 +1,6 @@
 # Package Dev Syntaxes
 
-This folder contains the syntaxes for all default sublime text files made for (Package Dev)[https://github.com/SublimeText/PackageDev]
+This folder contains the syntaxes for all default sublime text files made for [Package Dev](https://github.com/SublimeText/PackageDev)
 
 This is basically a "mini" version of package dev that doens't contain all the extra commands or any scripts, but only contains the syntaxes that are very useful when making packages or editing any sublime files. The syntaxes here include:
 
