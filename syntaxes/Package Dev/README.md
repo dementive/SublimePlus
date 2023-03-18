@@ -22,4 +22,4 @@ Package dev also adds many snippets and completions to these file types to make 
 
 ## Additional Package
 
-I highly reccomend downloading [LSP](https://packagecontrol.io/packages/LSP) and installing with it(LSP-json)[https://packagecontrol.io/packages/LSP-json] most of these file types are json based and the JSON language server provides great support for sublime text.
+I highly reccomend downloading [LSP](https://packagecontrol.io/packages/LSP) and installing with it (LSP-json)[https://packagecontrol.io/packages/LSP-json] most of these file types are json based and the JSON language server provides great support for sublime text.
