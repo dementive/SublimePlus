@@ -121,4 +121,5 @@ Some other plugins that work great with sublime plus are:
 - [LSP](https://packagecontrol.io/packages/LSP) - Amazing Language Server support that turns sublime into a full feature IDE for almost all languages
 - [Git](https://packagecontrol.io/packages/Git) - Very helpful Git integration that adds all the useful git commands directly into the editor
 - [Git Gutter](https://packagecontrol.io/packages/GitGutter) - Hover over diffs in the gutter to get a detailed breakdown of git diffs
+- [Code Map](https://packagecontrol.io/packages/CodeMap) - Adds a command to show an outline of your code
 - [A File Icon](https://packagecontrol.io/packages/A%20File%20Icon) - This is required to have file icons in the sidebar for the custom themes, I highly recommend using it.

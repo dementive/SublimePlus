@@ -372,6 +372,8 @@ class FastMoveCommand(sublime_plugin.TextCommand):
 
 # Tab Context commands
 
+
+
 class RenameFileInTabCommand(sublime_plugin.TextCommand):
     def run(self, edit, args=None, index=-1, group=-1, **kwargs):
         w = self.view.window()
@@ -1017,74 +1019,6 @@ class DoubleClickAtCaretCommand(sublime_plugin.TextCommand):
                 # if there are multiple selections, act like pressing Ctrl while double clicking - otherwise we will end up with only one selection. The first double click should replace any existing selections unless told otherwise.
                 'additive': idx > 0 or kwargs.get('additive', False)
             })
-
-
-class CommentsAwareEnterCommand(sublime_plugin.TextCommand):
-    """
-    Context aware Enter handler.
-    Preserves line comments scope (by adding escaping chars as needed)
-    and auto indents in comments.
-    """
-
-    def run(self, edit):
-        for region in reversed(self.view.sel()):
-            pos = region.end()
-            COMMENT_STYLES = {
-                'number-sign': ['#'],
-                'graphql': ['#'],
-                'double-slash': ['//'],
-                'double-dash': ['--'],
-                'semicolon': [';'],
-                'percentage': ['%'],
-                'erlang': ['%'],
-                'documentation': ['///', '//!'],
-            }
-            delims = COMMENT_STYLES.get(self.comment_style(self.view, pos), [])
-            line = self.line_start_str(self.view, pos)
-
-            replacement = "\n"
-            for delim in delims:
-                if delim not in line:
-                    continue
-                start, delim, end = re.split(
-                    r'(%s+)' % re.escape(delim), line, 1)
-                start = re.sub(r'\S', ' ', start)
-                if self.view.settings().get('linecomments_label_indent', True):
-                    end = re.search(r'^\s*([A-Z]+:|-)?\s*', end).group()
-                else:
-                    end = re.search(r'^\s*(-)?\s*', end).group()
-                if '-' not in end:
-                    end = ' ' * len(end)
-                replacement = "\n" + start + delim + end
-                break
-            else:
-                # If no delim before cursor fall back to Sublime Text default
-                self.view.run_command("insert", {"characters": "\n"})
-                return
-
-            self.view.erase(edit, region)
-            self.view.insert(edit, region.begin(), replacement)
-
-    def line_start(self, view, pos):
-        line = view.line(pos)
-        return sublime.Region(line.begin(), pos)
-
-    def line_start_str(self, view, pos):
-        return view.substr(self.line_start(view, pos))
-
-    def comment_style(self, view, pos):
-        parsed_scope = self.parse_scope(self.scope_name(view, pos))
-        return self.first(vec[2] for vec in parsed_scope if vec[:2] == ['comment', 'line'])
-
-    def scope_name(self, view, pos):
-        return view.scope_name(pos)
-
-    def parse_scope(self, scope_name):
-        return [name.split('.') for name in scope_name.split()]
-
-    def first(self, seq):
-        return next(iter(seq), None)
-
 
 class ClearConsoleCommand(sublime_plugin.ApplicationCommand):
     """
