@@ -93,6 +93,12 @@
     },
     "rules": [
         {
+            "name": "Semantic Reference",
+            "scope": "variable.parameter",
+            "foreground": ["hsl(15, 85%, 45%)", "hsl(38, 99%, 60%)"],
+            "font_style": "italic"
+        },
+        {
             "name": "AI",
             "scope": "keyword.name",
             "foreground": "color(var(pink) alpha(0.85))",
@@ -220,12 +226,6 @@
             "name": "Function name",
             "scope": "entity.name.function",
             "foreground": "var(green3)"
-        },
-        {
-            "name": "Function argument",
-            "scope": "variable.parameter",
-            "font_style": "italic",
-            "foreground": "var(color14)"
         },
         {
             "name": "Tag name",

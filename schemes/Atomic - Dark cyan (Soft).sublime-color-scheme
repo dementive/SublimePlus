@@ -1,5 +1,6 @@
 {
     "variables": {
+        "--bluish": "hsl(207,  82%,  66%)",
         "color00": "#121C1C",
         "color01": "#6ECFCF",
         "color02": "#99BDBD",

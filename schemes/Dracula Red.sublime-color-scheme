@@ -222,10 +222,10 @@
             "foreground": "var(green3)"
         },
         {
-            "name": "Function argument",
+            "name": "Semantic Reference",
             "scope": "variable.parameter",
-            "font_style": "italic",
-            "foreground": "var(color14)"
+            "foreground": ["hsl(15, 85%, 45%)", "hsl(38, 99%, 60%)"],
+            "font_style": "italic"
         },
         {
             "name": "Tag name",

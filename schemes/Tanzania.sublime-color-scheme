@@ -4,6 +4,7 @@
     "color_space_name": "sRGB",
     "gutter_settings": "1ce0a702-ce74-4d37-91e2-f493dd533875",
     "variables": {
+        "--bluish": "hsl(207,  82%,  66%)",
         "color00": "#15110f",
         "color01": "#528BFF",
         "color02": "#A6B2C0",
