@@ -6,6 +6,7 @@ import os
 import zlib
 import subprocess
 import json
+import webbrowser
 import difflib
 import time
 import Default.send2trash as send2trash
@@ -353,11 +354,11 @@ class FastMoveCommand(sublime_plugin.TextCommand):
     def run(self, edit, direction, extend=False):
         window = sublime.active_window()
         if (direction == "up"):
-            for i in range(settings.get("fast_move_horizontal_character_amount")):
+            for i in range(settings.get("fast_move_vertical_move_amount")):
                 window.run_command(
                     "move", {"by": "lines", "forward": False, "extend": extend})
         if (direction == "down"):
-            for i in range(settings.get("fast_move_horizontal_character_amount")):
+            for i in range(settings.get("fast_move_vertical_move_amount")):
                 window.run_command(
                     "move", {"by": "lines", "forward": True, "extend": extend})
         if (direction == "left"):
@@ -371,9 +372,6 @@ class FastMoveCommand(sublime_plugin.TextCommand):
 
 
 # Tab Context commands
-
-
-
 class RenameFileInTabCommand(sublime_plugin.TextCommand):
     def run(self, edit, args=None, index=-1, group=-1, **kwargs):
         w = self.view.window()
@@ -1432,6 +1430,33 @@ class DiffyCommand(sublime_plugin.TextCommand):
                     self.set_view_point(view_2, highlighted_lines_2)
 
 
+class SearchPhindInputHandler(sublime_plugin.TextInputHandler):
+    def __init__(self, view):
+        self.view = view
+
+    def name(self):
+        return "query"
+
+    def initial_text(self):
+        selection = self.view.sel()[0]
+        if selection.a == selection.b:
+            return ""
+        return self.view.substr(selection)
+
+    def placeholder(self):
+        return "Search"
+
+class SearchPhindCommand(sublime_plugin.TextCommand):
+    def run(self, edit, query):
+        webbrowser.open_new_tab(f"https://phind.com/search?q={query}")
+
+    def input(self, args):
+        if 'query' not in args:
+            return SearchPhindInputHandler(self.view)
+
+    def input_description(self):
+        return "Phind"
+
 # ------------------------------------------------------
 # -                  Event Listeners                   -
 # ------------------------------------------------------
@@ -1670,7 +1695,7 @@ class ColorSchemeManager(sublime_plugin.EventListener):
                 })
         color_scheme_data = {
             "name": os.path.splitext(os.path.basename(cls.color_scheme))[0],
-            "author": "https://github.com/absop/RainbowBrackets",
+            "author": " ",
             "variables": {},
             "globals": {},
             "rules": rules

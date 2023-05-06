@@ -18,7 +18,7 @@ contexts:
       scope: entity.name.title
       push:
         - match: ({{valid_variable}})
-          scope: meta.toc-list
+          scope: constant.numeric.name
           push:
             - match: --
               scope: entity.name.title
@@ -29,7 +29,7 @@ contexts:
 
 
     - match: '•'
-      scope: storage.type
+      scope: keyword
 
     - match: '□'
       scope: entity.name
@@ -43,8 +43,11 @@ contexts:
     - match: '\s-\s|=|->|~|<|>|<=|>=|\+|-|/'
       scope: keyword
 
-    - match: '[0-9]|%|¹|²|³|⁴|⁵|⁶|⁷|⁸|⁹|₁|₂|₃|₄|₅|₆|₇|₈|₉|ⁿ'
+    - match: '%|¹|²|³|⁴|⁵|⁶|⁷|⁸|⁹|₁|₂|₃|₄|₅|₆|₇|₈|₉|ⁿ'
       scope: constant.numeric
+
+    - match: '[0-9]\.'
+      scope: storage.type.name.list.element
 
   note-comments:
     - match: (#|//).*$\n?

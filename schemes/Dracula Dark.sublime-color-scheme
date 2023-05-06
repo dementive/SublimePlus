@@ -1,0 +1,514 @@
+{
+    "variables": {
+        "--bluish": "hsl(207,  82%,  66%)",
+        "black": "hsl(0, 0%, 0%)",
+        "black2": "hsl(60, 17%, 11%)",
+        "black3": "hsl(70, 8%, 15%)",
+        "black4": "hsl(0, 0%, 10%)",
+        "blue": "hsl(190, 81%, 67%)",
+        "blue2": "hsl(210, 81%, 67%)",
+        "blue3": "hsl(190, 100%, 67%)",
+        "blue4": "hsl(170, 60%, 56%)",
+        "blue5": "rgb( 0, 150, 200)",
+        "grey": "hsla(55, 8%, 31%, 0.7)",
+        "grey2": "rgb(35, 35, 35)",
+        "orange": "hsl(32, 98%, 56%)",
+        "orange2": "hsl(30, 83%, 34%)",
+        "orange3": "hsl(47, 100%, 79%)",
+        "purple": "hsl(261, 100%, 75%)",
+        "red": "hsl(0, 93%, 59%)",
+        "red2": "hsl(338, 95%, 56%)",
+        "red3": "hsl(0, 93%, 40%)",
+        "red4": "rgb(135, 32, 32)",
+        "red5": "rgb(18, 5, 5)",
+        "red6": "rgb(43, 5, 5)",
+        "purple2": "rgb(45, 0, 45)",
+        "white": "hsl(0, 0%, 97%)",
+        "white2": "hsl(60, 36%, 96%)",
+        "white3": "hsl(60, 30%, 96%)",
+        "yellow": "hsl(54, 70%, 68%)",
+        "yellow2": "hsl(80, 76%, 53%)",
+        "yellow3": "hsl(60, 12%, 79%)",
+        "yellow4": "hsl(55, 11%, 22%)",
+        "yellow5": "hsl(50, 11%, 41%)",
+        "pink": "hsl(285, 100%, 65%)",
+        "green": "hsl(120, 100%, 25%)",
+        "green2": "hsl(120, 100%, 45%)",
+        "green3": "rgb(90,205,90)",
+        "tooltips": "rgb(25,195,255)",
+        "envy": "#7f9f7f",
+        "color00": "hsl(0, 0%, 2%)",
+        "color01": "#f8f8f0",
+        "color02": "#999a9e",
+        "color03": "#f8f8f2",
+        "color04": "#3B3A32",
+        "color05": "#44475a",
+        "color06": "#effb7b",
+        "color07": "#000000",
+        "color08": "#222218",
+        "color09": "color(#9D550F alpha(0.69))",
+        "color10": "color(var(color32) alpha(0.65))",
+        "color11": "#6272a4",
+        "color12": "#f1fa8c",
+        "color13": "#bd93f9",
+        "color14": "#ffb86c",
+        "color15": "#ff79c6",
+        "color16": "#ff5555",
+        "color17": "#8be9fd",
+        "color18": "#66d9ef",
+        "color19": "#50fa7b",
+        "color20": "#6be5fd",
+        "color21": "#f8f8f0",
+        "color22": "#CFCFC2",
+        "color23": "#E6DB74",
+        "color24": "#F83333",
+        "color25": "#EEEEEE",
+        "color26": "#FFB86C",
+        "color27": "#8BE9FD",
+        "color28": "#FF79C6",
+        "color29": "#6272A4",
+        "color30": "#50FA7B",
+        "color31": "#bd93f9",
+        "color32": "#F8F8F2",
+        "color33": "#ffffff"
+    },
+    "globals": {
+        "background": "var(color00)",
+        "caret": "var(color01)",
+        "block_caret": "var(color02)",
+        "foreground": "var(color03)",
+        "invisibles": "var(color04)",
+        "line_highlight": "var(color05)",
+        "selection": "var(color05)",
+        "find_highlight": "var(color06)",
+        "find_highlight_foreground": "var(color07)",
+        "selection_border": "var(color08)",
+        "active_guide": "var(color09)",
+        "brackets_foreground": "var(red3)",
+        "brackets_options": "underline foreground",
+        "bracket_contents_foreground": "color(var(red3) blend(#000 75%))",
+        "bracket_contents_options": "underline foreground",
+        "tags_options": "stippled_underline"
+    },
+    "rules": [
+        {
+            "name": "Semantic Reference",
+            "scope": "variable.parameter",
+            "foreground": ["hsl(15, 85%, 45%)", "hsl(38, 99%, 60%)"],
+            "font_style": "italic"
+        },
+        {
+            "name": "AI",
+            "scope": "keyword.name",
+            "foreground": "color(var(pink) alpha(0.85))",
+            "font_style": "bold"
+        },
+
+        {
+            "name": "In Game Scripts",
+            "scope": "support.other.variable",
+            "foreground": "color(var(green3) alpha(0.9))",
+            "font_style": "foreground"
+        },
+
+        {
+            "name": "Storage type",
+            "scope": "storage.type",
+            "foreground": "var(blue4)",
+            "font_style": "italic"
+        },
+        {
+            "name": "Default Entity Name",
+            "scope": "entity.name",
+            "foreground": "var(green3)",
+        },
+
+        {
+            "name": "Math",
+            "scope": "keyword.type",
+            "foreground": "var(orange)",
+        },
+
+        {
+            "name": "Tooltips",
+            "scope": "keyword.type.name",
+            "foreground": "var(tooltips)",
+        },
+        {
+            "name": "Comment",
+            "scope": "comment",
+            "foreground": "var(yellow5)"
+        },
+        {
+            "name": "String",
+            "scope": "string",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "Number",
+            "scope": "constant.numeric",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Built-in constant",
+            "scope": "constant.language",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "User-defined constant",
+            "scope": "constant.character, constant.other",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Variable",
+            "scope": "variable"
+        },
+        {
+            "name": "Ruby's @variable",
+            "scope": "variable.other.readwrite.instance",
+            "foreground": "var(color14)"
+        },
+        {
+            "name": "String interpolation",
+            "scope": "constant.character.escaped, constant.character.escape, string source, string source.ruby",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "Ruby Regexp",
+            "scope": "source.ruby string.regexp.classic.ruby,source.ruby string.regexp.mod-r.ruby",
+            "foreground": "var(color16)"
+        },
+        {
+            "name": "Keyword",
+            "scope": "keyword",
+            "foreground": "color(var(red) l( 45%))"
+        },
+        {
+            "name": "Storage",
+            "scope": "storage",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "Storage type",
+            "scope": "storage.type",
+            "font_style": "italic",
+            "foreground": "var(color17)"
+        },
+        {
+            "name": "Storage Type Namespace",
+            "scope": "storage.type.namespace",
+            "font_style": "italic",
+            "foreground": "var(color17)"
+        },
+        {
+            "name": "Storage Type Class",
+            "scope": "storage.type.class",
+            "foreground": "color(var(color17) l( 55%))",
+            "font_style": "italic"
+        },
+        {
+            "name": "Class name",
+            "scope": "entity.name.class",
+            "foreground": "color(var(color17) l( 45%))"
+        },
+        {
+            "name": "Meta Path",
+            "scope": "meta.path",
+            "foreground": "var(color18)"
+        },
+        {
+            "name": "Inherited class",
+            "scope": "entity.other.inherited-class",
+            "foreground": "var(color17)"
+        },
+        {
+            "name": "Function name",
+            "scope": "entity.name.function",
+            "foreground": "var(green3)"
+        },
+        {
+            "name": "Tag name",
+            "scope": "entity.name.tag",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "Tag attribute",
+            "scope": "entity.other.attribute-name",
+            "foreground": "var(green3)"
+        },
+        {
+            "name": "Library function",
+            "scope": "support.function",
+            "foreground": "var(red)"
+        },
+        {
+            "name": "Library constant",
+            "scope": "support.constant",
+            "foreground": "var(color20)"
+        },
+        {
+            "name": "Library class/type",
+            "scope": "support.type, support.class",
+            "font_style": "italic",
+            "foreground": "var(color18)"
+        },
+        {
+            "name": "Library variable",
+            "scope": "support.other.variable"
+        },
+        {
+            "name": "Support Other Namespace",
+            "scope": "support.other.namespace",
+            "font_style": "italic",
+            "foreground": "var(color18)"
+        },
+        {
+            "name": "Invalid",
+            "scope": "invalid",
+            "background": "var(color15)",
+            "foreground": "var(color21)"
+        },
+        {
+            "name": "Invalid deprecated",
+            "scope": "invalid.deprecated",
+            "background": "var(color13)",
+            "foreground": "var(color21)"
+        },
+        {
+            "name": "JSON String",
+            "scope": "meta.structure.dictionary.json string.quoted.double.json",
+            "foreground": "var(color22)"
+        },
+        {
+            "name": "diff.header",
+            "scope": "meta.diff, meta.diff.header",
+            "foreground": "var(color11)"
+        },
+        {
+            "name": "diff.deleted",
+            "scope": "markup.deleted",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "diff.inserted",
+            "scope": "markup.inserted",
+            "foreground": "var(color19)"
+        },
+        {
+            "name": "diff.changed",
+            "scope": "markup.changed",
+            "foreground": "var(color23)"
+        },
+        {
+            "scope": "constant.numeric.line-number.find-in-files - match",
+            "foreground": "var(color13)"
+        },
+        {
+            "scope": "entity.name.filename",
+            "foreground": "var(color23)"
+        },
+        {
+            "scope": "message.error",
+            "foreground": "var(color24)"
+        },
+        {
+            "name": "JSON Punctuation",
+            "scope": "punctuation.definition.string.begin.json - meta.structure.dictionary.value.json, punctuation.definition.string.end.json - meta.structure.dictionary.value.json",
+            "foreground": "var(color25)"
+        },
+        {
+            "name": "JSON Structure",
+            "scope": "meta.structure.dictionary.json string.quoted.double.json",
+            "foreground": "var(color17)"
+        },
+        {
+            "name": "JSON String",
+            "scope": "meta.structure.dictionary.value.json string.quoted.double.json",
+            "foreground": "var(color12)"
+        },
+        {
+            "name": "JSON: 6 deep",
+            "scope": "meta meta meta meta meta meta meta.structure.dictionary.value string",
+            "foreground": "var(color19)"
+        },
+        {
+            "name": "JSON: 5 deep",
+            "scope": "meta meta meta meta meta meta.structure.dictionary.value string",
+            "foreground": "var(color14)"
+        },
+        {
+            "name": "JSON: 4 deep",
+            "scope": "meta meta meta meta meta.structure.dictionary.value string",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "JSON: 3 deep",
+            "scope": "meta meta meta meta.structure.dictionary.value string",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "JSON: 2 deep",
+            "scope": "meta meta meta.structure.dictionary.value string",
+            "foreground": "var(color19)"
+        },
+        {
+            "name": "JSON:  1 deep",
+            "scope": "meta meta.structure.dictionary.value string",
+            "foreground": "var(color14)"
+        },
+        {
+            "name": "Markup: strike",
+            "scope": "markup.strike",
+            "font_style": "italic",
+            "foreground": "var(color26)"
+        },
+        {
+            "name": "Markup: bold",
+            "scope": "markup.bold",
+            "font_style": "bold",
+            "foreground": "var(color26)"
+        },
+        {
+            "name": "Markup: italic",
+            "scope": "markup.italic",
+            "font_style": "italic",
+            "foreground": "var(color26)"
+        },
+        {
+            "name": "Markdown: heading",
+            "scope": "markup.heading",
+            "foreground": "var(color27)"
+        },
+        {
+            "name": "Markdown: List Items Punctuation",
+            "scope": "punctuation.definition.list_item.markdown",
+            "foreground": "var(color28)"
+        },
+        {
+            "name": "Markdown: Blockquote",
+            "scope": "markup.quote",
+            "font_style": "italic",
+            "foreground": "var(color29)"
+        },
+        {
+            "name": "Markdown: Blockquote Punctuation",
+            "scope": "punctuation.definition.blockquote.markdown",
+            "font_style": "italic",
+            "background": "var(color29)",
+            "foreground": "var(color29)"
+        },
+        {
+            "name": "Markdown: Separator",
+            "scope": "meta.separator",
+            "foreground": "var(color29)"
+        },
+        {
+            "name": "Markup: raw inline",
+            "scope": "text.html.markdown markup.raw.inline",
+            "foreground": "var(color30)"
+        },
+        {
+            "name": "Markup: underline",
+            "scope": "markup.underline",
+            "font_style": "underline",
+            "foreground": "var(color31)"
+        },
+        {
+            "name": "Markup: Raw block",
+            "scope": "markup.raw.block",
+            "foreground": "var(color22)"
+        },
+        {
+            "name": "Markdown: Raw Block fenced source",
+            "scope": "markup.raw.block.fenced.markdown source",
+            "foreground": "var(color32)"
+        },
+        {
+            "name": "Markdown: Fenced Bode Block",
+            "scope": "punctuation.definition.fenced.markdown, variable.language.fenced.markdown",
+            "font_style": "italic",
+            "foreground": "var(color29)"
+        },
+        {
+            "name": "Markdown: Fenced Language",
+            "scope": "variable.language.fenced.markdown",
+            "font_style": "italic",
+            "foreground": "var(color29)"
+        },
+        {
+            "name": "Punctuation Accessor",
+            "scope": "punctuation.accessor",
+            "foreground": "var(color28)"
+        },
+        {
+            "name": "Meta Function Return Type",
+            "scope": "meta.function.return-type",
+            "foreground": "var(color28)"
+        },
+        {
+            "name": "Punctuation Section Block Begin",
+            "scope": "punctuation.section.block.begin",
+            "foreground": "var(color33)"
+        },
+        {
+            "name": "Punctuation Section Block End",
+            "scope": "punctuation.section.block.end",
+            "foreground": "var(color33)"
+        },
+        {
+            "name": "Punctuation Section Embedded Begin",
+            "scope": "punctuation.section.embedded.begin",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "Punctuation Section Embedded End",
+            "scope": "punctuation.section.embedded.end",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "Punctuation Separator Namespace",
+            "scope": "punctuation.separator.namespace",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "Variable Function",
+            "scope": "variable.function",
+            "foreground": "var(green3)"
+        },
+        {
+            "name": "Variable Other",
+            "scope": "variable.other",
+            "foreground": "var(color33)"
+        },
+        {
+            "name": "Variable Language",
+            "scope": "variable.language",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Entity Name Module Ruby",
+            "scope": "entity.name.module.ruby",
+            "foreground": "var(color17)"
+        },
+        {
+            "name": "Entity Name Constant Ruby",
+            "scope": "entity.name.constant.ruby",
+            "foreground": "var(color13)"
+        },
+        {
+            "name": "Support Function Builtin Ruby",
+            "scope": "support.function.builtin.ruby",
+            "foreground": "var(color33)"
+        },
+        {
+            "name": "Storage Type Namespace CS",
+            "scope": "storage.type.namespace.cs",
+            "foreground": "var(color15)"
+        },
+        {
+            "name": "Entity Name Namespace CS",
+            "scope": "entity.name.namespace.cs",
+            "foreground": "var(color17)"
+        }
+    ]
+}

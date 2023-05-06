@@ -40,10 +40,10 @@
     "hide_side_bar_when_not_focused": false,
 
 
-    //Will the side bar automatically be shown when there are no open files(views)
+    // Will the side bar automatically be shown when there are no open files(views)
     // If true sidebar will auto open when there are no open files
     // If false sidebar will auto open when there are no open files
-    "show_sidebar_when_no_open_views": true,
+    "show_sidebar_when_no_open_views": false,
 
 
     //Will the side bar be automatically closed after X changes have been made. Where X is change_count_sidebar_auto_close
@@ -61,7 +61,7 @@
 
     "fast_move_horizontal_character_amount": 10,
 
-    "fast_move_vertical_move_amount": 6,
+    "fast_move_vertical_move_amount": 10,
 
     // Should files be autosaved when the buffer is modified?
     "auto_save_on_modified": true,

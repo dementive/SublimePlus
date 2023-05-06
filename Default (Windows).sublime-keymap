@@ -30,6 +30,8 @@
 // 	{ "keys": ["ctrl+shift+."], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/ListDotThird.sublime-macro"} },
 // 	{ "keys": ["alt+shift+."], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/ListDotFourth.sublime-macro"} },
 
+// 	{ "keys": ["ctrl+alt+p"], "command": "search_phind" },
+
 // 	// Sidebar opening and navigation
 // 	{ "keys": ["alt+a"], "command": "toggle_side_bar" },
 

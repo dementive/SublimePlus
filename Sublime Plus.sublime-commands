@@ -39,4 +39,6 @@
 
 	// Remove diff regions
 	{ "caption": "Sublime Plus: Diff Clear", "command": "diffy", "args": {"action": "clear"} },
+
+	{ "caption": "Sublime Plus: Phind", "command": "search_phind" },
 ]
