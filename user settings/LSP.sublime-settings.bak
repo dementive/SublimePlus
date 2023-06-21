@@ -17,4 +17,5 @@
 
 	// Show symbol references in Sublime's quick panel instead of the bottom panel.
 	"show_references_in_quick_panel": true,
+
 }

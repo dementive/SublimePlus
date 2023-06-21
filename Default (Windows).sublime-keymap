@@ -102,6 +102,8 @@
 // 	// move beginning/end of line and select
 // 	{ "keys": ["ctrl+shift+h"], "command": "move_to", "args": {"to": "bol", "forward": true, "extend": true}},
 // 	{ "keys": ["ctrl+shift+;"], "command": "move_to", "args": {"to": "eol", "forward": false, "extend": true}},
+// 	{ "keys": ["alt+shift+h"], "command": "move_to", "args": {"to": "bol", "forward": true, "extend": true}},
+// 	{ "keys": ["alt+shift+;"], "command": "move_to", "args": {"to": "eol", "forward": false, "extend": true}},
 
 
 // 	// Use i j k l to navigate through files and folders quickly in the sidebar.

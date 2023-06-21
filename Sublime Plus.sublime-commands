@@ -14,6 +14,8 @@
 	{ "command": "folder_handler", "caption": "Sublime Plus: Fold..." },
 	{ "command": "open_workspace_from_list", "caption": "Sublime Plus: Open Workspace" },
 	{ "command": "goto_recent", "caption": "Sublime Plus: Recently Closed Files" },
+	{ "command": "remove_or_select_all_comments", "caption": "Sublime Plus: Remove  All Comments" },
+	{ "command": "remove_or_select_all_comments", "caption": "Sublime Plus: Select All Comments", "args": {"select": true}  },
 
 	{ "caption": "AutoFoldCode: Clear All", "command": "auto_fold_code_clear_all" },
 	{ "caption": "AutoFoldCode: Clear Current File", "command": "auto_fold_code_clear_current" },

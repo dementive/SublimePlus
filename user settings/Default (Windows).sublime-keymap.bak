@@ -45,6 +45,8 @@
     { "keys": ["ctrl+shift+."], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/ListDotThird.sublime-macro"} },
     { "keys": ["alt+shift+."], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/ListDotFourth.sublime-macro"} },
 
+    { "keys": ["ctrl+alt+p"], "command": "search_phind" },
+
     // Sidebar opening and navigation
     { "keys": ["alt+a"], "command": "toggle_side_bar" },
 
@@ -115,7 +117,8 @@
     // move beginning/end of line and select
     { "keys": ["ctrl+shift+h"], "command": "move_to", "args": {"to": "bol", "forward": true, "extend": true}},
     { "keys": ["ctrl+shift+;"], "command": "move_to", "args": {"to": "eol", "forward": false, "extend": true}},
-
+    { "keys": ["alt+shift+h"], "command": "move_to", "args": {"to": "bol", "forward": true, "extend": true}},
+    { "keys": ["alt+shift+;"], "command": "move_to", "args": {"to": "eol", "forward": false, "extend": true}},
 
     // Use i j k l to navigate through files and folders quickly in the sidebar.
     // Have to use the focus_file_on_sidebar command to use these properly
@@ -301,34 +304,4 @@
             { "key": "selector", "operator": "equal", "operand": "text.find-in-files", "match_all": true }
         ]
     },
-
-    // Comments Aware Enter
-    { "keys": ["enter"], "command": "comments_aware_enter", "context": [
-        { "key": "setting.linecomments_ctrl_enter", "operand": false},
-        { "key": "setting.linecomments_alt_enter", "operand": false},
-        { "key": "setting.linecomments_shift_enter", "operand": false},
-        { "key": "setting.linecomments_super_enter", "operand": false},
-        { "key": "selector", "operator": "equal", "operand": "comment.line" },
-        { "key": "auto_complete_visible", "operator": "equal", "operand": false }
-    ] },
-    { "keys": ["ctrl+enter"], "command": "comments_aware_enter", "context": [
-        { "key": "setting.linecomments_ctrl_enter"},
-        { "key": "selector", "operator": "equal", "operand": "comment.line" },
-        { "key": "auto_complete_visible", "operator": "equal", "operand": false }
-    ] },
-    { "keys": ["alt+enter"], "command": "comments_aware_enter", "context": [
-        { "key": "setting.linecomments_alt_enter"},
-        { "key": "selector", "operator": "equal", "operand": "comment.line" },
-        { "key": "auto_complete_visible", "operator": "equal", "operand": false }
-    ] },
-    { "keys": ["shift+enter"], "command": "comments_aware_enter", "context": [
-        { "key": "setting.linecomments_shift_enter"},
-        { "key": "selector", "operator": "equal", "operand": "comment.line" },
-        { "key": "auto_complete_visible", "operator": "equal", "operand": false }
-    ] },
-    { "keys": ["super+enter"], "command": "comments_aware_enter", "context": [
-        { "key": "setting.linecomments_super_enter"},
-        { "key": "selector", "operator": "equal", "operand": "comment.line" },
-        { "key": "auto_complete_visible", "operator": "equal", "operand": false }
-    ] },
 ]

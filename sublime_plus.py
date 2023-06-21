@@ -22,7 +22,6 @@ from collections import deque
 # global settings object that is used in almost all commands, initialized on plugin load
 settings = None
 
-
 def plugin_loaded():
     def load_plugin():
         if settings.get("rainbow_brackets_enabled"):
@@ -353,23 +352,34 @@ class MoveToBottomOfFileCommand(sublime_plugin.TextCommand):
 class FastMoveCommand(sublime_plugin.TextCommand):
     def run(self, edit, direction, extend=False):
         window = sublime.active_window()
-        if (direction == "up"):
+        if direction == "up":
             for i in range(settings.get("fast_move_vertical_move_amount")):
                 window.run_command(
                     "move", {"by": "lines", "forward": False, "extend": extend})
-        if (direction == "down"):
+        if direction == "down":
             for i in range(settings.get("fast_move_vertical_move_amount")):
                 window.run_command(
                     "move", {"by": "lines", "forward": True, "extend": extend})
-        if (direction == "left"):
+        if direction == "left":
             for i in range(settings.get("fast_move_horizontal_character_amount")):
                 window.run_command(
                     "move", {"by": "characters", "forward": False, "extend": extend})
-        if (direction == "right"):
+        if direction == "right":
             for i in range(settings.get("fast_move_horizontal_character_amount")):
                 window.run_command(
                     "move", {"by": "characters", "forward": True, "extend": extend})
 
+
+class RemoveOrSelectAllCommentsCommand(sublime_plugin.TextCommand):
+    def run(self, edit, select=False):
+        comments = self.view.find_by_selector('comment')
+        if select:
+            self.view.selection.clear()
+        for region in reversed(comments):
+            if select:
+                self.view.selection.add(region)
+            else:
+                self.view.erase(edit, region)
 
 # Tab Context commands
 class RenameFileInTabCommand(sublime_plugin.TextCommand):
@@ -490,7 +500,7 @@ class ToggleReadonlyCommand(sublime_plugin.TextCommand):
             sublime.set_timeout(lambda: ToggleReadonlyCommand.clear_status(view), 1250)
         else:
             view.set_read_only(True)
-            view.set_status('toggle_readonly', 'Read only')
+            view.set_status('toggle_readonly', 'Read only')  # BUG: Sometimes this gets set when the view isn't actually read only somehow
 
     @staticmethod
     def clear_status(view):

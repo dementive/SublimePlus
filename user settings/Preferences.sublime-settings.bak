@@ -1,8 +1,6 @@
-// My default settings, to use put in User folder and remove .bak from file name
-
 {
 	// Editor UI style
-	"theme": "Dementive.sublime-theme",
+	"theme": "Brackets.sublime-theme",
 	"color_scheme": "DementiveLight.sublime-color-scheme",
 	"dark_color_scheme": "DementiveLight.sublime-color-scheme",
 	"light_color_scheme": "DementiveGrey.sublime-color-scheme",
@@ -16,11 +14,11 @@
 	"line_padding_top": 1,
 	"line_padding_bottom": 1,
 	"font_face": "JetBrains Mono",
-	"font_size": 13,
+	"font_size": 12,
 	"console_max_history_lines": 3000,
 
 	// Theme settings
-	"themed_title_bar": true,
+	"themed_title_bar": false,
 	"file_tab_style": "square",
 	"overlay_scroll_bars": "enabled",	
 
@@ -34,4 +32,8 @@
 	"shift_tab_unindent": true,
 	"preview_on_click": "only_left",
 	"index_files": false,
+	"ignored_packages":
+	[
+		"Vintage",
+	],
 }
