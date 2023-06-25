@@ -9,6 +9,7 @@ import json
 import webbrowser
 import difflib
 import time
+import sys, subprocess
 import Default.send2trash as send2trash
 from os.path import basename
 from operator import itemgetter
@@ -21,6 +22,7 @@ from collections import deque
 
 # global settings object that is used in almost all commands, initialized on plugin load
 settings = None
+
 
 def plugin_loaded():
     def load_plugin():
@@ -58,15 +60,30 @@ def plugin_unloaded():
                 RainbowBracketsViewManager.sweep_view(view)
 
 
+def open_path(path):
+    system = sys.platform
+    if system == "Darwin":  # macOS
+        subprocess.Popen(("open", path))
+    elif system == "Windows" or system == "win32" or system == "win":  # Windows
+        os.startfile(path)
+    else:  # Linux and other Unix-like systems
+        # If it is an executable run it, otherwise
+        if os.access(path, os.X_OK):
+            subprocess.Popen(path)
+        else:
+            subprocess.Popen(("xdg-open", path))
+
+
 # ------------------------------------------------------
 # -                      Commands                      -
 # ------------------------------------------------------
 
 # Git Gui statusbar button override
 
+
 class GgcOpenCommand(sublime_plugin.WindowCommand):
     def run(self):
-        os.startfile(settings.get("git_gui_path"))
+        open_path(settings.get("git_gui_path"))
 
 
 class CommandEventListener(sublime_plugin.EventListener):
@@ -75,15 +92,15 @@ class CommandEventListener(sublime_plugin.EventListener):
         if command_name == "sublime_merge_open_repo":
             path = settings.get("git_gui_path")
             if path != "none":
-                return ('ggc_open')
+                return "ggc_open"
             else:
-                return ('sublime_merge_open_repo')
+                return "sublime_merge_open_repo"
+
 
 # Notepad
 
 
 class ToggleNotePadCommand(sublime_plugin.ApplicationCommand):
-
     def __init__(self):
         self.notepad_toggle = False
         self.old_scheme = None
@@ -106,9 +123,9 @@ class ToggleNotePadCommand(sublime_plugin.ApplicationCommand):
                 window.set_minimap_visible(False)
 
             if not settings.get("show_gutter_in_notepad"):
-                view.settings().set('gutter', False)
+                view.settings().set("gutter", False)
             view.settings().set("toggle_status_bar", False)
-            window.run_command('hide_panel')
+            window.run_command("hide_panel")
             self.old_scheme = view.settings().get("color_scheme")
             self.original_centered_setting = view.settings().get("draw_centered")
             if settings.get("notepad_color_scheme_mode") == "Light":
@@ -137,7 +154,6 @@ class ToggleNotePadCommand(sublime_plugin.ApplicationCommand):
 
 
 class OutputPanelNotePadCommand(sublime_plugin.ApplicationCommand):
-
     def __init__(self):
         self.shown = False
 
@@ -147,10 +163,10 @@ class OutputPanelNotePadCommand(sublime_plugin.ApplicationCommand):
             view.settings().set("color_scheme", "NotepadLight.hidden-color-scheme")
         elif settings.get("temp_notepad_color_scheme_mode") == "Dark":
             view.settings().set("color_scheme", "Notepad.hidden-color-scheme")
-        #view.assign_syntax("scope:text.notes")
+        # view.assign_syntax("scope:text.notes")
         view.settings().set("font_size", settings.get("temp_notepad_font_size"))
         if not settings.get("show_gutter_in_notepad"):
-            view.settings().set('gutter', False)
+            view.settings().set("gutter", False)
         if settings.get("draw_centered_temp_notepad"):
             view.settings().set("draw_centered", True)
         self.shown = True
@@ -178,6 +194,7 @@ class OutputPanelNotePadCommand(sublime_plugin.ApplicationCommand):
 
 # Selection and movement commands
 
+
 class ToggleFoldSelectionCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         view = self.view
@@ -193,18 +210,16 @@ class ToggleFoldSelectionCommand(sublime_plugin.TextCommand):
                 self.view.unfold(region)
             str_buffer = view.substr(region)
             if len(str_buffer) == 0:
-                sublime.set_timeout(lambda: sublime.status_message(
-                    'There is no text selected!'), 0)
+                sublime.set_timeout(
+                    lambda: sublime.status_message("There is no text selected!"), 0
+                )
 
 
 class SplitSelectionCommand(sublime_plugin.TextCommand):
-
     def run(self, edit, separator=None):
-
         self.savedSelection = [r for r in self.view.sel()]
 
-        selectionSize = sum(
-            map(lambda region: region.size(), self.savedSelection))
+        selectionSize = sum(map(lambda region: region.size(), self.savedSelection))
         if selectionSize == 0:
             # nothing to do
             sublime.status_message("Cannot split an empty selection.")
@@ -220,7 +235,7 @@ class SplitSelectionCommand(sublime_plugin.TextCommand):
                 " ",
                 onConfirm,
                 onChange,
-                self.restoreSelection
+                self.restoreSelection,
             )
 
             inputView.run_command("select_all")
@@ -238,14 +253,12 @@ class SplitSelectionCommand(sublime_plugin.TextCommand):
         return (onConfirm, onChange)
 
     def restoreSelection(self):
-
         selection = self.view.sel()
         selection.clear()
         for region in self.savedSelection:
             selection.add(region)
 
     def splitSelection(self, separator):
-
         view = self.view
         newRegions = []
 
@@ -261,8 +274,7 @@ class SplitSelectionCommand(sublime_plugin.TextCommand):
 
             for subRegion in subRegions:
                 newRegion = sublime.Region(
-                    currentPosition,
-                    currentPosition + len(subRegion)
+                    currentPosition, currentPosition + len(subRegion)
                 )
                 newRegions.append(newRegion)
                 currentPosition += len(subRegion) + len(separator)
@@ -286,17 +298,17 @@ class SelectionToSnippetCommand(sublime_plugin.TextCommand):
         for region in selection:
             str_buffer = view.substr(region)
             if len(str_buffer) == 0:
-                sublime.set_timeout(lambda: sublime.status_message(
-                    'There is no text selected!'), 0)
+                sublime.set_timeout(
+                    lambda: sublime.status_message("There is no text selected!"), 0
+                )
             else:
                 str_out = str_out + "\n" + str_buffer
 
         window = sublime.active_window()
-        window.run_command('new_file')
+        window.run_command("new_file")
         snippet_view = window.active_view()
         snippet_view.set_name("snippet.sublime-snippet")
-        snippet_view.run_command(
-            "insert_snippet_contents", {'string': str_out})
+        snippet_view.run_command("insert_snippet_contents", {"string": str_out})
 
 
 class InsertSnippetContentsCommand(sublime_plugin.TextCommand):
@@ -308,9 +320,7 @@ class InsertSnippetContentsCommand(sublime_plugin.TextCommand):
 
 
 class CycleThroughRegionsCommand(sublime_plugin.TextCommand):
-
     def run(self, edit):
-
         view = self.view
         visibleRegion = view.visible_region()
         selectedRegions = view.sel()
@@ -320,8 +330,9 @@ class CycleThroughRegionsCommand(sublime_plugin.TextCommand):
         for region in selectedRegions:
             str_buffer = view.substr(region)
             if len(str_buffer) == 0:
-                sublime.set_timeout(lambda: sublime.status_message(
-                    'There is no text selected!'), 0)
+                sublime.set_timeout(
+                    lambda: sublime.status_message("There is no text selected!"), 0
+                )
             if region.end() > visibleRegion.b:
                 nextRegion = region
                 break
@@ -355,24 +366,28 @@ class FastMoveCommand(sublime_plugin.TextCommand):
         if direction == "up":
             for i in range(settings.get("fast_move_vertical_move_amount")):
                 window.run_command(
-                    "move", {"by": "lines", "forward": False, "extend": extend})
+                    "move", {"by": "lines", "forward": False, "extend": extend}
+                )
         if direction == "down":
             for i in range(settings.get("fast_move_vertical_move_amount")):
                 window.run_command(
-                    "move", {"by": "lines", "forward": True, "extend": extend})
+                    "move", {"by": "lines", "forward": True, "extend": extend}
+                )
         if direction == "left":
             for i in range(settings.get("fast_move_horizontal_character_amount")):
                 window.run_command(
-                    "move", {"by": "characters", "forward": False, "extend": extend})
+                    "move", {"by": "characters", "forward": False, "extend": extend}
+                )
         if direction == "right":
             for i in range(settings.get("fast_move_horizontal_character_amount")):
                 window.run_command(
-                    "move", {"by": "characters", "forward": True, "extend": extend})
+                    "move", {"by": "characters", "forward": True, "extend": extend}
+                )
 
 
 class RemoveOrSelectAllCommentsCommand(sublime_plugin.TextCommand):
     def run(self, edit, select=False):
-        comments = self.view.find_by_selector('comment')
+        comments = self.view.find_by_selector("comment")
         if select:
             self.view.selection.clear()
         for region in reversed(comments):
@@ -380,6 +395,7 @@ class RemoveOrSelectAllCommentsCommand(sublime_plugin.TextCommand):
                 self.view.selection.add(region)
             else:
                 self.view.erase(edit, region)
+
 
 # Tab Context commands
 class RenameFileInTabCommand(sublime_plugin.TextCommand):
@@ -393,12 +409,13 @@ class RenameFileInTabCommand(sublime_plugin.TextCommand):
             return
 
         directory, fn = os.path.split(full_path)
-        v = w.show_input_panel("New file name:",
-                               fn,
-                               functools.partial(
-                                   self.on_done, full_path, directory),
-                               None,
-                               None)
+        v = w.show_input_panel(
+            "New file name:",
+            fn,
+            functools.partial(self.on_done, full_path, directory),
+            None,
+            None,
+        )
         name, ext = os.path.splitext(fn)
 
         v.sel().clear()
@@ -412,7 +429,10 @@ class RenameFileInTabCommand(sublime_plugin.TextCommand):
 
         try:
             if os.path.isfile(new):
-                if old.lower() != new.lower() or os.stat(old).st_ino != os.stat(new).st_ino:
+                if (
+                    old.lower() != new.lower()
+                    or os.stat(old).st_ino != os.stat(new).st_ino
+                ):
                     # not the same file (for case-insensitive OSes)
                     raise OSError("File already exists")
 
@@ -450,12 +470,16 @@ class TabContextTerminalCommand(sublime_plugin.TextCommand):
 
         if file_name:
             env = os.environ.copy()
-            res_str = file_name[file_name.rfind("\\"):len(file_name)]
+            res_str = file_name[file_name.rfind("\\") : len(file_name)]
             file_name = file_name.replace(res_str, "")
             subprocess.Popen("cmd.exe", env=env, cwd=file_name)
         else:
-            sublime.set_timeout(lambda: sublime.status_message(
-                'Selected file cannot be opened in Terminal.'), 0)
+            sublime.set_timeout(
+                lambda: sublime.status_message(
+                    "Selected file cannot be opened in Terminal."
+                ),
+                0,
+            )
 
     def is_enabled(self):
         if sublime.platform() == "windows":
@@ -478,15 +502,18 @@ class TabContextDeleteCommand(sublime_plugin.TextCommand):
         file_name = view.file_name()
 
         if file_name:
-            if sublime.ok_cancel_dialog(f"Are you sure you want to delete\n{file_name}?", "Delete"):
+            if sublime.ok_cancel_dialog(
+                f"Are you sure you want to delete\n{file_name}?", "Delete"
+            ):
                 try:
                     send2trash.send2trash(file_name)
                     view.close()
                 except:
                     window.status_message("Unable to delete")
         else:
-            sublime.set_timeout(lambda: sublime.status_message(
-                'Selected file cannot be deleted.'), 0)
+            sublime.set_timeout(
+                lambda: sublime.status_message("Selected file cannot be deleted."), 0
+            )
 
 
 class ToggleReadonlyCommand(sublime_plugin.TextCommand):
@@ -494,26 +521,27 @@ class ToggleReadonlyCommand(sublime_plugin.TextCommand):
         window = self.view.window()
         views = window.views_in_group(group)
         view = views[index]
-        if (view.is_read_only()):
+        if view.is_read_only():
             view.set_read_only(False)
-            view.set_status('toggle_readonly', 'Read only off')
+            view.set_status("toggle_readonly", "Read only off")
             sublime.set_timeout(lambda: ToggleReadonlyCommand.clear_status(view), 1250)
         else:
             view.set_read_only(True)
-            view.set_status('toggle_readonly', 'Read only')  # BUG: Sometimes this gets set when the view isn't actually read only somehow
+            view.set_status(
+                "toggle_readonly", "Read only"
+            )  # BUG: Sometimes this gets set when the view isn't actually read only somehow
 
     @staticmethod
     def clear_status(view):
-        view.set_status('toggle_readonly', '')
+        view.set_status("toggle_readonly", "")
 
 
 class TabContextEventListener(sublime_plugin.EventListener):
-
     def check_readonly(self, view):
         if view.is_read_only():
-            view.set_status('toggle_readonly', 'Readonly')
+            view.set_status("toggle_readonly", "Readonly")
         else:
-            view.set_status('toggle_readonly', '')
+            view.set_status("toggle_readonly", "")
 
     def on_activated(self, view):
         self.check_readonly(view)
@@ -533,20 +561,20 @@ class SortTabs(object):
 
         self.current_grp_only = current_grp_only
         if current_grp_only is None:
-            self.current_grp_only = settings.get('current_group_only', False)
+            self.current_grp_only = settings.get("current_group_only", False)
 
         list_views = []
         # init, fill and sort list_views
         self.init_file_views(list_views)
         self.fill_list_views(list_views)
         self.sort_list_views(list_views)
-        message = ''
+        message = ""
         if sort:
             self.sort_views(list_views)
-            message = '%s' % (self.description(), )
+            message = "%s" % (self.description(),)
         if close is not False:
             closed_view = self.close_views(list_views, close)
-            message = 'Closed %i view(s) using %s' % (closed_view, self.description())
+            message = "Closed %i view(s) using %s" % (closed_view, self.description())
 
         if message:
             sublime.status_message(message)
@@ -573,7 +601,7 @@ class SortTabs(object):
         for group, groupviews in groupby(list_views, itemgetter(1)):
             for index, view in enumerate(v[0] for v in groupviews):
                 # remove flag for auto sorting
-                view.settings().erase('sorttabs_tosort')
+                view.settings().erase("sorttabs_tosort")
                 if self.window.get_view_index(view) != (group, index):
                     self.window.set_view_index(view, group, index)
 
@@ -584,9 +612,13 @@ class SortTabs(object):
         close = close if close else 1
         closed = 0
         for view in (v[0] for v in list_views[-close:]):
-            if view.id() != self.current_view.id() and not view.is_dirty() and not view.is_scratch():
+            if (
+                view.id() != self.current_view.id()
+                and not view.is_dirty()
+                and not view.is_scratch()
+            ):
                 self.window.focus_view(view)
-                self.window.run_command('close_file')
+                self.window.run_command("close_file")
                 closed += 1
         return closed
 
@@ -596,40 +628,48 @@ class SortTabs(object):
 
 
 class SortTabsByNameCommand(SortTabs, sublime_plugin.WindowCommand):
-    '''Sort Tabs by file name'''
+    """Sort Tabs by file name"""
+
     sorting_indexes = (1, 2)
 
     def fill_list_views(self, list_views):
         super(SortTabsByNameCommand, self).fill_list_views(list_views)
         for item in list_views:
-            filename = os.path.basename(item[0].file_name() if item[0].file_name() else '')
+            filename = os.path.basename(
+                item[0].file_name() if item[0].file_name() else ""
+            )
             item.append(filename.lower())
 
 
 class SortTabsByFilePathCommand(SortTabsByNameCommand, sublime_plugin.WindowCommand):
-    '''Sort Tabs by file path'''
+    """Sort Tabs by file path"""
+
     sorting_indexes = (1, 3, 2)
 
     def fill_list_views(self, list_views):
         super(SortTabsByFilePathCommand, self).fill_list_views(list_views)
         for item in list_views:
-            dirname = os.path.dirname(item[0].file_name() if item[0].file_name() else '')
+            dirname = os.path.dirname(
+                item[0].file_name() if item[0].file_name() else ""
+            )
             item.append(dirname.lower())
 
 
 class SortTabsByTypeCommand(SortTabsByNameCommand):
-    '''Sort Tabs by file type'''
+    """Sort Tabs by file type"""
+
     sorting_indexes = (1, 3, 2)
 
     def fill_list_views(self, list_views):
         super(SortTabsByTypeCommand, self).fill_list_views(list_views)
         # add syntax to each element of list_views
         for item in list_views:
-            item.append(item[0].settings().get('syntax', ''))
+            item.append(item[0].settings().get("syntax", ""))
 
 
 class SortTabsByDateCommand(SortTabsByNameCommand):
-    '''Sort Tabs by modification date'''
+    """Sort Tabs by modification date"""
+
     sorting_indexes = (1, 3, 4, 2)
 
     def fill_list_views(self, list_views):
@@ -651,23 +691,23 @@ class SortTabsByDateCommand(SortTabsByNameCommand):
 
 
 class SortTabsByLastActivationCommand(SortTabsByNameCommand):
-    '''Sort Tabs by last activation'''
+    """Sort Tabs by last activation"""
+
     sorting_indexes = (1, 3, 2)
 
     def fill_list_views(self, list_views):
         super(SortTabsByLastActivationCommand, self).fill_list_views(list_views)
         # add syntax to each element of list_views
         for item in list_views:
-            item.append(-item[0].settings().get('sorttabs_lastactivated', 0))
+            item.append(-item[0].settings().get("sorttabs_lastactivated", 0))
+
 
 # Workspace
 
 
 class WorkspaceListInputHandler(sublime_plugin.ListInputHandler):
-
     def __init__(self):
-        self.project_directories = settings.get(
-            'sublime_workspace_directories_list')
+        self.project_directories = settings.get("sublime_workspace_directories_list")
 
     def find_workspaces(self):
         s_workspace_file = re.compile("^.*?\.sublime-workspace$")
@@ -679,7 +719,7 @@ class WorkspaceListInputHandler(sublime_plugin.ListInputHandler):
         return results
 
     def name(self):
-        return 'workspace'
+        return "workspace"
 
     def list_items(self):
         list_items = []
@@ -690,33 +730,27 @@ class WorkspaceListInputHandler(sublime_plugin.ListInputHandler):
 
 
 class CloseWindowListInputHandler(sublime_plugin.ListInputHandler):
-
     def name(self):
-        return 'close'
+        return "close"
 
     def list_items(self):
-        return [
-            ('Close Current Workspace', True),
-            ('Keep Current Workspace', False)
-        ]
+        return [("Close Current Workspace", True), ("Keep Current Workspace", False)]
 
 
 class OpenWorkspaceFromListCommand(sublime_plugin.WindowCommand):
-
     def input_description(self):
         return "Select Workspace"
 
     def input(self, args):
-        if 'workspace' not in args:
+        if "workspace" not in args:
             return WorkspaceListInputHandler()
-        if 'close' not in args:
+        if "close" not in args:
             return CloseWindowListInputHandler()
 
     def run(self, workspace, close):
         if workspace is not None:
             workspace = workspace + ".sublime-workspace"
-            project_directories = settings.get(
-                'sublime_workspace_directories_list')
+            project_directories = settings.get("sublime_workspace_directories_list")
             if len(project_directories) > 0:
                 # space_path = os.path.abspath(workspace)
                 s_workspace_file = re.compile("^.*?\.sublime-workspace$")
@@ -730,63 +764,67 @@ class OpenWorkspaceFromListCommand(sublime_plugin.WindowCommand):
                                 if close:
                                     window.run_command("close_workspace")
                                     window.run_command("close_pane")
-                                    os.startfile(workspace)
+                                    open_path(workspace)
                                 else:
-                                    os.startfile(workspace)
+                                    open_path(workspace)
         else:
-            sublime.set_timeout(lambda: sublime.status_message(
-                'No directories have been added to the workspace directories list. See Sublime Plus.sublime-setting for more info.'), 0)
+            sublime.set_timeout(
+                lambda: sublime.status_message(
+                    "No directories have been added to the workspace directories list. See Sublime Plus.sublime-setting for more info."
+                ),
+                0,
+            )
 
 
 # Sidebar navigation commands
 
+
 class TreeViewGoToParentNode(sublime_plugin.WindowCommand):
     def run(self):
-        self.window.run_command('move_to', {'to': 'bol', 'extend': False})
+        self.window.run_command("move_to", {"to": "bol", "extend": False})
 
 
 class TreeViewGoToRootNode(sublime_plugin.WindowCommand):
     def run(self):
-        self.window.run_command('move', {'by': 'characters', 'forward': False})
+        self.window.run_command("move", {"by": "characters", "forward": False})
 
 
 class TreeViewGoToChildNode(sublime_plugin.WindowCommand):
     def run(self):
-        self.window.run_command('move_to', {'to': 'eol', 'extend': False})
+        self.window.run_command("move_to", {"to": "eol", "extend": False})
 
 
 class TreeViewMoveDown(sublime_plugin.WindowCommand):
     def run(self):
-        self.window.run_command('move', {'by': 'lines', 'forward': True})
+        self.window.run_command("move", {"by": "lines", "forward": True})
 
 
 class TreeViewMoveLeft(sublime_plugin.WindowCommand):
     def run(self):
-        self.window.run_command('move', {'by': 'characters', 'forward': False})
+        self.window.run_command("move", {"by": "characters", "forward": False})
 
 
 class TreeViewMoveRight(sublime_plugin.WindowCommand):
     def run(self):
-        self.window.run_command('move', {'by': 'characters', 'forward': True})
+        self.window.run_command("move", {"by": "characters", "forward": True})
 
 
 class TreeViewMoveUp(sublime_plugin.WindowCommand):
     def run(self):
-        self.window.run_command('move', {'by': 'lines', 'forward': False})
+        self.window.run_command("move", {"by": "lines", "forward": False})
 
 
 # Layout commands
+
 
 class PolyfillSetLayoutCommand(sublime_plugin.WindowCommand):
     def run(self, cols, rows, cells):
         num_groups_before = self.window.num_groups()
         active_group_before = self.window.active_group()
 
-        self.window.run_command('set_layout', {
-            'cols': cols,
-            'rows': rows,
-            'cells': cells
-        })
+        self.window.run_command(
+            "set_layout", {"cols": cols, "rows": rows, "cells": cells}
+        )
 
         if num_groups_before == self.window.num_groups():
             self.window.focus_group(active_group_before)
@@ -801,19 +839,20 @@ class PolyfillSetLayoutCommand(sublime_plugin.WindowCommand):
 
 # Autofold
 
-class AutoFoldCommandBase():
+
+class AutoFoldCommandBase:
     """
-        Base class for common methods for auto fold commands
+    Base class for common methods for auto fold commands
     """
 
     def __init__(self):
-        self.__storage_file__ = 'AutoFoldCode.sublime-settings'
+        self.__storage_file__ = "AutoFoldCode.sublime-settings"
         self.CURRENT_STORAGE_VERSION = 1
         self.MAX_BUFFER_SIZE_DEFAULT = 1000000
 
     def _save_view_data(self, view, clean_existing_versions):
         """
-            Save the folded regions of the view to disk.
+        Save the folded regions of the view to disk.
         """
         file_name = view.file_name()
         if file_name is None:
@@ -853,15 +892,16 @@ class AutoFoldCommandBase():
 
     def _clear_cache(self, name):
         """
-            Clears the cache. If name is '*', it will clear the whole cache.
-            Otherwise, pass in the file_name of the view to clear the view's cache.
+        Clears the cache. If name is '*', it will clear the whole cache.
+        Otherwise, pass in the file_name of the view to clear the view's cache.
         """
         settings = self._load_storage_settings(save_on_reset=False)
 
         def _clear_cache_section(data_key):
             all_data = settings.get(data_key)
             file_names_to_delete = [
-                file_name for file_name in all_data if name == '*' or file_name == name]
+                file_name for file_name in all_data if name == "*" or file_name == name
+            ]
             for file_name in file_names_to_delete:
                 all_data.pop(file_name)
             settings.set(data_key, all_data)
@@ -872,13 +912,15 @@ class AutoFoldCommandBase():
 
     def _load_storage_settings(self, save_on_reset):
         """
-            Loads the settings, resetting the storage file, if the version is old (or broken).
-            Returns the settings instance
+        Loads the settings, resetting the storage file, if the version is old (or broken).
+        Returns the settings instance
         """
         try:
             settings = sublime.load_settings(self.__storage_file__)
         except Exception as e:
-            print('[AutoFoldCode.] Error loading settings file (file will be reset): ', e)
+            print(
+                "[AutoFoldCode.] Error loading settings file (file will be reset): ", e
+            )
             save_on_reset = True
 
         if self._is_old_storage_version(settings):
@@ -896,21 +938,24 @@ class AutoFoldCommandBase():
         settings_version = settings.get("version", 0)
 
         # Consider the edge case of a file named "version".
-        return not isinstance(settings_version, int) or settings_version < self.CURRENT_STORAGE_VERSION
+        return (
+            not isinstance(settings_version, int)
+            or settings_version < self.CURRENT_STORAGE_VERSION
+        )
 
     def _compute_view_content_checksum(self, view):
         """
-            Returns the checksum in Python hex string format.
-            The view content returned is always the latest version, even when closing without saving.
+        Returns the checksum in Python hex string format.
+        The view content returned is always the latest version, even when closing without saving.
         """
         view_content = view.substr(sublime.Region(0, view.size()))
-        int_crc32 = zlib.crc32(view_content.encode('utf-8'))
+        int_crc32 = zlib.crc32(view_content.encode("utf-8"))
         return hex(int_crc32 % (1 << 32))
 
 
 class AutoFoldCodeListener(sublime_plugin.EventListener, AutoFoldCommandBase):
     """
-        Listen to changes in views to automatically save code folds.
+    Listen to changes in views to automatically save code folds.
     """
 
     def on_load_async(self, view):
@@ -936,24 +981,26 @@ class AutoFoldCodeListener(sublime_plugin.EventListener, AutoFoldCommandBase):
         self._save_view_data(view, False)
 
     def on_text_command(self, view, command_name, args):
-        if command_name == 'unfold_all' and view.file_name() is not None:
+        if command_name == "unfold_all" and view.file_name() is not None:
             self._clear_cache(view.file_name())
 
 
 class AutoFoldCodeClearAllCommand(sublime_plugin.WindowCommand, AutoFoldCommandBase):
     """
-        Clears all the saved code folds and unfolds all the currently open windows.
+    Clears all the saved code folds and unfolds all the currently open windows.
     """
 
     def run(self):
         AutoFoldCommandBase.__init__(self)
-        self._clear_cache('*')
-        self.window.run_command('auto_fold_code_unfold_all')
+        self._clear_cache("*")
+        self.window.run_command("auto_fold_code_unfold_all")
 
 
-class AutoFoldCodeClearCurrentCommand(sublime_plugin.WindowCommand, AutoFoldCommandBase):
+class AutoFoldCodeClearCurrentCommand(
+    sublime_plugin.WindowCommand, AutoFoldCommandBase
+):
     """
-        Clears the cache for the current view, and unfolds all its regions.
+    Clears the cache for the current view, and unfolds all its regions.
     """
 
     def run(self):
@@ -970,7 +1017,7 @@ class AutoFoldCodeClearCurrentCommand(sublime_plugin.WindowCommand, AutoFoldComm
 
 class AutoFoldCodeUnfoldAllCommand(sublime_plugin.WindowCommand):
     """
-        Unfold all code folds in all open files.
+    Unfold all code folds in all open files.
     """
 
     def run(self):
@@ -980,7 +1027,6 @@ class AutoFoldCodeUnfoldAllCommand(sublime_plugin.WindowCommand):
 
 
 class AutoFoldCodeRestoreCommand(sublime_plugin.TextCommand, AutoFoldCommandBase):
-
     def run(self, edit):
         AutoFoldCommandBase.__init__(self)
         file_name = self.view.file_name()
@@ -989,7 +1035,9 @@ class AutoFoldCodeRestoreCommand(sublime_plugin.TextCommand, AutoFoldCommandBase
 
         # Skip restoring folds if the file size is larger than `max_buffer_size`.
         settings = self._load_storage_settings(save_on_reset=True)
-        if self.view.size() > settings.get("max_buffer_size", self.MAX_BUFFER_SIZE_DEFAULT):
+        if self.view.size() > settings.get(
+            "max_buffer_size", self.MAX_BUFFER_SIZE_DEFAULT
+        ):
             return
 
         view_content_checksum = self._compute_view_content_checksum(self.view)
@@ -1014,19 +1062,20 @@ class DoubleClickAtCaretCommand(sublime_plugin.TextCommand):
     def run(self, edit, **kwargs):
         view = self.view
         # enumerate through each selection, while keeping a note of which index it is and looking up the window coordinates
-        for idx, vector in enumerate(map(lambda sel: view.text_to_window(sel.begin()), view.sel())):
+        for idx, vector in enumerate(
+            map(lambda sel: view.text_to_window(sel.begin()), view.sel())
+        ):
             # emulate a double click at those coordinates
-            view.run_command('drag_select', {
-                'event': {
-                    'button': 1,
-                    'count': 2,
-                    'x': vector[0],
-                    'y': vector[1]
+            view.run_command(
+                "drag_select",
+                {
+                    "event": {"button": 1, "count": 2, "x": vector[0], "y": vector[1]},
+                    "by": "words",
+                    # if there are multiple selections, act like pressing Ctrl while double clicking - otherwise we will end up with only one selection. The first double click should replace any existing selections unless told otherwise.
+                    "additive": idx > 0 or kwargs.get("additive", False),
                 },
-                'by': 'words',
-                # if there are multiple selections, act like pressing Ctrl while double clicking - otherwise we will end up with only one selection. The first double click should replace any existing selections unless told otherwise.
-                'additive': idx > 0 or kwargs.get('additive', False)
-            })
+            )
+
 
 class ClearConsoleCommand(sublime_plugin.ApplicationCommand):
     """
@@ -1035,11 +1084,11 @@ class ClearConsoleCommand(sublime_plugin.ApplicationCommand):
     """
 
     def run(self):
-        s = sublime.load_settings('Preferences.sublime-settings')
-        scrollback = s.get('console_max_history_lines')
-        s.set('console_max_history_lines', 1)
+        s = sublime.load_settings("Preferences.sublime-settings")
+        scrollback = s.get("console_max_history_lines")
+        s.set("console_max_history_lines", 1)
         print("")
-        s.set('console_max_history_lines', scrollback)
+        s.set("console_max_history_lines", scrollback)
 
 
 class GotoRecentListener(sublime_plugin.EventListener):
@@ -1085,13 +1134,13 @@ class GotoRecentCommand(sublime_plugin.WindowCommand):
 
 # Folding Commands
 
-class FolderHandler(sublime_plugin.TextCommand):
 
+class FolderHandler(sublime_plugin.TextCommand):
     def input_description(self):
         return "Fold Level"
 
     def input(self, args):
-        if 'level' not in args:
+        if "level" not in args:
             return FoldingInputHandler()
 
     def run(self, edit, level):
@@ -1102,9 +1151,8 @@ class FolderHandler(sublime_plugin.TextCommand):
 
 
 class FoldingInputHandler(sublime_plugin.ListInputHandler):
-
     def name(self):
-        return 'level'
+        return "level"
 
     def list_items(self):
         keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Unfold All"]
@@ -1143,7 +1191,7 @@ class RainbowBracketsControllerCommand(sublime_plugin.WindowCommand):
             return False
 
 
-class RainbowBracketsViewListener():
+class RainbowBracketsViewListener:
     def __init__(self, view, syntax, config):
         self.bad_key = config["bad_key"]
         self.bad_scope = config["bad_scope"]
@@ -1177,13 +1225,15 @@ class RainbowBracketsViewListener():
                         self.keys[level],
                         regions,
                         scope=self.scopes[level],
-                        flags=sublime.DRAW_NO_OUTLINE | sublime.PERSISTENT)
+                        flags=sublime.DRAW_NO_OUTLINE | sublime.PERSISTENT,
+                    )
             if self.bad_bracket_regions:
                 self.view.add_regions(
                     self.bad_key,
                     self.bad_bracket_regions,
                     scope=self.bad_scope,
-                    flags=sublime.DRAW_EMPTY | sublime.PERSISTENT)
+                    flags=sublime.DRAW_EMPTY | sublime.PERSISTENT,
+                )
         else:
             self.construct_bracket_trees()
 
@@ -1276,6 +1326,7 @@ class RainbowBracketsViewListener():
 
 # Diffy
 
+
 class RegionToDraw(object):
     def __init__(self, line_number, start):
         self.line_number = line_number
@@ -1316,7 +1367,9 @@ class WordToDraw(RegionToDraw):
         return view.word(point_start)
 
     def __str__(self):
-        return "WordToDraw: {line_number}: ({start}, {end})".format(line_number=self.line_number, start=self.start, end=self.end)
+        return "WordToDraw: {line_number}: ({start}, {end})".format(
+            line_number=self.line_number, start=self.start, end=self.end
+        )
 
 
 class Diffy(object):
@@ -1339,26 +1392,26 @@ class Diffy(object):
             line_content = line[2:]
 
             #  detect a change
-            if diff_code == '?':
+            if diff_code == "?":
                 line_num -= 1
                 continue
-            elif diff_code == '+':
+            elif diff_code == "+":
                 line_num -= 1
 
-            if pre_diff_code == '-' and diff_code == '+':
+            if pre_diff_code == "-" and diff_code == "+":
                 if line_content == "" or line_content.isspace():
                     r = LineToDraw(line_num - 1, 0)
                     diff.append(r)
                 else:
                     s = difflib.SequenceMatcher(None, pre_line_content, line_content)
                     for tag, i1, i2, j1, j2 in s.get_opcodes():
-                        if tag == 'insert':
+                        if tag == "insert":
                             r = WordToDraw(line_num, j1, j2)
                             diff.append(r)
-                        elif tag == 'delete' or tag == 'replace':
+                        elif tag == "delete" or tag == "replace":
                             r = WordToDraw(line_num, i1, i2)
                             diff.append(r)
-            elif pre_diff_code == '-':
+            elif pre_diff_code == "-":
                 r = LineToDraw(line_num - 1, 0)
                 diff.append(r)
 
@@ -1387,9 +1440,9 @@ class DiffyCommand(sublime_plugin.TextCommand):
 
     def clear(self, view):
         """
-            return the marked lines
+        return the marked lines
         """
-        view.erase_regions('highlighted_lines')
+        view.erase_regions("highlighted_lines")
 
     def draw_difference(self, view, diffs):
         self.clear(view)
@@ -1397,11 +1450,7 @@ class DiffyCommand(sublime_plugin.TextCommand):
         lines = [d.get_region(view) for d in diffs]
 
         view.add_regions(
-            'highlighted_lines',
-            lines,
-            'keyword',
-            'dot',
-            sublime.DRAW_OUTLINED
+            "highlighted_lines", lines, "keyword", "dot", sublime.DRAW_OUTLINED
         )
 
         return lines
@@ -1414,12 +1463,20 @@ class DiffyCommand(sublime_plugin.TextCommand):
         diffy = Diffy()
         window = self.view.window()
 
-        action = kwargs.get('action', None)
+        action = kwargs.get("action", None)
 
-        view_1 = window.selected_sheets()[0].view() if len(window.selected_sheets()) >= 2 else window.active_view_in_group(0)
-        view_2 = window.selected_sheets()[1].view() if len(window.selected_sheets()) >= 2 else window.active_view_in_group(1)
+        view_1 = (
+            window.selected_sheets()[0].view()
+            if len(window.selected_sheets()) >= 2
+            else window.active_view_in_group(0)
+        )
+        view_2 = (
+            window.selected_sheets()[1].view()
+            if len(window.selected_sheets()) >= 2
+            else window.active_view_in_group(1)
+        )
 
-        if action == 'clear':
+        if action == "clear":
             if view_1:
                 self.clear(view_1)
             if view_2:
@@ -1431,7 +1488,9 @@ class DiffyCommand(sublime_plugin.TextCommand):
                 text_2 = self.get_entire_content(view_2)
 
                 if len(text_1) > 0 and len(text_2) > 0:
-                    diff_1, diff_2 = diffy.calculate_diff(text_1.split('\n'), text_2.split('\n'))
+                    diff_1, diff_2 = diffy.calculate_diff(
+                        text_1.split("\n"), text_2.split("\n")
+                    )
 
                     highlighted_lines_1 = self.draw_difference(view_1, diff_1)
                     highlighted_lines_2 = self.draw_difference(view_2, diff_2)
@@ -1456,16 +1515,18 @@ class SearchPhindInputHandler(sublime_plugin.TextInputHandler):
     def placeholder(self):
         return "Search"
 
+
 class SearchPhindCommand(sublime_plugin.TextCommand):
     def run(self, edit, query):
         webbrowser.open_new_tab(f"https://phind.com/search?q={query}")
 
     def input(self, args):
-        if 'query' not in args:
+        if "query" not in args:
             return SearchPhindInputHandler(self.view)
 
     def input_description(self):
         return "Phind"
+
 
 # ------------------------------------------------------
 # -                  Event Listeners                   -
@@ -1536,8 +1597,7 @@ class RainbowBracketsViewManager(sublime_plugin.EventListener):
             config = cls.configs_by_stx[syntax]
             if config["enabled"] or force:
                 if config["bracket_pairs"]:
-                    listener = RainbowBracketsViewListener(
-                        view, syntax, config)
+                    listener = RainbowBracketsViewListener(view, syntax, config)
                     cls.view_listeners[view.view_id] = listener
                     return listener
                 elif force:
@@ -1647,12 +1707,15 @@ class ColorSchemeManager(sublime_plugin.EventListener):
 
     @classmethod
     def color_scheme_cache_path(cls):
-        return os.path.join(sublime.packages_path(), "User", "Color Schemes", "RainbowBrackets")
+        return os.path.join(
+            sublime.packages_path(), "User", "Color Schemes", "RainbowBrackets"
+        )
 
     @classmethod
     def color_scheme_name(cls):
-        return os.path.basename(
-            cls.color_scheme).replace("tmTheme", "sublime-color-scheme")
+        return os.path.basename(cls.color_scheme).replace(
+            "tmTheme", "sublime-color-scheme"
+        )
 
     @classmethod
     def clear_color_schemes(cls, all=False):
@@ -1692,23 +1755,27 @@ class ColorSchemeManager(sublime_plugin.EventListener):
 
         rules = []
         for value in RainbowBracketsViewManager.configs_by_stx.values():
-            rules.append({
-                "scope": value["bad_scope"],
-                "foreground": value["mismatch_color"],
-                "background": background
-            })
+            rules.append(
+                {
+                    "scope": value["bad_scope"],
+                    "foreground": value["mismatch_color"],
+                    "background": background,
+                }
+            )
             for scope, color in zip(value["scopes"], value["rainbow_colors"]):
-                rules.append({
-                    "scope": scope,
-                    "foreground": color,
-                    "background": nearest_background
-                })
+                rules.append(
+                    {
+                        "scope": scope,
+                        "foreground": color,
+                        "background": nearest_background,
+                    }
+                )
         color_scheme_data = {
             "name": os.path.splitext(os.path.basename(cls.color_scheme))[0],
             "author": " ",
             "variables": {},
             "globals": {},
-            "rules": rules
+            "rules": rules,
         }
 
         color_scheme_path = cls.color_scheme_cache_path()
@@ -1722,7 +1789,6 @@ class ColorSchemeManager(sublime_plugin.EventListener):
 
 
 class AutoSaveEventListener(sublime_plugin.EventListener):
-
     def __init__(self):
         self.num_modifications = 0
         self.recently_saved = False
@@ -1732,14 +1798,18 @@ class AutoSaveEventListener(sublime_plugin.EventListener):
         filename = view.file_name()
         if self.recently_saved:
             pass
-        elif settings.get("auto_save_on_modified") and filename and self.num_modifications >= settings.get("number_of_modifications_for_auto_save"):
+        elif (
+            settings.get("auto_save_on_modified")
+            and filename
+            and self.num_modifications
+            >= settings.get("number_of_modifications_for_auto_save")
+        ):
             delay = settings.get("auto_save_delay_in_seconds")
             if settings.get("auto_save_only_included"):
                 for path in settings.get("included_auto_save_files_field"):
                     if filename.endswith(path):
                         self.num_modifications = 0
-                        sublime.set_timeout(
-                            lambda: self.save_file(view), delay)
+                        sublime.set_timeout(lambda: self.save_file(view), delay)
                         self.recently_saved = True
                         sublime.set_timeout(lambda: self.set_recent(), delay)
             else:
@@ -1752,9 +1822,13 @@ class AutoSaveEventListener(sublime_plugin.EventListener):
                 sublime.set_timeout(lambda: self.set_recent(), delay)
 
     def save_file(self, view):
-        if view.is_dirty() and not view.is_loading() and not view.is_auto_complete_visible():
+        if (
+            view.is_dirty()
+            and not view.is_loading()
+            and not view.is_auto_complete_visible()
+        ):
             view.run_command("save")
-            sublime.status_message(' ')  # don't clog up status
+            sublime.status_message(" ")  # don't clog up status
 
     def set_recent(self):
         self.recently_saved = False
@@ -1787,27 +1861,27 @@ class AutoCloseEmptyGroup(sublime_plugin.EventListener):
 
 class AutoSortTabsListener(sublime_plugin.EventListener):
     def on_load(self, view):
-        if settings.get('sort_on_load_save'):
+        if settings.get("sort_on_load_save"):
             if not self._run_sort(view):
-                view.settings().set('sorttabs_tosort', True)
+                view.settings().set("sorttabs_tosort", True)
 
     def on_post_save(self, view):
-        if settings.get('sort_on_load_save'):
+        if settings.get("sort_on_load_save"):
             self._run_sort(view)
 
     def on_activated(self, view):
-        view.settings().set('sorttabs_lastactivated', time.time())
-        if settings.get('sort_on_load_save'):
-            if view.settings().get('sorttabs_tosort'):
+        view.settings().set("sorttabs_lastactivated", time.time())
+        if settings.get("sort_on_load_save"):
+            if view.settings().get("sorttabs_tosort"):
                 if self._run_sort(view):
-                    view.settings().erase('sorttabs_tosort')
+                    view.settings().erase("sorttabs_tosort")
 
     def _run_sort(self, view):
         if view.window() and view.window().get_view_index(view)[1] != -1:
-            cmd = settings.get('sort_on_load_save_command')
+            cmd = settings.get("sort_on_load_save_command")
             if not cmd:
                 # Last used sort
-                cmd = internal_settings().get('last_cmd')
+                cmd = internal_settings().get("last_cmd")
             if cmd:
                 view.window().run_command(cmd)
             return True
