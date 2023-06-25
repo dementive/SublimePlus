@@ -13,6 +13,24 @@
 // 	// f2 is the same as rename key as windows file explorer
 // 	{ "keys": ["f2"], "command": "rename_file" },
 	
+// 	// Terminus
+
+	// {
+	//     "keys": ["alt+t"],
+	//     "command": "terminus_open",
+	//     "args"   : {
+	//         "cwd": "${file_path:${folder}}",
+	//     }
+	// },
+	// {
+	//     "keys": ["super+`"],
+	//     "command": "terminus_open",
+	//     "args"   : {
+	//         "cwd": "${file_path:${folder}}",
+	//         "show_in_panel": true
+	//     }
+	// },
+
 // 	// Goto recently closed
 // 	{ "keys": ["ctrl+alt+r"], "command": "goto_recent" },
 
