@@ -94,7 +94,7 @@ class CommandEventListener(sublime_plugin.EventListener):
             if path != "none":
                 return "ggc_open"
             else:
-                return "sublime_merge_open_repo"
+                return None
 
 
 # Notepad
