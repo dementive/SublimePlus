@@ -13,6 +13,8 @@
 // 	// f2 is the same as rename key as windows file explorer
 // 	{ "keys": ["f2"], "command": "rename_file" },
 	
+//  { "keys": ["ctrl+shift+g"], "command": "open_github_repo" },
+	
 // 	// Terminus
 
 	// {

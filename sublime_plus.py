@@ -86,6 +86,36 @@ class GgcOpenCommand(sublime_plugin.WindowCommand):
         open_path(settings.get("git_gui_path"))
 
 
+class OpenGithubRepoCommand(sublime_plugin.WindowCommand):
+    def run(self):
+        path = self.window.active_view().file_name()
+
+        if not path:
+            return
+
+        dirname = os.path.dirname(path)
+        gitdir = os.path.join(dirname, ".git")
+
+        # Check if there is a .git folder
+        if not os.path.isdir(gitdir):
+            return
+
+        # Check if repo is a github repo
+        git_file_to_check = os.path.join(gitdir, "FETCH_HEAD")
+
+        with open(git_file_to_check, "r") as file:
+            data = file.read()
+
+        if "github" not in data:
+            return
+
+        self.window.run_command(
+            "exec",
+            {"cmd": ["gh", "browse"], "quiet": True},
+        )
+        self.window.destroy_output_panel("exec")
+
+
 class CommandEventListener(sublime_plugin.EventListener):
     def on_window_command(self, view, command_name, args):
         # Clicking on the repo button in the status bar will open a custom git gui instead of sublime merge

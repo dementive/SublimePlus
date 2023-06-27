@@ -36,6 +36,8 @@
 	    "args": { "action": "clear color schemes" }
 	},
 
+	{ "caption": "Open Github Repo", "command": "open_github_repo" },
+
 	// Simple diff commands, need to have 2 views side by side and then the compare command can be used
 	{ "caption": "Sublime Plus: Diff Compare", "command": "diffy" },
 
