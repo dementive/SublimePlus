@@ -101,7 +101,7 @@ class OpenGithubRepoCommand(sublime_plugin.WindowCommand):
             return
 
         # Check if repo is a github repo
-        git_file_to_check = os.path.join(gitdir, "FETCH_HEAD")
+        git_file_to_check = os.path.join(gitdir, "config")
 
         with open(git_file_to_check, "r") as file:
             data = file.read()
