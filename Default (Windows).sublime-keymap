@@ -3,9 +3,9 @@
 
 // [
 // 	// Change the current workspace to a new workspace from the workspace list defined plugin settings
-// 	{ "keys": ["alt+w"], "command": "open_workspace_from_list", "args": {"close": true}},
+// 	{ "keys": ["alt+w"], "command": "prompt_select_workspace"},
 // 	// Open a workspace from the workspace list and be prompted to keep or close the current workspace
-// 	{ "keys": ["alt+shift+w"], "command": "open_workspace_from_list" },
+// 	{ "keys": ["alt+shift+w"], "command": "prompt_select_workspace" },
 // 	// Select a color scheme
 // 	{ "keys": ["alt+s"], "command": "select_color_scheme" },
 // 	// clear the sublime text console
