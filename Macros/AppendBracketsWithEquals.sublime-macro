@@ -28,11 +28,4 @@
 		},
 		"command": "run_macro_file"
 	},
-	{
-		"args":
-		{
-			"characters": "\t"
-		},
-		"command": "insert"
-	},
 ]
