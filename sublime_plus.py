@@ -21,7 +21,7 @@ from collections import deque
 # ------------------------------------------------------
 
 # global settings object that is used in almost all commands, initialized on plugin load
-settings = None
+settings = sublime.Settings(9999)
 
 
 def plugin_loaded():
@@ -128,6 +128,32 @@ class CommandEventListener(sublime_plugin.EventListener):
 
 
 # Notepad
+
+
+class ToggleUiCommand(sublime_plugin.ApplicationCommand):
+    def __init__(self):
+        self.notepad_toggle = False
+
+    def run(self):
+        window = sublime.active_window()
+        view = window.active_view()
+
+        if not self.notepad_toggle:
+            if window.is_menu_visible() is True:
+                window.set_menu_visible(False)
+            window.set_sidebar_visible(False)
+            window.set_tabs_visible(False)
+            window.set_status_bar_visible(False)
+            window.set_minimap_visible(False)
+            self.notepad_toggle = True
+        else:
+            if window.is_menu_visible() is True:
+                window.set_tabs_visible(True)
+            window.set_sidebar_visible(True)
+            window.set_status_bar_visible(True)
+            window.set_minimap_visible(True)
+            window.set_menu_visible(True)
+            self.notepad_toggle = False
 
 
 class ToggleNotePadCommand(sublime_plugin.ApplicationCommand):
@@ -1121,6 +1147,95 @@ class ClearConsoleCommand(sublime_plugin.ApplicationCommand):
         s.set("console_max_history_lines", scrollback)
 
 
+# Folding Commands
+
+
+class FolderHandler(sublime_plugin.TextCommand):
+    def input_description(self):
+        return "Fold Level"
+
+    def input(self, args):
+        if "level" not in args:
+            return FoldingInputHandler()
+
+    def run(self, edit, level):
+        if level != "Unfold All":
+            self.view.run_command("fold_by_level", {"level": int(level)})
+        else:
+            self.view.run_command("unfold_all")
+
+
+class FoldingInputHandler(sublime_plugin.ListInputHandler):
+    def name(self):
+        return "level"
+
+    def list_items(self):
+        keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Unfold All"]
+        return keys
+
+# File handlers
+
+class OpenFileHandler(sublime_plugin.TextCommand):
+    def input_description(self):
+        return "Open File"
+
+    def input(self, args):
+        if "file" not in args:
+            return OpenFileInputHandler()
+
+    def run(self, edit, file):
+        window = self.view.window()
+        views = window.views()
+        for i in views:
+            if i.id() == file:
+                window.focus_view(i)
+                break
+
+
+class OpenFileInputHandler(sublime_plugin.ListInputHandler):
+    def name(self):
+        return "file"
+
+    def list_items(self):
+        files = list()
+        for i, f in enumerate(sublime.active_window().views()):
+            fname = (
+                f"{i + 1}.  "
+                + f.file_name().replace("\\", "/").rstrip("/").rpartition("/")[2]
+            )
+            files.append((fname, f.id()))
+        return files
+
+
+class FileHistoryHandler(sublime_plugin.TextCommand):
+    def input_description(self):
+        return "Open Recent"
+
+    def input(self, args):
+        if "file" not in args:
+            return FileHistoryInputHandler()
+
+    def run(self, edit, file):
+        for i, f in enumerate(sublime.active_window().file_history()):
+            if f == file:
+                self.view.window().open_file(f)
+                break
+
+
+class FileHistoryInputHandler(sublime_plugin.ListInputHandler):
+    def name(self):
+        return "file"
+
+    def list_items(self):
+        files = list()
+        for i, f in enumerate(sublime.active_window().file_history()):
+            fname = (
+                f"{i + 1}.  "
+                + f.replace("\\", "/").rstrip("/").rpartition("/")[2]
+            )
+            files.append((fname, f))
+        return files
+
 class GotoRecentListener(sublime_plugin.EventListener):
     def on_deactivated(self, view):
         if view.file_name():
@@ -1160,34 +1275,6 @@ class GotoRecentCommand(sublime_plugin.WindowCommand):
             else:
                 self.enabled = False
                 self.window.show_quick_panel(self.recent_files, self.selected)
-
-
-# Folding Commands
-
-
-class FolderHandler(sublime_plugin.TextCommand):
-    def input_description(self):
-        return "Fold Level"
-
-    def input(self, args):
-        if "level" not in args:
-            return FoldingInputHandler()
-
-    def run(self, edit, level):
-        if level != "Unfold All":
-            self.view.run_command("fold_by_level", {"level": int(level)})
-        else:
-            self.view.run_command("unfold_all")
-
-
-class FoldingInputHandler(sublime_plugin.ListInputHandler):
-    def name(self):
-        return "level"
-
-    def list_items(self):
-        keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Unfold All"]
-        return keys
-
 
 # Rainbow Brackets
 

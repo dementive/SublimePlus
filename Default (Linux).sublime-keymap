@@ -33,8 +33,10 @@
 	//     }
 	// },
 
-// 	// Goto recently closed
-// 	{ "keys": ["ctrl+alt+r"], "command": "goto_recent" },
+    // Goto files
+    // { "keys": ["ctrl+alt+p"], "command": "goto_recent" },
+    // { "keys": ["ctrl+p"], "command": "open_file_handler" },
+    // { "keys": ["alt+p"], "command": "file_history_handler" },
 
 // 	// Macros
 // 	{ "keys": ["ctrl+;"], "command": "run_macro_file", "args": {"file": "Packages/SublimePlus/Macros/AppendSemiColon.sublime-macro"} },
@@ -62,7 +64,8 @@
 // 	{ "keys": ["alt+f"], "command": "folder_handler" },
 
 // 	// Distraction free view with no full screen that also has a ton of settings
-// 	{ "keys": ["alt+n"], "command": "toggle_note_pad" },
+// 	{ "keys": ["alt+shift+n"], "command": "toggle_note_pad" },
+//  { "keys": ["alt+n"], "command": "toggle_ui" },
 
 // 	// Create and show the output panel notepad. Very good for taking quick temporary notes.
 // 	{ "keys": ["alt+o"], "command": "output_panel_note_pad" },
