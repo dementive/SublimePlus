@@ -1,0 +1,20 @@
+{
+
+	"256color": true,
+	"unix_term": "xterm-256color",
+	
+	"default_config": {
+	    "linux": "Fish",    // login shell
+	    "osx": null,      // login shell
+	    "windows": "Command Prompt"
+	},
+	"shell_configs": [
+		{
+		    "name": "Fish",
+		    "cmd": ["fish", "-i", "-l"],
+		    "env": {},
+		    "enable": true,
+		    "platforms": ["linux"]
+		},
+	]
+}
