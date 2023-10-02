@@ -35,7 +35,6 @@
 
     // Goto files
     // { "keys": ["ctrl+alt+p"], "command": "goto_recent" },
-    // { "keys": ["ctrl+p"], "command": "open_file_handler" },
     // { "keys": ["alt+p"], "command": "file_history_handler" },
 
 // 	// Macros

@@ -12,7 +12,6 @@
 	{ "command": "move_to_bottom_of_file", "caption": "Sublime Plus: Move to Bottom of File" },
 	{ "command": "clear_console", "caption": "Sublime Plus: Clear Console" },
 	{ "command": "folder_handler", "caption": "Sublime Plus: Fold..." },
-	{ "command": "open_file_handler", "caption": "Sublime Plus: Open Files..." },
 	{ "command": "file_history_handler", "caption": "Sublime Plus: Open Recent..." },
 	{ "command": "open_workspace_from_list", "caption": "Sublime Plus: Open Workspace" },
 	{ "command": "goto_recent", "caption": "Sublime Plus: Recently Closed Files" },

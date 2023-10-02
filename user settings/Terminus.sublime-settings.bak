@@ -16,5 +16,8 @@
 		    "enable": true,
 		    "platforms": ["linux"]
 		},
-	]
+	],
+	"preserve_keys" : [
+	    "ctrl+p"   // to show Go to Anything
+	],
 }

@@ -1175,38 +1175,6 @@ class FoldingInputHandler(sublime_plugin.ListInputHandler):
 
 # File handlers
 
-class OpenFileHandler(sublime_plugin.TextCommand):
-    def input_description(self):
-        return "Open File"
-
-    def input(self, args):
-        if "file" not in args:
-            return OpenFileInputHandler()
-
-    def run(self, edit, file):
-        window = self.view.window()
-        views = window.views()
-        for i in views:
-            if i.id() == file:
-                window.focus_view(i)
-                break
-
-
-class OpenFileInputHandler(sublime_plugin.ListInputHandler):
-    def name(self):
-        return "file"
-
-    def list_items(self):
-        files = list()
-        for i, f in enumerate(sublime.active_window().views()):
-            fname = (
-                f"{i + 1}.  "
-                + f.file_name().replace("\\", "/").rstrip("/").rpartition("/")[2]
-            )
-            files.append((fname, f.id()))
-        return files
-
-
 class FileHistoryHandler(sublime_plugin.TextCommand):
     def input_description(self):
         return "Open Recent"
