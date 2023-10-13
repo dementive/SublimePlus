@@ -59,24 +59,17 @@ A ton of commands that make using sublime text overall a better experience, thes
 	- Go to Recent. A command pallete list input handler to quickly open recently closed files. Command Name: 'goto_recent'
 	- Folder Handler. Easily fold or unfold different levels of a file. Command Name: 'folder_handler'
 
-10. Rainbow Brackets
-	
-	A simple version of the [Rainbow Brackets](https://github.com/absop/RainbowBrackets) package has been included and has the following commands:
-	- Make Rainbow
-	- Clear Rainbow
-	- Clear Color Schemes
-
-11. Diffy
+10. Diffy
 
 	A simple version of the [Diffy](https://packagecontrol.io/packages/Diffy) package 
 	- Diffy. With 2 tabs side by side in a group use this command and it will draw regions that show the diffs of the two files.
 
-12. Event Listeners
+11. Event Listeners
 	- Auto Save. Automatically save files under certain conditions, there are a lot of settings so you can define the exact behavior you want.
 	- Auto Close Empty Group. When groups are empty they will be automatically closed.
 	- Auto Sort Tabs. This is disabled by default and can be enabled in settings to automatically sort opened tabs when opening/closing files.
 
-13. Sidebar Commands/Events
+12. Sidebar Commands/Events
 	
 	I wouldn't recommend using any other plugins that make changes to the sidebar, your experience with the sidebar will only be worse because almost all available sidebar plugins are integrated into sublime plus.
 
@@ -123,3 +116,4 @@ Some other plugins that work great with sublime plus are:
 - [Git Gutter](https://packagecontrol.io/packages/GitGutter) - Hover over diffs in the gutter to get a detailed breakdown of git diffs
 - [Code Map](https://packagecontrol.io/packages/CodeMap) - Adds a command to show an outline of your code
 - [A File Icon](https://packagecontrol.io/packages/A%20File%20Icon) - This is required to have file icons in the sidebar for the custom themes, I highly recommend using it.
+- [Rainbow Brackets](https://github.com/absop/RainbowBrackets)
