@@ -6,10 +6,18 @@ import os
 import shutil
 from functools import partial
 from collections import defaultdict
-
+import sys
 
 change_count_trigger = 0
 
+def open_path(path: str):
+    system = sys.platform
+    if system == "Darwin":  # macOS
+        subprocess.Popen(("open", path))
+    elif system == "Windows" or system == "win32" or system == "win":  # Windows
+        os.startfile(path)
+    else:  # Linux and other Unix-like systems
+        subprocess.Popen((path))
 
 def plugin_loaded():
     global close_sidebar_if_opened
@@ -389,4 +397,4 @@ class SideBarMenuDeleteCommand(SideBarCommand):
 
 class SideBarMenuRunOrOpenCommand(SideBarCommand):
     def run(self, paths):
-        os.startfile(self.get_path(paths))
+        open_path(self.get_path(paths))
