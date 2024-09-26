@@ -108,6 +108,11 @@
 	"rules":
 	[
         {
+            "name": "CPPStuff",
+            "scope": "punctuation.definition.generic - (begin.c++ | end.c++)",
+            "foreground": "color(var(red) alpha(0.8))"
+        },
+        {
             "name": "Keyword",
             "scope": "keyword - (source.c keyword.operator | source.c++ keyword.operator | source.objc keyword.operator | source.objc++ keyword.operator), keyword.operator.word, source.ruby keyword.declaration",
             "foreground": "color(var(red) alpha(0.8))"
