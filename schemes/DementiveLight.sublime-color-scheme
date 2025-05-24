@@ -117,6 +117,10 @@
             "foreground": "var(blue)"
         },
         {
+            "scope": "meta.semantic-token.enum.declaration",
+            "foreground": "var(yellow2)"
+        },
+        {
             "name": "CPPStuff",
             "scope": "punctuation.definition.generic - (begin.c++ | end.c++)",
             "foreground": "color(var(red) alpha(0.8))"
