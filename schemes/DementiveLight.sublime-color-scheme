@@ -107,6 +107,15 @@
     },
 	"rules":
 	[
+
+        {
+            "scope": "meta.semantic-token",
+            "background": "#00000101"
+        },
+        {
+            "scope": "meta.semantic-token.enum",
+            "foreground": "var(blue)"
+        },
         {
             "name": "CPPStuff",
             "scope": "punctuation.definition.generic - (begin.c++ | end.c++)",
