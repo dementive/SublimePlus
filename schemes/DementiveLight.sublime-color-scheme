@@ -9,7 +9,7 @@
         "black3": "hsl(70, 8%, 15%)",
         "black4": "hsl(0, 0%, 10%)",
         "blue": "hsl(190, 81%, 67%)",
-        "blue2": "hsl(210, 81%, 67%)",
+        "blue2": "hsl(210, 88%, 64%)",
         "blue3": "hsl(190, 100%, 67%)",
         "blue4": "hsl(170, 60%, 56%)",
         "blue5": "rgb( 0, 150, 200)",
@@ -117,8 +117,12 @@
             "foreground": "var(blue)"
         },
         {
-            "scope": "meta.semantic-token.enum.declaration",
+            "scope": "meta.semantic-token.enum.declaration | meta.semantic-token.macro.declaration",
             "foreground": "var(yellow2)"
+        },
+        {
+            "scope": "meta.semantic-token.macro",
+            "foreground": "var(blue2)"
         },
         {
             "name": "CPPStuff",
