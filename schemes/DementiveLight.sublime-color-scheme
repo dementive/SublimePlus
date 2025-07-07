@@ -117,12 +117,12 @@
             "foreground": "var(blue)"
         },
         {
-            "scope": "meta.semantic-token.enum.declaration | meta.semantic-token.macro.declaration",
-            "foreground": "var(yellow2)"
+            "scope": "meta.semantic-token.enummember",
+            "foreground": "color(var(white3) alpha(0.9))"
         },
         {
-            "scope": "meta.semantic-token.macro",
-            "foreground": "var(blue2)"
+            "scope": "meta.semantic-token.enum.declaration | meta.semantic-token.macro.declaration",
+            "foreground": "var(yellow2)"
         },
         {
             "name": "CPPStuff",
